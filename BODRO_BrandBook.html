@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BODRO — Brand Book</title>
+  <title>BODRO — Brand Book v2</title>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -110,7 +110,7 @@
     .on-dark   .logo-cell-label,
     .on-green  .logo-cell-label { color: rgba(255,255,255,0.2); }
 
-    /* BALANCE variant cells */
+    /* SMART variant cells */
     .logo-balance-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 16px; }
     .lb-cell {
       border-radius: 14px; display: flex; flex-direction: column;
@@ -125,7 +125,7 @@
     .on-dark  .lb-main { color: var(--cream); }
     .on-green .lb-main { color: var(--cream); }
     .lb-sub { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; margin-top: 5px; }
-    .on-cream .lb-sub  { color: var(--green); }
+    .on-cream .lb-sub  { color: var(--black); }
     .on-dark  .lb-sub  { color: var(--lime); }
     .on-green .lb-sub  { color: rgba(181,214,78,0.7); }
     .lb-cell .logo-cell-label { position: absolute; bottom: 10px; }
@@ -165,24 +165,24 @@
     .lines-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 44px; }
     .line-card { border-radius: 18px; overflow: hidden; }
     .line-header { padding: 40px; }
-    .lh-main    { background: var(--green); }
-    .lh-balance { background: var(--cream); border: 1px solid rgba(17,17,16,0.08); border-bottom: none; }
+    .lh-main  { background: var(--white); border: 1px solid rgba(17,17,16,0.08); border-bottom: none; }
+    .lh-smart { background: var(--black); }
     .line-badge {
       display: inline-block; font-family: 'Space Mono', monospace;
       font-size: 9px; font-weight: 400; letter-spacing: 0.18em;
       text-transform: uppercase; padding: 3px 8px; border-radius: 3px; margin-bottom: 20px;
     }
-    .lh-main    .line-badge { background: var(--lime); color: var(--black); }
-    .lh-balance .line-badge { background: var(--green); color: #fff; }
+    .lh-main  .line-badge { background: var(--black); color: var(--white); }
+    .lh-smart .line-badge { background: var(--lime); color: var(--black); }
     .line-name { font-size: 44px; font-weight: 700; letter-spacing: -0.01em; line-height: 1; margin-bottom: 6px; }
-    .lh-main    .line-name { color: var(--cream); }
-    .lh-balance .line-name { color: var(--black); }
+    .lh-main  .line-name { color: var(--black); }
+    .lh-smart .line-name { color: var(--cream); }
     .line-sub { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; }
-    .lh-main    .line-sub { color: rgba(242,237,227,0.4); }
-    .lh-balance .line-sub { color: var(--green); }
+    .lh-main  .line-sub { color: var(--mid); }
+    .lh-smart .line-sub { color: var(--lime); }
     .line-tagline { font-size: 14px; font-weight: 400; line-height: 1.7; margin-top: 14px; }
-    .lh-main    .line-tagline { color: rgba(242,237,227,0.6); }
-    .lh-balance .line-tagline { color: #666; }
+    .lh-main  .line-tagline { color: #666; }
+    .lh-smart .line-tagline { color: rgba(242,237,227,0.55); }
     .line-body { padding: 28px 40px; border: 1px solid rgba(17,17,16,0.07); border-top: none; border-radius: 0 0 18px 18px; background: var(--white); }
     .line-attr-item { display: flex; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid rgba(17,17,16,0.05); font-size: 13px; }
     .line-attr-item:last-child { border-bottom: none; }
@@ -198,62 +198,63 @@
     .packaging-stage { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; margin-top: 56px; }
     .pkg { width: 240px; border-radius: 16px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,0.4); }
     .pkg-top { padding: 20px 18px 16px; }
-    .pt-dark   { background: var(--black); }
-    .pt-cream  { background: var(--cream); border-bottom: 1px solid rgba(17,17,16,0.08); }
-    .pt-balance{ background: #1E4A2F; }
+    /* BODRO main = белый + чёрный, чистый */
+    .pt-main  { background: #FFFFFF; border-bottom: 1px solid rgba(17,17,16,0.1); }
+    /* BODRO SMART = почти чёрный, КБЖУ доминирует */
+    .pt-smart { background: #111110; }
+
     .pkg-brand { font-size: 26px; font-weight: 700; letter-spacing: 0.08em; line-height: 1; }
-    .pt-dark    .pkg-brand { color: var(--cream); }
-    .pt-cream   .pkg-brand { color: var(--black); }
-    .pt-balance .pkg-brand { color: #fff; }
+    .pt-main  .pkg-brand { color: var(--black); }
+    .pt-smart .pkg-brand { color: var(--cream); }
     .pkg-line { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; margin-top: 2px; }
-    .pt-dark    .pkg-line  { color: rgba(181,214,78,0.5); }
-    .pt-cream   .pkg-line  { color: var(--green); }
-    .pt-balance .pkg-line  { color: rgba(181,214,78,0.55); }
+    .pt-main  .pkg-line { color: var(--mid); }
+    .pt-smart .pkg-line { color: var(--lime); }
     .pkg-dish { font-size: 13px; font-weight: 500; line-height: 1.35; margin-top: 14px; }
-    .pt-dark    .pkg-dish  { color: rgba(242,237,227,0.9); }
-    .pt-cream   .pkg-dish  { color: var(--black); }
-    .pt-balance .pkg-dish  { color: #fff; }
+    .pt-main  .pkg-dish { color: #333; }
+    .pt-smart .pkg-dish { color: rgba(242,237,227,0.85); }
     .pkg-weight { font-family: 'Space Mono', monospace; font-size: 9px; margin-top: 2px; }
-    .pt-dark    .pkg-weight { color: rgba(181,214,78,0.45); }
-    .pt-cream   .pkg-weight { color: var(--mid); }
-    .pt-balance .pkg-weight { color: rgba(181,214,78,0.45); }
+    .pt-main  .pkg-weight { color: var(--mid); }
+    .pt-smart .pkg-weight { color: rgba(181,214,78,0.4); }
+
     .pkg-body { padding: 12px 18px 16px; }
-    .pt-dark + .pkg-body,
-    .pt-balance + .pkg-body { background: #191917; }
-    .pt-cream + .pkg-body { background: var(--white); }
+    .pt-main  + .pkg-body { background: #F8F8F6; }
+    .pt-smart + .pkg-body { background: #1A1A18; }
+
     .kbzhu-title { font-family: 'Space Mono', monospace; font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 7px; }
-    .pt-dark + .pkg-body .kbzhu-title,
-    .pt-balance + .pkg-body .kbzhu-title { color: rgba(255,255,255,0.22); }
-    .pt-cream + .pkg-body .kbzhu-title { color: var(--mid); }
+    .pt-main  + .pkg-body .kbzhu-title { color: var(--mid); }
+    .pt-smart + .pkg-body .kbzhu-title { color: rgba(255,255,255,0.22); }
+
+    /* BODRO SMART — КБЖУ крупнее, ярче */
     .kbzhu-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 3px; margin-bottom: 10px; }
-    .kc { background: rgba(255,255,255,0.04); border-radius: 5px; padding: 6px 3px; text-align: center; }
-    .pt-cream + .pkg-body .kc { background: rgba(17,17,16,0.04); }
-    .kc-v { font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; display: block; }
-    .pt-dark + .pkg-body .kc-v,
-    .pt-balance + .pkg-body .kc-v { color: var(--lime); }
-    .pt-cream + .pkg-body .kc-v  { color: var(--green); }
+    .kc { border-radius: 5px; padding: 6px 3px; text-align: center; }
+    .pt-main  + .pkg-body .kc { background: rgba(17,17,16,0.05); }
+    .pt-smart + .pkg-body .kc { background: rgba(181,214,78,0.08); border: 1px solid rgba(181,214,78,0.15); }
+
+    .kc-v { font-family: 'Space Mono', monospace; font-weight: 700; display: block; }
+    .pt-main  + .pkg-body .kc-v { font-size: 11px; color: var(--black); }
+    .pt-smart + .pkg-body .kc-v { font-size: 14px; color: var(--lime); }
+
     .kc-k { font-family: 'Space Mono', monospace; font-size: 7px; text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-top: 2px; }
-    .pt-dark + .pkg-body .kc-k,
-    .pt-balance + .pkg-body .kc-k  { color: rgba(255,255,255,0.22); }
-    .pt-cream + .pkg-body .kc-k   { color: var(--mid); }
+    .pt-main  + .pkg-body .kc-k { color: var(--mid); }
+    .pt-smart + .pkg-body .kc-k { color: rgba(255,255,255,0.25); }
+
     .pkg-ingr { font-size: 9px; line-height: 1.65; }
-    .pt-dark + .pkg-body .pkg-ingr,
-    .pt-balance + .pkg-body .pkg-ingr { color: rgba(255,255,255,0.25); }
-    .pt-cream + .pkg-body .pkg-ingr  { color: rgba(17,17,16,0.35); }
+    .pt-main  + .pkg-body .pkg-ingr { color: rgba(17,17,16,0.4); }
+    .pt-smart + .pkg-body .pkg-ingr { color: rgba(255,255,255,0.25); }
+
     .ingr-label { font-family: 'Space Mono', monospace; font-size: 7px; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700; margin-bottom: 3px; }
-    .pt-dark + .pkg-body .ingr-label,
-    .pt-balance + .pkg-body .ingr-label { color: rgba(255,255,255,0.38); }
-    .pt-cream + .pkg-body .ingr-label  { color: var(--mid); }
-    .pkg-shelf { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.05); }
-    .pt-cream + .pkg-body .pkg-shelf { border-color: rgba(17,17,16,0.06); }
+    .pt-main  + .pkg-body .ingr-label { color: var(--mid); }
+    .pt-smart + .pkg-body .ingr-label { color: rgba(255,255,255,0.38); }
+
+    .pkg-shelf { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; padding-top: 8px; }
+    .pt-main  + .pkg-body .pkg-shelf { border-top: 1px solid rgba(17,17,16,0.07); }
+    .pt-smart + .pkg-body .pkg-shelf { border-top: 1px solid rgba(255,255,255,0.05); }
     .shelf-t { font-family: 'Space Mono', monospace; font-size: 8px; letter-spacing: 0.06em; }
-    .pt-dark + .pkg-body .shelf-t,
-    .pt-balance + .pkg-body .shelf-t { color: rgba(255,255,255,0.18); }
-    .pt-cream + .pkg-body .shelf-t { color: rgba(17,17,16,0.25); }
+    .pt-main  + .pkg-body .shelf-t { color: rgba(17,17,16,0.3); }
+    .pt-smart + .pkg-body .shelf-t { color: rgba(255,255,255,0.18); }
     .shelf-v { font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; }
-    .pt-dark + .pkg-body .shelf-v,
-    .pt-balance + .pkg-body .shelf-v { color: var(--lime); }
-    .pt-cream + .pkg-body .shelf-v { color: var(--green); }
+    .pt-main  + .pkg-body .shelf-v { color: var(--black); }
+    .pt-smart + .pkg-body .shelf-v { color: var(--lime); }
 
     /* MENU */
     #menu { background: var(--cream); }
@@ -266,7 +267,7 @@
     .dish-body { padding: 16px; }
     .dish-line-tag { font-family: 'Space Mono', monospace; font-size: 8px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 6px; }
     .dlt-main    { color: var(--green); }
-    .dlt-balance { color: #1E4A2F; }
+    .dlt-smart { color: #1E4A2F; }
     .dish-name { font-size: 15px; font-weight: 600; line-height: 1.25; margin-bottom: 2px; }
     .dish-w { font-family: 'Space Mono', monospace; font-size: 9px; color: var(--mid); margin-bottom: 10px; }
     .macros { display: grid; grid-template-columns: repeat(4,1fr); gap: 3px; margin-bottom: 10px; }
@@ -284,27 +285,38 @@
     #positioning h2 { color: var(--cream); }
     .pos-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 52px; }
     .pos-card { border-radius: 18px; padding: 40px; }
-    .pos-main    { background: var(--green); }
-    .pos-balance { background: #181816; border: 1px solid rgba(42,72,25,0.25); }
+    .pos-main  { background: #FFFFFF; border: 1px solid rgba(17,17,16,0.08); }
+    .pos-smart { background: var(--black); }
     .pos-tag { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 20px; }
-    .pos-main    .pos-tag { color: rgba(181,214,78,0.55); }
-    .pos-balance .pos-tag { color: rgba(181,214,78,0.35); }
+    .pos-main  .pos-tag { color: var(--mid); }
+    .pos-smart .pos-tag { color: var(--lime); opacity: 0.7; }
     .pos-name { font-size: 40px; font-weight: 700; letter-spacing: -0.01em; line-height: 1; }
-    .pos-main    .pos-name { color: var(--cream); }
-    .pos-balance .pos-name { color: var(--cream); }
+    .pos-main  .pos-name { color: var(--black); }
+    .pos-smart .pos-name { color: var(--cream); }
     .pos-sub { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase; margin-top: 4px; margin-bottom: 16px; }
-    .pos-main    .pos-sub { color: rgba(242,237,227,0.4); }
-    .pos-balance .pos-sub { color: rgba(181,214,78,0.5); }
-    .pos-divider { height: 1px; background: rgba(255,255,255,0.08); margin-bottom: 16px; }
+    .pos-main  .pos-sub { color: var(--mid); }
+    .pos-smart .pos-sub { color: var(--lime); }
+    .pos-divider { height: 1px; margin-bottom: 16px; }
+    .pos-main  .pos-divider { background: rgba(17,17,16,0.08); }
+    .pos-smart .pos-divider { background: rgba(255,255,255,0.08); }
     .pos-claim { font-size: 17px; font-weight: 300; line-height: 1.55; margin-bottom: 18px; }
-    .pos-main    .pos-claim { color: rgba(242,237,227,0.7); }
-    .pos-balance .pos-claim { color: rgba(242,237,227,0.6); }
+    .pos-main  .pos-claim { color: #555; }
+    .pos-smart .pos-claim { color: rgba(242,237,227,0.6); }
     .pos-attrs { display: flex; flex-direction: column; gap: 0; }
-    .pos-attr { display: flex; gap: 12px; padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.05); font-size: 13px; line-height: 1.6; }
-    .pos-attr:last-child { border-bottom: 1px solid rgba(255,255,255,0.05); }
-    .pos-attr-num { font-family: 'Space Mono', monospace; font-size: 9px; color: var(--lime); min-width: 20px; margin-top: 2px; }
-    .pos-attr-body { color: rgba(242,237,227,0.6); }
-    .pos-attr-body strong { color: rgba(242,237,227,0.88); }
+    .pos-attr { display: flex; gap: 12px; padding: 10px 0; font-size: 13px; line-height: 1.6; }
+    .pos-main  .pos-attr { border-top: 1px solid rgba(17,17,16,0.05); }
+    .pos-smart .pos-attr { border-top: 1px solid rgba(255,255,255,0.05); }
+    .pos-attr:last-child { border-bottom: inherit; }
+    .pos-main  .pos-attr:last-child { border-bottom: 1px solid rgba(17,17,16,0.05); }
+    .pos-smart .pos-attr:last-child { border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .pos-attr-num { font-family: 'Space Mono', monospace; font-size: 9px; min-width: 20px; margin-top: 2px; }
+    .pos-main  .pos-attr-num { color: var(--black); }
+    .pos-smart .pos-attr-num { color: var(--lime); }
+    .pos-attr-body { }
+    .pos-main  .pos-attr-body { color: #555; }
+    .pos-smart .pos-attr-body { color: rgba(242,237,227,0.6); }
+    .pos-main  .pos-attr-body strong { color: var(--black); }
+    .pos-smart .pos-attr-body strong { color: rgba(242,237,227,0.88); }
 
     /* vs grid */
     .vs-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-top: 48px; }
@@ -343,7 +355,7 @@
     .app-icon { width: 38px; height: 38px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
     .ai-green   { background: var(--green); }
     .ai-light   { background: var(--light); }
-    .ai-balance { background: #1E4A2F; }
+    .ai-smart { background: #1E4A2F; }
     .app-info { flex: 1; }
     .app-name  { font-size: 12px; font-weight: 600; color: var(--cream); margin-bottom: 1px; }
     .app-brand { font-family: 'Space Mono', monospace; font-size: 8px; color: rgba(255,255,255,0.25); }
@@ -396,7 +408,7 @@
   <div class="cover-bottom">
     <div class="cover-claim">Еда, после которой хочется жить.</div>
     <div class="cover-meta">
-      <p>BODRO + BODRO BALANCE</p>
+      <p>BODRO (белый) + BODRO SMART (чёрный)</p>
       <p>DARK KITCHEN · САМАРА</p>
       <p>SPACE GROTESK × SPACE MONO</p>
     </div>
@@ -436,7 +448,7 @@
 <section id="logo">
   <div class="section-label">02 — Логотип</div>
   <h2>Словесная марка</h2>
-  <p class="lead">Три варианта основного логотипа. Три варианта BODRO BALANCE.</p>
+  <p class="lead">Три варианта основного логотипа. Три варианта BODRO SMART.</p>
 
   <div class="logo-wordmarks">
     <div class="logo-cell on-cream">
@@ -457,21 +469,21 @@
   </div>
 
   <div style="margin-top:32px;">
-    <div class="section-label" style="margin-bottom:16px;">BODRO BALANCE — варианты</div>
+    <div class="section-label" style="margin-bottom:16px;">BODRO SMART — варианты</div>
     <div class="logo-balance-row">
       <div class="lb-cell on-cream">
         <div class="lb-main">BODRO</div>
-        <div class="lb-sub">Balance</div>
+        <div class="lb-sub">SMART</div>
         <div class="logo-cell-label" style="color:var(--mid);">Кремовый</div>
       </div>
       <div class="lb-cell on-dark">
         <div class="lb-main">BODRO</div>
-        <div class="lb-sub">Balance</div>
+        <div class="lb-sub">SMART</div>
         <div class="logo-cell-label" style="color:rgba(255,255,255,0.2);">Тёмный</div>
       </div>
       <div class="lb-cell on-green">
         <div class="lb-main">BODRO</div>
-        <div class="lb-sub">Balance</div>
+        <div class="lb-sub">SMART</div>
         <div class="logo-cell-label" style="color:rgba(255,255,255,0.2);">Зелёный</div>
       </div>
     </div>
@@ -524,11 +536,11 @@
       </div>
     </div>
     <div class="swatch">
-      <div class="swatch-color" style="background:#EFF5E2;"></div>
+      <div class="swatch-color" style="background:#FFFFFF; border: 1px solid rgba(255,255,255,0.15);"></div>
       <div class="swatch-info">
-        <div class="swatch-name">Light</div>
-        <div class="swatch-hex">#EFF5E2</div>
-        <div class="swatch-use">Светлые акценты, фоны секций</div>
+        <div class="swatch-name">Pure White</div>
+        <div class="swatch-hex">#FFFFFF</div>
+        <div class="swatch-use">Упаковка BODRO. Белый + чёрный = чистота</div>
       </div>
     </div>
   </div>
@@ -570,21 +582,21 @@
 <!-- LINES -->
 <section id="lines">
   <div class="section-label">05 — Линейки</div>
-  <h2>BODRO + BODRO BALANCE</h2>
-  <p class="lead">Одна кухня, два выбора. BODRO для всех — вкусно и доступно. BODRO BALANCE для тех, кто считает.</p>
+  <h2>BODRO + BODRO SMART</h2>
+  <p class="lead">Один бренд, две упаковки. BODRO — белый, чистый, для всех. BODRO SMART — чёрный, премиальный, для тех кто считает.</p>
   <div class="lines-grid">
     <div class="line-card">
       <div class="line-header lh-main">
         <div class="line-badge">Основная линейка</div>
         <div class="line-name">BODRO</div>
-        <div class="line-tagline">Понятная, вкусная, не дорогая. Для всех, кто не хочет готовить — но хочет есть нормально.</div>
+        <div class="line-tagline">Понятная, вкусная, не дорогая. Белая упаковка — чистый вкус без лишних слов.</div>
       </div>
       <div class="line-body">
         <div class="line-attr-item"><span class="attr-k">Цель</span><span class="attr-v">Вкусно поесть</span></div>
         <div class="line-attr-item"><span class="attr-k">Аудитория</span><span class="attr-v">Все — офис, дом, студенты</span></div>
         <div class="line-attr-item"><span class="attr-k">Цена</span><span class="attr-v">Доступный сегмент</span></div>
-        <div class="line-attr-item"><span class="attr-k">КБЖУ</span><span class="attr-v">На упаковке, не в центре</span></div>
-        <div class="line-attr-item"><span class="attr-k">Упаковка</span><span class="attr-v">Тёмная, лесной зелёный</span></div>
+        <div class="line-attr-item"><span class="attr-k">КБЖУ</span><span class="attr-v">Есть на упаковке, не доминирует</span></div>
+        <div class="line-attr-item"><span class="attr-k">Упаковка</span><span class="attr-v">Белая + чёрный — чистый минимализм</span></div>
         <div class="line-tags">
           <span class="tag">Борщ с говядиной</span><span class="tag">Плов</span>
           <span class="tag">Паста с курицей</span><span class="tag">Котлета + рис</span>
@@ -592,18 +604,18 @@
       </div>
     </div>
     <div class="line-card">
-      <div class="line-header lh-balance">
+      <div class="line-header lh-smart">
         <div class="line-badge">Precision линейка</div>
         <div class="line-name">BODRO</div>
-        <div class="line-sub">Balance</div>
-        <div class="line-tagline">Пониженные жиры, качественный белок. Честный КБЖУ — крупно, на лицевой стороне.</div>
+        <div class="line-sub">SMART</div>
+        <div class="line-tagline">Чёрная упаковка, КБЖУ — крупно. Для тех, кто знает цифры.</div>
       </div>
       <div class="line-body">
         <div class="line-attr-item"><span class="attr-k">Цель</span><span class="attr-v">Точный контроль нутриентов</span></div>
         <div class="line-attr-item"><span class="attr-k">Аудитория</span><span class="attr-v">Те, кто считает КБЖУ</span></div>
         <div class="line-attr-item"><span class="attr-k">Белок</span><span class="attr-v">Высокий — грудка, рыба</span></div>
         <div class="line-attr-item"><span class="attr-k">Жиры</span><span class="attr-v">Пониженные, растительные</span></div>
-        <div class="line-attr-item"><span class="attr-k">Упаковка</span><span class="attr-v">Светлая, кремово-зелёная</span></div>
+        <div class="line-attr-item"><span class="attr-k">Упаковка</span><span class="attr-v">Чёрный + лаймовые цифры КБЖУ</span></div>
         <div class="line-tags">
           <span class="tag">Рататуй</span><span class="tag">Запеканка творожная</span>
           <span class="tag">Рыбная запеканка</span><span class="tag">Грибной суп-пюре</span>
@@ -620,7 +632,7 @@
   <p class="lead" style="color:rgba(242,237,227,0.5);">КБЖУ — на лицевой стороне, крупно. Состав читается.</p>
   <div class="packaging-stage">
     <div class="pkg">
-      <div class="pkg-top pt-dark">
+      <div class="pkg-top pt-main">
         <div class="pkg-brand">BODRO</div>
         <div class="pkg-line">Dark Kitchen</div>
         <div class="pkg-dish">Борщ с говядиной</div>
@@ -639,9 +651,9 @@
       </div>
     </div>
     <div class="pkg">
-      <div class="pkg-top pt-cream">
+      <div class="pkg-top pt-smart">
         <div class="pkg-brand">BODRO</div>
-        <div class="pkg-line">Balance</div>
+        <div class="pkg-line">SMART</div>
         <div class="pkg-dish">Запеканка рыбная с картофелем</div>
         <div class="pkg-weight">300 г · Горячее</div>
       </div>
@@ -658,9 +670,9 @@
       </div>
     </div>
     <div class="pkg">
-      <div class="pkg-top pt-balance">
+      <div class="pkg-top pt-smart">
         <div class="pkg-brand">BODRO</div>
-        <div class="pkg-line">Balance</div>
+        <div class="pkg-line">SMART</div>
         <div class="pkg-dish">Суп-пюре грибной с курицей</div>
         <div class="pkg-weight">300 г · Суп</div>
       </div>
@@ -719,7 +731,7 @@
     <div class="dish-card">
       <div class="dish-img di-black">🥗</div>
       <div class="dish-body">
-        <div class="dish-line-tag dlt-balance">BODRO BALANCE · Салат</div>
+        <div class="dish-line-tag dlt-smart">BODRO SMART · Салат</div>
         <div class="dish-name">Салат-микс зелёный с бальзамиком</div>
         <div class="dish-w">70 г</div>
         <div class="macros">
@@ -751,7 +763,7 @@
     <div class="dish-card">
       <div class="dish-img di-light">🍮</div>
       <div class="dish-body">
-        <div class="dish-line-tag dlt-balance">BODRO BALANCE · Десерт</div>
+        <div class="dish-line-tag dlt-smart">BODRO SMART · Десерт</div>
         <div class="dish-name">Запеканка творожная</div>
         <div class="dish-w">180 г</div>
         <div class="macros">
@@ -767,7 +779,7 @@
     <div class="dish-card">
       <div class="dish-img di-black">🐟</div>
       <div class="dish-body">
-        <div class="dish-line-tag dlt-balance">BODRO BALANCE · Горячее</div>
+        <div class="dish-line-tag dlt-smart">BODRO SMART · Горячее</div>
         <div class="dish-name">Запеканка рыбная с картофелем</div>
         <div class="dish-w">300 г</div>
         <div class="macros">
@@ -801,7 +813,7 @@
         <div class="pos-attr"><div class="pos-attr-num">04</div><div class="pos-attr-body"><strong>Без ПП-культа.</strong> Не уговариваем менять пищевые привычки. Просто вкусно.</div></div>
       </div>
     </div>
-    <div class="pos-card pos-balance">
+    <div class="pos-card pos-smart">
       <div class="pos-tag">Precision продукт</div>
       <div class="pos-name">BODRO</div>
       <div class="pos-sub">Balance</div>
@@ -894,16 +906,16 @@
         <div class="app-icon ai-light">🥗</div>
         <div class="app-info">
           <div class="app-name">Салат-микс зелёный</div>
-          <div class="app-brand">BODRO BALANCE</div>
+          <div class="app-brand">BODRO SMART</div>
           <div class="app-kbzhu">70г · Б1.6 Ж10.5 У5.3 · 120 ккал/100г</div>
         </div>
         <div class="app-price">219₽</div>
       </div>
       <div class="app-item">
-        <div class="app-icon ai-balance">🐟</div>
+        <div class="app-icon ai-smart">🐟</div>
         <div class="app-info">
           <div class="app-name">Запеканка рыбная</div>
-          <div class="app-brand">BODRO BALANCE</div>
+          <div class="app-brand">BODRO SMART</div>
           <div class="app-kbzhu">300г · Б9.0 Ж4.5 У11.4 · 122 ккал/100г</div>
         </div>
         <div class="app-price">369₽</div>
@@ -913,7 +925,7 @@
       <h3>Принципы digital-присутствия</h3>
       <div class="drule"><div class="drule-dot"></div><div class="drule-text"><strong>КБЖУ в подзаголовке</strong> каждой карточки — сразу видно, без раскрытия.</div></div>
       <div class="drule"><div class="drule-dot"></div><div class="drule-text"><strong>Название = продукт.</strong> «Борщ с говядиной», не «Сытный домашний борщ».</div></div>
-      <div class="drule"><div class="drule-dot"></div><div class="drule-text"><strong>BODRO BALANCE — отдельный тег</strong> для фильтрации ЗОЖ-аудиторией.</div></div>
+      <div class="drule"><div class="drule-dot"></div><div class="drule-text"><strong>BODRO SMART — отдельный тег</strong> для фильтрации ЗОЖ-аудиторией.</div></div>
       <div class="drule"><div class="drule-dot"></div><div class="drule-text"><strong>Фото на кремовом фоне</strong> без декораций — продукт на первом месте.</div></div>
       <div class="drule"><div class="drule-dot"></div><div class="drule-text"><strong>Вес рядом с ценой</strong> — клиент видит цену за грамм без расчётов.</div></div>
     </div>
@@ -925,7 +937,7 @@
   <div class="ft-meta">
     <div>Brand Identity Guidelines · v1.1</div>
     <div>Dark Kitchen · Самара · 2025</div>
-    <div>BODRO + BODRO BALANCE</div>
+    <div>BODRO + BODRO SMART</div>
   </div>
 </footer>
 
