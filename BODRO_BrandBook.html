@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BODRO — Brand Book</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:  #111110;
+      --cream:  #F2EDE3;
+      --green:  #2A4819;
+      --lime:   #B5D64E;
+      --mid:    #888880;
+      --light:  #EFF5E2;
+      --white:  #FAFAF8;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Space Grotesk', sans-serif; background: var(--cream); color: var(--black); }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(17,17,16,0.95); backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 56px;
+    }
+    .nav-logo { font-family: 'Space Mono', monospace; color: var(--lime); font-size: 16px; letter-spacing: 0.1em; }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a { color: rgba(255,255,255,0.35); text-decoration: none; font-size: 12px; letter-spacing: 0.08em; transition: color .2s; text-transform: uppercase; }
+    .nav-links a:hover { color: #fff; }
+
+    /* SECTIONS */
+    section { padding: 120px 48px; }
+    .section-label {
+      font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--mid); margin-bottom: 24px;
+    }
+    h2 { font-size: clamp(36px, 5.5vw, 64px); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; }
+    p.lead { font-size: 16px; font-weight: 400; line-height: 1.7; color: #666; max-width: 560px; margin-top: 16px; }
+
+    /* COVER */
+    #cover {
+      background: var(--black); color: var(--cream);
+      min-height: 100vh; display: flex; flex-direction: column;
+      justify-content: flex-end; padding: 80px 48px 60px;
+      position: relative; overflow: hidden;
+    }
+    .cover-glow {
+      position: absolute; top: -200px; right: -100px;
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(181,214,78,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .cover-tag { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--lime); margin-bottom: 28px; opacity: 0.7; }
+    .cover-wordmark {
+      font-size: clamp(96px, 17vw, 210px); font-weight: 700; line-height: 0.9;
+      letter-spacing: -0.03em; position: relative; z-index: 1;
+    }
+    .cover-wordmark span { color: var(--lime); }
+    .cover-bottom {
+      margin-top: 40px; display: flex; align-items: flex-end;
+      justify-content: space-between; position: relative; z-index: 1;
+      border-top: 1px solid rgba(242,237,227,0.08); padding-top: 28px;
+    }
+    .cover-claim { font-size: clamp(16px,2.2vw,24px); font-weight: 300; color: rgba(242,237,227,0.5); max-width: 400px; line-height: 1.5; }
+    .cover-meta p { font-family: 'Space Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.2); letter-spacing: 0.1em; line-height: 2.2; text-align: right; }
+
+    /* PHILOSOPHY */
+    #philosophy { background: var(--cream); }
+    .pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(17,17,16,0.07); border: 1px solid rgba(17,17,16,0.07); border-radius: 16px; overflow: hidden; margin-top: 48px; }
+    .pillar { padding: 28px 24px; background: var(--white); }
+    .pillar-num { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--mid); margin-bottom: 12px; letter-spacing: 0.08em; }
+    .pillar h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+    .pillar p { font-size: 13px; line-height: 1.75; color: #666; }
+
+    /* LOGO */
+    #logo { background: var(--white); }
+    .logo-wordmarks { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 44px; }
+    .logo-cell {
+      border-radius: 14px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 44px 24px 32px; min-height: 180px; position: relative;
+    }
+    .logo-cell.on-cream  { background: var(--cream); }
+    .logo-cell.on-dark   { background: var(--black); }
+    .logo-cell.on-green  { background: var(--green); }
+    .wordmark {
+      font-size: 44px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .on-cream .wordmark  { color: var(--black); }
+    .on-dark  .wordmark  { color: var(--cream); }
+    .on-green .wordmark  { color: var(--cream); }
+    .wm-sub {
+      font-family: 'Space Mono', monospace; font-size: 9px;
+      letter-spacing: 0.22em; margin-top: 4px;
+    }
+    .on-cream  .wm-sub { color: var(--mid); }
+    .on-dark   .wm-sub { color: rgba(242,237,227,0.3); }
+    .on-green  .wm-sub { color: rgba(181,214,78,0.5); }
+    .logo-cell-label {
+      position: absolute; bottom: 12px; left: 0; right: 0; text-align: center;
+      font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .on-cream  .logo-cell-label { color: var(--mid); }
+    .on-dark   .logo-cell-label,
+    .on-green  .logo-cell-label { color: rgba(255,255,255,0.2); }
+
+    /* BALANCE variant cells */
+    .logo-balance-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 16px; }
+    .lb-cell {
+      border-radius: 14px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 36px 24px 30px; min-height: 160px; position: relative;
+    }
+    .lb-cell.on-cream  { background: var(--cream); }
+    .lb-cell.on-dark   { background: var(--black); }
+    .lb-cell.on-green  { background: var(--green); }
+    .lb-main { font-size: 36px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    .on-cream .lb-main { color: var(--black); }
+    .on-dark  .lb-main { color: var(--cream); }
+    .on-green .lb-main { color: var(--cream); }
+    .lb-sub { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; margin-top: 5px; }
+    .on-cream .lb-sub  { color: var(--green); }
+    .on-dark  .lb-sub  { color: var(--lime); }
+    .on-green .lb-sub  { color: rgba(181,214,78,0.7); }
+    .lb-cell .logo-cell-label { position: absolute; bottom: 10px; }
+    .on-cream .lb-cell .logo-cell-label { color: var(--mid); }
+
+    /* COLORS */
+    #colors { background: var(--black); color: var(--cream); }
+    #colors .section-label { color: rgba(242,237,227,0.3); }
+    #colors h2 { color: var(--cream); }
+    .palette { display: grid; grid-template-columns: repeat(6,1fr); gap: 12px; margin-top: 44px; }
+    .swatch { border-radius: 12px; overflow: hidden; }
+    .swatch-color { height: 120px; }
+    .swatch-info { padding: 12px; background: #1C1C1A; }
+    .swatch-name { font-size: 12px; font-weight: 600; color: var(--cream); margin-bottom: 2px; }
+    .swatch-hex { font-family: 'Space Mono', monospace; font-size: 10px; color: rgba(242,237,227,0.3); }
+    .swatch-use { font-size: 10px; color: rgba(242,237,227,0.2); margin-top: 5px; line-height: 1.5; }
+
+    /* TYPOGRAPHY */
+    #typography { background: var(--cream); }
+    .type-grid { margin-top: 44px; }
+    .type-row {
+      display: grid; grid-template-columns: 200px 1fr;
+      gap: 24px; align-items: baseline;
+      padding: 28px 0; border-top: 1px solid rgba(17,17,16,0.07);
+    }
+    .type-meta-name { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--mid); text-transform: uppercase; letter-spacing: 0.08em; }
+    .type-meta-spec { font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(136,130,128,0.5); margin-top: 5px; line-height: 1.6; }
+    .t-hero  { font-size: 72px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
+    .t-h1    { font-size: 48px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.05; }
+    .t-h2    { font-size: 28px; font-weight: 600; letter-spacing: -0.01em; }
+    .t-body  { font-size: 16px; font-weight: 400; line-height: 1.75; color: #555; }
+    .t-cap   { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); }
+    .t-num   { font-family: 'Space Mono', monospace; font-size: 14px; }
+
+    /* LINES */
+    #lines { background: var(--white); }
+    .lines-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 44px; }
+    .line-card { border-radius: 18px; overflow: hidden; }
+    .line-header { padding: 40px; }
+    .lh-main    { background: var(--green); }
+    .lh-balance { background: var(--cream); border: 1px solid rgba(17,17,16,0.08); border-bottom: none; }
+    .line-badge {
+      display: inline-block; font-family: 'Space Mono', monospace;
+      font-size: 9px; font-weight: 400; letter-spacing: 0.18em;
+      text-transform: uppercase; padding: 3px 8px; border-radius: 3px; margin-bottom: 20px;
+    }
+    .lh-main    .line-badge { background: var(--lime); color: var(--black); }
+    .lh-balance .line-badge { background: var(--green); color: #fff; }
+    .line-name { font-size: 44px; font-weight: 700; letter-spacing: -0.01em; line-height: 1; margin-bottom: 6px; }
+    .lh-main    .line-name { color: var(--cream); }
+    .lh-balance .line-name { color: var(--black); }
+    .line-sub { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; }
+    .lh-main    .line-sub { color: rgba(242,237,227,0.4); }
+    .lh-balance .line-sub { color: var(--green); }
+    .line-tagline { font-size: 14px; font-weight: 400; line-height: 1.7; margin-top: 14px; }
+    .lh-main    .line-tagline { color: rgba(242,237,227,0.6); }
+    .lh-balance .line-tagline { color: #666; }
+    .line-body { padding: 28px 40px; border: 1px solid rgba(17,17,16,0.07); border-top: none; border-radius: 0 0 18px 18px; background: var(--white); }
+    .line-attr-item { display: flex; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid rgba(17,17,16,0.05); font-size: 13px; }
+    .line-attr-item:last-child { border-bottom: none; }
+    .attr-k { color: var(--mid); font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .attr-v { font-weight: 500; text-align: right; max-width: 200px; }
+    .line-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+    .tag { font-size: 12px; padding: 4px 10px; background: rgba(17,17,16,0.04); border-radius: 100px; color: #444; }
+
+    /* PACKAGING */
+    #packaging { background: var(--green); color: var(--cream); }
+    #packaging .section-label { color: rgba(181,214,78,0.4); }
+    #packaging h2 { color: var(--cream); }
+    .packaging-stage { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; margin-top: 56px; }
+    .pkg { width: 240px; border-radius: 16px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,0.4); }
+    .pkg-top { padding: 20px 18px 16px; }
+    .pt-dark   { background: var(--black); }
+    .pt-cream  { background: var(--cream); border-bottom: 1px solid rgba(17,17,16,0.08); }
+    .pt-balance{ background: #1E4A2F; }
+    .pkg-brand { font-size: 26px; font-weight: 700; letter-spacing: 0.08em; line-height: 1; }
+    .pt-dark    .pkg-brand { color: var(--cream); }
+    .pt-cream   .pkg-brand { color: var(--black); }
+    .pt-balance .pkg-brand { color: #fff; }
+    .pkg-line { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; margin-top: 2px; }
+    .pt-dark    .pkg-line  { color: rgba(181,214,78,0.5); }
+    .pt-cream   .pkg-line  { color: var(--green); }
+    .pt-balance .pkg-line  { color: rgba(181,214,78,0.55); }
+    .pkg-dish { font-size: 13px; font-weight: 500; line-height: 1.35; margin-top: 14px; }
+    .pt-dark    .pkg-dish  { color: rgba(242,237,227,0.9); }
+    .pt-cream   .pkg-dish  { color: var(--black); }
+    .pt-balance .pkg-dish  { color: #fff; }
+    .pkg-weight { font-family: 'Space Mono', monospace; font-size: 9px; margin-top: 2px; }
+    .pt-dark    .pkg-weight { color: rgba(181,214,78,0.45); }
+    .pt-cream   .pkg-weight { color: var(--mid); }
+    .pt-balance .pkg-weight { color: rgba(181,214,78,0.45); }
+    .pkg-body { padding: 12px 18px 16px; }
+    .pt-dark + .pkg-body,
+    .pt-balance + .pkg-body { background: #191917; }
+    .pt-cream + .pkg-body { background: var(--white); }
+    .kbzhu-title { font-family: 'Space Mono', monospace; font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 7px; }
+    .pt-dark + .pkg-body .kbzhu-title,
+    .pt-balance + .pkg-body .kbzhu-title { color: rgba(255,255,255,0.22); }
+    .pt-cream + .pkg-body .kbzhu-title { color: var(--mid); }
+    .kbzhu-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 3px; margin-bottom: 10px; }
+    .kc { background: rgba(255,255,255,0.04); border-radius: 5px; padding: 6px 3px; text-align: center; }
+    .pt-cream + .pkg-body .kc { background: rgba(17,17,16,0.04); }
+    .kc-v { font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; display: block; }
+    .pt-dark + .pkg-body .kc-v,
+    .pt-balance + .pkg-body .kc-v { color: var(--lime); }
+    .pt-cream + .pkg-body .kc-v  { color: var(--green); }
+    .kc-k { font-family: 'Space Mono', monospace; font-size: 7px; text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-top: 2px; }
+    .pt-dark + .pkg-body .kc-k,
+    .pt-balance + .pkg-body .kc-k  { color: rgba(255,255,255,0.22); }
+    .pt-cream + .pkg-body .kc-k   { color: var(--mid); }
+    .pkg-ingr { font-size: 9px; line-height: 1.65; }
+    .pt-dark + .pkg-body .pkg-ingr,
+    .pt-balance + .pkg-body .pkg-ingr { color: rgba(255,255,255,0.25); }
+    .pt-cream + .pkg-body .pkg-ingr  { color: rgba(17,17,16,0.35); }
+    .ingr-label { font-family: 'Space Mono', monospace; font-size: 7px; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700; margin-bottom: 3px; }
+    .pt-dark + .pkg-body .ingr-label,
+    .pt-balance + .pkg-body .ingr-label { color: rgba(255,255,255,0.38); }
+    .pt-cream + .pkg-body .ingr-label  { color: var(--mid); }
+    .pkg-shelf { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.05); }
+    .pt-cream + .pkg-body .pkg-shelf { border-color: rgba(17,17,16,0.06); }
+    .shelf-t { font-family: 'Space Mono', monospace; font-size: 8px; letter-spacing: 0.06em; }
+    .pt-dark + .pkg-body .shelf-t,
+    .pt-balance + .pkg-body .shelf-t { color: rgba(255,255,255,0.18); }
+    .pt-cream + .pkg-body .shelf-t { color: rgba(17,17,16,0.25); }
+    .shelf-v { font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; }
+    .pt-dark + .pkg-body .shelf-v,
+    .pt-balance + .pkg-body .shelf-v { color: var(--lime); }
+    .pt-cream + .pkg-body .shelf-v { color: var(--green); }
+
+    /* MENU */
+    #menu { background: var(--cream); }
+    .menu-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 44px; }
+    .dish-card { background: var(--white); border-radius: 14px; overflow: hidden; }
+    .dish-img { height: 88px; display: flex; align-items: center; justify-content: center; font-size: 36px; }
+    .di-green { background: var(--green); }
+    .di-light { background: var(--light); }
+    .di-black { background: var(--black); }
+    .dish-body { padding: 16px; }
+    .dish-line-tag { font-family: 'Space Mono', monospace; font-size: 8px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 6px; }
+    .dlt-main    { color: var(--green); }
+    .dlt-balance { color: #1E4A2F; }
+    .dish-name { font-size: 15px; font-weight: 600; line-height: 1.25; margin-bottom: 2px; }
+    .dish-w { font-family: 'Space Mono', monospace; font-size: 9px; color: var(--mid); margin-bottom: 10px; }
+    .macros { display: grid; grid-template-columns: repeat(4,1fr); gap: 3px; margin-bottom: 10px; }
+    .mc { background: rgba(17,17,16,0.04); border-radius: 5px; padding: 5px 3px; text-align: center; }
+    .mc-v { font-family: 'Space Mono', monospace; font-size: 10px; font-weight: 700; display: block; }
+    .mc-k { font-family: 'Space Mono', monospace; font-size: 7px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); display: block; }
+    .dish-ingr { font-size: 11px; color: #888; line-height: 1.6; margin-bottom: 8px; }
+    .dish-fc { display: flex; justify-content: space-between; font-size: 11px; padding-top: 8px; border-top: 1px solid rgba(17,17,16,0.05); }
+    .fc-l { color: var(--mid); font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.08em; font-size: 9px; }
+    .fc-v { font-family: 'Space Mono', monospace; font-weight: 700; color: var(--green); }
+
+    /* POSITIONING */
+    #positioning { background: var(--black); color: var(--cream); }
+    #positioning .section-label { color: rgba(181,214,78,0.35); }
+    #positioning h2 { color: var(--cream); }
+    .pos-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 52px; }
+    .pos-card { border-radius: 18px; padding: 40px; }
+    .pos-main    { background: var(--green); }
+    .pos-balance { background: #181816; border: 1px solid rgba(42,72,25,0.25); }
+    .pos-tag { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 20px; }
+    .pos-main    .pos-tag { color: rgba(181,214,78,0.55); }
+    .pos-balance .pos-tag { color: rgba(181,214,78,0.35); }
+    .pos-name { font-size: 40px; font-weight: 700; letter-spacing: -0.01em; line-height: 1; }
+    .pos-main    .pos-name { color: var(--cream); }
+    .pos-balance .pos-name { color: var(--cream); }
+    .pos-sub { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase; margin-top: 4px; margin-bottom: 16px; }
+    .pos-main    .pos-sub { color: rgba(242,237,227,0.4); }
+    .pos-balance .pos-sub { color: rgba(181,214,78,0.5); }
+    .pos-divider { height: 1px; background: rgba(255,255,255,0.08); margin-bottom: 16px; }
+    .pos-claim { font-size: 17px; font-weight: 300; line-height: 1.55; margin-bottom: 18px; }
+    .pos-main    .pos-claim { color: rgba(242,237,227,0.7); }
+    .pos-balance .pos-claim { color: rgba(242,237,227,0.6); }
+    .pos-attrs { display: flex; flex-direction: column; gap: 0; }
+    .pos-attr { display: flex; gap: 12px; padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.05); font-size: 13px; line-height: 1.6; }
+    .pos-attr:last-child { border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .pos-attr-num { font-family: 'Space Mono', monospace; font-size: 9px; color: var(--lime); min-width: 20px; margin-top: 2px; }
+    .pos-attr-body { color: rgba(242,237,227,0.6); }
+    .pos-attr-body strong { color: rgba(242,237,227,0.88); }
+
+    /* vs grid */
+    .vs-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-top: 48px; }
+    .vs-card { background: #1A1A18; border-radius: 14px; padding: 24px; border: 1px solid rgba(255,255,255,0.04); }
+    .vs-card.ours { background: #1E2D1A; border-color: rgba(42,72,25,0.4); }
+    .vs-brand { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 16px; }
+    .vs-card.ours .vs-brand { color: var(--lime); }
+    .vs-item { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 12px; }
+    .vs-item:last-child { border-bottom: none; }
+    .vs-key { color: rgba(255,255,255,0.3); font-size: 11px; }
+    .vs-val { font-weight: 500; color: rgba(255,255,255,0.65); text-align: right; max-width: 120px; }
+    .vs-card.ours .vs-val { color: rgba(181,214,78,0.85); }
+
+    /* VOICE */
+    #voice { background: var(--white); }
+    .voice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 44px; }
+    .voice-do   { background: var(--light); border: 1px solid rgba(42,72,25,0.1); border-radius: 14px; padding: 28px; }
+    .voice-dont { background: #FDF0EF; border: 1px solid rgba(192,57,43,0.1); border-radius: 14px; padding: 28px; }
+    .vc-title { font-family: 'Space Mono', monospace; font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 18px; }
+    .voice-do   .vc-title { color: var(--green); }
+    .voice-dont .vc-title { color: #C0392B; }
+    .vc-item { font-size: 13px; line-height: 1.65; padding: 9px 0; border-bottom: 1px solid rgba(17,17,16,0.05); color: #444; }
+    .vc-item:last-child { border: none; }
+    .vc-item strong { color: var(--black); }
+    .voice-quote { margin-top: 36px; background: var(--green); border-radius: 18px; padding: 40px; }
+    .vq-text { font-size: clamp(20px,2.8vw,32px); font-weight: 300; line-height: 1.5; color: rgba(242,237,227,0.75); max-width: 640px; }
+    .vq-text em { color: var(--lime); font-style: normal; font-weight: 700; }
+    .vq-attr { font-family: 'Space Mono', monospace; font-size: 10px; color: rgba(242,237,227,0.22); letter-spacing: 0.14em; margin-top: 18px; }
+
+    /* DIGITAL */
+    #digital { background: var(--cream); }
+    .digital-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; margin-top: 44px; align-items: start; }
+    .app-mock { background: var(--black); border-radius: 18px; padding: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.12); }
+    .app-header { font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.25); letter-spacing: 0.1em; margin-bottom: 14px; }
+    .app-item { background: #1C1C1A; border-radius: 10px; padding: 12px 14px; display: flex; gap: 10px; align-items: center; margin-bottom: 7px; }
+    .app-icon { width: 38px; height: 38px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+    .ai-green   { background: var(--green); }
+    .ai-light   { background: var(--light); }
+    .ai-balance { background: #1E4A2F; }
+    .app-info { flex: 1; }
+    .app-name  { font-size: 12px; font-weight: 600; color: var(--cream); margin-bottom: 1px; }
+    .app-brand { font-family: 'Space Mono', monospace; font-size: 8px; color: rgba(255,255,255,0.25); }
+    .app-kbzhu { font-family: 'Space Mono', monospace; font-size: 8px; color: rgba(255,255,255,0.18); margin-top: 2px; }
+    .app-price { font-family: 'Space Mono', monospace; font-size: 13px; font-weight: 700; color: var(--lime); }
+    .digital-rules { }
+    .digital-rules h3 { font-size: 24px; font-weight: 700; margin-bottom: 18px; }
+    .drule { display: flex; gap: 10px; padding: 11px 0; border-bottom: 1px solid rgba(17,17,16,0.06); }
+    .drule-dot { width: 5px; height: 5px; background: var(--lime); border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+    .drule-text { font-size: 13px; line-height: 1.7; color: #555; }
+    .drule-text strong { color: var(--black); font-weight: 600; }
+
+    /* FOOTER */
+    footer { background: var(--black); padding: 44px 48px; display: flex; justify-content: space-between; align-items: center; }
+    .ft-logo { font-family: 'Space Mono', monospace; font-size: 24px; color: var(--lime); letter-spacing: 0.08em; }
+    .ft-meta { font-family: 'Space Mono', monospace; font-size: 10px; text-align: right; line-height: 2.2; color: rgba(255,255,255,0.18); letter-spacing: 0.06em; }
+
+    @media (max-width:900px) {
+      section { padding: 80px 24px; }
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .logo-wordmarks, .logo-balance-row, .palette,
+      .lines-grid, .menu-grid, .pillars,
+      .pos-two-col, .vs-grid, .voice-grid, .digital-grid { grid-template-columns: 1fr; }
+      .palette { grid-template-columns: repeat(3,1fr); }
+      .vs-grid  { grid-template-columns: repeat(2,1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">BODRO</div>
+  <div class="nav-links">
+    <a href="#logo">Логотип</a>
+    <a href="#colors">Цвета</a>
+    <a href="#lines">Линейки</a>
+    <a href="#packaging">Упаковка</a>
+    <a href="#positioning">Позиция</a>
+    <a href="#voice">Голос</a>
+  </div>
+</nav>
+
+<!-- COVER -->
+<section id="cover">
+  <div class="cover-glow"></div>
+  <div class="cover-tag">Brand Book · Dark Kitchen · Самара · v1.1</div>
+  <div class="cover-wordmark">BO<span>D</span>RO</div>
+  <div class="cover-bottom">
+    <div class="cover-claim">Еда, после которой хочется жить.</div>
+    <div class="cover-meta">
+      <p>BODRO + BODRO BALANCE</p>
+      <p>DARK KITCHEN · САМАРА</p>
+      <p>SPACE GROTESK × SPACE MONO</p>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+  <div class="section-label">01 — Философия</div>
+  <h2>Зачем BODRO</h2>
+  <p class="lead">Бодрость — не бонус. Это то, что должно быть по умолчанию после каждого приёма пищи. Мы делаем еду для всех, кто не хочет компромисса между вкусом и составом.</p>
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-num">01</div>
+      <h3>Доступно</h3>
+      <p>Дешевле бизнес-ланча рядом. Один заказ без подписки.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">02</div>
+      <h3>Честно</h3>
+      <p>Что написано в составе — то и внутри. Никаких загустителей и воды на втором месте.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">03</div>
+      <h3>Локально</h3>
+      <p>Готовим в Самаре. 48 часов — срок хранения. Без MAP-упаковки на неделю.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">04</div>
+      <h3>Свобода</h3>
+      <p>Берёшь когда нужно. Одно блюдо, одна цена, без обязательств.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LOGO -->
+<section id="logo">
+  <div class="section-label">02 — Логотип</div>
+  <h2>Словесная марка</h2>
+  <p class="lead">Три варианта основного логотипа. Три варианта BODRO BALANCE.</p>
+
+  <div class="logo-wordmarks">
+    <div class="logo-cell on-cream">
+      <div class="wordmark">BODRO</div>
+      <div class="wm-sub">Dark Kitchen</div>
+      <div class="logo-cell-label">На кремовом</div>
+    </div>
+    <div class="logo-cell on-dark">
+      <div class="wordmark">BODRO</div>
+      <div class="wm-sub">Dark Kitchen</div>
+      <div class="logo-cell-label">На тёмном</div>
+    </div>
+    <div class="logo-cell on-green">
+      <div class="wordmark">BODRO</div>
+      <div class="wm-sub">Dark Kitchen</div>
+      <div class="logo-cell-label">На зелёном</div>
+    </div>
+  </div>
+
+  <div style="margin-top:32px;">
+    <div class="section-label" style="margin-bottom:16px;">BODRO BALANCE — варианты</div>
+    <div class="logo-balance-row">
+      <div class="lb-cell on-cream">
+        <div class="lb-main">BODRO</div>
+        <div class="lb-sub">Balance</div>
+        <div class="logo-cell-label" style="color:var(--mid);">Кремовый</div>
+      </div>
+      <div class="lb-cell on-dark">
+        <div class="lb-main">BODRO</div>
+        <div class="lb-sub">Balance</div>
+        <div class="logo-cell-label" style="color:rgba(255,255,255,0.2);">Тёмный</div>
+      </div>
+      <div class="lb-cell on-green">
+        <div class="lb-main">BODRO</div>
+        <div class="lb-sub">Balance</div>
+        <div class="logo-cell-label" style="color:rgba(255,255,255,0.2);">Зелёный</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLORS -->
+<section id="colors">
+  <div class="section-label">03 — Цвета</div>
+  <h2>Цветовая система</h2>
+  <div class="palette">
+    <div class="swatch">
+      <div class="swatch-color" style="background:#111110;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Black</div>
+        <div class="swatch-hex">#111110</div>
+        <div class="swatch-use">Основной текст, тёмные фоны</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#F2EDE3;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Cream</div>
+        <div class="swatch-hex">#F2EDE3</div>
+        <div class="swatch-use">Основной фон</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#2A4819;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Green</div>
+        <div class="swatch-hex">#2A4819</div>
+        <div class="swatch-use">Главный бренд-цвет</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#B5D64E;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Lime</div>
+        <div class="swatch-hex">#B5D64E</div>
+        <div class="swatch-use">Акцент, КБЖУ, CTA</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#888880;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Mid</div>
+        <div class="swatch-hex">#888880</div>
+        <div class="swatch-use">Вторичный текст</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#EFF5E2;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Light</div>
+        <div class="swatch-hex">#EFF5E2</div>
+        <div class="swatch-use">Светлые акценты, фоны секций</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPOGRAPHY -->
+<section id="typography">
+  <div class="section-label">04 — Типографика</div>
+  <h2>Space Grotesk × Space Mono</h2>
+  <p class="lead">Два шрифта — один голос. Space Grotesk для всего живого, Space Mono для цифр и меток.</p>
+  <div class="type-grid">
+    <div class="type-row">
+      <div><div class="type-meta-name">Hero</div><div class="type-meta-spec">Space Grotesk 700<br>Обложка, hero</div></div>
+      <div class="t-hero">Бодро</div>
+    </div>
+    <div class="type-row">
+      <div><div class="type-meta-name">Heading 1</div><div class="type-meta-spec">Space Grotesk 700<br>Заголовки разделов</div></div>
+      <div class="t-h1">Еда без ПП-культа</div>
+    </div>
+    <div class="type-row">
+      <div><div class="type-meta-name">Heading 2</div><div class="type-meta-spec">Space Grotesk 600<br>Подзаголовки</div></div>
+      <div class="t-h2">Готово за 2 минуты</div>
+    </div>
+    <div class="type-row">
+      <div><div class="type-meta-name">Body</div><div class="type-meta-spec">Space Grotesk 400<br>Основной текст</div></div>
+      <div class="t-body">Борщ с говядиной. Тушёная лопатка, белокочанная капуста, свёкла, морковь, томатная паста. Без загустителей.</div>
+    </div>
+    <div class="type-row">
+      <div><div class="type-meta-name">Caption</div><div class="type-meta-spec">Space Mono 400<br>Метки, теги</div></div>
+      <div class="t-cap">СРОК ХРАНЕНИЯ · 48 ЧАСОВ · САМАРА</div>
+    </div>
+    <div class="type-row">
+      <div><div class="type-meta-name">Numbers</div><div class="type-meta-spec">Space Mono 700<br>КБЖУ, цены</div></div>
+      <div class="t-num">Б 12.9г &nbsp;·&nbsp; Ж 4.3г &nbsp;·&nbsp; У 4.2г &nbsp;·&nbsp; 70 ккал/100г</div>
+    </div>
+  </div>
+</section>
+
+<!-- LINES -->
+<section id="lines">
+  <div class="section-label">05 — Линейки</div>
+  <h2>BODRO + BODRO BALANCE</h2>
+  <p class="lead">Одна кухня, два выбора. BODRO для всех — вкусно и доступно. BODRO BALANCE для тех, кто считает.</p>
+  <div class="lines-grid">
+    <div class="line-card">
+      <div class="line-header lh-main">
+        <div class="line-badge">Основная линейка</div>
+        <div class="line-name">BODRO</div>
+        <div class="line-tagline">Понятная, вкусная, не дорогая. Для всех, кто не хочет готовить — но хочет есть нормально.</div>
+      </div>
+      <div class="line-body">
+        <div class="line-attr-item"><span class="attr-k">Цель</span><span class="attr-v">Вкусно поесть</span></div>
+        <div class="line-attr-item"><span class="attr-k">Аудитория</span><span class="attr-v">Все — офис, дом, студенты</span></div>
+        <div class="line-attr-item"><span class="attr-k">Цена</span><span class="attr-v">Доступный сегмент</span></div>
+        <div class="line-attr-item"><span class="attr-k">КБЖУ</span><span class="attr-v">На упаковке, не в центре</span></div>
+        <div class="line-attr-item"><span class="attr-k">Упаковка</span><span class="attr-v">Тёмная, лесной зелёный</span></div>
+        <div class="line-tags">
+          <span class="tag">Борщ с говядиной</span><span class="tag">Плов</span>
+          <span class="tag">Паста с курицей</span><span class="tag">Котлета + рис</span>
+        </div>
+      </div>
+    </div>
+    <div class="line-card">
+      <div class="line-header lh-balance">
+        <div class="line-badge">Precision линейка</div>
+        <div class="line-name">BODRO</div>
+        <div class="line-sub">Balance</div>
+        <div class="line-tagline">Пониженные жиры, качественный белок. Честный КБЖУ — крупно, на лицевой стороне.</div>
+      </div>
+      <div class="line-body">
+        <div class="line-attr-item"><span class="attr-k">Цель</span><span class="attr-v">Точный контроль нутриентов</span></div>
+        <div class="line-attr-item"><span class="attr-k">Аудитория</span><span class="attr-v">Те, кто считает КБЖУ</span></div>
+        <div class="line-attr-item"><span class="attr-k">Белок</span><span class="attr-v">Высокий — грудка, рыба</span></div>
+        <div class="line-attr-item"><span class="attr-k">Жиры</span><span class="attr-v">Пониженные, растительные</span></div>
+        <div class="line-attr-item"><span class="attr-k">Упаковка</span><span class="attr-v">Светлая, кремово-зелёная</span></div>
+        <div class="line-tags">
+          <span class="tag">Рататуй</span><span class="tag">Запеканка творожная</span>
+          <span class="tag">Рыбная запеканка</span><span class="tag">Грибной суп-пюре</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGING -->
+<section id="packaging">
+  <div class="section-label">06 — Упаковка</div>
+  <h2>Макеты контейнеров</h2>
+  <p class="lead" style="color:rgba(242,237,227,0.5);">КБЖУ — на лицевой стороне, крупно. Состав читается.</p>
+  <div class="packaging-stage">
+    <div class="pkg">
+      <div class="pkg-top pt-dark">
+        <div class="pkg-brand">BODRO</div>
+        <div class="pkg-line">Dark Kitchen</div>
+        <div class="pkg-dish">Борщ с говядиной</div>
+        <div class="pkg-weight">350 г · Суп</div>
+      </div>
+      <div class="pkg-body">
+        <div class="kbzhu-title">КБЖУ / на 100 г</div>
+        <div class="kbzhu-row">
+          <div class="kc"><span class="kc-v">12.9</span><span class="kc-k">Б</span></div>
+          <div class="kc"><span class="kc-v">4.3</span><span class="kc-k">Ж</span></div>
+          <div class="kc"><span class="kc-v">4.2</span><span class="kc-k">У</span></div>
+          <div class="kc"><span class="kc-v">70</span><span class="kc-k">Ккал</span></div>
+        </div>
+        <div class="pkg-ingr"><div class="ingr-label">Состав</div>Говядина (лопатка), капуста белокочанная, свёкла, картофель, морковь, томатная паста, сметана, соль.</div>
+        <div class="pkg-shelf"><span class="shelf-t">Срок хранения</span><span class="shelf-v">48 ч</span></div>
+      </div>
+    </div>
+    <div class="pkg">
+      <div class="pkg-top pt-cream">
+        <div class="pkg-brand">BODRO</div>
+        <div class="pkg-line">Balance</div>
+        <div class="pkg-dish">Запеканка рыбная с картофелем</div>
+        <div class="pkg-weight">300 г · Горячее</div>
+      </div>
+      <div class="pkg-body">
+        <div class="kbzhu-title">КБЖУ / на 100 г</div>
+        <div class="kbzhu-row">
+          <div class="kc"><span class="kc-v">9.0</span><span class="kc-k">Б</span></div>
+          <div class="kc"><span class="kc-v">4.5</span><span class="kc-k">Ж</span></div>
+          <div class="kc"><span class="kc-v">11.4</span><span class="kc-k">У</span></div>
+          <div class="kc"><span class="kc-v">122</span><span class="kc-k">Ккал</span></div>
+        </div>
+        <div class="pkg-ingr"><div class="ingr-label">Состав</div>Минтай, картофель, лук репчатый, морковь, сметана 15%, сыр, масло растительное.</div>
+        <div class="pkg-shelf"><span class="shelf-t">Срок хранения</span><span class="shelf-v">48 ч</span></div>
+      </div>
+    </div>
+    <div class="pkg">
+      <div class="pkg-top pt-balance">
+        <div class="pkg-brand">BODRO</div>
+        <div class="pkg-line">Balance</div>
+        <div class="pkg-dish">Суп-пюре грибной с курицей</div>
+        <div class="pkg-weight">300 г · Суп</div>
+      </div>
+      <div class="pkg-body">
+        <div class="kbzhu-title">КБЖУ / на 100 г</div>
+        <div class="kbzhu-row">
+          <div class="kc"><span class="kc-v">9.0</span><span class="kc-k">Б</span></div>
+          <div class="kc"><span class="kc-v">6.9</span><span class="kc-k">Ж</span></div>
+          <div class="kc"><span class="kc-v">7.5</span><span class="kc-k">У</span></div>
+          <div class="kc"><span class="kc-v">128</span><span class="kc-k">Ккал</span></div>
+        </div>
+        <div class="pkg-ingr"><div class="ingr-label">Состав</div>Грудка куриная, шампиньоны, картофель, морковь, лук, масло сливочное, сливки 10%.</div>
+        <div class="pkg-shelf"><span class="shelf-t">Срок хранения</span><span class="shelf-v">48 ч</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu">
+  <div class="section-label">07 — Меню</div>
+  <h2>Карточки блюд</h2>
+  <div class="menu-grid">
+    <div class="dish-card">
+      <div class="dish-img di-green">🫕</div>
+      <div class="dish-body">
+        <div class="dish-line-tag dlt-main">BODRO · Горячее</div>
+        <div class="dish-name">Плов с говядиной</div>
+        <div class="dish-w">300 г</div>
+        <div class="macros">
+          <div class="mc"><span class="mc-v">8.7</span><span class="mc-k">Б</span></div>
+          <div class="mc"><span class="mc-v">7.2</span><span class="mc-k">Ж</span></div>
+          <div class="mc"><span class="mc-v">21</span><span class="mc-k">У</span></div>
+          <div class="mc"><span class="mc-v">184</span><span class="mc-k">Ккал</span></div>
+        </div>
+        <div class="dish-ingr">Говядина, рис, морковь, лук, масло, чеснок, зира</div>
+        <div class="dish-fc"><span class="fc-l">FC</span><span class="fc-v">91 ₽</span></div>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-img di-light">🍝</div>
+      <div class="dish-body">
+        <div class="dish-line-tag dlt-main">BODRO · Горячее</div>
+        <div class="dish-name">Паста с курицей в сливочном соусе</div>
+        <div class="dish-w">290 г</div>
+        <div class="macros">
+          <div class="mc"><span class="mc-v">11.5</span><span class="mc-k">Б</span></div>
+          <div class="mc"><span class="mc-v">6.3</span><span class="mc-k">Ж</span></div>
+          <div class="mc"><span class="mc-v">22</span><span class="mc-k">У</span></div>
+          <div class="mc"><span class="mc-v">190</span><span class="mc-k">Ккал</span></div>
+        </div>
+        <div class="dish-ingr">Куриная грудка, спагетти, сливки 20%, шампиньоны, сыр</div>
+        <div class="dish-fc"><span class="fc-l">FC</span><span class="fc-v">78 ₽</span></div>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-img di-black">🥗</div>
+      <div class="dish-body">
+        <div class="dish-line-tag dlt-balance">BODRO BALANCE · Салат</div>
+        <div class="dish-name">Салат-микс зелёный с бальзамиком</div>
+        <div class="dish-w">70 г</div>
+        <div class="macros">
+          <div class="mc"><span class="mc-v">1.6</span><span class="mc-k">Б</span></div>
+          <div class="mc"><span class="mc-v">10.5</span><span class="mc-k">Ж</span></div>
+          <div class="mc"><span class="mc-v">5.3</span><span class="mc-k">У</span></div>
+          <div class="mc"><span class="mc-v">120</span><span class="mc-k">Ккал</span></div>
+        </div>
+        <div class="dish-ingr">Айсберг, романо, шпинат, оливковое масло, бальзамик, мёд</div>
+        <div class="dish-fc"><span class="fc-l">FC</span><span class="fc-v">55 ₽</span></div>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-img di-green">🍜</div>
+      <div class="dish-body">
+        <div class="dish-line-tag dlt-main">BODRO · Суп</div>
+        <div class="dish-name">Борщ с говядиной</div>
+        <div class="dish-w">350 г</div>
+        <div class="macros">
+          <div class="mc"><span class="mc-v">12.9</span><span class="mc-k">Б</span></div>
+          <div class="mc"><span class="mc-v">4.3</span><span class="mc-k">Ж</span></div>
+          <div class="mc"><span class="mc-v">4.2</span><span class="mc-k">У</span></div>
+          <div class="mc"><span class="mc-v">70</span><span class="mc-k">Ккал</span></div>
+        </div>
+        <div class="dish-ingr">Говядина (лопатка), капуста, свёкла, картофель, томатная паста, сметана</div>
+        <div class="dish-fc"><span class="fc-l">FC</span><span class="fc-v">73 ₽</span></div>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-img di-light">🍮</div>
+      <div class="dish-body">
+        <div class="dish-line-tag dlt-balance">BODRO BALANCE · Десерт</div>
+        <div class="dish-name">Запеканка творожная</div>
+        <div class="dish-w">180 г</div>
+        <div class="macros">
+          <div class="mc"><span class="mc-v">11.1</span><span class="mc-k">Б</span></div>
+          <div class="mc"><span class="mc-v">5.7</span><span class="mc-k">Ж</span></div>
+          <div class="mc"><span class="mc-v">19.1</span><span class="mc-k">У</span></div>
+          <div class="mc"><span class="mc-v">173</span><span class="mc-k">Ккал</span></div>
+        </div>
+        <div class="dish-ingr">Творог 5%, яйца, сметана 15%, манная крупа, сахар, изюм, ванилин</div>
+        <div class="dish-fc"><span class="fc-l">FC</span><span class="fc-v">52 ₽</span></div>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-img di-black">🐟</div>
+      <div class="dish-body">
+        <div class="dish-line-tag dlt-balance">BODRO BALANCE · Горячее</div>
+        <div class="dish-name">Запеканка рыбная с картофелем</div>
+        <div class="dish-w">300 г</div>
+        <div class="macros">
+          <div class="mc"><span class="mc-v">9.0</span><span class="mc-k">Б</span></div>
+          <div class="mc"><span class="mc-v">4.5</span><span class="mc-k">Ж</span></div>
+          <div class="mc"><span class="mc-v">11.4</span><span class="mc-k">У</span></div>
+          <div class="mc"><span class="mc-v">122</span><span class="mc-k">Ккал</span></div>
+        </div>
+        <div class="dish-ingr">Минтай, картофель, лук, морковь, сметана 15%, сыр, масло</div>
+        <div class="dish-fc"><span class="fc-l">FC</span><span class="fc-v">65 ₽</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POSITIONING -->
+<section id="positioning">
+  <div class="section-label">08 — Позиционирование</div>
+  <h2>Два продукта,<br>одна правда</h2>
+  <div class="pos-two-col">
+    <div class="pos-card pos-main">
+      <div class="pos-tag">Основной продукт</div>
+      <div class="pos-name">BODRO</div>
+      <div class="pos-sub">Еда для всех</div>
+      <div class="pos-divider"></div>
+      <div class="pos-claim">«Понятная, вкусная,<br>не дорогая. Просто еда.»</div>
+      <div class="pos-attrs">
+        <div class="pos-attr"><div class="pos-attr-num">01</div><div class="pos-attr-body"><strong>Доступная цена.</strong> Дешевле бизнес-ланча в кафе рядом с офисом. Один заказ без подписок.</div></div>
+        <div class="pos-attr"><div class="pos-attr-num">02</div><div class="pos-attr-body"><strong>Понятная еда.</strong> Борщ, плов, паста — то что ешь каждый день.</div></div>
+        <div class="pos-attr"><div class="pos-attr-num">03</div><div class="pos-attr-body"><strong>Честный состав.</strong> Что написано — то внутри. Без воды на втором месте.</div></div>
+        <div class="pos-attr"><div class="pos-attr-num">04</div><div class="pos-attr-body"><strong>Без ПП-культа.</strong> Не уговариваем менять пищевые привычки. Просто вкусно.</div></div>
+      </div>
+    </div>
+    <div class="pos-card pos-balance">
+      <div class="pos-tag">Precision продукт</div>
+      <div class="pos-name">BODRO</div>
+      <div class="pos-sub">Balance</div>
+      <div class="pos-divider"></div>
+      <div class="pos-claim">«Еда для тех,<br>кто знает свои цифры.»</div>
+      <div class="pos-attrs">
+        <div class="pos-attr"><div class="pos-attr-num">01</div><div class="pos-attr-body"><strong>Пониженные жиры.</strong> Каждое блюдо — до 8г жиров на 100г. Не обезжиренное, а сбалансированное.</div></div>
+        <div class="pos-attr"><div class="pos-attr-num">02</div><div class="pos-attr-body"><strong>Качественный белок.</strong> Куриная грудка, рыба, творог — не фарш с наполнителем.</div></div>
+        <div class="pos-attr"><div class="pos-attr-num">03</div><div class="pos-attr-body"><strong>Честный КБЖУ.</strong> Крупно, на лицевой стороне. На 100г и на порцию.</div></div>
+        <div class="pos-attr"><div class="pos-attr-num">04</div><div class="pos-attr-body"><strong>Не диета.</strong> Balance — это «ешь правильно, знай что ешь», не «ешь меньше».</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vs-grid">
+    <div class="vs-card">
+      <div class="vs-brand">ПриЕм</div>
+      <div class="vs-item"><span class="vs-key">Без подписки</span><span class="vs-val" style="color:#e74c3c;">✗</span></div>
+      <div class="vs-item"><span class="vs-key">Локальное пр-во</span><span class="vs-val">~</span></div>
+      <div class="vs-item"><span class="vs-key">Ценовой сегмент</span><span class="vs-val">Средний</span></div>
+      <div class="vs-item"><span class="vs-key">КБЖУ крупно</span><span class="vs-val" style="color:#e74c3c;">✗</span></div>
+    </div>
+    <div class="vs-card">
+      <div class="vs-brand">FitBox</div>
+      <div class="vs-item"><span class="vs-key">Без подписки</span><span class="vs-val" style="color:#e74c3c;">✗</span></div>
+      <div class="vs-item"><span class="vs-key">Локальное пр-во</span><span class="vs-val">~</span></div>
+      <div class="vs-item"><span class="vs-key">Ценовой сегмент</span><span class="vs-val">Средний</span></div>
+      <div class="vs-item"><span class="vs-key">КБЖУ крупно</span><span class="vs-val">~</span></div>
+    </div>
+    <div class="vs-card">
+      <div class="vs-brand">Level Kitchen</div>
+      <div class="vs-item"><span class="vs-key">Без подписки</span><span class="vs-val" style="color:#e74c3c;">✗</span></div>
+      <div class="vs-item"><span class="vs-key">Локальное пр-во</span><span class="vs-val" style="color:#e74c3c;">✗</span></div>
+      <div class="vs-item"><span class="vs-key">Ценовой сегмент</span><span class="vs-val">Высокий</span></div>
+      <div class="vs-item"><span class="vs-key">КБЖУ крупно</span><span class="vs-val">~</span></div>
+    </div>
+    <div class="vs-card ours">
+      <div class="vs-brand">BODRO ✓</div>
+      <div class="vs-item"><span class="vs-key">Без подписки</span><span class="vs-val">✓</span></div>
+      <div class="vs-item"><span class="vs-key">Локальное пр-во</span><span class="vs-val">✓</span></div>
+      <div class="vs-item"><span class="vs-key">Ценовой сегмент</span><span class="vs-val">Доступный</span></div>
+      <div class="vs-item"><span class="vs-key">КБЖУ крупно</span><span class="vs-val">✓</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- VOICE -->
+<section id="voice">
+  <div class="section-label">09 — Голос бренда</div>
+  <h2>Как BODRO говорит</h2>
+  <div class="voice-grid">
+    <div class="voice-do">
+      <div class="vc-title">Говорим так</div>
+      <div class="vc-item"><strong>«Борщ. 350 г. Говядина, капуста, свёкла.»</strong> — факты</div>
+      <div class="vc-item"><strong>«Готово за 2 минуты»</strong> — конкретно</div>
+      <div class="vc-item"><strong>«72 ккал на 100 г. Сами посчитали.»</strong> — честно</div>
+      <div class="vc-item"><strong>«Хочешь КБЖУ — вот они. Не хочешь — просто ешь.»</strong></div>
+    </div>
+    <div class="voice-dont">
+      <div class="vc-title">Не говорим так</div>
+      <div class="vc-item">«Заботимся о тебе с любовью каждый день» — пусто</div>
+      <div class="vc-item">«Революционный подход к питанию» — пафос</div>
+      <div class="vc-item">«Правильное питание для вашего здоровья» — клише ПП</div>
+      <div class="vc-item">«Наши шеф-повара создали...» — если нет шефа</div>
+    </div>
+  </div>
+  <div class="voice-quote">
+    <div class="vq-text">«BODRO — это не про диету.<br>Это про то, чтобы <em>после обеда</em><br>ты хотел работать, а не спать.»</div>
+    <div class="vq-attr">BODRO · BRAND MANIFESTO · 2025</div>
+  </div>
+</section>
+
+<!-- DIGITAL -->
+<section id="digital">
+  <div class="section-label">10 — Digital</div>
+  <h2>В Яндекс.Еда</h2>
+  <div class="digital-grid">
+    <div class="app-mock">
+      <div class="app-header">Яндекс.Еда · Самара · Готовая еда</div>
+      <div class="app-item">
+        <div class="app-icon ai-green">🫕</div>
+        <div class="app-info">
+          <div class="app-name">Борщ с говядиной</div>
+          <div class="app-brand">BODRO · Dark Kitchen</div>
+          <div class="app-kbzhu">350г · Б12.9 Ж4.3 У4.2 · 70 ккал/100г</div>
+        </div>
+        <div class="app-price">329₽</div>
+      </div>
+      <div class="app-item">
+        <div class="app-icon ai-light">🥗</div>
+        <div class="app-info">
+          <div class="app-name">Салат-микс зелёный</div>
+          <div class="app-brand">BODRO BALANCE</div>
+          <div class="app-kbzhu">70г · Б1.6 Ж10.5 У5.3 · 120 ккал/100г</div>
+        </div>
+        <div class="app-price">219₽</div>
+      </div>
+      <div class="app-item">
+        <div class="app-icon ai-balance">🐟</div>
+        <div class="app-info">
+          <div class="app-name">Запеканка рыбная</div>
+          <div class="app-brand">BODRO BALANCE</div>
+          <div class="app-kbzhu">300г · Б9.0 Ж4.5 У11.4 · 122 ккал/100г</div>
+        </div>
+        <div class="app-price">369₽</div>
+      </div>
+    </div>
+    <div class="digital-rules">
+      <h3>Принципы digital-присутствия</h3>
+      <div class="drule"><div class="drule-dot"></div><div class="drule-text"><strong>КБЖУ в подзаголовке</strong> каждой карточки — сразу видно, без раскрытия.</div></div>
+      <div class="drule"><div class="drule-dot"></div><div class="drule-text"><strong>Название = продукт.</strong> «Борщ с говядиной», не «Сытный домашний борщ».</div></div>
+      <div class="drule"><div class="drule-dot"></div><div class="drule-text"><strong>BODRO BALANCE — отдельный тег</strong> для фильтрации ЗОЖ-аудиторией.</div></div>
+      <div class="drule"><div class="drule-dot"></div><div class="drule-text"><strong>Фото на кремовом фоне</strong> без декораций — продукт на первом месте.</div></div>
+      <div class="drule"><div class="drule-dot"></div><div class="drule-text"><strong>Вес рядом с ценой</strong> — клиент видит цену за грамм без расчётов.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-logo">BODRO</div>
+  <div class="ft-meta">
+    <div>Brand Identity Guidelines · v1.1</div>
+    <div>Dark Kitchen · Самара · 2025</div>
+    <div>BODRO + BODRO BALANCE</div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dark Kitchen — БАЗА + НОРМА</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --blue:    #007AFF;
+  --blue-lt: rgba(0,122,255,0.12);
+  --amber:   #D97706;
+  --amber-lt:rgba(217,119,6,0.12);
+  --green:   #16A34A;
+  --green-lt:rgba(22,163,74,0.12);
+  --red:     #DC2626;
+  --text:    #1C1C1E;
+  --text-2:  #48484A;
+  --text-3:  #8E8E93;
+  --glass:   rgba(255,255,255,0.72);
+  --glass-b: rgba(255,255,255,0.85);
+  --glass-s: 0 4px 28px rgba(0,0,0,0.07), inset 0 1px 0 rgba(255,255,255,0.9);
+  --r:       18px;
+  --r-sm:    12px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:14px;
+  color:var(--text);
+  min-height:100vh;
+  background:#E8EEF4;
+  overflow-x:hidden;
+}
+
+/* BACKGROUND BLOBS */
+.blob {
+  position:fixed; border-radius:50%; filter:blur(80px);
+  pointer-events:none; z-index:0; opacity:0.55;
+}
+.blob-1 { width:600px; height:600px; top:-150px; right:-100px; background:radial-gradient(circle,rgba(0,122,255,0.18),transparent 70%); }
+.blob-2 { width:500px; height:500px; bottom:-100px; left:-100px; background:radial-gradient(circle,rgba(217,119,6,0.14),transparent 70%); }
+.blob-3 { width:400px; height:400px; top:40%; left:40%; background:radial-gradient(circle,rgba(22,163,74,0.10),transparent 70%); }
+
+/* NAV */
+nav {
+  position:sticky; top:0; z-index:200;
+  backdrop-filter:blur(28px) saturate(200%);
+  -webkit-backdrop-filter:blur(28px) saturate(200%);
+  background:rgba(255,255,255,0.78);
+  border-bottom:1px solid rgba(255,255,255,0.6);
+  box-shadow:0 1px 20px rgba(0,0,0,0.06);
+  display:flex; align-items:center; gap:4px;
+  padding:0 28px; height:58px;
+}
+.nav-brand {
+  font-weight:800; font-size:15px; letter-spacing:-0.4px;
+  color:var(--text); margin-right:16px; display:flex; align-items:center; gap:10px;
+}
+.nav-logo {
+  width:34px; height:34px; border-radius:10px;
+  background:linear-gradient(135deg,#007AFF,#0056CC);
+  display:flex; align-items:center; justify-content:center;
+  font-weight:900; font-size:13px; color:#fff; letter-spacing:-1px;
+  box-shadow:0 2px 8px rgba(0,122,255,0.35);
+}
+.nav-tab {
+  padding:7px 16px; border-radius:10px; font-size:13px; font-weight:500;
+  cursor:pointer; border:none; background:transparent; color:var(--text-3);
+  transition:all .15s; white-space:nowrap;
+}
+.nav-tab:hover { background:rgba(0,0,0,0.05); color:var(--text); }
+.nav-tab.active { background:var(--blue); color:#fff; box-shadow:0 2px 8px rgba(0,122,255,0.3); }
+.nav-meta { margin-left:auto; font-size:12px; color:var(--text-3); }
+
+/* LAYOUT */
+.page { display:none; position:relative; z-index:1; padding:28px 28px 60px; max-width:1300px; margin:0 auto; }
+.page.active { display:block; }
+
+/* GLASS CARD */
+.card {
+  background:var(--glass);
+  backdrop-filter:blur(24px) saturate(180%);
+  -webkit-backdrop-filter:blur(24px) saturate(180%);
+  border:1px solid var(--glass-b);
+  border-radius:var(--r);
+  box-shadow:var(--glass-s);
+}
+.card-sm { border-radius:var(--r-sm); }
+.card-p { padding:22px; }
+.card-p-lg { padding:28px; }
+
+/* SECTION HEADER */
+.sec-label {
+  font-size:11px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase;
+  color:var(--blue); margin-bottom:6px;
+}
+.sec-title { font-size:22px; font-weight:800; letter-spacing:-0.4px; margin-bottom:4px; }
+.sec-sub { font-size:13px; color:var(--text-3); margin-bottom:24px; }
+
+/* PAGE HEADER */
+.page-head { margin-bottom:24px; }
+.page-head .sec-label { font-size:11px; }
+.page-head .page-title { font-size:30px; font-weight:800; letter-spacing:-0.6px; line-height:1.15; }
+.page-head .page-desc { font-size:14px; color:var(--text-3); margin-top:6px; }
+
+/* GRIDS */
+.g2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.g3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; }
+.g4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+.g-auto { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:14px; }
+
+/* BADGE / CHIP */
+.chip {
+  display:inline-flex; align-items:center; padding:3px 10px;
+  border-radius:20px; font-size:11px; font-weight:600; letter-spacing:.3px;
+}
+.chip-blue   { background:var(--blue-lt);  color:var(--blue); }
+.chip-amber  { background:var(--amber-lt); color:var(--amber); }
+.chip-green  { background:var(--green-lt); color:var(--green); }
+.chip-gray   { background:rgba(0,0,0,0.06); color:var(--text-3); }
+.chip-purple { background:rgba(139,92,246,0.12); color:#7C3AED; }
+
+/* STATUS DOT */
+.s-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.s-done     { background:#22C55E; }
+.s-progress { background:#F59E0B; }
+.s-pending  { background:rgba(0,0,0,0.18); border:1.5px solid rgba(0,0,0,0.18); }
+
+/* STAT BOX */
+.stat {
+  padding:18px 20px;
+  background:var(--glass);
+  backdrop-filter:blur(20px);
+  border:1px solid var(--glass-b);
+  border-radius:var(--r-sm);
+  box-shadow:var(--glass-s);
+}
+.stat-val { font-size:22px; font-weight:800; letter-spacing:-0.5px; }
+.stat-lbl { font-size:12px; color:var(--text-3); margin-top:3px; }
+
+/* TIMELINE */
+.timeline { display:flex; flex-direction:column; gap:0; }
+.tl-phase { margin-bottom:28px; }
+.tl-phase-label {
+  font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px;
+  color:var(--blue); margin-bottom:12px; padding-left:24px;
+}
+.tl-item {
+  display:flex; gap:14px; align-items:flex-start;
+  padding:14px 18px 14px 14px; margin-bottom:8px;
+  border-radius:var(--r-sm);
+  background:var(--glass);
+  backdrop-filter:blur(20px);
+  border:1px solid var(--glass-b);
+  box-shadow:0 2px 12px rgba(0,0,0,0.04);
+  transition:box-shadow .15s;
+}
+.tl-item:hover { box-shadow:0 4px 20px rgba(0,0,0,0.09); }
+.tl-item.done { opacity:0.75; }
+.tl-status { display:flex; flex-direction:column; align-items:center; gap:4px; margin-top:3px; }
+.tl-line { width:1.5px; flex:1; min-height:16px; background:rgba(0,0,0,0.1); margin:4px 0; }
+.tl-body { flex:1; }
+.tl-name { font-size:14px; font-weight:600; margin-bottom:3px; }
+.tl-name.done-text { text-decoration:line-through; color:var(--text-3); }
+.tl-desc { font-size:12px; color:var(--text-3); line-height:1.5; }
+.tl-meta { font-size:11px; color:var(--text-3); margin-top:6px; font-weight:500; }
+.tl-duration { display:inline-block; background:rgba(0,0,0,0.05); padding:2px 8px; border-radius:6px; }
+
+/* PILLS FILTER */
+.pills { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px; }
+.pill {
+  padding:6px 16px; border-radius:20px; font-size:13px; font-weight:500;
+  cursor:pointer; border:1.5px solid rgba(0,0,0,0.1);
+  background:var(--glass); color:var(--text-2);
+  backdrop-filter:blur(12px); transition:all .15s;
+}
+.pill:hover { border-color:var(--blue); color:var(--blue); }
+.pill.active { background:var(--blue); border-color:var(--blue); color:#fff; }
+
+/* MENU CARD */
+.m-card {
+  background:var(--glass);
+  backdrop-filter:blur(20px) saturate(160%);
+  border:1px solid var(--glass-b);
+  border-radius:var(--r);
+  box-shadow:var(--glass-s);
+  padding:20px;
+  transition:box-shadow .15s;
+}
+.m-card:hover { box-shadow:0 8px 32px rgba(0,0,0,0.1); }
+.m-name { font-size:15px; font-weight:700; margin-bottom:4px; line-height:1.35; }
+.m-cat  { font-size:11px; font-weight:600; color:var(--text-3); text-transform:uppercase; letter-spacing:.8px; margin-bottom:12px; }
+.m-ingr { font-size:12px; color:var(--text-2); line-height:1.55; margin-bottom:14px; }
+.m-ingr strong { color:var(--text); font-weight:600; }
+.divider { border:none; border-top:1px solid rgba(0,0,0,0.07); margin:12px 0; }
+
+/* KBJU */
+.kbju-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:10px; }
+.kbju-cell { background:rgba(0,0,0,0.03); border-radius:8px; padding:8px; text-align:center; }
+.kbju-v { font-size:14px; font-weight:700; }
+.kbju-l { font-size:9px; font-weight:600; color:var(--text-3); letter-spacing:.5px; margin-top:2px; }
+.kbju-blue { color:var(--blue); }
+.kbju-amber { color:var(--amber); }
+.kbju-green { color:var(--green); }
+.kbju-red   { color:var(--red); }
+.m-fc { font-size:12px; color:var(--text-3); }
+.m-fc strong { color:var(--text); font-weight:700; }
+
+/* INPUT */
+.inp {
+  width:100%; border:1.5px solid rgba(0,0,0,0.1); border-radius:10px;
+  padding:9px 13px; font-size:13px; color:var(--text);
+  background:rgba(255,255,255,0.8); font-family:inherit; outline:none;
+  transition:border-color .15s;
+}
+.inp:focus { border-color:var(--blue); }
+.inp-label { font-size:12px; font-weight:600; color:var(--text-3); margin-bottom:5px; }
+
+/* SLIDER */
+input[type=range] {
+  -webkit-appearance:none; width:100%; height:4px;
+  background:rgba(0,0,0,0.1); border-radius:2px; outline:none;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance:none; width:18px; height:18px;
+  background:var(--blue); border:3px solid #fff; border-radius:50%;
+  cursor:pointer; box-shadow:0 2px 6px rgba(0,122,255,0.35);
+}
+
+/* BTN */
+.btn {
+  display:inline-flex; align-items:center; gap:8px; padding:10px 20px;
+  border-radius:11px; font-size:13px; font-weight:600; cursor:pointer;
+  border:none; transition:all .15s; font-family:inherit;
+}
+.btn-primary { background:var(--blue); color:#fff; box-shadow:0 2px 8px rgba(0,122,255,0.3); }
+.btn-primary:hover { opacity:.9; }
+.btn-ghost { background:rgba(0,0,0,0.05); color:var(--text); }
+.btn-ghost:hover { background:rgba(0,0,0,0.08); }
+
+/* VC SPECIFIC */
+.vc-row { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+.vc-label { font-size:13px; color:var(--text-2); min-width:160px; }
+.vc-val { font-size:13px; font-weight:700; min-width:60px; text-align:right; }
+.ch-bar { flex:1; height:6px; background:rgba(0,0,0,0.08); border-radius:3px; overflow:hidden; }
+.ch-fill { height:6px; border-radius:3px; transition:width .3s; }
+
+/* RESULT BOX */
+.result-box {
+  background:linear-gradient(135deg,rgba(0,122,255,0.08),rgba(0,122,255,0.04));
+  border:1.5px solid rgba(0,122,255,0.2);
+  border-radius:var(--r); padding:22px;
+}
+.result-num { font-size:36px; font-weight:900; color:var(--blue); letter-spacing:-1px; }
+.result-lbl { font-size:13px; color:var(--text-3); margin-top:4px; }
+
+/* BRAND PAGE */
+.brand-card {
+  background:var(--glass);
+  backdrop-filter:blur(24px) saturate(180%);
+  border:1px solid var(--glass-b);
+  border-radius:var(--r); box-shadow:var(--glass-s);
+  overflow:hidden;
+}
+.brand-header { padding:24px 24px 20px; }
+.brand-name { font-size:28px; font-weight:900; letter-spacing:-0.5px; }
+.brand-pos { font-size:14px; color:var(--text-2); margin-top:6px; line-height:1.5; }
+.brand-body { padding:0 24px 24px; }
+.brand-section { margin-bottom:20px; }
+.brand-section-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--text-3); margin-bottom:10px; }
+.naming-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.naming-card {
+  padding:14px; border-radius:var(--r-sm);
+  background:rgba(255,255,255,0.6); border:1.5px solid rgba(255,255,255,0.8);
+}
+.naming-name { font-size:16px; font-weight:800; letter-spacing:-0.3px; }
+.naming-desc { font-size:12px; color:var(--text-3); margin-top:4px; line-height:1.45; }
+.naming-badge { display:inline-block; margin-top:6px; }
+
+.promo-list { display:flex; flex-direction:column; gap:8px; }
+.promo-item {
+  display:flex; align-items:flex-start; gap:10px;
+  padding:12px; border-radius:var(--r-sm);
+  background:rgba(255,255,255,0.5);
+}
+.promo-bullet { width:6px; height:6px; border-radius:50%; flex-shrink:0; margin-top:5px; }
+.promo-text { font-size:13px; color:var(--text-2); line-height:1.45; }
+.promo-text strong { color:var(--text); }
+
+/* SCENARIO TABS */
+.sc-tabs { display:flex; gap:4px; background:rgba(0,0,0,0.05); padding:4px; border-radius:12px; margin-bottom:18px; }
+.sc-tab {
+  flex:1; padding:9px; text-align:center; border-radius:9px; font-size:12px;
+  font-weight:600; cursor:pointer; color:var(--text-3); transition:all .15s;
+  border:none; background:none; font-family:inherit;
+}
+.sc-tab.active { background:#fff; color:var(--text); box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+
+/* HELPERS */
+.mt8 { margin-top:8px; }
+.mt12 { margin-top:12px; }
+.mt16 { margin-top:16px; }
+.mt20 { margin-top:20px; }
+.mt24 { margin-top:24px; }
+.mb8 { margin-bottom:8px; }
+.mb12 { margin-bottom:12px; }
+.mb16 { margin-bottom:16px; }
+.mb20 { margin-bottom:20px; }
+.flex { display:flex; }
+.items-center { align-items:center; }
+.items-start { align-items:flex-start; }
+.justify-between { justify-content:space-between; }
+.gap8 { gap:8px; }
+.gap12 { gap:12px; }
+.gap16 { gap:16px; }
+.flex1 { flex:1; }
+.fw700 { font-weight:700; }
+.fw800 { font-weight:800; }
+.fs11 { font-size:11px; }
+.fs12 { font-size:12px; }
+.fs13 { font-size:13px; }
+.c-blue  { color:var(--blue); }
+.c-amber { color:var(--amber); }
+.c-green { color:var(--green); }
+.c-muted { color:var(--text-3); }
+
+/* DONUT WRAPPER */
+.donut-wrap { position:relative; display:inline-flex; align-items:center; justify-content:center; }
+.donut-center { position:absolute; text-align:center; pointer-events:none; }
+.donut-num { font-size:28px; font-weight:800; color:var(--blue); line-height:1; }
+.donut-lbl { font-size:10px; color:var(--text-3); font-weight:600; margin-top:2px; }
+
+/* SC-TABLE */
+.sc-table { width:100%; border-collapse:collapse; }
+.sc-table th {
+  font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.8px;
+  color:var(--text-3); padding:8px 12px; text-align:left;
+  border-bottom:1.5px solid rgba(0,0,0,0.08);
+}
+.sc-table td { padding:12px; border-bottom:1px solid rgba(0,0,0,0.06); font-size:13px; }
+.sc-table tr:last-child td { border-bottom:none; }
+.sc-table .num { font-weight:700; text-align:right; }
+</style>
+</head>
+<body>
+
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">DK</div>
+    Dark Kitchen
+  </div>
+  <button class="nav-tab active" onclick="goPage('roadmap',this)">Роадмап</button>
+  <button class="nav-tab" onclick="goPage('menu',this)">Меню</button>
+  <button class="nav-tab" onclick="goPage('brand',this)">Бренд</button>
+  <button class="nav-tab" onclick="goPage('vc',this)">Value Chain</button>
+  <div class="nav-meta">Самара · 2026</div>
+</nav>
+
+<!-- ==================== ROADMAP ==================== -->
+<div id="page-roadmap" class="page active">
+  <div class="page-head">
+    <div class="sec-label">ПРОЕКТ</div>
+    <div class="page-title">Роадмап запуска</div>
+    <div class="page-desc">Полный план от технологических карт до масштабирования</div>
+  </div>
+
+  <div class="g4 mb20">
+    <div class="stat"><div class="stat-val c-green">4</div><div class="stat-lbl">Задачи выполнены</div></div>
+    <div class="stat"><div class="stat-val c-amber">1</div><div class="stat-lbl">В работе сейчас</div></div>
+    <div class="stat"><div class="stat-val" style="color:var(--text-3)">28</div><div class="stat-lbl">Предстоит сделать</div></div>
+    <div class="stat"><div class="stat-val c-blue">1.5 млн</div><div class="stat-lbl">Стартовый бюджет</div></div>
+  </div>
+
+  <div class="g2" style="align-items:start; gap:20px;">
+    <div>
+      <!-- PHASE 0: DONE -->
+      <div class="tl-phase">
+        <div class="tl-phase-label">Фаза 0 — Исследование и разработка · Выполнено</div>
+        <div id="phase0"></div>
+      </div>
+      <!-- PHASE 1: REGISTRATION -->
+      <div class="tl-phase">
+        <div class="tl-phase-label">Фаза 1 — Юридическое оформление · Мес. 1</div>
+        <div id="phase1"></div>
+      </div>
+      <!-- PHASE 2: PREP -->
+      <div class="tl-phase">
+        <div class="tl-phase-label">Фаза 2 — Подготовка кухни · Мес. 1–2</div>
+        <div id="phase2"></div>
+      </div>
+    </div>
+    <div>
+      <!-- PHASE 3: LAUNCH -->
+      <div class="tl-phase">
+        <div class="tl-phase-label">Фаза 3 — Запуск · Мес. 2–3</div>
+        <div id="phase3"></div>
+      </div>
+      <!-- PHASE 4: GROWTH -->
+      <div class="tl-phase">
+        <div class="tl-phase-label">Фаза 4 — Рост · Мес. 4–6</div>
+        <div id="phase4"></div>
+      </div>
+      <!-- PHASE 5: SCALE -->
+      <div class="tl-phase">
+        <div class="tl-phase-label">Фаза 5 — Масштаб · Мес. 6–12</div>
+        <div id="phase5"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== MENU ==================== -->
+<div id="page-menu" class="page">
+  <div class="page-head">
+    <div class="sec-label">МЕНЮ</div>
+    <div class="page-title">Технологические карты</div>
+    <div class="page-desc">18 блюд · Состав, себестоимость, КБЖУ на 100г и на порцию</div>
+  </div>
+
+  <div class="pills" id="menuPills">
+    <div class="pill active" onclick="filterMenu('all',this)">Все (18)</div>
+    <div class="pill" onclick="filterMenu('Суп',this)">Супы</div>
+    <div class="pill" onclick="filterMenu('Второе',this)">Вторые блюда</div>
+    <div class="pill" onclick="filterMenu('Салат',this)">Салаты</div>
+    <div class="pill" onclick="filterMenu('Гарнир',this)">Гарниры</div>
+    <div class="pill" onclick="filterMenu('Десерт',this)">Десерты</div>
+  </div>
+
+  <div class="g-auto" id="menuGrid"></div>
+</div>
+
+<!-- ==================== BRAND ==================== -->
+<div id="page-brand" class="page">
+  <div class="page-head">
+    <div class="sec-label">БРЕНД РЕВЬЮ</div>
+    <div class="page-title">Два бренда. Одна кухня.</div>
+    <div class="page-desc">Позиционирование, нейминг и стратегия развития БАЗА и НОРМА</div>
+  </div>
+
+  <div class="g2 mb20" style="gap:20px; align-items:start;">
+
+    <!-- БАЗА -->
+    <div class="brand-card">
+      <div class="brand-header" style="border-bottom:3px solid #D97706;">
+        <div class="flex justify-between items-center">
+          <div class="brand-name" style="color:#D97706;">БАЗА</div>
+          <span class="chip chip-amber">Комфорт-еда</span>
+        </div>
+        <div class="brand-pos">Вкусная готовая еда без ЗОЖ-пафоса. Ресторанное качество по цене столовой. Для всех, кто хочет нормально поесть.</div>
+      </div>
+      <div class="brand-body">
+        <div class="brand-section">
+          <div class="brand-section-title">Суть бренда</div>
+          <div class="promo-list">
+            <div class="promo-item"><div class="promo-bullet" style="background:#D97706;"></div><div class="promo-text"><strong>Без ЗОЖ-пафоса</strong> — честная, вкусная, насыщающая еда. Никакого «чистого питания».</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#D97706;"></div><div class="promo-text"><strong>Аудитория</strong> — офисный работник 25–40 лет, кто хочет нормально пообедать, не теряя времени.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#D97706;"></div><div class="promo-text"><strong>Тон голоса</strong> — по-человечески, честно, без лишних слов. «Поешь нормально».</div></div>
+          </div>
+        </div>
+
+        <div class="brand-section">
+          <div class="brand-section-title">Варианты нейминга</div>
+          <div class="naming-grid">
+            <div class="naming-card" style="border-color:#D97706; border-width:2px;">
+              <div class="naming-name" style="color:#D97706;">БАЗА</div>
+              <div class="naming-desc">Базовая вкусная еда. Слово работает как «основа», «опора». Сильный визуал, простая айдентика.</div>
+              <span class="chip chip-amber naming-badge">Приоритет</span>
+            </div>
+            <div class="naming-card">
+              <div class="naming-name">ЕМ</div>
+              <div class="naming-desc">Антибренд в хорошем смысле. Моносиллаб, короткий домен, мощный визуал на упаковке.</div>
+            </div>
+            <div class="naming-card">
+              <div class="naming-name">СТОЛОВКА</div>
+              <div class="naming-desc">Переосмысление советского формата: ирония + ностальгия + современная подача.</div>
+            </div>
+            <div class="naming-card">
+              <div class="naming-name">ГОРЯЧО</div>
+              <div class="naming-desc">Температурный брендинг. Ассоциация со свежестью и домашностью.</div>
+            </div>
+            <div class="naming-card">
+              <div class="naming-name">ПЛОТНО</div>
+              <div class="naming-desc">Отсылает к «плотно поесть». Честно про количество и сытость.</div>
+            </div>
+            <div class="naming-card">
+              <div class="naming-name">МИСКА</div>
+              <div class="naming-desc">Домашность, простота. Визуально сильный логотип.</div>
+            </div>
+            <div class="naming-card">
+              <div class="naming-name">ЛАДНО</div>
+              <div class="naming-desc">Русская идиома — понятно, хорошо, по-человечески. Располагает.</div>
+            </div>
+            <div class="naming-card">
+              <div class="naming-name">СВОЯ</div>
+              <div class="naming-desc">Приватность, домашность. «Своя кухня». Тёплый, персональный бренд.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="brand-section">
+          <div class="brand-section-title">Продвижение</div>
+          <div class="promo-list">
+            <div class="promo-item"><div class="promo-bullet" style="background:#D97706;"></div><div class="promo-text"><strong>Яндекс.Еда</strong> — основной канал старта. Контент: фото реальных блюд, без стоков. Обложка с теплом и аппетитом.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#D97706;"></div><div class="promo-text"><strong>Telegram-канал</strong> — «сегодня на обед». Ежедневный пост с меню и количеством порций. Создаёт дефицит.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#D97706;"></div><div class="promo-text"><strong>Визуал</strong> — тёплые тона, живые фото. Упаковка с названием блюда крупно. Без КБЖУ на лицевой стороне.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#D97706;"></div><div class="promo-text"><strong>Дегустации в БЦ</strong> — выход в офисные центры с пробниками. QR-код на подписку или Telegram-бот.</div></div>
+          </div>
+        </div>
+
+        <div class="brand-section">
+          <div class="brand-section-title">Ключевые метрики бренда</div>
+          <div class="g2" style="gap:10px;">
+            <div class="stat" style="background:rgba(217,119,6,0.06); border-color:rgba(217,119,6,0.2);">
+              <div class="stat-val c-amber">Repeat Rate</div>
+              <div class="stat-lbl">Повторные заказы — ключевой KPI</div>
+            </div>
+            <div class="stat" style="background:rgba(217,119,6,0.06); border-color:rgba(217,119,6,0.2);">
+              <div class="stat-val c-amber">NPS</div>
+              <div class="stat-lbl">«Посоветуешь другу?»</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- НОРМА -->
+    <div class="brand-card">
+      <div class="brand-header" style="border-bottom:3px solid #16A34A;">
+        <div class="flex justify-between items-center">
+          <div class="brand-name" style="color:#16A34A;">НОРМА</div>
+          <span class="chip chip-green">ЗОЖ-питание</span>
+        </div>
+        <div class="brand-pos">Рациональное питание с честным КБЖУ крупным шрифтом. Для осознанных, без фанатизма.</div>
+      </div>
+      <div class="brand-body">
+        <div class="brand-section">
+          <div class="brand-section-title">Суть бренда</div>
+          <div class="promo-list">
+            <div class="promo-item"><div class="promo-bullet" style="background:#16A34A;"></div><div class="promo-text"><strong>Три уровня слова «норма»</strong> — норма КБЖУ + нормально есть хорошо + норма как стандарт качества.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#16A34A;"></div><div class="promo-text"><strong>Аудитория</strong> — фитнес-аудитория, считающие белок, осознанные потребители 23–35 лет.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#16A34A;"></div><div class="promo-text"><strong>Дифференциатор</strong> — КБЖУ крупным шрифтом на лицевой стороне упаковки. Первый в Самаре.</div></div>
+          </div>
+        </div>
+
+        <div class="brand-section">
+          <div class="brand-section-title">Варианты нейминга</div>
+          <div class="naming-grid">
+            <div class="naming-card" style="border-color:#16A34A; border-width:2px;">
+              <div class="naming-name" style="color:#16A34A;">НОРМА</div>
+              <div class="naming-desc">Работает на трёх смысловых уровнях. Лаконично, узнаваемо, российское слово.</div>
+              <span class="chip chip-green naming-badge">Приоритет</span>
+            </div>
+            <div class="naming-card">
+              <div class="naming-name">БАЛАНС</div>
+              <div class="naming-desc">ЗОЖ без пафоса. Сбалансированный рацион — понятно всем.</div>
+            </div>
+            <div class="naming-card">
+              <div class="naming-name">ТОЧНО</div>
+              <div class="naming-desc">Точность КБЖУ. Подчёркивает честность и измеримость состава.</div>
+            </div>
+            <div class="naming-card">
+              <div class="naming-name">ЧИСТО</div>
+              <div class="naming-desc">Чистота состава, минимализм. Близко к international clean eating.</div>
+            </div>
+            <div class="naming-card">
+              <div class="naming-name">ККАЛ</div>
+              <div class="naming-desc">Прямое функциональное название. Понятно без объяснений.</div>
+            </div>
+            <div class="naming-card">
+              <div class="naming-name">ПРЯМО</div>
+              <div class="naming-desc">Честность — говорим прямо что в блюде. Без скрытых жиров.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="brand-section">
+          <div class="brand-section-title">Продвижение</div>
+          <div class="promo-list">
+            <div class="promo-item"><div class="promo-bullet" style="background:#16A34A;"></div><div class="promo-text"><strong>Фитнес-комьюнити</strong> — Telegram-каналы о ЗОЖ, спортзалы Самары, коллаборации с тренерами.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#16A34A;"></div><div class="promo-text"><strong>Станции НОРМА</strong> — брендированный холодильник в офисе. Нет агрегатора, нет комиссии. Capex 57–106к/станция.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#16A34A;"></div><div class="promo-text"><strong>Упаковка</strong> — КБЖУ четырьмя крупными цифрами на лицевой стороне. Визуальный дифференциатор.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#16A34A;"></div><div class="promo-text"><strong>B2B партнёрства</strong> — корпоративное питание, pre-order подписка через Telegram-бот.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#16A34A;"></div><div class="promo-text"><strong>Цветовой код</strong> — тёмно-зелёный #1C3B2E + белый + золото. Строгий, премиальный, узнаваемый.</div></div>
+          </div>
+        </div>
+
+        <div class="brand-section">
+          <div class="brand-section-title">Станция НОРМА (B2B вендинг)</div>
+          <div class="g2" style="gap:10px;">
+            <div class="stat" style="background:rgba(22,163,74,0.06); border-color:rgba(22,163,74,0.2);">
+              <div class="stat-val c-green">57–106к ₽</div>
+              <div class="stat-lbl">Capex на одну станцию</div>
+            </div>
+            <div class="stat" style="background:rgba(22,163,74,0.06); border-color:rgba(22,163,74,0.2);">
+              <div class="stat-val c-green">~1 мес</div>
+              <div class="stat-lbl">Окупаемость при загрузке 30 порц/день</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHARED STRATEGY -->
+  <div class="card card-p-lg">
+    <div class="sec-label">ОБЩАЯ СТРАТЕГИЯ</div>
+    <div class="sec-title mb12">Два бренда — одна кухня</div>
+    <div class="g3" style="gap:14px; margin-top:0;">
+      <div class="stat">
+        <div class="stat-val fs13 fw700" style="font-size:14px; color:var(--text);">Фаза 1 — Яндекс.Еда</div>
+        <div class="stat-lbl mt8">Оба бренда выходят на агрегатор. БАЗА — главная страница, НОРМА — отдельный профиль рядом.</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val fs13 fw700" style="font-size:14px; color:var(--text);">Фаза 2 — DTC-подписка</div>
+        <div class="stat-lbl mt8">Telegram-бот: подписка на недельный план. НОРМА предлагает «рацион недели» с КБЖУ. БАЗА — «обед на неделю».</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val fs13 fw700" style="font-size:14px; color:var(--text);">Фаза 3 — Офлайн + B2B</div>
+        <div class="stat-lbl mt8">Станции НОРМА в офисах. БАЗА — корпоративный обед под заказ. Самый маржинальный канал.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== VALUE CHAIN ==================== -->
+<div id="page-vc" class="page">
+  <div class="page-head">
+    <div class="sec-label">ЭКОНОМИКА</div>
+    <div class="page-title">Value Chain</div>
+    <div class="page-desc">Настройте параметры — расчёт обновится автоматически</div>
+  </div>
+
+  <div class="g2" style="gap:20px; align-items:start;">
+
+    <!-- LEFT: INPUTS -->
+    <div>
+      <!-- FoT -->
+      <div class="card card-p mb16">
+        <div class="sec-label">ФОТ (зарплаты в месяц)</div>
+        <div class="g2 mt12" style="gap:10px;">
+          <div><div class="inp-label">Управляющий, ₽</div><input class="inp" id="fot_manager" type="number" value="100000" oninput="calcVC()"></div>
+          <div><div class="inp-label">Технолог, ₽</div><input class="inp" id="fot_tech" type="number" value="85000" oninput="calcVC()"></div>
+          <div><div class="inp-label">Повар 1, ₽</div><input class="inp" id="fot_cook1" type="number" value="60000" oninput="calcVC()"></div>
+          <div><div class="inp-label">Повар 2, ₽</div><input class="inp" id="fot_cook2" type="number" value="60000" oninput="calcVC()"></div>
+          <div><div class="inp-label">Бухгалтер, ₽</div><input class="inp" id="fot_acc" type="number" value="40000" oninput="calcVC()"></div>
+          <div><div class="inp-label">Прочий персонал, ₽</div><input class="inp" id="fot_other" type="number" value="0" oninput="calcVC()"></div>
+        </div>
+        <div class="divider"></div>
+        <div class="flex justify-between items-center"><span class="fs12 c-muted">Итого ФОТ / мес</span><span class="fw700 c-blue" id="fot_total">345 000 ₽</span></div>
+      </div>
+
+      <!-- FIXED COSTS -->
+      <div class="card card-p mb16">
+        <div class="sec-label">ПОСТОЯННЫЕ РАСХОДЫ</div>
+        <div class="g2 mt12" style="gap:10px;">
+          <div><div class="inp-label">Аренда / мес, ₽</div><input class="inp" id="fc_rent" type="number" value="80000" oninput="calcVC()"></div>
+          <div><div class="inp-label">Коммунальные / мес, ₽</div><input class="inp" id="fc_util" type="number" value="30000" oninput="calcVC()"></div>
+          <div><div class="inp-label">Маркетинг / мес, ₽</div><input class="inp" id="fc_mkt" type="number" value="30000" oninput="calcVC()"></div>
+          <div><div class="inp-label">Прочее / мес, ₽</div><input class="inp" id="fc_other" type="number" value="20000" oninput="calcVC()"></div>
+        </div>
+        <div class="divider"></div>
+        <div class="flex justify-between items-center"><span class="fs12 c-muted">Итого постоянные / мес</span><span class="fw700 c-amber" id="fixed_total">160 000 ₽</span></div>
+      </div>
+
+      <!-- CHANNELS -->
+      <div class="card card-p mb16">
+        <div class="sec-label">КАНАЛЫ ПРОДАЖ</div>
+        <div class="mt12">
+          <div class="inp-label">Яндекс.Еда — комиссия, %</div>
+          <div class="flex items-center gap12 mt8 mb16">
+            <input type="range" id="sl_ya" min="20" max="35" value="28" oninput="calcVC()">
+            <span class="fw700 c-blue fs13" id="lbl_ya">28%</span>
+          </div>
+          <div class="inp-label">DTC-подписка — скидка от цены, %</div>
+          <div class="flex items-center gap12 mt8 mb16">
+            <input type="range" id="sl_dtc" min="0" max="20" value="8" oninput="calcVC()">
+            <span class="fw700 c-green fs13" id="lbl_dtc">8%</span>
+          </div>
+          <div class="inp-label">Офлайн-точка — скидка от цены, % (фаза 3)</div>
+          <div class="flex items-center gap12 mt8 mb16">
+            <input type="range" id="sl_off" min="0" max="15" value="0" oninput="calcVC()">
+            <span class="fw700 fs13" style="color:var(--text-3)" id="lbl_off">0%</span>
+          </div>
+          <div class="inp-label">Доля Яндекс.Еда в продажах, %</div>
+          <div class="flex items-center gap12 mt8 mb16">
+            <input type="range" id="sl_ya_share" min="0" max="100" value="70" oninput="calcVC()">
+            <span class="fw700 fs13 c-blue" id="lbl_ya_share">70%</span>
+          </div>
+          <div class="inp-label">Доля DTC в продажах, % (остальное — Офлайн)</div>
+          <div class="flex items-center gap12 mt8">
+            <input type="range" id="sl_dtc_share" min="0" max="100" value="30" oninput="calcVC()">
+            <span class="fw700 fs13 c-green" id="lbl_dtc_share">30%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- MARGIN + PACKAGING -->
+      <div class="card card-p">
+        <div class="sec-label">ЦЕНА И СЕБЕСТОИМОСТЬ</div>
+        <div class="mt12">
+          <div class="inp-label">Целевой Food Cost, % (от розничной цены)</div>
+          <div class="flex items-center gap12 mt8 mb16">
+            <input type="range" id="sl_fc_pct" min="18" max="45" value="30" oninput="calcVC()">
+            <span class="fw700 c-blue fs13" id="lbl_fc_pct">30%</span>
+          </div>
+          <div class="inp-label">Упаковка на порцию, ₽</div>
+          <input class="inp mt8 mb16" id="packaging" type="number" value="30" oninput="calcVC()">
+          <div class="inp-label">Целевой доход собственника / мес, ₽</div>
+          <input class="inp mt8" id="owner_target" type="number" value="500000" oninput="calcVC()">
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: RESULTS -->
+    <div>
+      <div class="card card-p mb16">
+        <div class="sec-label">СРЕДНИЕ ПОКАЗАТЕЛИ ПО МЕНЮ</div>
+        <div class="g2 mt12" style="gap:10px;">
+          <div class="stat"><div class="stat-val c-amber" id="res_avg_fc">69 ₽</div><div class="stat-lbl">Средний Food Cost</div></div>
+          <div class="stat"><div class="stat-val c-blue" id="res_avg_price">230 ₽</div><div class="stat-lbl">Ср. розничная цена (при FC%)</div></div>
+          <div class="stat"><div class="stat-val c-green" id="res_avg_net">—</div><div class="stat-lbl">Ср. чистая выручка/блюдо</div></div>
+          <div class="stat"><div class="stat-val" id="res_margin_dish" style="color:var(--red)">—</div><div class="stat-lbl">Маржа с блюда (после FC+упак)</div></div>
+        </div>
+      </div>
+
+      <!-- CHANNEL BREAKDOWN -->
+      <div class="card card-p mb16">
+        <div class="sec-label">МАРЖА ПО КАНАЛАМ</div>
+        <div id="ch_breakdown" class="mt12"></div>
+      </div>
+
+      <!-- FIXED COST TOTAL -->
+      <div class="card card-p mb16">
+        <div class="sec-label">ОБЩИЕ ПОСТОЯННЫЕ РАСХОДЫ</div>
+        <div class="mt12">
+          <div class="vc-row">
+            <div class="vc-label">ФОТ</div>
+            <div class="ch-bar"><div class="ch-fill" id="bar_fot" style="background:var(--blue);"></div></div>
+            <div class="vc-val c-blue" id="lbl_fot_b">345к</div>
+          </div>
+          <div class="vc-row">
+            <div class="vc-label">Аренда + КУ</div>
+            <div class="ch-bar"><div class="ch-fill" id="bar_rent" style="background:var(--amber);"></div></div>
+            <div class="vc-val c-amber" id="lbl_rent_b">110к</div>
+          </div>
+          <div class="vc-row">
+            <div class="vc-label">Маркетинг + прочее</div>
+            <div class="ch-bar"><div class="ch-fill" id="bar_mkt" style="background:var(--green);"></div></div>
+            <div class="vc-val c-green" id="lbl_mkt_b">50к</div>
+          </div>
+          <div class="divider"></div>
+          <div class="flex justify-between items-center">
+            <span class="fs12 fw700">Итого постоянных / мес</span>
+            <span class="fw800 fs13" id="all_fixed_total">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- HOW MANY DISHES NEEDED -->
+      <div class="result-box mb16">
+        <div class="sec-label" style="color:var(--blue);">СКОЛЬКО ПРОДАВАТЬ</div>
+        <div class="g2 mt12" style="gap:12px;">
+          <div>
+            <div class="result-num" id="res_dishes_day">—</div>
+            <div class="result-lbl">порций в день</div>
+          </div>
+          <div>
+            <div class="result-num" id="res_dishes_month">—</div>
+            <div class="result-lbl">порций в месяц</div>
+          </div>
+        </div>
+        <div class="fs12 c-muted mt12" id="res_comment">для достижения целевого дохода</div>
+      </div>
+
+      <!-- SCENARIOS TABLE -->
+      <div class="card card-p">
+        <div class="sec-label">P&L СЦЕНАРИИ</div>
+        <div class="sc-tabs mt12">
+          <button class="sc-tab active" onclick="showSc(60,this)">Старт<br><span style="font-size:10px;">60 порц</span></button>
+          <button class="sc-tab" onclick="showSc(150,this)">Рост<br><span style="font-size:10px;">150 порц</span></button>
+          <button class="sc-tab" onclick="showSc(225,this)">Цель<br><span style="font-size:10px;">225 порц</span></button>
+          <button class="sc-tab" onclick="showSc(350,this)">Масштаб<br><span style="font-size:10px;">350 порц</span></button>
+        </div>
+        <div id="sc_table"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== JS ==================== -->
+<script>
+// ─── DATA ───────────────────────────────────────────────────────────
+const MENU_DATA = [
+  {
+    name:"Борщ с говядиной", cat:"Суп", weight:350, fc:73,
+    kcal_p:245.7, b_p:12.9, f_p:15.2, c_p:14.7,
+    ingr:"Говядина (лопатка), капуста белокочанная, свекла, картофель, морковь, лук репчатый, томатная паста, сметана"
+  },
+  {
+    name:"Суп-пюре грибной с курицей", cat:"Суп", weight:300, fc:95,
+    kcal_p:385.2, b_p:26.9, f_p:20.7, c_p:22.6,
+    ingr:"Грудка куриная, шампиньоны, картофель, морковь, лук, масло сливочное, сливки 10%, гренки пшеничные"
+  },
+  {
+    name:"Суп томатный с печёными перцами", cat:"Суп", weight:300, fc:110,
+    kcal_p:103.9, b_p:3.1, f_p:3.4, c_p:14.4,
+    ingr:"Томаты Polpa, перец сладкий, лук репчатый, морковь, сельдерей, масло растительное, базилик, орегано"
+  },
+  {
+    name:"Куриное филе гриль, булгур, овощи", cat:"Второе", weight:277, fc:65,
+    kcal_p:460.4, b_p:31.9, f_p:14.1, c_p:48.2,
+    ingr:"Грудка куриная, булгур, лук репчатый, морковь, петрушка, лимонный сок, чеснок"
+  },
+  {
+    name:"Оладьи куриные из грудки", cat:"Второе", weight:151, fc:64,
+    kcal_p:363.4, b_p:29.3, f_p:20.2, c_p:13.9,
+    ingr:"Грудка куриная, хлеб пшеничный, молоко, лук репчатый, желток яичный, мускатный орех"
+  },
+  {
+    name:"Бризоль куриная с рисом", cat:"Второе", weight:230, fc:45,
+    kcal_p:353.4, b_p:21.5, f_p:9.4, c_p:43.8,
+    ingr:"Фарш куриный, яйцо (меланж), молоко, мука пшеничная, чеснок, рис длиннозерный, петрушка"
+  },
+  {
+    name:"Тальятелле, грудка, сычуанский перец", cat:"Второе", weight:240, fc:91,
+    kcal_p:462, b_p:36.4, f_p:11.2, c_p:53.1,
+    ingr:"Грудка куриная, паста тальятелле, петрушка, масло зелёное (петрушка), лимонный сок, перец сычуанский"
+  },
+  {
+    name:"Говядина наршараб, мятый картофель", cat:"Второе", weight:230, fc:110,
+    kcal_p:305.5, b_p:27.7, f_p:8.4, c_p:30.0,
+    ingr:"Говядина (лопатка), соус наршараб, картофель, молоко 2.5%, розмарин, тимьян"
+  },
+  {
+    name:"Бефстроганов с картофельным пюре", cat:"Второе", weight:220, fc:78,
+    kcal_p:341.7, b_p:18.6, f_p:17.4, c_p:27.2,
+    ingr:"Говядина (лопатка), лук репчатый, сметана 20%, картофель, молоко 2.5%, масло сливочное"
+  },
+  {
+    name:"Грудка су-вид в специях, бурый рис", cat:"Второе", weight:225, fc:60,
+    kcal_p:329.2, b_p:26.8, f_p:3.0, c_p:46.7,
+    ingr:"Грудка куриная, рис бурый, паприка копчёная, итальянские травы, чеснок сушёный"
+  },
+  {
+    name:"Биточки куриные паровые, киноа", cat:"Второе", weight:225, fc:54,
+    kcal_p:348.4, b_p:21.3, f_p:11.9, c_p:36.0,
+    ingr:"Грудка куриная, батон пшеничный, молоко 2.5%, лук репчатый, яйцо (меланж), крупа киноа, масло сливочное"
+  },
+  {
+    name:"Овощи бланшированные", cat:"Гарнир", weight:150, fc:40,
+    kcal_p:50, b_p:3.4, f_p:0.5, c_p:8.4,
+    ingr:"Морковь, цветная капуста, брокколи, фасоль стручковая замороженная"
+  },
+  {
+    name:"Салат-микс зелёный с бальзамиком", cat:"Салат", weight:70, fc:55,
+    kcal_p:69.2, b_p:1.0, f_p:6.1, c_p:2.5,
+    ingr:"Айсберг, романо, шпинат, мангольд, заправка бальзамическая (уксус бальзамический, оливковое масло, горчица, мёд)"
+  },
+  {
+    name:"Витаминный салат с заправкой кимчи", cat:"Салат", weight:150, fc:32,
+    kcal_p:92.5, b_p:3.2, f_p:0.3, c_p:19.1,
+    ingr:"Капуста белокочанная, морковь, перец сладкий красный, соус кимчи, сок лимона"
+  },
+  {
+    name:"Винегрет с горчичной заправкой", cat:"Салат", weight:175, fc:28,
+    kcal_p:163.6, b_p:3.0, f_p:9.2, c_p:17.0,
+    ingr:"Свекла, картофель, морковь, огурцы солёные, капуста квашеная, горошек консервированный, горчица, уксус яблочный"
+  },
+  {
+    name:"Зелёный салат, грудка су-вид, кукуруза", cat:"Салат", weight:95, fc:56,
+    kcal_p:113, b_p:10.2, f_p:6.1, c_p:5.0,
+    ingr:"Айсберг, романо, шпинат, мангольд, кукуруза, грудка куриная су-вид, мёд, соевый соус, горчица"
+  },
+  {
+    name:"Сырники со сметаной", cat:"Десерт", weight:175, fc:112,
+    kcal_p:639, b_p:37.0, f_p:22.2, c_p:73.2,
+    ingr:"Творог 5%, крупа манная, сахар, яйцо (меланж), мука пшеничная, сметана 15%"
+  },
+  {
+    name:"Протеиновый брауни с бананом", cat:"Десерт", weight:120, fc:74,
+    kcal_p:197.7, b_p:21.5, f_p:6.9, c_p:10.7,
+    ingr:"Банан, яйцо куриное (меланж), протеин сывороточный, какао-порошок, йогурт греческий, разрыхлитель"
+  }
+];
+
+const AVG_FC = Math.round(MENU_DATA.reduce((s,m)=>s+m.fc,0)/MENU_DATA.length);
+
+// ─── NAVIGATION ──────────────────────────────────────────────────────
+function goPage(id, btn) {
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  btn.classList.add('active');
+  if(id==='menu' && !window._menuBuilt) buildMenu();
+  if(id==='vc'   && !window._vcBuilt)   { window._vcBuilt=true; calcVC(); }
+}
+
+// ─── ROADMAP ─────────────────────────────────────────────────────────
+const ROADMAP = {
+  phase0:[
+    {done:true,  name:"Анализ рынка Самары",          desc:"Изучены конкуренты: Mealty, Level Kitchen, Perfect Balance, Willfood, GBalance, ПриЕм, FitBox. Выявлена ниша.",         dur:""},
+    {done:true,  name:"Концепция двух брендов",        desc:"Разработаны позиционирование и тональность для БАЗА (комфорт-еда) и НОРМА (ЗОЖ с КБЖУ).",                               dur:""},
+    {done:true,  name:"Технологические карты (18 блюд)",desc:"Рецептуры, граммовки, себестоимость каждого блюда.",                                                                      dur:""},
+    {done:true,  name:"Финансовая модель (Excel)",     desc:"P&L по 4 сценариям, Value Chain, расчёт точки безубыточности.",                                                            dur:""},
+    {prog:true,  name:"Упаковка: дизайн-концепция",   desc:"Разработка концепции упаковки. НОРМА: КБЖУ крупно. БАЗА: название блюда + аппетитный визуал.",                            dur:"В работе"},
+  ],
+  phase1:[
+    {name:"Регистрация ИП",                    desc:"ОКВЭД 56.10 (ресторанная деятельность), 56.21 (поставка готовых блюд). Госпошлина 800 ₽, срок 3 рабочих дня.",       dur:"3 дня"},
+    {name:"Открытие расчётного счёта",         desc:"Рекомендуем Т-Банк (Тинькофф): эквайринг и терминалы в одном окне.",                                                    dur:"1 день"},
+    {name:"Постановка на учёт в налоговую",    desc:"Уведомление о применении УСН (6% или 15%). Рекомендуем 15% «доходы минус расходы».",                                    dur:"1–3 дня"},
+  ],
+  phase2:[
+    {name:"Поиск помещения",                   desc:"Площадь 60–80 м², производственная зона, мойка, санузел, вытяжка, выход 380В. Самара: центр или Промышленный р-н.",  dur:"2–4 нед"},
+    {name:"Юридическое оформление аренды",     desc:"Договор аренды, акт передачи помещения. Согласование перепланировки под производство.",                                 dur:"1 нед"},
+    {name:"Ремонт под требования СанПиН",      desc:"Зонирование (холодный цех, горячий цех, моечная). Кафель, нержавейка, вытяжка. Бюджет 150–250 тыс. ₽.",              dur:"3–5 нед"},
+    {name:"Закупка оборудования (б/у)",        desc:"Конвектомат, холодильные шкафы, стол нержавейка, вакуум-пакователь, мясорубка, блендер. Бюджет 250–350 тыс. ₽.",    dur:"1–2 нед"},
+    {name:"Найм управляющего — приоритет #1",  desc:"80–120 тыс. ₽ + 5–10% от прибыли. Лично и тщательно. Без него не запускать.",                                          dur:"2–4 нед"},
+    {name:"Найм технолога",                    desc:"70–100 тыс. ₽. Возможно, уже есть (кто делал тех. карты).",                                                             dur:"1–2 нед"},
+    {name:"Найм 2 поваров",                   desc:"60 тыс. ₽ каждый. Опыт горячего цеха, соблюдение рецептур.",                                                            dur:"1–2 нед"},
+    {name:"Санитарные книжки персонала",       desc:"Обязательно для всех, кто работает с едой. Оформление через поликлинику или Роспотребнадзор.",                          dur:"1 нед"},
+    {name:"Уведомление в Роспотребнадзор",     desc:"Подача уведомления о начале деятельности (форма: производство пищевых продуктов).",                                     dur:"1 день"},
+    {name:"Договор на вывоз ТБО",             desc:"Обязательный договор с лицензированной организацией.",                                                                  dur:"3 дня"},
+    {name:"Закупка упаковки",                 desc:"PP-контейнеры 500/750/1000 мл. Стикеры НОРМА (КБЖУ) и БАЗА. Бюджет 50 тыс. ₽ на 3 мес.",                             dur:"1 нед"},
+  ],
+  phase3:[
+    {name:"Запуск на Яндекс.Еда",              desc:"Регистрация партнёра. Фотосъёмка блюд (обязательно хорошего качества). Заполнение меню. Комиссия 25–28%.",            dur:"1–2 нед"},
+    {name:"Запуск Telegram-канала",            desc:"Ежедневный пост «меню дня» + Telegram-бот для заказов напрямую. Без агрегаторной комиссии.",                          dur:"3 дня"},
+    {name:"Первые продажи",                    desc:"Цель: 20–40 порций в день. Собираем обратную связь. Отслеживаем repeat rate с первого заказа.",                        dur:"2–4 нед"},
+    {name:"B2B холодные звонки",               desc:"Параллельно со стройкой. Звонки в офисы 30–100 человек. Предложение корпоративного обеда.",                           dur:"Постоянно"},
+    {name:"Дегустации в бизнес-центрах",       desc:"Выезд с пробниками в 3–5 самарских БЦ. QR-код на подписку или бот.",                                                   dur:"2–3 нед"},
+  ],
+  phase4:[
+    {name:"Выход на точку безубыточности",     desc:"60–80 порций в день. Контроль food cost, минимизация списаний, закрытие слабых позиций меню.",                        dur:"Мес. 3–4"},
+    {name:"DTC-подписка (недельный план)",     desc:"Telegram-бот или лэндинг. «Обед на неделю от БАЗА» и «Рацион недели НОРМА». Предоплата.",                             dur:"Мес. 4"},
+    {name:"Первые Станции НОРМА (3–5 офисов)",desc:"Установка холодильников в офисах. Ежедневное пополнение до 9:00. Оплата картой. Нет агрегатора.",                     dur:"Мес. 4–5"},
+    {name:"Корпоративные контракты",           desc:"Договор на поставку обедов. Пред-оплата помесячно. Самый маржинальный канал.",                                         dur:"Мес. 5–6"},
+  ],
+  phase5:[
+    {name:"150–225 порций в день",             desc:"Доход собственника 500 тыс. ₽/мес. Смешанный канал: Яндекс + DTC + B2B.",                                             dur:"Мес. 6–8"},
+    {name:"Найм дополнительного повара",       desc:"При объёме 150+ порций. Третий повар или ночная смена.",                                                               dur:"Мес. 6"},
+    {name:"DTC-сайт и приложение",             desc:"Сайт для подписок. Интеграция с доставкой (собственный курьер или CDEK Last Mile).",                                   dur:"Мес. 7–9"},
+    {name:"350 порций/день — 1 млн ₽/мес",   desc:"Развитие собственных каналов снижает долю Яндекса. Маржа растёт до 30%+ по бизнесу.",                                  dur:"Мес. 10–12"},
+    {name:"Рассмотрение второго города",       desc:"Тольятти (рядом) или Казань. Тиражирование модели с управляющим-партнёром.",                                           dur:"Мес. 12–18"},
+  ],
+};
+
+function renderPhase(phaseKey, elId) {
+  const tasks = ROADMAP[phaseKey];
+  const el = document.getElementById(elId);
+  el.innerHTML = tasks.map((t,i) => `
+    <div class="tl-item ${t.done?'done':''}">
+      <div class="tl-status">
+        <div class="s-dot ${t.done?'s-done':t.prog?'s-progress':'s-pending'}"></div>
+        ${i<tasks.length-1?'<div class="tl-line"></div>':''}
+      </div>
+      <div class="tl-body">
+        <div class="tl-name ${t.done?'done-text':''}">${t.name}</div>
+        <div class="tl-desc">${t.desc}</div>
+        ${t.dur?`<div class="tl-meta"><span class="tl-duration">${t.dur}</span></div>`:''}
+      </div>
+    </div>`).join('');
+}
+
+['phase0','phase1','phase2','phase3','phase4','phase5'].forEach(k=>renderPhase(k,k));
+
+// ─── MENU ────────────────────────────────────────────────────────────
+function buildMenu() {
+  window._menuBuilt = true;
+  renderMenuCards('all');
+}
+
+function filterMenu(filter, btn) {
+  document.querySelectorAll('#menuPills .pill').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  renderMenuCards(filter);
+}
+
+function renderMenuCards(filter) {
+  const items = filter==='all' ? MENU_DATA : MENU_DATA.filter(m=>m.cat===filter);
+  const grid = document.getElementById('menuGrid');
+  grid.innerHTML = items.map(m => {
+    const w = m.weight;
+    const k100 = (m.kcal_p/w*100).toFixed(0);
+    const b100 = (m.b_p/w*100).toFixed(1);
+    const f100 = (m.f_p/w*100).toFixed(1);
+    const c100 = (m.c_p/w*100).toFixed(1);
+    return `<div class="m-card">
+      <div class="flex justify-between items-start mb8">
+        <span class="chip chip-gray fs11">${m.cat}</span>
+        <span class="fs12 c-muted">${m.weight} г / порция</span>
+      </div>
+      <div class="m-name">${m.name}</div>
+      <div class="m-cat">&nbsp;</div>
+      <div class="m-ingr"><strong>Состав:</strong> ${m.ingr}</div>
+      <div class="divider"></div>
+      <div class="fs11 c-muted mb8" style="text-transform:uppercase; letter-spacing:.8px; font-weight:700;">КБЖУ на 100 г</div>
+      <div class="kbju-grid mb12">
+        <div class="kbju-cell"><div class="kbju-v kbju-red">${k100}</div><div class="kbju-l">ККАЛ</div></div>
+        <div class="kbju-cell"><div class="kbju-v kbju-blue">${b100}</div><div class="kbju-l">БЕЛКИ</div></div>
+        <div class="kbju-cell"><div class="kbju-v kbju-amber">${f100}</div><div class="kbju-l">ЖИРЫ</div></div>
+        <div class="kbju-cell"><div class="kbju-v kbju-green">${c100}</div><div class="kbju-l">УГЛЕВ.</div></div>
+      </div>
+      <div class="fs11 c-muted mb8" style="text-transform:uppercase; letter-spacing:.8px; font-weight:700;">КБЖУ на порцию (${w} г)</div>
+      <div class="kbju-grid">
+        <div class="kbju-cell"><div class="kbju-v kbju-red">${m.kcal_p}</div><div class="kbju-l">ККАЛ</div></div>
+        <div class="kbju-cell"><div class="kbju-v kbju-blue">${m.b_p}</div><div class="kbju-l">БЕЛКИ</div></div>
+        <div class="kbju-cell"><div class="kbju-v kbju-amber">${m.f_p}</div><div class="kbju-l">ЖИРЫ</div></div>
+        <div class="kbju-cell"><div class="kbju-v kbju-green">${m.c_p}</div><div class="kbju-l">УГЛЕВ.</div></div>
+      </div>
+      <div class="divider"></div>
+      <div class="m-fc">Себестоимость: <strong>${m.fc} ₽</strong></div>
+    </div>`;
+  }).join('');
+}
+
+// ─── VALUE CHAIN ─────────────────────────────────────────────────────
+let scDishes = 60;
+
+function v(id) { return parseFloat(document.getElementById(id).value) || 0; }
+
+function calcVC() {
+  // FoT
+  const fot = v('fot_manager')+v('fot_tech')+v('fot_cook1')+v('fot_cook2')+v('fot_acc')+v('fot_other');
+  document.getElementById('fot_total').textContent = fmt(fot);
+  document.getElementById('lbl_fot_b').textContent = Math.round(fot/1000)+'к';
+
+  // Fixed
+  const rent = v('fc_rent')+v('fc_util');
+  const mkt  = v('fc_mkt')+v('fc_other');
+  const fixedNonFot = rent + mkt;
+  const allFixed = fot + fixedNonFot;
+  document.getElementById('fixed_total').textContent = fmt(fixedNonFot);
+  document.getElementById('all_fixed_total').textContent = fmt(allFixed);
+  document.getElementById('lbl_rent_b').textContent = Math.round(rent/1000)+'к';
+  document.getElementById('lbl_mkt_b').textContent  = Math.round(mkt/1000)+'к';
+
+  // Bars (relative to allFixed)
+  const pct = (x) => Math.min(100,Math.round(x/allFixed*100))+'%';
+  document.getElementById('bar_fot').style.width  = pct(fot);
+  document.getElementById('bar_rent').style.width = pct(rent);
+  document.getElementById('bar_mkt').style.width  = pct(mkt);
+
+  // Sliders labels
+  const yaComm    = v('sl_ya')/100;
+  const dtcDisc   = v('sl_dtc')/100;
+  const offDisc   = v('sl_off')/100;
+  const yaShare   = v('sl_ya_share')/100;
+  const dtcShare  = v('sl_dtc_share')/100;
+  const offShare  = Math.max(0, 1 - yaShare - dtcShare);
+  document.getElementById('lbl_ya').textContent       = v('sl_ya')+'%';
+  document.getElementById('lbl_dtc').textContent      = v('sl_dtc')+'%';
+  document.getElementById('lbl_off').textContent      = v('sl_off')+'%';
+  document.getElementById('lbl_ya_share').textContent = v('sl_ya_share')+'%';
+  document.getElementById('lbl_dtc_share').textContent= v('sl_dtc_share')+'%';
+  document.getElementById('lbl_fc_pct').textContent   = v('sl_fc_pct')+'%';
+
+  // Average price based on fc_pct and avg_fc
+  const fcPct    = v('sl_fc_pct')/100;
+  const pkg      = v('packaging');
+  const avgFc    = AVG_FC;
+  const avgPrice = Math.round(avgFc / fcPct);
+  const avgNet_ya  = avgPrice*(1-yaComm);
+  const avgNet_dtc = avgPrice*(1-dtcDisc);
+  const avgNet_off = avgPrice*(1-offDisc);
+  const avgNet     = avgNet_ya*yaShare + avgNet_dtc*dtcShare + avgNet_off*offShare;
+  const marginDish = Math.round(avgNet - avgFc - pkg);
+
+  document.getElementById('res_avg_fc').textContent    = avgFc+' ₽';
+  document.getElementById('res_avg_price').textContent = avgPrice+' ₽';
+  document.getElementById('res_avg_net').textContent   = Math.round(avgNet)+' ₽';
+  document.getElementById('res_margin_dish').textContent = (marginDish>0?'+':'')+marginDish+' ₽';
+  document.getElementById('res_margin_dish').style.color = marginDish>0?'var(--green)':'var(--red)';
+
+  // Channel breakdown
+  const channels = [
+    {name:'Яндекс.Еда', net:avgNet_ya,  share:yaShare,  color:'var(--blue)'},
+    {name:'DTC-подписка',net:avgNet_dtc, share:dtcShare, color:'var(--green)'},
+    {name:'Офлайн-точка',net:avgNet_off, share:offShare, color:'var(--amber)'},
+  ];
+  document.getElementById('ch_breakdown').innerHTML = channels.map(ch => {
+    const m = Math.round(ch.net - avgFc - pkg);
+    const mPct = avgPrice>0 ? Math.round(m/avgPrice*100) : 0;
+    return `<div class="vc-row">
+      <div class="vc-label" style="min-width:130px;">${ch.name}<br><span style="font-size:10px;color:var(--text-3);">доля ${Math.round(ch.share*100)}%</span></div>
+      <div class="ch-bar flex1"><div class="ch-fill" style="width:${Math.max(0,Math.min(100,mPct*2))}%; background:${ch.color};"></div></div>
+      <div class="vc-val" style="color:${m>=0?'var(--green)':'var(--red)'};">${m>=0?'+':''}${m} ₽<br><span style="font-size:10px;">${mPct}%</span></div>
+    </div>`;
+  }).join('');
+
+  // How many dishes needed
+  const ownerTarget = v('owner_target');
+  if(marginDish > 0) {
+    const needed_month = Math.ceil((ownerTarget + allFixed) / marginDish);
+    const needed_day   = Math.ceil(needed_month / 30);
+    document.getElementById('res_dishes_month').textContent = needed_month.toLocaleString('ru');
+    document.getElementById('res_dishes_day').textContent   = needed_day;
+    document.getElementById('res_comment').textContent      = `чтобы собственник получал ${fmt(ownerTarget)} / мес`;
+  } else {
+    document.getElementById('res_dishes_month').textContent = '—';
+    document.getElementById('res_dishes_day').textContent   = '—';
+    document.getElementById('res_comment').textContent      = 'Маржа отрицательная — проверьте параметры';
+  }
+
+  // Scenario table
+  renderScTable(scDishes, avgPrice, avgFc, pkg, yaComm, dtcDisc, offDisc, yaShare, dtcShare, offShare, allFixed);
+}
+
+function showSc(dishes, btn) {
+  scDishes = dishes;
+  document.querySelectorAll('.sc-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  // Recalculate
+  const fcPct = v('sl_fc_pct')/100;
+  const pkg   = v('packaging');
+  const fot = v('fot_manager')+v('fot_tech')+v('fot_cook1')+v('fot_cook2')+v('fot_acc')+v('fot_other');
+  const allFixed = fot + v('fc_rent')+v('fc_util')+v('fc_mkt')+v('fc_other');
+  const avgFc = AVG_FC;
+  const avgPrice = Math.round(avgFc/fcPct);
+  const yaComm=v('sl_ya')/100, dtcDisc=v('sl_dtc')/100, offDisc=v('sl_off')/100;
+  const yaShare=v('sl_ya_share')/100, dtcShare=v('sl_dtc_share')/100, offShare=Math.max(0,1-yaShare-dtcShare);
+  renderScTable(dishes, avgPrice, avgFc, pkg, yaComm, dtcDisc, offDisc, yaShare, dtcShare, offShare, allFixed);
+}
+
+function renderScTable(dishes, avgPrice, avgFc, pkg, yaComm, dtcDisc, offDisc, yaShare, dtcShare, offShare, allFixed) {
+  const avgNet = avgPrice*(1-yaComm)*yaShare + avgPrice*(1-dtcDisc)*dtcShare + avgPrice*(1-offDisc)*offShare;
+  const month  = dishes*30;
+  const rev    = Math.round(avgPrice * month);
+  const netRev = Math.round(avgNet * month);
+  const cogs   = Math.round((avgFc+pkg)*month);
+  const gm     = netRev - cogs;
+  const ebitda = gm - allFixed;
+  const gmPct  = rev>0 ? Math.round(gm/rev*100) : 0;
+  const ebPct  = rev>0 ? Math.round(ebitda/rev*100) : 0;
+  const color  = ebitda>0 ? 'var(--green)' : 'var(--red)';
+  document.getElementById('sc_table').innerHTML = `
+    <table class="sc-table">
+      <thead><tr><th>Показатель</th><th class="num">Сумма / мес</th></tr></thead>
+      <tbody>
+        <tr><td>Порций в день / в месяц</td><td class="num fw700">${dishes} / ${month.toLocaleString('ru')}</td></tr>
+        <tr><td>Валовая выручка (по ценам)</td><td class="num">${fmt(rev)}</td></tr>
+        <tr><td>Выручка после комиссий</td><td class="num">${fmt(netRev)}</td></tr>
+        <tr><td>COGS (FC + упаковка)</td><td class="num" style="color:var(--red);">– ${fmt(cogs)}</td></tr>
+        <tr><td>Валовая маржа</td><td class="num fw700 c-blue">${fmt(gm)} (${gmPct}%)</td></tr>
+        <tr><td>Постоянные расходы (ФОТ+аренда+пр)</td><td class="num" style="color:var(--red);">– ${fmt(allFixed)}</td></tr>
+        <tr><td style="font-weight:700;">EBITDA</td><td class="num fw800" style="color:${color};">${ebitda>0?'+':''}${fmt(ebitda)} (${ebPct}%)</td></tr>
+      </tbody>
+    </table>`;
+}
+
+function fmt(n) {
+  return Math.abs(n) >= 1000
+    ? (n<0?'– ':'')+Math.abs(Math.round(n)).toLocaleString('ru')+' ₽'
+    : Math.round(n)+' ₽';
+}
+
+// ─── INIT ──────────────────────────────────────────────────────────
+// Menu is built on tab click; VC is built on tab click
+// Roadmap is static HTML already rendered above
+</script>
+</body>
+</html>
