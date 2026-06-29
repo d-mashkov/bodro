@@ -373,6 +373,76 @@
     .ft-logo { font-family: 'Space Mono', monospace; font-size: 24px; color: var(--lime); letter-spacing: 0.08em; }
     .ft-meta { font-family: 'Space Mono', monospace; font-size: 10px; text-align: right; line-height: 2.2; color: rgba(255,255,255,0.18); letter-spacing: 0.06em; }
 
+    /* === WLB SECTION === */
+    .wlb-hero { background: var(--white); border: 1px solid rgba(17,17,16,0.07); border-radius: 18px; padding: 36px; margin-bottom: 24px; }
+    .wlb-hero-tag { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mid); margin-bottom: 16px; }
+    .wlb-hero-title { font-size: 32px; font-weight: 700; color: var(--black); line-height: 1.15; margin-bottom: 10px; }
+    .wlb-hero-desc { font-size: 15px; color: #555; line-height: 1.75; max-width: 560px; }
+    .wlb-pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px; }
+    .wlb-pillar { border-radius: 14px; padding: 24px 20px; }
+    .wlb-pillar.wp-time  { background: var(--black); }
+    .wlb-pillar.wp-money { background: var(--green); }
+    .wlb-pillar.wp-body  { background: #FFFFFF; border: 1px solid rgba(17,17,16,0.07); }
+    .wlb-icon { font-size: 26px; margin-bottom: 12px; }
+    .wlb-pillar-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+    .wp-time  .wlb-pillar-title { color: var(--cream); }
+    .wp-money .wlb-pillar-title { color: var(--cream); }
+    .wp-body  .wlb-pillar-title { color: var(--black); }
+    .wlb-pillar-text { font-size: 13px; line-height: 1.65; }
+    .wp-time  .wlb-pillar-text { color: rgba(242,237,227,0.5); }
+    .wp-money .wlb-pillar-text { color: rgba(242,237,227,0.5); }
+    .wp-body  .wlb-pillar-text { color: #666; }
+    .wlb-utp-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .wlb-utp { border-radius: 14px; padding: 24px; }
+    .wlb-utp.wu-base  { background: #FFFFFF; border: 1px solid rgba(17,17,16,0.07); }
+    .wlb-utp.wu-smart { background: var(--black); }
+    .wu-line { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 12px; }
+    .wu-base  .wu-line { color: var(--mid); }
+    .wu-smart .wu-line { color: var(--lime); }
+    .wu-name { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+    .wu-base  .wu-name { color: var(--black); }
+    .wu-smart .wu-name { color: var(--cream); }
+    .wu-slogan { font-size: 14px; font-weight: 600; margin-bottom: 10px; }
+    .wu-base  .wu-slogan { color: #333; }
+    .wu-smart .wu-slogan { color: rgba(242,237,227,0.85); }
+    .wu-desc { font-size: 13px; line-height: 1.65; }
+    .wu-base  .wu-desc { color: #666; }
+    .wu-smart .wu-desc { color: rgba(242,237,227,0.45); }
+    .wu-badge { display: inline-block; margin-top: 14px; padding: 5px 12px; border-radius: 4px; font-family: 'Space Mono', monospace; font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; }
+    .wu-base  .wu-badge { background: var(--black); color: #fff; }
+    .wu-smart .wu-badge { background: var(--lime); color: var(--black); }
+
+    /* === EVENT SECTION === */
+    .event-hero { background: var(--black); border-radius: 18px; padding: 36px; margin-bottom: 24px; border: 1px solid rgba(181,214,78,0.15); }
+    .event-hero-tag { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--lime); margin-bottom: 16px; }
+    .event-hero-title { font-size: 32px; font-weight: 700; color: var(--cream); line-height: 1.15; margin-bottom: 10px; }
+    .event-hero-desc { font-size: 15px; color: rgba(242,237,227,0.45); line-height: 1.75; max-width: 560px; }
+    .event-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px; }
+    .ev-stat { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 20px; }
+    .ev-stat-num { font-family: 'Space Mono', monospace; font-size: 28px; font-weight: 700; color: var(--lime); }
+    .ev-stat-label { font-size: 13px; font-weight: 600; color: var(--cream); margin-top: 4px; }
+    .ev-stat-desc { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 4px; line-height: 1.55; }
+    .event-pkg-mock { background: #1A1A18; border-radius: 14px; padding: 24px; margin-bottom: 24px; }
+    .event-pkg-mock h3 { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.5); margin-bottom: 16px; font-family: 'Space Mono', monospace; letter-spacing: 0.12em; text-transform: uppercase; font-size: 9px; }
+    .epkg-cont { border-radius: 10px; overflow: hidden; max-width: 280px; }
+    .epkg-lid { background: #111110; border: 2px solid rgba(181,214,78,0.25); border-bottom: none; padding: 18px 20px 14px; }
+    .epkg-brand { font-size: 24px; font-weight: 700; color: var(--cream); letter-spacing: 0.08em; }
+    .epkg-sub { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.22em; color: var(--lime); margin-top: 2px; }
+    .epkg-body { background: #1A1A18; border: 1px solid rgba(181,214,78,0.12); padding: 16px 20px; }
+    .epkg-dish { font-size: 14px; font-weight: 500; color: rgba(242,237,227,0.85); margin-bottom: 10px; }
+    .epkg-kg { display: flex; align-items: center; justify-content: space-between; padding: 10px; background: rgba(181,214,78,0.07); border-radius: 6px; border: 1px solid rgba(181,214,78,0.12); margin-bottom: 8px; }
+    .epkg-kg-v { font-family: 'Space Mono', monospace; font-size: 20px; font-weight: 700; color: var(--lime); }
+    .epkg-kg-info { font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(181,214,78,0.5); text-align: right; }
+    .epkg-portions { font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.25); }
+    .event-comp { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .ecomp { border-radius: 10px; padding: 16px; border: 1px solid rgba(255,255,255,0.05); }
+    .ecomp.winner { border-color: rgba(181,214,78,0.2); background: rgba(181,214,78,0.04); }
+    .ecomp-name { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+    .ecomp.winner .ecomp-name { color: var(--lime); }
+    .ecomp:not(.winner) .ecomp-name { color: rgba(255,255,255,0.6); }
+    .ecomp-pts { font-size: 11px; color: rgba(255,255,255,0.3); line-height: 1.6; }
+    .ecomp.winner .ecomp-pts { color: rgba(181,214,78,0.55); }
+
     @media (max-width:900px) {
       section { padding: 80px 24px; }
       nav { padding: 0 24px; }
@@ -395,7 +465,9 @@
     <a href="#colors">Цвета</a>
     <a href="#lines">Линейки</a>
     <a href="#packaging">Упаковка</a>
+    <a href="#wlb">WLB</a>
     <a href="#positioning">Позиция</a>
+    <a href="#event">Event</a>
     <a href="#voice">Голос</a>
   </div>
 </nav>
@@ -795,9 +867,57 @@
   </div>
 </section>
 
+<!-- WORK-LIFE BALANCE -->
+<section id="wlb">
+  <div class="section-label">08 — Work-Life Balance</div>
+  <h2>Зонтичная идея бренда</h2>
+  <p class="lead">Баланс — не про диеты. Про то, что еда не должна отнимать время, деньги и здоровье.</p>
+
+  <div class="wlb-hero">
+    <div class="wlb-hero-tag">BODRO · Манифест</div>
+    <div class="wlb-hero-title">Живи в балансе.<br>Ешь без компромисса.</div>
+    <div class="wlb-hero-desc">Современный человек жертвует едой: ест фастфуд, потому что нет времени; переплачивает в ресторане, потому что не умеет готовить; не знает что внутри, потому что никто не говорит. BODRO закрывает все три проблемы — одновременно.</div>
+  </div>
+
+  <div class="wlb-pillars">
+    <div class="wlb-pillar wp-time">
+      <div class="wlb-icon">⏱</div>
+      <div class="wlb-pillar-title">Время</div>
+      <div class="wlb-pillar-text">Не трать его на обдумывание обеда. Заказал — получил — разогрел за 2 минуты. Остальное время — твоё.</div>
+    </div>
+    <div class="wlb-pillar wp-money">
+      <div class="wlb-icon">₽</div>
+      <div class="wlb-pillar-title">Деньги</div>
+      <div class="wlb-pillar-text">Прозрачная цена. Ты понимаешь за что платишь — не ресторанная наценка, не маркетинговый бюджет. Еда + справедливая маржа.</div>
+    </div>
+    <div class="wlb-pillar wp-body">
+      <div class="wlb-icon">🫀</div>
+      <div class="wlb-pillar-title">Здоровье</div>
+      <div class="wlb-pillar-text">Честный состав, реальное КБЖУ. После BODRO хочется работать, а не спать. Это и есть баланс.</div>
+    </div>
+  </div>
+
+  <div class="wlb-utp-row">
+    <div class="wlb-utp wu-base">
+      <div class="wu-line">BODRO · Основная линейка</div>
+      <div class="wu-name">Просто хорошая еда.</div>
+      <div class="wu-slogan">«Каждый день — без заморочек и без переплаты»</div>
+      <div class="wu-desc">Для тех, кто хочет есть нормально — не быстро плохо и не долго правильно. Белая упаковка, понятный состав, доступная цена. УТП в Самаре: прозрачная экономика + локальное производство 48ч.</div>
+      <span class="wu-badge">Work · Life · Balance</span>
+    </div>
+    <div class="wlb-utp wu-smart">
+      <div class="wu-line">BODRO SMART · Precision</div>
+      <div class="wu-name">Считай меньше. Ешь умнее.</div>
+      <div class="wu-slogan">«КБЖУ на лицевой стороне — без калькулятора»</div>
+      <div class="wu-desc">Для тех, кто следит за нутриентами. Не диета — осознанный выбор. Чёрная упаковка, лайм-цифры КБЖУ крупно. Как Factor в США — только локально и дешевле.</div>
+      <span class="wu-badge">Smart · Nutrition · Daily</span>
+    </div>
+  </div>
+</section>
+
 <!-- POSITIONING -->
 <section id="positioning">
-  <div class="section-label">08 — Позиционирование</div>
+  <div class="section-label">09 — Позиционирование</div>
   <h2>Два продукта,<br>одна правда</h2>
   <div class="pos-two-col">
     <div class="pos-card pos-main">
@@ -816,7 +936,7 @@
     <div class="pos-card pos-smart">
       <div class="pos-tag">Precision продукт</div>
       <div class="pos-name">BODRO</div>
-      <div class="pos-sub">Balance</div>
+      <div class="pos-sub">SMART</div>
       <div class="pos-divider"></div>
       <div class="pos-claim">«Еда для тех,<br>кто знает свои цифры.»</div>
       <div class="pos-attrs">
@@ -862,7 +982,7 @@
 
 <!-- VOICE -->
 <section id="voice">
-  <div class="section-label">09 — Голос бренда</div>
+  <div class="section-label">10 — Голос бренда</div>
   <h2>Как BODRO говорит</h2>
   <div class="voice-grid">
     <div class="voice-do">
@@ -888,7 +1008,7 @@
 
 <!-- DIGITAL -->
 <section id="digital">
-  <div class="section-label">10 — Digital</div>
+  <div class="section-label">11 — Digital</div>
   <h2>В Яндекс.Еда</h2>
   <div class="digital-grid">
     <div class="app-mock">
@@ -932,12 +1052,87 @@
   </div>
 </section>
 
+<!-- EVENT -->
+<section id="event">
+  <div class="section-label">12 — Event / Мероприятия</div>
+  <h2>BODRO EVENT</h2>
+  <p class="lead">Продажа по 1 кг для корпоративов, тренировок, мероприятий. Свободная ниша в Самаре.</p>
+
+  <div class="event-hero">
+    <div class="event-hero-tag">BODRO EVENT · Гипотеза</div>
+    <div class="event-hero-title">Готовая еда для мероприятий<br>без кейтеринговой наценки.</div>
+    <div class="event-hero-desc">Корпоратив 20 человек — это 20+ порций. Сейчас это либо пицца, либо кейтеринг от 600 ₽/чел с обязательным персоналом. BODRO EVENT: 1 кг = 4–5 порций, тот же бренд, тот же состав, заказ за 24 ч.</div>
+  </div>
+
+  <div class="event-stats">
+    <div class="ev-stat">
+      <div class="ev-stat-num">1 кг</div>
+      <div class="ev-stat-label">Формат контейнера</div>
+      <div class="ev-stat-desc">PP 1000–1200 мл или алюм. гастронорм GN 1/3. Одна SKU = 4–5 порций.</div>
+    </div>
+    <div class="ev-stat">
+      <div class="ev-stat-num">890–1200 ₽</div>
+      <div class="ev-stat-label">Ценовой диапазон</div>
+      <div class="ev-stat-desc">Кейтеринг от 300 ₽/чел + доставка + персонал. Экономия для клиента 40–60%.</div>
+    </div>
+    <div class="ev-stat">
+      <div class="ev-stat-num">MOQ 5</div>
+      <div class="ev-stat-label">Минимальный заказ</div>
+      <div class="ev-stat-desc">5 контейнеров ≈ 20–25 чел. Заказ за 24 ч, доставка или самовывоз.</div>
+    </div>
+  </div>
+
+  <div class="event-pkg-mock">
+    <h3>Мокап контейнера EVENT</h3>
+    <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap;">
+      <div class="epkg-cont">
+        <div class="epkg-lid">
+          <div class="epkg-brand">BODRO</div>
+          <div class="epkg-sub">EVENT · 1 КГ</div>
+        </div>
+        <div class="epkg-body">
+          <div class="epkg-dish">Плов с говядиной</div>
+          <div class="epkg-kg">
+            <div class="epkg-kg-v">1 000 г</div>
+            <div class="epkg-kg-info">≈ 4–5 порций<br>Б87 · Ж72 · У210<br>1840 Ккал</div>
+          </div>
+          <div class="epkg-portions">Разогрев: 5–7 мин · Срок хранения: 48 ч</div>
+        </div>
+      </div>
+      <div style="flex:1;min-width:220px;">
+        <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:14px;">Целевая аудитория</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="padding:10px 14px;background:rgba(255,255,255,0.03);border-radius:8px;font-size:13px;color:rgba(255,255,255,0.6);">👔 HR-менеджеры — корпоративные обеды</div>
+          <div style="padding:10px 14px;background:rgba(255,255,255,0.03);border-radius:8px;font-size:13px;color:rgba(255,255,255,0.6);">🏋️ Спортивные клубы — питание после тренировки</div>
+          <div style="padding:10px 14px;background:rgba(255,255,255,0.03);border-radius:8px;font-size:13px;color:rgba(255,255,255,0.6);">🎉 Event-организаторы — фуршеты без кейтеринга</div>
+          <div style="padding:10px 14px;background:rgba(255,255,255,0.03);border-radius:8px;font-size:13px;color:rgba(255,255,255,0.6);">🏠 Семейные мероприятия — дни рождения, сборы</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="event-comp">
+    <div class="ecomp">
+      <div class="ecomp-name">Кейтеринг-компании</div>
+      <div class="ecomp-pts">От 600 ₽/чел. Нужен заказ за 3–5 дней. Обязателен персонал. Минимальный бюджет от 15 000 ₽.</div>
+    </div>
+    <div class="ecomp">
+      <div class="ecomp-name">Рестораны (Яндекс.Еда)</div>
+      <div class="ecomp-pts">Нет формата 1 кг. Состав непрозрачен. КБЖУ нет. Высокая вариативность качества по заказам.</div>
+    </div>
+    <div class="ecomp winner">
+      <div class="ecomp-name">BODRO EVENT ← Ниша</div>
+      <div class="ecomp-pts">Прозрачная цена за кг. КБЖУ в комплекте. Брендированная упаковка. Заказ за 24 ч. Без минимального бюджета на сервис.</div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="ft-logo">BODRO</div>
   <div class="ft-meta">
-    <div>Brand Identity Guidelines · v1.1</div>
+    <div>Brand Identity Guidelines · v1.2</div>
     <div>Dark Kitchen · Самара · 2025</div>
-    <div>BODRO + BODRO SMART</div>
+    <div>BODRO · BODRO SMART · BODRO EVENT</div>
   </div>
 </footer>
 
