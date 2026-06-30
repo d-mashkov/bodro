@@ -510,24 +510,25 @@ textarea.form-input { resize:vertical; min-height:90px; }
       <div class="card card-p mb16">
         <div class="vc-section-header">
           <div class="vc-section-icon">01</div>
-          <div><div class="vc-section-title">Ценообразование</div><div class="vc-section-sub">Себестоимость из меню + упаковка + наценка</div></div>
+          <div><div class="vc-section-title">Ценообразование</div><div class="vc-section-sub">Себестоимость → упаковка → РРЦ → наценка</div></div>
         </div>
         <div class="g2 mb12" style="gap:10px;">
           <div class="stat"><div class="stat-val" id="res_avg_fc_display">69 ₽</div><div class="stat-lbl">Ср. себестоимость блюда</div><div class="stat-note">Из 18 тех. карт меню</div></div>
           <div class="stat"><div class="stat-val" id="res_cogs_display">77 ₽</div><div class="stat-lbl">COGS / блюдо</div><div class="stat-note">Себестоимость + упаковка</div></div>
         </div>
         <div class="slider-row">
-          <div class="slider-top"><span class="slider-label">Упаковка (PP-контейнер), ₽/шт</span><span class="slider-val" id="lbl_pkg">8 ₽</span></div>
-          <input type="range" id="sl_pkg" min="7" max="12" value="8" step="1" oninput="calcVC()">
-          <div class="footnote">PP-контейнеры 500/750/1000 мл. Оптовая цена от производителя — <strong>7–10 ₽/шт</strong> при объёме 5 000+ шт. Плюс стикер КБЖУ ~1–2 ₽.</div>
+          <div class="slider-top"><span class="slider-label">Упаковка (PP-контейнер + пакет + приборы), ₽/шт</span><span class="slider-val" id="lbl_pkg">8 ₽</span></div>
+          <input type="range" id="sl_pkg" min="1" max="50" value="8" step="1" oninput="calcVC()">
+          <div class="footnote">PP-контейнер ~5 ₽ + запайка/крышка, пакет 8–15 ₽, приборы 3–5 ₽. С запайщиком ~<strong>13–20 ₽/шт</strong>, с крышкой ~<strong>35–50 ₽/шт</strong>.</div>
         </div>
-        <div class="slider-row">
-          <div class="slider-top"><span class="slider-label">Наценка на COGS, %</span><span class="slider-val" id="lbl_markup">200%</span></div>
-          <input type="range" id="sl_markup" min="80" max="450" value="200" step="10" oninput="calcVC()">
-          <div class="footnote"><strong>Как считают рестораны:</strong> Food Cost % = 100 / (1 + наценка/100). При 200% → food cost 33%. Норма для dark kitchen: 200–300% (food cost 25–33%). Ниже 150% — риск убытков.</div>
+        <div class="slider-row" style="margin-bottom:4px;">
+          <div class="inp-label" style="margin-bottom:8px;">РРЦ — розничная цена блюда, ₽</div>
+          <input class="inp" type="number" id="inp_rrp" value="230" min="50" max="2000" step="5" oninput="calcVC()">
+          <div class="footnote" style="margin-top:8px;">Задай цену вручную — модель сама пересчитает наценку, food cost и весь P&amp;L. Рынок dark kitchen Самары: <strong>190–350 ₽/порция</strong>.</div>
         </div>
-        <div class="g2 mt12" style="gap:10px;">
-          <div class="stat" style="border-color:rgba(0,0,0,0.15);"><div class="stat-val" id="res_sale_price">—</div><div class="stat-lbl">Цена продажи, ₽/блюдо</div></div>
+        <div class="g3 mt12" style="gap:10px;">
+          <div class="stat" style="border-color:rgba(0,0,0,0.15);"><div class="stat-val" id="res_sale_price">—</div><div class="stat-lbl">РРЦ / блюдо</div></div>
+          <div class="stat" style="border-color:rgba(0,0,0,0.15);"><div class="stat-val" id="res_markup_display">—</div><div class="stat-lbl">Наценка на COGS</div></div>
           <div class="stat" style="border-color:rgba(0,0,0,0.15);"><div class="stat-val" id="res_food_cost_pct">—</div><div class="stat-lbl">Food Cost %</div></div>
         </div>
       </div>
@@ -858,8 +859,9 @@ function fmt(n){ return (n<0?'–':'')+Math.abs(Math.round(n)).toLocaleString('r
 function fmtK(n){ return Math.round(n/1000)+'к'; }
 
 function calcVC(){
-  const pkg=v('sl_pkg'), markup=v('sl_markup'), avgFc=AVG_FC, cogsPerDish=avgFc+pkg;
-  const salePrice=Math.round(cogsPerDish*(1+markup/100)), fcPct=Math.round(cogsPerDish/salePrice*100);
+  const pkg=v('sl_pkg'), avgFc=AVG_FC, cogsPerDish=avgFc+pkg;
+  const salePrice=Math.max(cogsPerDish+1, Math.round(v('inp_rrp')));
+  const markup=Math.round((salePrice/cogsPerDish-1)*100), fcPct=Math.round(cogsPerDish/salePrice*100);
   const yaComm=v('sl_ya')/100, dtcDisc=v('sl_dtc')/100, yaShare=v('sl_ya_share')/100, dtcShare=v('sl_dtc_share')/100;
   const b2bShare=Math.max(0,1-yaShare-dtcShare), wtdComm=yaShare*yaComm+dtcShare*dtcDisc+b2bShare*0.10;
   const netPerDish=salePrice*(1-wtdComm), marginDish=netPerDish-cogsPerDish;
@@ -876,10 +878,10 @@ function calcVC(){
   const beDaily=beMonthly>0?Math.ceil(beMonthly/(22+8*wkendFactor)):0;
 
   document.getElementById('lbl_pkg').textContent=pkg+' ₽';
-  document.getElementById('lbl_markup').textContent=markup+'%';
   document.getElementById('res_avg_fc_display').textContent=avgFc+' ₽';
   document.getElementById('res_cogs_display').textContent=cogsPerDish+' ₽';
   document.getElementById('res_sale_price').textContent=salePrice+' ₽';
+  document.getElementById('res_markup_display').textContent=markup+'%';
   document.getElementById('res_food_cost_pct').textContent=fcPct+'%';
   document.getElementById('lbl_ya').textContent=v('sl_ya')+'%';
   document.getElementById('lbl_ya_share').textContent=v('sl_ya_share')+'%';
@@ -947,7 +949,7 @@ function calcVC(){
 
 function showSc(dishes,btn){
   scDishes=dishes; document.querySelectorAll('.sc-tab').forEach(b=>b.classList.remove('active')); btn.classList.add('active');
-  const pkg=v('sl_pkg'),markup=v('sl_markup'),avgFc=AVG_FC,cogs=avgFc+pkg,sp=Math.round(cogs*(1+markup/100));
+  const pkg=v('sl_pkg'),avgFc=AVG_FC,cogs=avgFc+pkg,sp=Math.max(cogs+1,Math.round(v('inp_rrp')));
   const ya=v('sl_ya')/100,dtc=v('sl_dtc')/100,yaS=v('sl_ya_share')/100,dtcS=v('sl_dtc_share')/100;
   const b2b=Math.max(0,1-yaS-dtcS),wc=yaS*ya+dtcS*dtc+b2b*0.10,wf=v('sl_wkend')/100;
   const fot=(v('fot_manager')+v('fot_cook1')+v('fot_cook2')+v('fot_acc'))*1.3;
