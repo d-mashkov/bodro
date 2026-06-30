@@ -3,46 +3,180 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BODRO — Dark Kitchen Project</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <title>BODRO — Dark Kitchen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --black: #111110; --cream: #F2EDE3; --green: #2A4819;
-      --lime: #B5D64E; --mid: #888880;
+      --black:  #15130F;
+      --cream:  #F1ECE0;
+      --lime:   #B5D64E;
+      --olive:  #3f4a18;
+      --mid:    #8c887c;
+      --dim:    #6f6c61;
     }
-    body { font-family: 'Space Grotesk', sans-serif; background: var(--black); color: var(--cream); min-height: 100vh; display: flex; flex-direction: column; }
-    header { padding: 64px 48px 0; }
-    .tag { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(181,214,78,0.6); margin-bottom: 20px; }
-    h1 { font-size: clamp(64px, 14vw, 140px); font-weight: 700; letter-spacing: -0.03em; line-height: 0.88; }
-    h1 span { color: var(--lime); }
-    .subtitle { font-size: 16px; font-weight: 300; color: rgba(242,237,227,0.4); margin-top: 18px; max-width: 420px; line-height: 1.65; }
-    main { flex: 1; padding: 64px 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; align-content: start; }
-    a.card { background: #1A1A18; border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 32px; text-decoration: none; color: inherit; transition: border-color .2s, background .2s; display: flex; flex-direction: column; gap: 10px; }
-    a.card:hover { border-color: rgba(181,214,78,0.3); background: #1E1E1C; }
-    .card-tag { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lime); }
-    .card-title { font-size: 22px; font-weight: 700; }
-    .card-desc { font-size: 13px; color: rgba(242,237,227,0.4); line-height: 1.65; }
-    .card-arrow { font-size: 18px; color: rgba(255,255,255,0.18); margin-top: auto; padding-top: 14px; }
-    footer { padding: 28px 48px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; }
-    .ft-brand { font-family: 'Space Mono', monospace; color: var(--lime); font-size: 16px; }
-    .ft-meta { font-family: 'Space Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.18); text-align: right; line-height: 2; }
+    body {
+      font-family: 'Archivo', sans-serif;
+      background: var(--cream);
+      color: var(--black);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER */
+    header {
+      padding: 64px 56px 0;
+      position: relative;
+    }
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 28px;
+    }
+    .wordmark {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 900;
+      font-size: clamp(72px, 15vw, 160px);
+      letter-spacing: -0.04em;
+      line-height: 0.85;
+      color: var(--black);
+      display: flex;
+      align-items: center;
+      gap: 0.02em;
+    }
+    .wordmark .dot {
+      width: clamp(14px, 3vw, 32px);
+      height: clamp(14px, 3vw, 32px);
+      background: var(--lime);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-left: 0.04em;
+    }
+    .subtitle {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--dim);
+      margin-top: 20px;
+      max-width: 460px;
+      line-height: 1.7;
+    }
+
+    /* DIVIDER */
+    .divider {
+      margin: 56px 56px 0;
+      height: 1px;
+      background: rgba(21,19,15,0.1);
+    }
+
+    /* CARDS */
+    main {
+      flex: 1;
+      padding: 32px 56px 64px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 14px;
+      align-content: start;
+    }
+    a.card {
+      background: #fff;
+      border: 1px solid rgba(21,19,15,0.08);
+      border-radius: 18px;
+      padding: 32px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color .2s, box-shadow .2s, transform .15s;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: 0 2px 12px rgba(21,19,15,0.04);
+    }
+    a.card:hover {
+      border-color: var(--lime);
+      box-shadow: 0 6px 28px rgba(21,19,15,0.09);
+      transform: translateY(-2px);
+    }
+    .card-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--lime);
+      font-weight: 700;
+    }
+    .card-title { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; }
+    .card-desc { font-size: 13px; color: var(--dim); line-height: 1.65; }
+    .card-arrow {
+      font-size: 18px;
+      color: rgba(21,19,15,0.18);
+      margin-top: auto;
+      padding-top: 16px;
+      transition: color .2s;
+    }
+    a.card:hover .card-arrow { color: var(--lime); }
+
+    /* LINES BADGE on SMART card */
+    .card-smart {
+      background: var(--black);
+      border-color: transparent;
+    }
+    .card-smart .card-tag { color: var(--lime); }
+    .card-smart .card-title { color: #F1ECE0; }
+    .card-smart .card-desc { color: rgba(241,236,224,0.45); }
+    .card-smart:hover { border-color: var(--lime); }
+    .card-smart .card-arrow { color: rgba(241,236,224,0.2); }
+    .card-smart:hover .card-arrow { color: var(--lime); }
+
+    /* FOOTER */
+    footer {
+      padding: 24px 56px;
+      border-top: 1px solid rgba(21,19,15,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .ft-brand {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 900;
+      font-size: 18px;
+      letter-spacing: -0.03em;
+      color: var(--black);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .ft-brand .ft-dot {
+      width: 8px; height: 8px;
+      background: var(--lime);
+      border-radius: 50%;
+    }
+    .ft-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--mid);
+      text-align: right;
+      line-height: 2;
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="tag">Dark Kitchen · Самара · 2025</div>
-    <h1>BO<span>D</span>RO</h1>
-    <p class="subtitle">Проектная документация по разработке бренда и продукта.</p>
+    <div class="wordmark">BODRO<div class="dot"></div></div>
+    <p class="subtitle">Не трать время — мы потратили его за тебя.</p>
   </header>
+  <div class="divider"></div>
   <main>
     <a class="card" href="BODRO_BrandBook.html">
       <div class="card-tag">Айдентика</div>
       <div class="card-title">Brand Book</div>
-      <div class="card-desc">Логотип, цвета, типографика, упаковка, линейки BODRO и BODRO SMART, позиционирование.</div>
+      <div class="card-desc">Логотип, цвета, типографика, упаковка, линейки BODRO и BODRO SMART, позиционирование, WLB, EVENT.</div>
       <div class="card-arrow">→</div>
     </a>
-    <a class="card" href="DarkKitchen_Service_v4.html">
+    <a class="card card-smart" href="DarkKitchen_Service_v4.html">
       <div class="card-tag">Сервис</div>
       <div class="card-title">Project Dashboard</div>
       <div class="card-desc">Дорожная карта, меню с КБЖУ, value chain, бренд-ревью. Полный обзор проекта.</div>
@@ -50,7 +184,7 @@
     </a>
   </main>
   <footer>
-    <div class="ft-brand">BODRO</div>
+    <div class="ft-brand">BODRO<div class="ft-dot"></div></div>
     <div class="ft-meta">
       <div>Dark Kitchen · Самара</div>
       <div>BODRO + BODRO SMART</div>

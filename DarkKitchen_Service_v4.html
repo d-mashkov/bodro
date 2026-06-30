@@ -3,37 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dark Kitchen — БАЗА + НОРМА</title>
+<title>BODRO — Project Dashboard</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
 :root {
-  --blue:    #007AFF;
-  --blue-lt: rgba(0,122,255,0.12);
-  --amber:   #D97706;
-  --amber-lt:rgba(217,119,6,0.12);
-  --green:   #16A34A;
-  --green-lt:rgba(22,163,74,0.12);
+  /* BODRO palette */
+  --lime:    #B5D64E;
+  --lime-lt: rgba(181,214,78,0.12);
+  --olive:   #3f4a18;
+  --olive-lt:rgba(63,74,24,0.12);
+  --smart:   #15130F;
+  --smart-lt:rgba(21,19,15,0.08);
   --red:     #DC2626;
-  --text:    #1C1C1E;
-  --text-2:  #48484A;
-  --text-3:  #8E8E93;
-  --glass:   rgba(255,255,255,0.72);
-  --glass-b: rgba(255,255,255,0.85);
-  --glass-s: 0 4px 28px rgba(0,0,0,0.07), inset 0 1px 0 rgba(255,255,255,0.9);
+  --text:    #15130F;
+  --text-2:  #6f6c61;
+  --text-3:  #8c887c;
+  --glass:   rgba(241,236,224,0.75);
+  --glass-b: rgba(255,255,255,0.7);
+  --glass-s: 0 4px 28px rgba(21,19,15,0.06), inset 0 1px 0 rgba(255,255,255,0.85);
   --r:       18px;
   --r-sm:    12px;
+  /* legacy aliases → lime */
+  --blue:    #B5D64E;
+  --blue-lt: rgba(181,214,78,0.12);
+  --amber:   #3f4a18;
+  --amber-lt:rgba(63,74,24,0.1);
+  --green:   #3f4a18;
+  --green-lt:rgba(63,74,24,0.1);
 }
 
 * { margin:0; padding:0; box-sizing:border-box; }
 
 body {
-  font-family:'Inter',system-ui,sans-serif;
+  font-family:'Archivo',sans-serif;
   font-size:14px;
   color:var(--text);
   min-height:100vh;
-  background:#E8EEF4;
+  background:#F1ECE0;
   overflow-x:hidden;
 }
 
@@ -42,40 +50,39 @@ body {
   position:fixed; border-radius:50%; filter:blur(80px);
   pointer-events:none; z-index:0; opacity:0.55;
 }
-.blob-1 { width:600px; height:600px; top:-150px; right:-100px; background:radial-gradient(circle,rgba(0,122,255,0.18),transparent 70%); }
-.blob-2 { width:500px; height:500px; bottom:-100px; left:-100px; background:radial-gradient(circle,rgba(217,119,6,0.14),transparent 70%); }
-.blob-3 { width:400px; height:400px; top:40%; left:40%; background:radial-gradient(circle,rgba(22,163,74,0.10),transparent 70%); }
+.blob-1 { width:600px; height:600px; top:-150px; right:-100px; background:radial-gradient(circle,rgba(181,214,78,0.14),transparent 70%); }
+.blob-2 { width:500px; height:500px; bottom:-100px; left:-100px; background:radial-gradient(circle,rgba(63,74,24,0.10),transparent 70%); }
+.blob-3 { width:400px; height:400px; top:40%; left:40%; background:radial-gradient(circle,rgba(181,214,78,0.07),transparent 70%); }
 
 /* NAV */
 nav {
   position:sticky; top:0; z-index:200;
-  backdrop-filter:blur(28px) saturate(200%);
-  -webkit-backdrop-filter:blur(28px) saturate(200%);
-  background:rgba(255,255,255,0.78);
-  border-bottom:1px solid rgba(255,255,255,0.6);
-  box-shadow:0 1px 20px rgba(0,0,0,0.06);
+  backdrop-filter:blur(28px) saturate(180%);
+  -webkit-backdrop-filter:blur(28px) saturate(180%);
+  background:rgba(21,19,15,0.94);
+  border-bottom:1px solid rgba(181,214,78,0.12);
+  box-shadow:0 1px 20px rgba(21,19,15,0.15);
   display:flex; align-items:center; gap:4px;
   padding:0 28px; height:58px;
 }
 .nav-brand {
-  font-weight:800; font-size:15px; letter-spacing:-0.4px;
-  color:var(--text); margin-right:16px; display:flex; align-items:center; gap:10px;
+  font-family:'Archivo',sans-serif; font-weight:900; font-size:17px; letter-spacing:-0.02em;
+  color:#F1ECE0; margin-right:16px; display:flex; align-items:center; gap:10px;
 }
 .nav-logo {
-  width:34px; height:34px; border-radius:10px;
-  background:linear-gradient(135deg,#007AFF,#0056CC);
+  width:34px; height:34px; border-radius:8px;
+  background:var(--lime);
   display:flex; align-items:center; justify-content:center;
-  font-weight:900; font-size:13px; color:#fff; letter-spacing:-1px;
-  box-shadow:0 2px 8px rgba(0,122,255,0.35);
+  font-weight:900; font-size:14px; color:#15130F; letter-spacing:-1px;
 }
 .nav-tab {
   padding:7px 16px; border-radius:10px; font-size:13px; font-weight:500;
-  cursor:pointer; border:none; background:transparent; color:var(--text-3);
+  cursor:pointer; border:none; background:transparent; color:rgba(241,236,224,0.4);
   transition:all .15s; white-space:nowrap;
 }
-.nav-tab:hover { background:rgba(0,0,0,0.05); color:var(--text); }
-.nav-tab.active { background:var(--blue); color:#fff; box-shadow:0 2px 8px rgba(0,122,255,0.3); }
-.nav-meta { margin-left:auto; font-size:12px; color:var(--text-3); }
+.nav-tab:hover { background:rgba(241,236,224,0.08); color:#F1ECE0; }
+.nav-tab.active { background:var(--lime); color:#15130F; font-weight:700; }
+.nav-meta { margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:11px; color:rgba(241,236,224,0.25); }
 
 /* LAYOUT */
 .page { display:none; position:relative; z-index:1; padding:28px 28px 60px; max-width:1300px; margin:0 auto; }
@@ -356,8 +363,8 @@ input[type=range]::-webkit-slider-thumb {
 <!-- NAV -->
 <nav>
   <div class="nav-brand">
-    <div class="nav-logo">DK</div>
-    Dark Kitchen
+    <div class="nav-logo">B</div>
+    BODRO
   </div>
   <button class="nav-tab active" onclick="goPage('roadmap',this)">Роадмап</button>
   <button class="nav-tab" onclick="goPage('menu',this)">Меню</button>
@@ -444,37 +451,37 @@ input[type=range]::-webkit-slider-thumb {
   <div class="page-head">
     <div class="sec-label">БРЕНД РЕВЬЮ</div>
     <div class="page-title">Два бренда. Одна кухня.</div>
-    <div class="page-desc">Позиционирование, нейминг и стратегия развития БАЗА и НОРМА</div>
+    <div class="page-desc">Позиционирование, нейминг и стратегия развития BODRO и BODRO SMART</div>
   </div>
 
   <div class="g2 mb20" style="gap:20px; align-items:start;">
 
-    <!-- БАЗА -->
+    <!-- BODRO -->
     <div class="brand-card">
-      <div class="brand-header" style="border-bottom:3px solid #D97706;">
+      <div class="brand-header" style="border-bottom:3px solid #B5D64E;">
         <div class="flex justify-between items-center">
-          <div class="brand-name" style="color:#D97706;">БАЗА</div>
-          <span class="chip chip-amber">Комфорт-еда</span>
+          <div class="brand-name" style="color:#B5D64E;">BODRO</div>
+          <span class="chip chip-blue">Комфорт-еда</span>
         </div>
-        <div class="brand-pos">Вкусная готовая еда без ЗОЖ-пафоса. Ресторанное качество по цене столовой. Для всех, кто хочет нормально поесть.</div>
+        <div class="brand-pos">Просто хорошая еда. Без ЗОЖ-пафоса. Ресторанное качество по цене столовой. Для всех, кто не хочет тратить время.</div>
       </div>
       <div class="brand-body">
         <div class="brand-section">
           <div class="brand-section-title">Суть бренда</div>
           <div class="promo-list">
-            <div class="promo-item"><div class="promo-bullet" style="background:#D97706;"></div><div class="promo-text"><strong>Без ЗОЖ-пафоса</strong> — честная, вкусная, насыщающая еда. Никакого «чистого питания».</div></div>
-            <div class="promo-item"><div class="promo-bullet" style="background:#D97706;"></div><div class="promo-text"><strong>Аудитория</strong> — офисный работник 25–40 лет, кто хочет нормально пообедать, не теряя времени.</div></div>
-            <div class="promo-item"><div class="promo-bullet" style="background:#D97706;"></div><div class="promo-text"><strong>Тон голоса</strong> — по-человечески, честно, без лишних слов. «Поешь нормально».</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>Без ЗОЖ-пафоса</strong> — честная, вкусная, насыщающая еда. Никакого «чистого питания».</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>Аудитория</strong> — офисный работник 25–40 лет, кто хочет нормально пообедать, не теряя времени.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>Слоган</strong> — «Не трать время — мы потратили его за тебя.»</div></div>
           </div>
         </div>
 
         <div class="brand-section">
           <div class="brand-section-title">Варианты нейминга</div>
           <div class="naming-grid">
-            <div class="naming-card" style="border-color:#D97706; border-width:2px;">
-              <div class="naming-name" style="color:#D97706;">БАЗА</div>
-              <div class="naming-desc">Базовая вкусная еда. Слово работает как «основа», «опора». Сильный визуал, простая айдентика.</div>
-              <span class="chip chip-amber naming-badge">Приоритет</span>
+            <div class="naming-card" style="border-color:#B5D64E; border-width:2px;">
+              <div class="naming-name" style="color:#B5D64E;">BODRO</div>
+              <div class="naming-desc">Живо, бодро, по-русски. Archivo 900, лайм-зелёный акцент. Белая упаковка, минимализм.</div>
+              <span class="chip chip-blue naming-badge">Выбрано</span>
             </div>
             <div class="naming-card">
               <div class="naming-name">ЕМ</div>
@@ -510,22 +517,22 @@ input[type=range]::-webkit-slider-thumb {
         <div class="brand-section">
           <div class="brand-section-title">Продвижение</div>
           <div class="promo-list">
-            <div class="promo-item"><div class="promo-bullet" style="background:#D97706;"></div><div class="promo-text"><strong>Яндекс.Еда</strong> — основной канал старта. Контент: фото реальных блюд, без стоков. Обложка с теплом и аппетитом.</div></div>
-            <div class="promo-item"><div class="promo-bullet" style="background:#D97706;"></div><div class="promo-text"><strong>Telegram-канал</strong> — «сегодня на обед». Ежедневный пост с меню и количеством порций. Создаёт дефицит.</div></div>
-            <div class="promo-item"><div class="promo-bullet" style="background:#D97706;"></div><div class="promo-text"><strong>Визуал</strong> — тёплые тона, живые фото. Упаковка с названием блюда крупно. Без КБЖУ на лицевой стороне.</div></div>
-            <div class="promo-item"><div class="promo-bullet" style="background:#D97706;"></div><div class="promo-text"><strong>Дегустации в БЦ</strong> — выход в офисные центры с пробниками. QR-код на подписку или Telegram-бот.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>Яндекс.Еда</strong> — основной канал старта. Контент: фото реальных блюд, без стоков. Обложка с теплом и аппетитом.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>Telegram-канал</strong> — «сегодня на обед». Ежедневный пост с меню и количеством порций. Создаёт дефицит.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>Визуал</strong> — белая упаковка, Archivo 900, лайм-акцент. Название блюда крупно. Без КБЖУ на лицевой стороне.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>Дегустации в БЦ</strong> — выход в офисные центры с пробниками. QR-код на подписку или Telegram-бот.</div></div>
           </div>
         </div>
 
         <div class="brand-section">
           <div class="brand-section-title">Ключевые метрики бренда</div>
           <div class="g2" style="gap:10px;">
-            <div class="stat" style="background:rgba(217,119,6,0.06); border-color:rgba(217,119,6,0.2);">
-              <div class="stat-val c-amber">Repeat Rate</div>
+            <div class="stat" style="background:rgba(181,214,78,0.08); border-color:rgba(181,214,78,0.3);">
+              <div class="stat-val" style="color:#3f4a18;">Repeat Rate</div>
               <div class="stat-lbl">Повторные заказы — ключевой KPI</div>
             </div>
-            <div class="stat" style="background:rgba(217,119,6,0.06); border-color:rgba(217,119,6,0.2);">
-              <div class="stat-val c-amber">NPS</div>
+            <div class="stat" style="background:rgba(181,214,78,0.08); border-color:rgba(181,214,78,0.3);">
+              <div class="stat-val" style="color:#3f4a18;">NPS</div>
               <div class="stat-lbl">«Посоветуешь другу?»</div>
             </div>
           </div>
@@ -533,32 +540,32 @@ input[type=range]::-webkit-slider-thumb {
       </div>
     </div>
 
-    <!-- НОРМА -->
+    <!-- BODRO SMART -->
     <div class="brand-card">
-      <div class="brand-header" style="border-bottom:3px solid #16A34A;">
+      <div class="brand-header" style="border-bottom:3px solid #15130F; background:#15130F;">
         <div class="flex justify-between items-center">
-          <div class="brand-name" style="color:#16A34A;">НОРМА</div>
-          <span class="chip chip-green">ЗОЖ-питание</span>
+          <div class="brand-name" style="color:#B5D64E; font-family:'JetBrains Mono',monospace;">BODRO SMART</div>
+          <span class="chip" style="background:rgba(181,214,78,0.15);color:#B5D64E;">Точное питание</span>
         </div>
-        <div class="brand-pos">Рациональное питание с честным КБЖУ крупным шрифтом. Для осознанных, без фанатизма.</div>
+        <div class="brand-pos" style="color:rgba(241,236,224,0.7);">Все КБЖУ посчитаны за тебя. Чёрная упаковка, лайм-цифры крупно. Для тех, кто считает.</div>
       </div>
       <div class="brand-body">
         <div class="brand-section">
           <div class="brand-section-title">Суть бренда</div>
           <div class="promo-list">
-            <div class="promo-item"><div class="promo-bullet" style="background:#16A34A;"></div><div class="promo-text"><strong>Три уровня слова «норма»</strong> — норма КБЖУ + нормально есть хорошо + норма как стандарт качества.</div></div>
-            <div class="promo-item"><div class="promo-bullet" style="background:#16A34A;"></div><div class="promo-text"><strong>Аудитория</strong> — фитнес-аудитория, считающие белок, осознанные потребители 23–35 лет.</div></div>
-            <div class="promo-item"><div class="promo-bullet" style="background:#16A34A;"></div><div class="promo-text"><strong>Дифференциатор</strong> — КБЖУ крупным шрифтом на лицевой стороне упаковки. Первый в Самаре.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>КБЖУ — герой упаковки</strong> — Белки / Жиры / Углев / Ккал крупно на лицевой стороне. Первый в Самаре.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>Аудитория</strong> — фитнес-аудитория, считающие белок, осознанные потребители 23–35 лет.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>Слоган</strong> — «Всё посчитано за тебя.»</div></div>
           </div>
         </div>
 
         <div class="brand-section">
           <div class="brand-section-title">Варианты нейминга</div>
           <div class="naming-grid">
-            <div class="naming-card" style="border-color:#16A34A; border-width:2px;">
-              <div class="naming-name" style="color:#16A34A;">НОРМА</div>
-              <div class="naming-desc">Работает на трёх смысловых уровнях. Лаконично, узнаваемо, российское слово.</div>
-              <span class="chip chip-green naming-badge">Приоритет</span>
+            <div class="naming-card" style="border-color:#15130F; border-width:2px; background:#15130F;">
+              <div class="naming-name" style="color:#B5D64E; font-family:'JetBrains Mono',monospace;">BODRO SMART</div>
+              <div class="naming-desc" style="color:rgba(241,236,224,0.7);">BODRO суббренд с чёрной упаковкой. Архиво + JetBrains Mono. Лайм-зелёный на чёрном.</div>
+              <span class="chip naming-badge" style="background:rgba(181,214,78,0.15);color:#B5D64E;">Выбрано</span>
             </div>
             <div class="naming-card">
               <div class="naming-name">БАЛАНС</div>
@@ -586,23 +593,23 @@ input[type=range]::-webkit-slider-thumb {
         <div class="brand-section">
           <div class="brand-section-title">Продвижение</div>
           <div class="promo-list">
-            <div class="promo-item"><div class="promo-bullet" style="background:#16A34A;"></div><div class="promo-text"><strong>Фитнес-комьюнити</strong> — Telegram-каналы о ЗОЖ, спортзалы Самары, коллаборации с тренерами.</div></div>
-            <div class="promo-item"><div class="promo-bullet" style="background:#16A34A;"></div><div class="promo-text"><strong>Станции НОРМА</strong> — брендированный холодильник в офисе. Нет агрегатора, нет комиссии. Capex 57–106к/станция.</div></div>
-            <div class="promo-item"><div class="promo-bullet" style="background:#16A34A;"></div><div class="promo-text"><strong>Упаковка</strong> — КБЖУ четырьмя крупными цифрами на лицевой стороне. Визуальный дифференциатор.</div></div>
-            <div class="promo-item"><div class="promo-bullet" style="background:#16A34A;"></div><div class="promo-text"><strong>B2B партнёрства</strong> — корпоративное питание, pre-order подписка через Telegram-бот.</div></div>
-            <div class="promo-item"><div class="promo-bullet" style="background:#16A34A;"></div><div class="promo-text"><strong>Цветовой код</strong> — тёмно-зелёный #1C3B2E + белый + золото. Строгий, премиальный, узнаваемый.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>Фитнес-комьюнити</strong> — Telegram-каналы о ЗОЖ, спортзалы Самары, коллаборации с тренерами.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>Станции BODRO SMART</strong> — брендированный холодильник в офисе. Нет агрегатора, нет комиссии. Capex 57–106к/станция.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>Упаковка</strong> — Белки / Жиры / Углев / Ккал·100г крупно на лицевой стороне. Визуальный дифференциатор.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>B2B партнёрства</strong> — корпоративное питание, pre-order подписка через Telegram-бот.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>Цветовой код</strong> — чёрный #15130F + лайм #B5D64E. Технично, премиально, узнаваемо.</div></div>
           </div>
         </div>
 
         <div class="brand-section">
-          <div class="brand-section-title">Станция НОРМА (B2B вендинг)</div>
+          <div class="brand-section-title">Станция BODRO SMART (B2B вендинг)</div>
           <div class="g2" style="gap:10px;">
-            <div class="stat" style="background:rgba(22,163,74,0.06); border-color:rgba(22,163,74,0.2);">
-              <div class="stat-val c-green">57–106к ₽</div>
+            <div class="stat" style="background:rgba(21,19,15,0.04); border-color:rgba(181,214,78,0.25);">
+              <div class="stat-val" style="color:#B5D64E;">57–106к ₽</div>
               <div class="stat-lbl">Capex на одну станцию</div>
             </div>
-            <div class="stat" style="background:rgba(22,163,74,0.06); border-color:rgba(22,163,74,0.2);">
-              <div class="stat-val c-green">~1 мес</div>
+            <div class="stat" style="background:rgba(21,19,15,0.04); border-color:rgba(181,214,78,0.25);">
+              <div class="stat-val" style="color:#B5D64E;">~1 мес</div>
               <div class="stat-lbl">Окупаемость при загрузке 30 порц/день</div>
             </div>
           </div>
@@ -618,15 +625,15 @@ input[type=range]::-webkit-slider-thumb {
     <div class="g3" style="gap:14px; margin-top:0;">
       <div class="stat">
         <div class="stat-val fs13 fw700" style="font-size:14px; color:var(--text);">Фаза 1 — Яндекс.Еда</div>
-        <div class="stat-lbl mt8">Оба бренда выходят на агрегатор. БАЗА — главная страница, НОРМА — отдельный профиль рядом.</div>
+        <div class="stat-lbl mt8">Оба бренда выходят на агрегатор. BODRO — главная страница, BODRO SMART — отдельный профиль рядом.</div>
       </div>
       <div class="stat">
         <div class="stat-val fs13 fw700" style="font-size:14px; color:var(--text);">Фаза 2 — DTC-подписка</div>
-        <div class="stat-lbl mt8">Telegram-бот: подписка на недельный план. НОРМА предлагает «рацион недели» с КБЖУ. БАЗА — «обед на неделю».</div>
+        <div class="stat-lbl mt8">Telegram-бот: подписка на недельный план. BODRO SMART — «рацион недели» с КБЖУ. BODRO — «обед на неделю».</div>
       </div>
       <div class="stat">
         <div class="stat-val fs13 fw700" style="font-size:14px; color:var(--text);">Фаза 3 — Офлайн + B2B</div>
-        <div class="stat-lbl mt8">Станции НОРМА в офисах. БАЗА — корпоративный обед под заказ. Самый маржинальный канал.</div>
+        <div class="stat-lbl mt8">Станции BODRO SMART в офисах. BODRO — корпоративный обед под заказ. Самый маржинальный канал.</div>
       </div>
     </div>
   </div>
@@ -909,10 +916,10 @@ function goPage(id, btn) {
 const ROADMAP = {
   phase0:[
     {done:true,  name:"Анализ рынка Самары",          desc:"Изучены конкуренты: Mealty, Level Kitchen, Perfect Balance, Willfood, GBalance, ПриЕм, FitBox. Выявлена ниша.",         dur:""},
-    {done:true,  name:"Концепция двух брендов",        desc:"Разработаны позиционирование и тональность для БАЗА (комфорт-еда) и НОРМА (ЗОЖ с КБЖУ).",                               dur:""},
+    {done:true,  name:"Концепция двух брендов",        desc:"Разработаны позиционирование и айдентика для BODRO (комфорт-еда, белая упаковка) и BODRO SMART (КБЖУ-фокус, чёрная).",   dur:""},
     {done:true,  name:"Технологические карты (18 блюд)",desc:"Рецептуры, граммовки, себестоимость каждого блюда.",                                                                      dur:""},
     {done:true,  name:"Финансовая модель (Excel)",     desc:"P&L по 4 сценариям, Value Chain, расчёт точки безубыточности.",                                                            dur:""},
-    {prog:true,  name:"Упаковка: дизайн-концепция",   desc:"Разработка концепции упаковки. НОРМА: КБЖУ крупно. БАЗА: название блюда + аппетитный визуал.",                            dur:"В работе"},
+    {prog:true,  name:"Упаковка: дизайн-концепция",   desc:"BODRO SMART: КБЖУ крупно на чёрной крышке. BODRO: название блюда + белая минималистичная крышка.",                     dur:"В работе"},
   ],
   phase1:[
     {name:"Регистрация ИП",                    desc:"ОКВЭД 56.10 (ресторанная деятельность), 56.21 (поставка готовых блюд). Госпошлина 800 ₽, срок 3 рабочих дня.",       dur:"3 дня"},
@@ -930,7 +937,7 @@ const ROADMAP = {
     {name:"Санитарные книжки персонала",       desc:"Обязательно для всех, кто работает с едой. Оформление через поликлинику или Роспотребнадзор.",                          dur:"1 нед"},
     {name:"Уведомление в Роспотребнадзор",     desc:"Подача уведомления о начале деятельности (форма: производство пищевых продуктов).",                                     dur:"1 день"},
     {name:"Договор на вывоз ТБО",             desc:"Обязательный договор с лицензированной организацией.",                                                                  dur:"3 дня"},
-    {name:"Закупка упаковки",                 desc:"PP-контейнеры 500/750/1000 мл. Стикеры НОРМА (КБЖУ) и БАЗА. Бюджет 50 тыс. ₽ на 3 мес.",                             dur:"1 нед"},
+    {name:"Закупка упаковки",                 desc:"PP-контейнеры 500/750/1000 мл. Стикеры BODRO SMART (КБЖУ) и BODRO. Бюджет 50 тыс. ₽ на 3 мес.",                    dur:"1 нед"},
   ],
   phase3:[
     {name:"Запуск на Яндекс.Еда",              desc:"Регистрация партнёра. Фотосъёмка блюд (обязательно хорошего качества). Заполнение меню. Комиссия 25–28%.",            dur:"1–2 нед"},
@@ -941,8 +948,8 @@ const ROADMAP = {
   ],
   phase4:[
     {name:"Выход на точку безубыточности",     desc:"60–80 порций в день. Контроль food cost, минимизация списаний, закрытие слабых позиций меню.",                        dur:"Мес. 3–4"},
-    {name:"DTC-подписка (недельный план)",     desc:"Telegram-бот или лэндинг. «Обед на неделю от БАЗА» и «Рацион недели НОРМА». Предоплата.",                             dur:"Мес. 4"},
-    {name:"Первые Станции НОРМА (3–5 офисов)",desc:"Установка холодильников в офисах. Ежедневное пополнение до 9:00. Оплата картой. Нет агрегатора.",                     dur:"Мес. 4–5"},
+    {name:"DTC-подписка (недельный план)",     desc:"Telegram-бот или лэндинг. «Обед на неделю от BODRO» и «Рацион недели BODRO SMART». Предоплата.",                    dur:"Мес. 4"},
+    {name:"Первые Станции BODRO SMART (3–5 офисов)",desc:"Установка холодильников в офисах. Ежедневное пополнение до 9:00. Оплата картой. Нет агрегатора.",             dur:"Мес. 4–5"},
     {name:"Корпоративные контракты",           desc:"Договор на поставку обедов. Пред-оплата помесячно. Самый маржинальный канал.",                                         dur:"Мес. 5–6"},
   ],
   phase5:[
