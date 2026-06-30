@@ -748,7 +748,7 @@ function goPage(id, btn) {
   btn.classList.add('active');
   if(id==='menu'      && !window._menuBuilt) buildMenu();
   if(id==='vc'        && !window._vcBuilt)   { window._vcBuilt=true; calcVC(); }
-  if(id==='questions' && !window._qBuilt)    { window._qBuilt=true; renderBoard(); }
+  if(id==='questions' && !window._qBuilt)    { window._qBuilt=true; initDefaultQuestions(); renderBoard(); }
 }
 
 const ROADMAP = {
@@ -979,6 +979,24 @@ function renderScTable(dailyWkday,salePrice,cogs,wtdComm,wkendF,allFixed){
 const LS_KEY='bodro_questions_v1';
 function loadQs(){ try{ return JSON.parse(localStorage.getItem(LS_KEY)||'[]'); }catch(e){ return []; } }
 function saveQs(qs){ localStorage.setItem(LS_KEY,JSON.stringify(qs)); }
+
+function initDefaultQuestions(){
+  if(loadQs().length>0) return; // уже есть данные — не перезаписывать
+  const now = new Date('2026-06-30T12:00:00.000Z').toISOString();
+  const seed = [
+    {id:'q0001',title:'Курьерская служба для DTC',desc:'Кто доставляет заказы с сайта/бота напрямую (не через агрегатор)? Своя курьерка, Яндекс Доставка или другой сервис? Дмитрий прямо спросил: "кто будет заказы с сайта доставлять".',tag:'Логистика',status:'active',answer:'',advice:'',createdAt:now,updatedAt:now},
+    {id:'q0002',title:'Нужен ли штатный бухгалтер',desc:'Дмитрий усомнился в необходимости бухгалтера на старте: "А бухгалтер прямо точно нужен?" Можно ли обойтись аутсорсом или самозанятым бухгалтером за 5–10к/мес?',tag:'Команда',status:'active',answer:'',advice:'',createdAt:now,updatedAt:now},
+    {id:'q0003',title:'Контрактное производство — КП от kulinar-63.ru / obed63.ru',desc:'Дмитрий запросил КП у kulinar-63.ru и obed63.ru. Возможна ли газомодифицированная упаковка (MAP)? Рентабельно ли отдавать производство на аутсорс vs своя кухня? Ждём ответа.',tag:'Производство',status:'active',answer:'',advice:'',createdAt:now,updatedAt:now},
+    {id:'q0004',title:'Когда получать ХАССП',desc:'Стоимость сертификации ~50к ₽. Мораторий на проверки до 2029. Яндекс.Еда не требует сертификат, Самокат — требует. Получать до запуска или после достижения стабильного оборота?',tag:'Юридические',status:'active',answer:'',advice:'',createdAt:now,updatedAt:now},
+    {id:'q0005',title:'MVP на арендованной кухне перед своей',desc:'Концепция: купить запайщик, взять тёмную кухню в аренду, проверить спрос на меню — и только потом открывать свою. Насколько сильно вырастет себестоимость? Стоит ли тратить время на промежуточный этап?',tag:'Стратегия',status:'active',answer:'',advice:'',createdAt:now,updatedAt:now},
+    {id:'q0006',title:'Анализ конкурентов — заказ через Дмитрия',desc:'Самокат СТМ + Вкусвилл + Перфект Баланс: состав, КБЖУ, фото, упаковка. Дмитрий берётся за 20к ₽. Таблица уже создана в Google Sheets. Нужно согласовать сроки и формат финального отчёта.',tag:'Исследование',status:'active',answer:'',advice:'',createdAt:now,updatedAt:now},
+    {id:'q0007',title:'Аутофсток — политика замены и управление остатками',desc:'Что делать когда блюдо заканчивается раньше конца дня? Как считать норму производства на день? Как учитывать списания в себесе (акты переработки)? Дмитрий сказал "расскажу при встрече" — зафиксировать ответ.',tag:'Операции',status:'active',answer:'',advice:'',createdAt:now,updatedAt:now},
+    {id:'q0008',title:'График поваров — ночная или вечерняя смена',desc:'Чтобы к утреннему спросу (обеды) всё было готово — повара должны работать ночью или с вечера предыдущего дня. Как организовать смены при минимальном штате на старте?',tag:'Операции',status:'active',answer:'',advice:'',createdAt:now,updatedAt:now},
+    {id:'q0009',title:'Станция-вендинг BODRO SMART — собирать или покупать',desc:'Аналог Milti Station. Варианты: собирать самим (~100к ₽), купить готовый холодильник с ПО, заказать из Китая от 10 штук. На каком этапе запускать? Нужен ли пилот в 1 БЦ сначала?',tag:'Оборудование',status:'active',answer:'',advice:'',createdAt:now,updatedAt:now},
+    {id:'q0010',title:'Дегустации в БЦ — формат и масштаб',desc:'100г пробники, баннер с QR, промокод на первый заказ. Сколько точек одновременно не перегружая кухню? Кто стоит на точке? В какой день недели делать чтобы не было провала заказов на следующий день?',tag:'Маркетинг',status:'active',answer:'',advice:'',createdAt:now,updatedAt:now}
+  ];
+  saveQs(seed);
+}
 
 function renderBoard(){
   const qs=loadQs();
