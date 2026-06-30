@@ -4,22 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BODRO — Brand Book v2</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;900&family=Archivo+Expanded:wght@700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black:  #111110;
-      --cream:  #F2EDE3;
-      --green:  #2A4819;
+      --black:  #15130F;
+      --cream:  #F1ECE0;
+      --green:  #3f4a18;
       --lime:   #B5D64E;
-      --mid:    #888880;
-      --light:  #EFF5E2;
+      --mid:    #8c887c;
+      --warm:   #cfc8b8;
+      --dim:    #6f6c61;
       --white:  #FAFAF8;
     }
 
     html { scroll-behavior: smooth; }
-    body { font-family: 'Space Grotesk', sans-serif; background: var(--cream); color: var(--black); }
+    body { font-family: 'Archivo', sans-serif; background: var(--cream); color: var(--black); }
 
     /* NAV */
     nav {
@@ -28,7 +29,7 @@
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 48px; height: 56px;
     }
-    .nav-logo { font-family: 'Space Mono', monospace; color: var(--lime); font-size: 16px; letter-spacing: 0.1em; }
+    .nav-logo { font-family: 'JetBrains Mono', monospace; color: var(--lime); font-size: 16px; letter-spacing: 0.1em; }
     .nav-links { display: flex; gap: 24px; }
     .nav-links a { color: rgba(255,255,255,0.35); text-decoration: none; font-size: 12px; letter-spacing: 0.08em; transition: color .2s; text-transform: uppercase; }
     .nav-links a:hover { color: #fff; }
@@ -36,7 +37,7 @@
     /* SECTIONS */
     section { padding: 120px 48px; }
     .section-label {
-      font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em;
+      font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em;
       text-transform: uppercase; color: var(--mid); margin-bottom: 24px;
     }
     h2 { font-size: clamp(36px, 5.5vw, 64px); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; }
@@ -55,25 +56,31 @@
       background: radial-gradient(circle, rgba(181,214,78,0.12) 0%, transparent 65%);
       pointer-events: none;
     }
-    .cover-tag { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--lime); margin-bottom: 28px; opacity: 0.7; }
+    .cover-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--lime); margin-bottom: 28px; opacity: 0.7; }
     .cover-wordmark {
-      font-size: clamp(96px, 17vw, 210px); font-weight: 700; line-height: 0.9;
-      letter-spacing: -0.03em; position: relative; z-index: 1;
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(96px, 17vw, 210px); font-weight: 900; line-height: 0.9;
+      letter-spacing: -0.04em; position: relative; z-index: 1;
     }
     .cover-wordmark span { color: var(--lime); }
+    .cover-lime-dot {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--lime); display: inline-block;
+      margin-left: 12px; vertical-align: middle; margin-bottom: 8px;
+    }
     .cover-bottom {
       margin-top: 40px; display: flex; align-items: flex-end;
       justify-content: space-between; position: relative; z-index: 1;
       border-top: 1px solid rgba(242,237,227,0.08); padding-top: 28px;
     }
     .cover-claim { font-size: clamp(16px,2.2vw,24px); font-weight: 300; color: rgba(242,237,227,0.5); max-width: 400px; line-height: 1.5; }
-    .cover-meta p { font-family: 'Space Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.2); letter-spacing: 0.1em; line-height: 2.2; text-align: right; }
+    .cover-meta p { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.2); letter-spacing: 0.1em; line-height: 2.2; text-align: right; }
 
     /* PHILOSOPHY */
     #philosophy { background: var(--cream); }
     .pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(17,17,16,0.07); border: 1px solid rgba(17,17,16,0.07); border-radius: 16px; overflow: hidden; margin-top: 48px; }
     .pillar { padding: 28px 24px; background: var(--white); }
-    .pillar-num { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--mid); margin-bottom: 12px; letter-spacing: 0.08em; }
+    .pillar-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--mid); margin-bottom: 12px; letter-spacing: 0.08em; }
     .pillar h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
     .pillar p { font-size: 13px; line-height: 1.75; color: #666; }
 
@@ -96,7 +103,7 @@
     .on-dark  .wordmark  { color: var(--cream); }
     .on-green .wordmark  { color: var(--cream); }
     .wm-sub {
-      font-family: 'Space Mono', monospace; font-size: 9px;
+      font-family: 'JetBrains Mono', monospace; font-size: 9px;
       letter-spacing: 0.22em; margin-top: 4px;
     }
     .on-cream  .wm-sub { color: var(--mid); }
@@ -104,7 +111,7 @@
     .on-green  .wm-sub { color: rgba(181,214,78,0.5); }
     .logo-cell-label {
       position: absolute; bottom: 12px; left: 0; right: 0; text-align: center;
-      font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+      font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
     }
     .on-cream  .logo-cell-label { color: var(--mid); }
     .on-dark   .logo-cell-label,
@@ -124,7 +131,7 @@
     .on-cream .lb-main { color: var(--black); }
     .on-dark  .lb-main { color: var(--cream); }
     .on-green .lb-main { color: var(--cream); }
-    .lb-sub { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; margin-top: 5px; }
+    .lb-sub { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; margin-top: 5px; }
     .on-cream .lb-sub  { color: var(--black); }
     .on-dark  .lb-sub  { color: var(--lime); }
     .on-green .lb-sub  { color: rgba(181,214,78,0.7); }
@@ -140,7 +147,7 @@
     .swatch-color { height: 120px; }
     .swatch-info { padding: 12px; background: #1C1C1A; }
     .swatch-name { font-size: 12px; font-weight: 600; color: var(--cream); margin-bottom: 2px; }
-    .swatch-hex { font-family: 'Space Mono', monospace; font-size: 10px; color: rgba(242,237,227,0.3); }
+    .swatch-hex { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(242,237,227,0.3); }
     .swatch-use { font-size: 10px; color: rgba(242,237,227,0.2); margin-top: 5px; line-height: 1.5; }
 
     /* TYPOGRAPHY */
@@ -151,14 +158,14 @@
       gap: 24px; align-items: baseline;
       padding: 28px 0; border-top: 1px solid rgba(17,17,16,0.07);
     }
-    .type-meta-name { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--mid); text-transform: uppercase; letter-spacing: 0.08em; }
-    .type-meta-spec { font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(136,130,128,0.5); margin-top: 5px; line-height: 1.6; }
+    .type-meta-name { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--mid); text-transform: uppercase; letter-spacing: 0.08em; }
+    .type-meta-spec { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: rgba(136,130,128,0.5); margin-top: 5px; line-height: 1.6; }
     .t-hero  { font-size: 72px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
     .t-h1    { font-size: 48px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.05; }
     .t-h2    { font-size: 28px; font-weight: 600; letter-spacing: -0.01em; }
     .t-body  { font-size: 16px; font-weight: 400; line-height: 1.75; color: #555; }
-    .t-cap   { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); }
-    .t-num   { font-family: 'Space Mono', monospace; font-size: 14px; }
+    .t-cap   { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); }
+    .t-num   { font-family: 'JetBrains Mono', monospace; font-size: 14px; }
 
     /* LINES */
     #lines { background: var(--white); }
@@ -168,7 +175,7 @@
     .lh-main  { background: var(--white); border: 1px solid rgba(17,17,16,0.08); border-bottom: none; }
     .lh-smart { background: var(--black); }
     .line-badge {
-      display: inline-block; font-family: 'Space Mono', monospace;
+      display: inline-block; font-family: 'JetBrains Mono', monospace;
       font-size: 9px; font-weight: 400; letter-spacing: 0.18em;
       text-transform: uppercase; padding: 3px 8px; border-radius: 3px; margin-bottom: 20px;
     }
@@ -177,7 +184,7 @@
     .line-name { font-size: 44px; font-weight: 700; letter-spacing: -0.01em; line-height: 1; margin-bottom: 6px; }
     .lh-main  .line-name { color: var(--black); }
     .lh-smart .line-name { color: var(--cream); }
-    .line-sub { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; }
+    .line-sub { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; }
     .lh-main  .line-sub { color: var(--mid); }
     .lh-smart .line-sub { color: var(--lime); }
     .line-tagline { font-size: 14px; font-weight: 400; line-height: 1.7; margin-top: 14px; }
@@ -186,7 +193,7 @@
     .line-body { padding: 28px 40px; border: 1px solid rgba(17,17,16,0.07); border-top: none; border-radius: 0 0 18px 18px; background: var(--white); }
     .line-attr-item { display: flex; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid rgba(17,17,16,0.05); font-size: 13px; }
     .line-attr-item:last-child { border-bottom: none; }
-    .attr-k { color: var(--mid); font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .attr-k { color: var(--mid); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; }
     .attr-v { font-weight: 500; text-align: right; max-width: 200px; }
     .line-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
     .tag { font-size: 12px; padding: 4px 10px; background: rgba(17,17,16,0.04); border-radius: 100px; color: #444; }
@@ -206,13 +213,13 @@
     .pkg-brand { font-size: 26px; font-weight: 700; letter-spacing: 0.08em; line-height: 1; }
     .pt-main  .pkg-brand { color: var(--black); }
     .pt-smart .pkg-brand { color: var(--cream); }
-    .pkg-line { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; margin-top: 2px; }
+    .pkg-line { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; margin-top: 2px; }
     .pt-main  .pkg-line { color: var(--mid); }
     .pt-smart .pkg-line { color: var(--lime); }
     .pkg-dish { font-size: 13px; font-weight: 500; line-height: 1.35; margin-top: 14px; }
     .pt-main  .pkg-dish { color: #333; }
     .pt-smart .pkg-dish { color: rgba(242,237,227,0.85); }
-    .pkg-weight { font-family: 'Space Mono', monospace; font-size: 9px; margin-top: 2px; }
+    .pkg-weight { font-family: 'JetBrains Mono', monospace; font-size: 9px; margin-top: 2px; }
     .pt-main  .pkg-weight { color: var(--mid); }
     .pt-smart .pkg-weight { color: rgba(181,214,78,0.4); }
 
@@ -220,7 +227,7 @@
     .pt-main  + .pkg-body { background: #F8F8F6; }
     .pt-smart + .pkg-body { background: #1A1A18; }
 
-    .kbzhu-title { font-family: 'Space Mono', monospace; font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 7px; }
+    .kbzhu-title { font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 7px; }
     .pt-main  + .pkg-body .kbzhu-title { color: var(--mid); }
     .pt-smart + .pkg-body .kbzhu-title { color: rgba(255,255,255,0.22); }
 
@@ -230,11 +237,11 @@
     .pt-main  + .pkg-body .kc { background: rgba(17,17,16,0.05); }
     .pt-smart + .pkg-body .kc { background: rgba(181,214,78,0.08); border: 1px solid rgba(181,214,78,0.15); }
 
-    .kc-v { font-family: 'Space Mono', monospace; font-weight: 700; display: block; }
+    .kc-v { font-family: 'JetBrains Mono', monospace; font-weight: 700; display: block; }
     .pt-main  + .pkg-body .kc-v { font-size: 11px; color: var(--black); }
     .pt-smart + .pkg-body .kc-v { font-size: 14px; color: var(--lime); }
 
-    .kc-k { font-family: 'Space Mono', monospace; font-size: 7px; text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-top: 2px; }
+    .kc-k { font-family: 'JetBrains Mono', monospace; font-size: 7px; text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-top: 2px; }
     .pt-main  + .pkg-body .kc-k { color: var(--mid); }
     .pt-smart + .pkg-body .kc-k { color: rgba(255,255,255,0.25); }
 
@@ -242,17 +249,17 @@
     .pt-main  + .pkg-body .pkg-ingr { color: rgba(17,17,16,0.4); }
     .pt-smart + .pkg-body .pkg-ingr { color: rgba(255,255,255,0.25); }
 
-    .ingr-label { font-family: 'Space Mono', monospace; font-size: 7px; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700; margin-bottom: 3px; }
+    .ingr-label { font-family: 'JetBrains Mono', monospace; font-size: 7px; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700; margin-bottom: 3px; }
     .pt-main  + .pkg-body .ingr-label { color: var(--mid); }
     .pt-smart + .pkg-body .ingr-label { color: rgba(255,255,255,0.38); }
 
     .pkg-shelf { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; padding-top: 8px; }
     .pt-main  + .pkg-body .pkg-shelf { border-top: 1px solid rgba(17,17,16,0.07); }
     .pt-smart + .pkg-body .pkg-shelf { border-top: 1px solid rgba(255,255,255,0.05); }
-    .shelf-t { font-family: 'Space Mono', monospace; font-size: 8px; letter-spacing: 0.06em; }
+    .shelf-t { font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.06em; }
     .pt-main  + .pkg-body .shelf-t { color: rgba(17,17,16,0.3); }
     .pt-smart + .pkg-body .shelf-t { color: rgba(255,255,255,0.18); }
-    .shelf-v { font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; }
+    .shelf-v { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; }
     .pt-main  + .pkg-body .shelf-v { color: var(--black); }
     .pt-smart + .pkg-body .shelf-v { color: var(--lime); }
 
@@ -265,19 +272,19 @@
     .di-light { background: var(--light); }
     .di-black { background: var(--black); }
     .dish-body { padding: 16px; }
-    .dish-line-tag { font-family: 'Space Mono', monospace; font-size: 8px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 6px; }
+    .dish-line-tag { font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 6px; }
     .dlt-main    { color: var(--green); }
     .dlt-smart { color: #1E4A2F; }
     .dish-name { font-size: 15px; font-weight: 600; line-height: 1.25; margin-bottom: 2px; }
-    .dish-w { font-family: 'Space Mono', monospace; font-size: 9px; color: var(--mid); margin-bottom: 10px; }
+    .dish-w { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--mid); margin-bottom: 10px; }
     .macros { display: grid; grid-template-columns: repeat(4,1fr); gap: 3px; margin-bottom: 10px; }
     .mc { background: rgba(17,17,16,0.04); border-radius: 5px; padding: 5px 3px; text-align: center; }
-    .mc-v { font-family: 'Space Mono', monospace; font-size: 10px; font-weight: 700; display: block; }
-    .mc-k { font-family: 'Space Mono', monospace; font-size: 7px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); display: block; }
+    .mc-v { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; display: block; }
+    .mc-k { font-family: 'JetBrains Mono', monospace; font-size: 7px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); display: block; }
     .dish-ingr { font-size: 11px; color: #888; line-height: 1.6; margin-bottom: 8px; }
     .dish-fc { display: flex; justify-content: space-between; font-size: 11px; padding-top: 8px; border-top: 1px solid rgba(17,17,16,0.05); }
-    .fc-l { color: var(--mid); font-family: 'Space Mono', monospace; text-transform: uppercase; letter-spacing: 0.08em; font-size: 9px; }
-    .fc-v { font-family: 'Space Mono', monospace; font-weight: 700; color: var(--green); }
+    .fc-l { color: var(--mid); font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.08em; font-size: 9px; }
+    .fc-v { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--green); }
 
     /* POSITIONING */
     #positioning { background: var(--black); color: var(--cream); }
@@ -287,13 +294,13 @@
     .pos-card { border-radius: 18px; padding: 40px; }
     .pos-main  { background: #FFFFFF; border: 1px solid rgba(17,17,16,0.08); }
     .pos-smart { background: var(--black); }
-    .pos-tag { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 20px; }
+    .pos-tag { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 20px; }
     .pos-main  .pos-tag { color: var(--mid); }
     .pos-smart .pos-tag { color: var(--lime); opacity: 0.7; }
     .pos-name { font-size: 40px; font-weight: 700; letter-spacing: -0.01em; line-height: 1; }
     .pos-main  .pos-name { color: var(--black); }
     .pos-smart .pos-name { color: var(--cream); }
-    .pos-sub { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase; margin-top: 4px; margin-bottom: 16px; }
+    .pos-sub { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase; margin-top: 4px; margin-bottom: 16px; }
     .pos-main  .pos-sub { color: var(--mid); }
     .pos-smart .pos-sub { color: var(--lime); }
     .pos-divider { height: 1px; margin-bottom: 16px; }
@@ -309,7 +316,7 @@
     .pos-attr:last-child { border-bottom: inherit; }
     .pos-main  .pos-attr:last-child { border-bottom: 1px solid rgba(17,17,16,0.05); }
     .pos-smart .pos-attr:last-child { border-bottom: 1px solid rgba(255,255,255,0.05); }
-    .pos-attr-num { font-family: 'Space Mono', monospace; font-size: 9px; min-width: 20px; margin-top: 2px; }
+    .pos-attr-num { font-family: 'JetBrains Mono', monospace; font-size: 9px; min-width: 20px; margin-top: 2px; }
     .pos-main  .pos-attr-num { color: var(--black); }
     .pos-smart .pos-attr-num { color: var(--lime); }
     .pos-attr-body { }
@@ -322,7 +329,7 @@
     .vs-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-top: 48px; }
     .vs-card { background: #1A1A18; border-radius: 14px; padding: 24px; border: 1px solid rgba(255,255,255,0.04); }
     .vs-card.ours { background: #1E2D1A; border-color: rgba(42,72,25,0.4); }
-    .vs-brand { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 16px; }
+    .vs-brand { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 16px; }
     .vs-card.ours .vs-brand { color: var(--lime); }
     .vs-item { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 12px; }
     .vs-item:last-child { border-bottom: none; }
@@ -335,7 +342,7 @@
     .voice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 44px; }
     .voice-do   { background: var(--light); border: 1px solid rgba(42,72,25,0.1); border-radius: 14px; padding: 28px; }
     .voice-dont { background: #FDF0EF; border: 1px solid rgba(192,57,43,0.1); border-radius: 14px; padding: 28px; }
-    .vc-title { font-family: 'Space Mono', monospace; font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 18px; }
+    .vc-title { font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 18px; }
     .voice-do   .vc-title { color: var(--green); }
     .voice-dont .vc-title { color: #C0392B; }
     .vc-item { font-size: 13px; line-height: 1.65; padding: 9px 0; border-bottom: 1px solid rgba(17,17,16,0.05); color: #444; }
@@ -344,13 +351,13 @@
     .voice-quote { margin-top: 36px; background: var(--green); border-radius: 18px; padding: 40px; }
     .vq-text { font-size: clamp(20px,2.8vw,32px); font-weight: 300; line-height: 1.5; color: rgba(242,237,227,0.75); max-width: 640px; }
     .vq-text em { color: var(--lime); font-style: normal; font-weight: 700; }
-    .vq-attr { font-family: 'Space Mono', monospace; font-size: 10px; color: rgba(242,237,227,0.22); letter-spacing: 0.14em; margin-top: 18px; }
+    .vq-attr { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(242,237,227,0.22); letter-spacing: 0.14em; margin-top: 18px; }
 
     /* DIGITAL */
     #digital { background: var(--cream); }
     .digital-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; margin-top: 44px; align-items: start; }
     .app-mock { background: var(--black); border-radius: 18px; padding: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.12); }
-    .app-header { font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.25); letter-spacing: 0.1em; margin-bottom: 14px; }
+    .app-header { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.25); letter-spacing: 0.1em; margin-bottom: 14px; }
     .app-item { background: #1C1C1A; border-radius: 10px; padding: 12px 14px; display: flex; gap: 10px; align-items: center; margin-bottom: 7px; }
     .app-icon { width: 38px; height: 38px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
     .ai-green   { background: var(--green); }
@@ -358,9 +365,9 @@
     .ai-smart { background: #1E4A2F; }
     .app-info { flex: 1; }
     .app-name  { font-size: 12px; font-weight: 600; color: var(--cream); margin-bottom: 1px; }
-    .app-brand { font-family: 'Space Mono', monospace; font-size: 8px; color: rgba(255,255,255,0.25); }
-    .app-kbzhu { font-family: 'Space Mono', monospace; font-size: 8px; color: rgba(255,255,255,0.18); margin-top: 2px; }
-    .app-price { font-family: 'Space Mono', monospace; font-size: 13px; font-weight: 700; color: var(--lime); }
+    .app-brand { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: rgba(255,255,255,0.25); }
+    .app-kbzhu { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: rgba(255,255,255,0.18); margin-top: 2px; }
+    .app-price { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: var(--lime); }
     .digital-rules { }
     .digital-rules h3 { font-size: 24px; font-weight: 700; margin-bottom: 18px; }
     .drule { display: flex; gap: 10px; padding: 11px 0; border-bottom: 1px solid rgba(17,17,16,0.06); }
@@ -370,12 +377,12 @@
 
     /* FOOTER */
     footer { background: var(--black); padding: 44px 48px; display: flex; justify-content: space-between; align-items: center; }
-    .ft-logo { font-family: 'Space Mono', monospace; font-size: 24px; color: var(--lime); letter-spacing: 0.08em; }
-    .ft-meta { font-family: 'Space Mono', monospace; font-size: 10px; text-align: right; line-height: 2.2; color: rgba(255,255,255,0.18); letter-spacing: 0.06em; }
+    .ft-logo { font-family: 'JetBrains Mono', monospace; font-size: 24px; color: var(--lime); letter-spacing: 0.08em; }
+    .ft-meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; text-align: right; line-height: 2.2; color: rgba(255,255,255,0.18); letter-spacing: 0.06em; }
 
     /* === WLB SECTION === */
     .wlb-hero { background: var(--white); border: 1px solid rgba(17,17,16,0.07); border-radius: 18px; padding: 36px; margin-bottom: 24px; }
-    .wlb-hero-tag { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mid); margin-bottom: 16px; }
+    .wlb-hero-tag { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mid); margin-bottom: 16px; }
     .wlb-hero-title { font-size: 32px; font-weight: 700; color: var(--black); line-height: 1.15; margin-bottom: 10px; }
     .wlb-hero-desc { font-size: 15px; color: #555; line-height: 1.75; max-width: 560px; }
     .wlb-pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px; }
@@ -396,7 +403,7 @@
     .wlb-utp { border-radius: 14px; padding: 24px; }
     .wlb-utp.wu-base  { background: #FFFFFF; border: 1px solid rgba(17,17,16,0.07); }
     .wlb-utp.wu-smart { background: var(--black); }
-    .wu-line { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 12px; }
+    .wu-line { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 12px; }
     .wu-base  .wu-line { color: var(--mid); }
     .wu-smart .wu-line { color: var(--lime); }
     .wu-name { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
@@ -408,32 +415,32 @@
     .wu-desc { font-size: 13px; line-height: 1.65; }
     .wu-base  .wu-desc { color: #666; }
     .wu-smart .wu-desc { color: rgba(242,237,227,0.45); }
-    .wu-badge { display: inline-block; margin-top: 14px; padding: 5px 12px; border-radius: 4px; font-family: 'Space Mono', monospace; font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; }
+    .wu-badge { display: inline-block; margin-top: 14px; padding: 5px 12px; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; }
     .wu-base  .wu-badge { background: var(--black); color: #fff; }
     .wu-smart .wu-badge { background: var(--lime); color: var(--black); }
 
     /* === EVENT SECTION === */
     .event-hero { background: var(--black); border-radius: 18px; padding: 36px; margin-bottom: 24px; border: 1px solid rgba(181,214,78,0.15); }
-    .event-hero-tag { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--lime); margin-bottom: 16px; }
+    .event-hero-tag { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--lime); margin-bottom: 16px; }
     .event-hero-title { font-size: 32px; font-weight: 700; color: var(--cream); line-height: 1.15; margin-bottom: 10px; }
     .event-hero-desc { font-size: 15px; color: rgba(242,237,227,0.45); line-height: 1.75; max-width: 560px; }
     .event-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px; }
     .ev-stat { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 20px; }
-    .ev-stat-num { font-family: 'Space Mono', monospace; font-size: 28px; font-weight: 700; color: var(--lime); }
+    .ev-stat-num { font-family: 'JetBrains Mono', monospace; font-size: 28px; font-weight: 700; color: var(--lime); }
     .ev-stat-label { font-size: 13px; font-weight: 600; color: var(--cream); margin-top: 4px; }
     .ev-stat-desc { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 4px; line-height: 1.55; }
     .event-pkg-mock { background: #1A1A18; border-radius: 14px; padding: 24px; margin-bottom: 24px; }
-    .event-pkg-mock h3 { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.5); margin-bottom: 16px; font-family: 'Space Mono', monospace; letter-spacing: 0.12em; text-transform: uppercase; font-size: 9px; }
+    .event-pkg-mock h3 { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.5); margin-bottom: 16px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.12em; text-transform: uppercase; font-size: 9px; }
     .epkg-cont { border-radius: 10px; overflow: hidden; max-width: 280px; }
     .epkg-lid { background: #111110; border: 2px solid rgba(181,214,78,0.25); border-bottom: none; padding: 18px 20px 14px; }
     .epkg-brand { font-size: 24px; font-weight: 700; color: var(--cream); letter-spacing: 0.08em; }
-    .epkg-sub { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.22em; color: var(--lime); margin-top: 2px; }
+    .epkg-sub { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.22em; color: var(--lime); margin-top: 2px; }
     .epkg-body { background: #1A1A18; border: 1px solid rgba(181,214,78,0.12); padding: 16px 20px; }
     .epkg-dish { font-size: 14px; font-weight: 500; color: rgba(242,237,227,0.85); margin-bottom: 10px; }
     .epkg-kg { display: flex; align-items: center; justify-content: space-between; padding: 10px; background: rgba(181,214,78,0.07); border-radius: 6px; border: 1px solid rgba(181,214,78,0.12); margin-bottom: 8px; }
-    .epkg-kg-v { font-family: 'Space Mono', monospace; font-size: 20px; font-weight: 700; color: var(--lime); }
-    .epkg-kg-info { font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(181,214,78,0.5); text-align: right; }
-    .epkg-portions { font-family: 'Space Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.25); }
+    .epkg-kg-v { font-family: 'JetBrains Mono', monospace; font-size: 20px; font-weight: 700; color: var(--lime); }
+    .epkg-kg-info { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: rgba(181,214,78,0.5); text-align: right; }
+    .epkg-portions { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.25); }
     .event-comp { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
     .ecomp { border-radius: 10px; padding: 16px; border: 1px solid rgba(255,255,255,0.05); }
     .ecomp.winner { border-color: rgba(181,214,78,0.2); background: rgba(181,214,78,0.04); }
@@ -475,14 +482,14 @@
 <!-- COVER -->
 <section id="cover">
   <div class="cover-glow"></div>
-  <div class="cover-tag">Brand Book · Dark Kitchen · Самара · v1.1</div>
-  <div class="cover-wordmark">BO<span>D</span>RO</div>
+  <div class="cover-tag">Brand Book · Dark Kitchen · Самара · v2.0</div>
+  <div class="cover-wordmark">BODRO<span class="cover-lime-dot"></span></div>
   <div class="cover-bottom">
-    <div class="cover-claim">Еда, после которой хочется жить.</div>
+    <div class="cover-claim">Не трать время —<br>мы потратили его за тебя.</div>
     <div class="cover-meta">
-      <p>BODRO (белый) + BODRO SMART (чёрный)</p>
+      <p>BODRO + BODRO SMART</p>
       <p>DARK KITCHEN · САМАРА</p>
-      <p>SPACE GROTESK × SPACE MONO</p>
+      <p>ARCHIVO × JETBRAINS MONO</p>
     </div>
   </div>
 </section>
@@ -541,7 +548,28 @@
   </div>
 
   <div style="margin-top:32px;">
-    <div class="section-label" style="margin-bottom:16px;">BODRO SMART — варианты</div>
+    <div class="section-label" style="margin-bottom:16px;">12 · БОДРО — кириллический вариант</div>
+    <div class="logo-balance-row" style="margin-bottom:32px;">
+      <div class="lb-cell on-cream">
+        <div class="lb-main" style="font-family:'Archivo',sans-serif;font-weight:900;letter-spacing:-0.02em;font-size:32px;">БОДРО</div>
+        <div class="lb-sub" style="color:var(--mid);">Dark Kitchen</div>
+        <div class="logo-cell-label" style="color:var(--mid);">На кремовом</div>
+      </div>
+      <div class="lb-cell on-dark">
+        <div class="lb-main" style="font-family:'Archivo',sans-serif;font-weight:900;letter-spacing:-0.02em;font-size:32px;">БОДРО</div>
+        <div style="width:14px;height:14px;border-radius:50%;background:var(--lime);margin-top:4px;"></div>
+        <div class="logo-cell-label" style="color:rgba(255,255,255,0.2);">На тёмном</div>
+      </div>
+      <div class="lb-cell on-green">
+        <div class="lb-main" style="font-family:'Archivo',sans-serif;font-weight:900;letter-spacing:-0.02em;font-size:32px;">БОДРО</div>
+        <div class="lb-sub" style="color:rgba(181,214,78,0.6);">SMART</div>
+        <div class="logo-cell-label" style="color:rgba(255,255,255,0.2);">SMART вариант</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:0;">
+    <div class="section-label" style="margin-bottom:16px;">BODRO SMART — латиница</div>
     <div class="logo-balance-row">
       <div class="lb-cell on-cream">
         <div class="lb-main">BODRO</div>
@@ -568,27 +596,19 @@
   <h2>Цветовая система</h2>
   <div class="palette">
     <div class="swatch">
-      <div class="swatch-color" style="background:#111110;"></div>
+      <div class="swatch-color" style="background:#15130F;"></div>
       <div class="swatch-info">
-        <div class="swatch-name">Black</div>
-        <div class="swatch-hex">#111110</div>
-        <div class="swatch-use">Основной текст, тёмные фоны</div>
+        <div class="swatch-name">Charcoal</div>
+        <div class="swatch-hex">#15130F</div>
+        <div class="swatch-use">Текст, логотип, BODRO SMART фон</div>
       </div>
     </div>
     <div class="swatch">
-      <div class="swatch-color" style="background:#F2EDE3;"></div>
+      <div class="swatch-color" style="background:#F1ECE0; border:1px solid rgba(21,19,15,0.1);"></div>
       <div class="swatch-info">
-        <div class="swatch-name">Cream</div>
-        <div class="swatch-hex">#F2EDE3</div>
-        <div class="swatch-use">Основной фон</div>
-      </div>
-    </div>
-    <div class="swatch">
-      <div class="swatch-color" style="background:#2A4819;"></div>
-      <div class="swatch-info">
-        <div class="swatch-name">Green</div>
-        <div class="swatch-hex">#2A4819</div>
-        <div class="swatch-use">Главный бренд-цвет</div>
+        <div class="swatch-name">Linen</div>
+        <div class="swatch-hex">#F1ECE0</div>
+        <div class="swatch-use">Основной фон бренда, текст на тёмном</div>
       </div>
     </div>
     <div class="swatch">
@@ -596,23 +616,31 @@
       <div class="swatch-info">
         <div class="swatch-name">Lime</div>
         <div class="swatch-hex">#B5D64E</div>
-        <div class="swatch-use">Акцент, КБЖУ, CTA</div>
+        <div class="swatch-use">Главный акцент. Кружок логотипа, КБЖУ в SMART</div>
       </div>
     </div>
     <div class="swatch">
-      <div class="swatch-color" style="background:#888880;"></div>
+      <div class="swatch-color" style="background:#3f4a18;"></div>
       <div class="swatch-info">
-        <div class="swatch-name">Mid</div>
-        <div class="swatch-hex">#888880</div>
-        <div class="swatch-use">Вторичный текст</div>
+        <div class="swatch-name">Olive</div>
+        <div class="swatch-hex">#3f4a18</div>
+        <div class="swatch-use">Тёмный зелёный, акцентные фоны</div>
       </div>
     </div>
     <div class="swatch">
-      <div class="swatch-color" style="background:#FFFFFF; border: 1px solid rgba(255,255,255,0.15);"></div>
+      <div class="swatch-color" style="background:#8c887c;"></div>
       <div class="swatch-info">
-        <div class="swatch-name">Pure White</div>
-        <div class="swatch-hex">#FFFFFF</div>
-        <div class="swatch-use">Упаковка BODRO. Белый + чёрный = чистота</div>
+        <div class="swatch-name">Warm Mid</div>
+        <div class="swatch-hex">#8c887c</div>
+        <div class="swatch-use">Вторичный текст, подписи</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#cfc8b8; border:1px solid rgba(21,19,15,0.08);"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Warm Grey</div>
+        <div class="swatch-hex">#cfc8b8</div>
+        <div class="swatch-use">Разделители, третичные элементы</div>
       </div>
     </div>
   </div>
@@ -621,8 +649,8 @@
 <!-- TYPOGRAPHY -->
 <section id="typography">
   <div class="section-label">04 — Типографика</div>
-  <h2>Space Grotesk × Space Mono</h2>
-  <p class="lead">Два шрифта — один голос. Space Grotesk для всего живого, Space Mono для цифр и меток.</p>
+  <h2>Archivo × JetBrains Mono</h2>
+  <p class="lead">Два шрифта — один голос. Archivo (900) для логотипа и заголовков, JetBrains Mono для КБЖУ, меток, цифр.</p>
   <div class="type-grid">
     <div class="type-row">
       <div><div class="type-meta-name">Hero</div><div class="type-meta-spec">Space Grotesk 700<br>Обложка, hero</div></div>
@@ -713,10 +741,10 @@
       <div class="pkg-body">
         <div class="kbzhu-title">КБЖУ / на 100 г</div>
         <div class="kbzhu-row">
-          <div class="kc"><span class="kc-v">12.9</span><span class="kc-k">Б</span></div>
-          <div class="kc"><span class="kc-v">4.3</span><span class="kc-k">Ж</span></div>
-          <div class="kc"><span class="kc-v">4.2</span><span class="kc-k">У</span></div>
-          <div class="kc"><span class="kc-v">70</span><span class="kc-k">Ккал</span></div>
+          <div class="kc"><span class="kc-v">12.9</span><span class="kc-k">Белки</span></div>
+          <div class="kc"><span class="kc-v">4.3</span><span class="kc-k">Жиры</span></div>
+          <div class="kc"><span class="kc-v">4.2</span><span class="kc-k">Углев</span></div>
+          <div class="kc"><span class="kc-v">70</span><span class="kc-k">Ккал · 100г</span></div>
         </div>
         <div class="pkg-ingr"><div class="ingr-label">Состав</div>Говядина (лопатка), капуста белокочанная, свёкла, картофель, морковь, томатная паста, сметана, соль.</div>
         <div class="pkg-shelf"><span class="shelf-t">Срок хранения</span><span class="shelf-v">48 ч</span></div>
@@ -732,10 +760,10 @@
       <div class="pkg-body">
         <div class="kbzhu-title">КБЖУ / на 100 г</div>
         <div class="kbzhu-row">
-          <div class="kc"><span class="kc-v">9.0</span><span class="kc-k">Б</span></div>
-          <div class="kc"><span class="kc-v">4.5</span><span class="kc-k">Ж</span></div>
-          <div class="kc"><span class="kc-v">11.4</span><span class="kc-k">У</span></div>
-          <div class="kc"><span class="kc-v">122</span><span class="kc-k">Ккал</span></div>
+          <div class="kc"><span class="kc-v">9.0</span><span class="kc-k">Белки</span></div>
+          <div class="kc"><span class="kc-v">4.5</span><span class="kc-k">Жиры</span></div>
+          <div class="kc"><span class="kc-v">11.4</span><span class="kc-k">Углев</span></div>
+          <div class="kc"><span class="kc-v">122</span><span class="kc-k">Ккал · 100г</span></div>
         </div>
         <div class="pkg-ingr"><div class="ingr-label">Состав</div>Минтай, картофель, лук репчатый, морковь, сметана 15%, сыр, масло растительное.</div>
         <div class="pkg-shelf"><span class="shelf-t">Срок хранения</span><span class="shelf-v">48 ч</span></div>
@@ -751,10 +779,10 @@
       <div class="pkg-body">
         <div class="kbzhu-title">КБЖУ / на 100 г</div>
         <div class="kbzhu-row">
-          <div class="kc"><span class="kc-v">9.0</span><span class="kc-k">Б</span></div>
-          <div class="kc"><span class="kc-v">6.9</span><span class="kc-k">Ж</span></div>
-          <div class="kc"><span class="kc-v">7.5</span><span class="kc-k">У</span></div>
-          <div class="kc"><span class="kc-v">128</span><span class="kc-k">Ккал</span></div>
+          <div class="kc"><span class="kc-v">9.0</span><span class="kc-k">Белки</span></div>
+          <div class="kc"><span class="kc-v">6.9</span><span class="kc-k">Жиры</span></div>
+          <div class="kc"><span class="kc-v">7.5</span><span class="kc-k">Углев</span></div>
+          <div class="kc"><span class="kc-v">128</span><span class="kc-k">Ккал · 100г</span></div>
         </div>
         <div class="pkg-ingr"><div class="ingr-label">Состав</div>Грудка куриная, шампиньоны, картофель, морковь, лук, масло сливочное, сливки 10%.</div>
         <div class="pkg-shelf"><span class="shelf-t">Срок хранения</span><span class="shelf-v">48 ч</span></div>
@@ -901,16 +929,16 @@
     <div class="wlb-utp wu-base">
       <div class="wu-line">BODRO · Основная линейка</div>
       <div class="wu-name">Просто хорошая еда.</div>
-      <div class="wu-slogan">«Каждый день — без заморочек и без переплаты»</div>
+      <div class="wu-slogan">«Не трать время — мы потратили его за тебя»</div>
       <div class="wu-desc">Для тех, кто хочет есть нормально — не быстро плохо и не долго правильно. Белая упаковка, понятный состав, доступная цена. УТП в Самаре: прозрачная экономика + локальное производство 48ч.</div>
       <span class="wu-badge">Work · Life · Balance</span>
     </div>
     <div class="wlb-utp wu-smart">
       <div class="wu-line">BODRO SMART · Precision</div>
       <div class="wu-name">Считай меньше. Ешь умнее.</div>
-      <div class="wu-slogan">«КБЖУ на лицевой стороне — без калькулятора»</div>
+      <div class="wu-slogan">«Всё посчитано за тебя»</div>
       <div class="wu-desc">Для тех, кто следит за нутриентами. Не диета — осознанный выбор. Чёрная упаковка, лайм-цифры КБЖУ крупно. Как Factor в США — только локально и дешевле.</div>
-      <span class="wu-badge">Smart · Nutrition · Daily</span>
+      <span class="wu-badge">Всё посчитано за тебя</span>
     </div>
   </div>
 </section>
@@ -1130,9 +1158,10 @@
 <footer>
   <div class="ft-logo">BODRO</div>
   <div class="ft-meta">
-    <div>Brand Identity Guidelines · v1.2</div>
+    <div>Brand Identity Guidelines · v2.0</div>
     <div>Dark Kitchen · Самара · 2025</div>
     <div>BODRO · BODRO SMART · BODRO EVENT</div>
+    <div>Archivo × JetBrains Mono</div>
   </div>
 </footer>
 
