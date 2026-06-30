@@ -3,393 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BODRO — Dark Kitchen</title>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <title>BODRO — Dark Kitchen Project</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --black: #0D0D0B;
-      --white: #FFFFFF;
-      --bg:    #F7F7F5;
-      --line:  #E5E4E0;
-      --lime:  #B5D64E;
-      --text:  #0D0D0B;
-      --muted: #9E9C96;
-      --sub:   #5C5C5A;
+      --black: #111110; --cream: #F2EDE3; --green: #2A4819;
+      --lime: #B5D64E; --mid: #888880;
     }
-
-    body {
-      font-family: 'Archivo', sans-serif;
-      background: var(--white);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* ── TOP BAR ────────────────────────── */
-    .topbar {
-      background: var(--black);
-      color: rgba(255,255,255,0.55);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      text-align: center;
-      padding: 9px 24px;
-    }
-    .topbar span { color: var(--lime); }
-
-    /* ── NAV ────────────────────────────── */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--white);
-      border-bottom: 1px solid var(--line);
-      display: flex;
-      align-items: center;
-      padding: 0 48px;
-      height: 62px;
-      gap: 0;
-    }
-    .nav-logo {
-      font-weight: 900;
-      font-size: 20px;
-      letter-spacing: -0.04em;
-      color: var(--black);
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      text-decoration: none;
-      margin-right: auto;
-    }
-    .nav-logo .dot {
-      width: 9px; height: 9px;
-      background: var(--lime);
-      border-radius: 50%;
-    }
-    .nav-links {
-      display: flex;
-      gap: 0;
-    }
-    .nav-link {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--muted);
-      text-decoration: none;
-      padding: 0 20px;
-      height: 62px;
-      display: flex;
-      align-items: center;
-      border-bottom: 2px solid transparent;
-      margin-bottom: -1px;
-      transition: color .15s, border-color .15s;
-    }
-    .nav-link:hover { color: var(--black); }
-    .nav-link.active { color: var(--black); font-weight: 700; border-bottom-color: var(--lime); }
-
-    /* ── HERO ───────────────────────────── */
-    .hero {
-      padding: 100px 48px 80px;
-      max-width: 1280px;
-      margin: 0 auto;
-      width: 100%;
-    }
-    .hero-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      background: var(--bg);
-      display: inline-block;
-      padding: 5px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      margin-bottom: 28px;
-    }
-    .hero h1 {
-      font-size: clamp(60px, 10vw, 120px);
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      line-height: 0.9;
-      color: var(--black);
-    }
-    .hero h1 .lime { color: var(--lime); }
-    .hero-sub {
-      font-size: 18px;
-      font-weight: 400;
-      color: var(--sub);
-      margin-top: 24px;
-      max-width: 520px;
-      line-height: 1.65;
-    }
-    .hero-cta {
-      display: flex;
-      gap: 12px;
-      margin-top: 40px;
-      flex-wrap: wrap;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 28px;
-      border-radius: 999px;
-      font-size: 14px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: all .15s;
-      cursor: pointer;
-      border: none;
-      font-family: inherit;
-    }
-    .btn-black { background: var(--black); color: #fff; }
-    .btn-black:hover { background: #333; }
-    .btn-outline { background: transparent; color: var(--black); border: 1.5px solid var(--line); }
-    .btn-outline:hover { border-color: var(--black); }
-
-    /* ── DIVIDER ────────────────────────── */
-    .divider {
-      height: 1px;
-      background: var(--line);
-      margin: 0 48px;
-    }
-
-    /* ── CARDS SECTION ──────────────────── */
-    .cards-section {
-      padding: 80px 48px;
-      max-width: 1280px;
-      margin: 0 auto;
-      width: 100%;
-    }
-    .section-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-    .section-title {
-      font-size: 28px;
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      margin-bottom: 32px;
-    }
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 16px;
-    }
-    .card {
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 36px;
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      transition: border-color .2s, box-shadow .2s;
-    }
-    .card:hover {
-      border-color: var(--black);
-      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
-    }
-    .card-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--lime);
-      background: rgba(181,214,78,0.12);
-      display: inline-block;
-      padding: 4px 12px;
-      border-radius: 999px;
-      width: fit-content;
-    }
-    .card-title {
-      font-size: 22px;
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      margin-top: 4px;
-    }
-    .card-desc {
-      font-size: 14px;
-      color: var(--sub);
-      line-height: 1.65;
-    }
-    .card-arrow {
-      margin-top: auto;
-      padding-top: 20px;
-      font-size: 20px;
-      color: var(--line);
-      transition: color .2s;
-    }
-    .card:hover .card-arrow { color: var(--black); }
-
-    /* dark card variant */
-    .card-dark {
-      background: var(--black);
-      border-color: var(--black);
-    }
-    .card-dark .card-tag {
-      color: var(--lime);
-      background: rgba(181,214,78,0.12);
-    }
-    .card-dark .card-title { color: #fff; }
-    .card-dark .card-desc { color: rgba(255,255,255,0.45); }
-    .card-dark:hover { border-color: var(--lime); }
-    .card-dark .card-arrow { color: rgba(255,255,255,0.15); }
-    .card-dark:hover .card-arrow { color: var(--lime); }
-
-    /* ── BRANDS STRIP ───────────────────── */
-    .brands-section {
-      background: var(--bg);
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      padding: 60px 48px;
-    }
-    .brands-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-    .brand-pill {
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 28px 32px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-    .brand-pill-icon {
-      width: 48px; height: 48px;
-      border-radius: 10px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 900;
-      font-size: 16px;
-    }
-    .bp-white { background: var(--line); color: var(--black); }
-    .bp-black { background: var(--black); color: var(--lime); }
-    .brand-pill-text {}
-    .brand-pill-name { font-size: 18px; font-weight: 900; letter-spacing: -0.03em; }
-    .brand-pill-desc { font-size: 13px; color: var(--sub); margin-top: 3px; line-height: 1.5; }
-
-    /* ── FOOTER ─────────────────────────── */
-    footer {
-      margin-top: auto;
-      border-top: 1px solid var(--line);
-      padding: 28px 48px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .ft-brand {
-      font-weight: 900;
-      font-size: 16px;
-      letter-spacing: -0.03em;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .ft-dot { width: 7px; height: 7px; background: var(--lime); border-radius: 50%; }
-    .ft-meta {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      color: var(--muted);
-      text-align: right;
-      line-height: 2;
-    }
+    body { font-family: 'Space Grotesk', sans-serif; background: var(--black); color: var(--cream); min-height: 100vh; display: flex; flex-direction: column; }
+    header { padding: 64px 48px 0; }
+    .tag { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(181,214,78,0.6); margin-bottom: 20px; }
+    h1 { font-size: clamp(64px, 14vw, 140px); font-weight: 700; letter-spacing: -0.03em; line-height: 0.88; }
+    h1 span { color: var(--lime); }
+    .subtitle { font-size: 16px; font-weight: 300; color: rgba(242,237,227,0.4); margin-top: 18px; max-width: 420px; line-height: 1.65; }
+    main { flex: 1; padding: 64px 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; align-content: start; }
+    a.card { background: #1A1A18; border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 32px; text-decoration: none; color: inherit; transition: border-color .2s, background .2s; display: flex; flex-direction: column; gap: 10px; }
+    a.card:hover { border-color: rgba(181,214,78,0.3); background: #1E1E1C; }
+    .card-tag { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lime); }
+    .card-title { font-size: 22px; font-weight: 700; }
+    .card-desc { font-size: 13px; color: rgba(242,237,227,0.4); line-height: 1.65; }
+    .card-arrow { font-size: 18px; color: rgba(255,255,255,0.18); margin-top: auto; padding-top: 14px; }
+    footer { padding: 28px 48px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; }
+    .ft-brand { font-family: 'Space Mono', monospace; color: var(--lime); font-size: 16px; }
+    .ft-meta { font-family: 'Space Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.18); text-align: right; line-height: 2; }
   </style>
 </head>
 <body>
-
-  <!-- TOP BAR -->
-  <div class="topbar">Dark Kitchen · Самара · <span>2025 → 2026</span> · Проектная документация</div>
-
-  <!-- NAV -->
-  <nav>
-    <a class="nav-logo" href="#">BODRO<div class="dot"></div></a>
-    <div class="nav-links">
-      <a class="nav-link active" href="BODRO_BrandBook.html">Brand Book</a>
-      <a class="nav-link" href="DarkKitchen_Service_v4.html">Dashboard</a>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-tag">Dark Kitchen · Самара</div>
-    <h1>BODRO<span class="lime">.</span></h1>
-    <p class="hero-sub">Не трать время — мы потратили его за тебя. Проектная документация по запуску dark kitchen в Самаре.</p>
-    <div class="hero-cta">
-      <a href="BODRO_BrandBook.html" class="btn btn-black">Brand Book →</a>
-      <a href="DarkKitchen_Service_v4.html" class="btn btn-outline">Project Dashboard</a>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- BRANDS STRIP -->
-  <div class="brands-section">
-    <div class="brands-inner">
-      <div class="brand-pill">
-        <div class="brand-pill-icon bp-white">B</div>
-        <div class="brand-pill-text">
-          <div class="brand-pill-name">BODRO</div>
-          <div class="brand-pill-desc">Просто хорошая еда. Каждый день. Белая упаковка, вкус — в центре.</div>
-        </div>
-      </div>
-      <div class="brand-pill">
-        <div class="brand-pill-icon bp-black">S</div>
-        <div class="brand-pill-text">
-          <div class="brand-pill-name">BODRO SMART</div>
-          <div class="brand-pill-desc">Всё посчитано за тебя. Чёрная упаковка, КБЖУ крупно.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CARDS -->
-  <section class="cards-section">
-    <div class="section-label">Документация</div>
-    <div class="section-title">Рабочие материалы</div>
-    <div class="cards-grid">
-      <a class="card" href="BODRO_BrandBook.html">
-        <div class="card-tag">Айдентика</div>
-        <div class="card-title">Brand Book</div>
-        <div class="card-desc">Логотип, цвета, Archivo × JetBrains Mono, упаковка обеих линеек, WLB-позиционирование, EVENT-формат.</div>
-        <div class="card-arrow">→</div>
-      </a>
-      <a class="card card-dark" href="DarkKitchen_Service_v4.html">
-        <div class="card-tag">Сервис</div>
-        <div class="card-title">Project Dashboard</div>
-        <div class="card-desc">Дорожная карта, 18 блюд с КБЖУ, value chain, бренд-ревью. Полный обзор проекта.</div>
-        <div class="card-arrow">→</div>
-      </a>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
+  <header>
+    <div class="tag">Dark Kitchen · Самара · 2025</div>
+    <h1>BO<span>D</span>RO</h1>
+    <p class="subtitle">Проектная документация по разработке бренда и продукта.</p>
+  </header>
+  <main>
+    <a class="card" href="BODRO_BrandBook.html">
+      <div class="card-tag">Айдентика</div>
+      <div class="card-title">Brand Book</div>
+      <div class="card-desc">Логотип, цвета, типографика, упаковка, линейки BODRO и BODRO SMART, позиционирование.</div>
+      <div class="card-arrow">→</div>
+    </a>
+    <a class="card" href="DarkKitchen_Service_v4.html">
+      <div class="card-tag">Сервис</div>
+      <div class="card-title">Project Dashboard</div>
+      <div class="card-desc">Дорожная карта, меню с КБЖУ, value chain, бренд-ревью. Полный обзор проекта.</div>
+      <div class="card-arrow">→</div>
+    </a>
+  </main>
   <footer>
-    <div class="ft-brand">BODRO<div class="ft-dot"></div></div>
+    <div class="ft-brand">BODRO</div>
     <div class="ft-meta">
       <div>Dark Kitchen · Самара</div>
       <div>BODRO + BODRO SMART</div>
     </div>
   </footer>
-
 </body>
 </html>
