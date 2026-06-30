@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,11 +23,6 @@
   --gb:      rgba(255,255,255,0.78);
   --gbo:     rgba(255,255,255,0.95);
   --gs:      0 4px 24px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,1);
-  --text:    #0D0D0B;
-  --text-2:  #5C5C5A;
-  --text-3:  #9E9C96;
-  --glass:   rgba(255,255,255,0.78);
-  --glass-s: 0 4px 24px rgba(0,0,0,0.07);
 }
 
 * { margin:0; padding:0; box-sizing:border-box; }
@@ -77,9 +72,8 @@ nav {
   border-radius:var(--r);
   box-shadow:var(--gs);
 }
-.card-sm { border-radius:var(--r-sm); }
-.card-p  { padding:24px; }
-.card-p-lg { padding:32px; }
+.card-p   { padding:24px; }
+.card-p-lg{ padding:32px; }
 
 /* PAGE HEADER */
 .page-head { margin-bottom:36px; }
@@ -101,7 +95,7 @@ nav {
 .sec-label {
   font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700;
   letter-spacing:0.15em; text-transform:uppercase; color:var(--muted);
-  margin-bottom:14px; display:flex; align-items:center; gap:6px;
+  margin-bottom:14px;
 }
 .sec-title { font-size:20px; font-weight:800; letter-spacing:-0.03em; margin-bottom:4px; }
 
@@ -120,37 +114,29 @@ nav {
 .c-muted{color:var(--muted);} .c-red{color:var(--red);} .c-green{color:var(--green-ok);}
 .mono{font-family:'JetBrains Mono',monospace;}
 
-/* STAT BOX */
+/* STAT */
 .stat {
   padding:20px 22px; background:var(--gb);
   backdrop-filter:blur(20px); border:1px solid var(--gbo);
   border-radius:var(--r-sm); box-shadow:var(--gs);
 }
-.stat-val { font-size:24px; font-weight:900; letter-spacing:-0.04em; color:var(--black); }
-.stat-lbl { font-size:12px; color:var(--muted); margin-top:4px; font-weight:500; }
-.stat-note{ font-size:11px; color:var(--sub); margin-top:3px; line-height:1.4; }
+.stat-val  { font-size:24px; font-weight:900; letter-spacing:-0.04em; color:var(--black); }
+.stat-lbl  { font-size:12px; color:var(--muted); margin-top:4px; font-weight:500; }
+.stat-note { font-size:11px; color:var(--sub); margin-top:3px; line-height:1.4; }
 
 /* CHIPS */
-.chip {
-  display:inline-flex; align-items:center; padding:3px 10px;
-  border-radius:999px; font-size:11px; font-weight:700;
-  background:rgba(13,13,11,0.06); color:var(--sub);
-  border:1px solid var(--line);
-}
+.chip { display:inline-flex; align-items:center; padding:3px 10px; border-radius:999px; font-size:11px; font-weight:700; background:rgba(13,13,11,0.06); color:var(--sub); border:1px solid var(--line); }
 .chip-dark { background:var(--black); color:#fff; border-color:var(--black); }
 
-/* STATUS DOTS */
-.s-dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
+/* STATUS */
+.s-dot      { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
 .s-done     { background:#22C55E; box-shadow:0 0 0 3px rgba(34,197,94,0.15); }
 .s-progress { background:#F59E0B; box-shadow:0 0 0 3px rgba(245,158,11,0.15); }
 .s-pending  { background:var(--line); border:2px solid var(--muted); }
 
 /* TIMELINE */
 .tl-phase { margin-bottom:28px; }
-.tl-phase-label {
-  font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700;
-  text-transform:uppercase; letter-spacing:0.12em; color:var(--muted); margin-bottom:10px;
-}
+.tl-phase-label { font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:var(--muted); margin-bottom:10px; }
 .tl-item {
   display:flex; gap:14px; align-items:flex-start;
   padding:16px 18px; margin-bottom:6px;
@@ -167,15 +153,14 @@ nav {
 .tl-name.done-text { text-decoration:line-through; color:var(--muted); }
 .tl-desc { font-size:12px; color:var(--sub); line-height:1.55; }
 .tl-meta { font-size:11px; color:var(--muted); margin-top:6px; }
-.tl-dur { display:inline-block; background:rgba(0,0,0,0.05); padding:2px 8px; border-radius:6px; font-family:'JetBrains Mono',monospace; }
+.tl-dur  { display:inline-block; background:rgba(0,0,0,0.05); padding:2px 8px; border-radius:6px; font-family:'JetBrains Mono',monospace; }
 
-/* PILLS FILTER */
+/* PILLS */
 .pills { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:24px; }
 .pill {
   padding:8px 18px; border-radius:999px; font-size:13px; font-weight:600;
   cursor:pointer; border:1.5px solid var(--line);
-  background:var(--gb); backdrop-filter:blur(12px); color:var(--sub);
-  transition:all .15s;
+  background:var(--gb); backdrop-filter:blur(12px); color:var(--sub); transition:all .15s;
 }
 .pill:hover { border-color:var(--black); color:var(--black); }
 .pill.active { background:var(--black); border-color:var(--black); color:#fff; }
@@ -198,9 +183,9 @@ nav {
 /* KBJU */
 .kbju-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin-bottom:10px; }
 .kbju-cell { background:rgba(0,0,0,0.04); border-radius:8px; padding:10px 6px; text-align:center; border:1px solid var(--line); }
-.kbju-v { font-size:15px; font-weight:900; letter-spacing:-0.02em; color:var(--black); }
-.kbju-l { font-family:'JetBrains Mono',monospace; font-size:8px; font-weight:700; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase; margin-top:3px; }
-.kbju-red { color:var(--red); }
+.kbju-v    { font-size:15px; font-weight:900; letter-spacing:-0.02em; color:var(--black); }
+.kbju-l    { font-family:'JetBrains Mono',monospace; font-size:8px; font-weight:700; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase; margin-top:3px; }
+.kbju-red  { color:var(--red); }
 
 /* INPUT / SLIDER */
 .inp {
@@ -211,38 +196,21 @@ nav {
 }
 .inp:focus { border-color:var(--black); background:#fff; }
 .inp-label { font-size:11px; font-weight:700; color:var(--muted); margin-bottom:6px; text-transform:uppercase; letter-spacing:0.05em; }
-input[type=range] {
-  -webkit-appearance:none; width:100%; height:3px;
-  background:var(--line); border-radius:2px; outline:none; cursor:pointer;
-}
-input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance:none; width:20px; height:20px;
-  background:#fff; border:2px solid var(--black); border-radius:50%;
-  cursor:pointer; box-shadow:0 1px 4px rgba(0,0,0,0.15);
-}
+input[type=range] { -webkit-appearance:none; width:100%; height:3px; background:var(--line); border-radius:2px; outline:none; cursor:pointer; }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:20px; height:20px; background:#fff; border:2px solid var(--black); border-radius:50%; cursor:pointer; box-shadow:0 1px 4px rgba(0,0,0,0.15); }
 
 /* BUTTONS */
-.btn {
-  display:inline-flex; align-items:center; gap:8px; padding:10px 22px;
-  border-radius:999px; font-size:13px; font-weight:700; cursor:pointer;
-  border:none; transition:all .15s; font-family:inherit;
-}
+.btn { display:inline-flex; align-items:center; gap:8px; padding:10px 22px; border-radius:999px; font-size:13px; font-weight:700; cursor:pointer; border:none; transition:all .15s; font-family:inherit; }
 .btn-black { background:var(--black); color:#fff; }
 .btn-black:hover { background:#333; }
 .btn-ghost { background:transparent; color:var(--black); border:1.5px solid var(--line); }
 .btn-ghost:hover { border-color:var(--black); }
-.btn-sm { padding:6px 14px; font-size:12px; }
-.btn-red { background:var(--red); color:#fff; }
-.btn-red:hover { background:#b91c1c; }
 
-/* BRAND PAGE */
-.brand-card {
-  background:var(--gb); backdrop-filter:blur(20px) saturate(180%);
-  border:1px solid var(--gbo); border-radius:var(--r); box-shadow:var(--gs); overflow:hidden;
-}
+/* BRAND */
+.brand-card { background:var(--gb); backdrop-filter:blur(20px) saturate(180%); border:1px solid var(--gbo); border-radius:var(--r); box-shadow:var(--gs); overflow:hidden; }
 .brand-header { padding:28px 28px 24px; }
 .brand-name { font-size:28px; font-weight:900; letter-spacing:-0.04em; }
-.brand-pos { font-size:14px; color:var(--sub); margin-top:8px; line-height:1.6; }
+.brand-pos  { font-size:14px; color:var(--sub); margin-top:8px; line-height:1.6; }
 .brand-body { padding:0 28px 28px; }
 .brand-section { margin-bottom:22px; }
 .brand-section-title { font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:var(--muted); margin-bottom:12px; }
@@ -262,52 +230,37 @@ input[type=range]::-webkit-slider-thumb {
 .sc-tab { flex:1; padding:9px; text-align:center; border-radius:9px; font-size:12px; font-weight:600; cursor:pointer; color:var(--muted); transition:all .15s; border:none; background:none; font-family:inherit; }
 .sc-tab.active { background:#fff; color:var(--black); box-shadow:0 1px 6px rgba(0,0,0,0.08); }
 
-/* VC SPECIFIC */
-.vc-section-header {
-  display:flex; align-items:center; gap:10px; margin-bottom:16px;
-  padding-bottom:12px; border-bottom:1px solid var(--line);
-}
-.vc-section-icon {
-  width:32px; height:32px; border-radius:8px; background:rgba(0,0,0,0.06);
-  display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0;
-  font-weight:900; font-family:'JetBrains Mono',monospace; color:var(--muted);
-}
+/* VC */
+.vc-section-header { display:flex; align-items:center; gap:10px; margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid var(--line); }
+.vc-section-icon { width:32px; height:32px; border-radius:8px; background:rgba(0,0,0,0.06); display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0; font-weight:900; font-family:'JetBrains Mono',monospace; color:var(--muted); }
 .vc-section-title { font-size:14px; font-weight:800; letter-spacing:-0.02em; }
 .vc-section-sub   { font-size:11px; color:var(--muted); margin-top:1px; }
-
 .slider-row { margin-bottom:16px; }
 .slider-row .slider-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
 .slider-row .slider-label { font-size:12px; font-weight:600; color:var(--sub); }
-.slider-row .slider-val { font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:700; }
-
+.slider-row .slider-val   { font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:700; }
 .inp-row { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
-.inp-row .inp-label { flex:1; margin-bottom:0; font-size:12px; }
-.inp-row .inp-val { font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:700; min-width:56px; text-align:right; }
-.inp-row .inp-small { width:100px; text-align:right; padding:7px 10px; font-family:'JetBrains Mono',monospace; }
+.inp-row .inp-label  { flex:1; margin-bottom:0; font-size:12px; }
+.inp-row .inp-val    { font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:700; min-width:80px; text-align:right; }
+.inp-row .inp-small  { width:110px; text-align:right; padding:7px 10px; font-family:'JetBrains Mono',monospace; }
 
-/* KPI CARD */
-.kpi-card {
-  background:var(--gb); backdrop-filter:blur(20px); border:1px solid var(--gbo);
-  border-radius:var(--r); box-shadow:var(--gs); padding:22px 24px;
-}
-.kpi-num { font-size:34px; font-weight:900; letter-spacing:-0.04em; line-height:1; }
-.kpi-label { font-size:12px; color:var(--muted); margin-top:6px; font-weight:500; }
-.kpi-sub { font-size:11px; color:var(--sub); margin-top:3px; line-height:1.4; }
-.kpi-ok  { color:var(--green-ok); }
-.kpi-bad { color:var(--red); }
+/* KPI */
+.kpi-card { background:var(--gb); backdrop-filter:blur(20px); border:1px solid var(--gbo); border-radius:var(--r); box-shadow:var(--gs); padding:22px 24px; }
+.kpi-num  { font-size:34px; font-weight:900; letter-spacing:-0.04em; line-height:1; }
+.kpi-label{ font-size:12px; color:var(--muted); margin-top:6px; font-weight:500; }
+.kpi-sub  { font-size:11px; color:var(--sub); margin-top:3px; line-height:1.4; }
+.kpi-ok   { color:var(--green-ok); }
+.kpi-bad  { color:var(--red); }
 
 /* PNL */
-.pl-row {
-  display:flex; justify-content:space-between; align-items:center;
-  padding:10px 14px; border-radius:8px; font-size:13px;
-}
+.pl-row { display:flex; justify-content:space-between; align-items:center; padding:10px 14px; border-radius:8px; font-size:13px; }
 .pl-row:nth-child(odd) { background:rgba(0,0,0,0.025); }
 .pl-row.pl-total { background:rgba(0,0,0,0.07); font-weight:800; font-size:14px; border-radius:10px; margin-top:4px; padding:14px; }
 .pl-name { color:var(--sub); font-weight:500; }
 .pl-name.strong { color:var(--black); font-weight:700; }
 .pl-amount { font-family:'JetBrains Mono',monospace; font-weight:700; }
 
-/* WEEKLY BAR */
+/* WEEKLY */
 .week-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:8px; }
 .day-bar-wrap { display:flex; flex-direction:column; align-items:center; gap:5px; }
 .day-bar-outer { width:100%; background:rgba(0,0,0,0.06); border-radius:6px; height:80px; display:flex; align-items:flex-end; overflow:hidden; }
@@ -316,11 +269,7 @@ input[type=range]::-webkit-slider-thumb {
 .day-val   { font-size:11px; font-weight:700; color:var(--black); font-family:'JetBrains Mono',monospace; }
 
 /* FOOTNOTE */
-.footnote {
-  font-size:11px; color:var(--muted); line-height:1.5; margin-top:8px;
-  padding:10px 12px; background:rgba(0,0,0,0.03); border-radius:8px;
-  border-left:2px solid var(--line);
-}
+.footnote { font-size:11px; color:var(--muted); line-height:1.5; margin-top:8px; padding:10px 12px; background:rgba(0,0,0,0.03); border-radius:8px; border-left:2px solid var(--line); }
 .footnote strong { color:var(--sub); }
 
 /* TABLE */
@@ -330,131 +279,54 @@ input[type=range]::-webkit-slider-thumb {
 .sc-table tr:last-child td { border-bottom:none; }
 .sc-table .num { font-weight:700; text-align:right; font-family:'JetBrains Mono',monospace; }
 
-/* ── QUESTIONS BOARD ──────────────────────────────────── */
-.board {
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap:20px;
-  align-items:start;
-}
-.board-col {
-  background:rgba(0,0,0,0.03);
-  border-radius:var(--r);
-  border:1px solid var(--line);
-  overflow:hidden;
-}
-.board-col-header {
-  padding:16px 20px;
-  border-bottom:1px solid var(--line);
-  display:flex; align-items:center; justify-content:space-between;
-  background:var(--gb);
-  backdrop-filter:blur(16px);
-}
-.board-col-title {
-  font-size:13px; font-weight:800; letter-spacing:-0.01em;
-}
-.board-col-count {
-  font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700;
-  background:rgba(0,0,0,0.07); padding:3px 9px; border-radius:999px; color:var(--muted);
-}
-.board-col-body {
-  padding:14px; display:flex; flex-direction:column; gap:10px; min-height:120px;
-}
-.q-card {
-  background:var(--gb);
-  backdrop-filter:blur(20px) saturate(160%);
-  border:1px solid var(--gbo);
-  border-radius:var(--r-sm);
-  box-shadow:var(--gs);
-  overflow:hidden;
-  transition:border-color .15s;
-}
+/* ── QUESTIONS BOARD ─────────────────────────────────── */
+.board { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; align-items:start; }
+.board-col { background:rgba(0,0,0,0.03); border-radius:var(--r); border:1px solid var(--line); overflow:hidden; }
+.board-col-header { padding:16px 20px; border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; background:var(--gb); backdrop-filter:blur(16px); }
+.board-col-title  { font-size:13px; font-weight:800; letter-spacing:-0.01em; }
+.board-col-count  { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; background:rgba(0,0,0,0.07); padding:3px 9px; border-radius:999px; color:var(--muted); }
+.board-col-body   { padding:14px; display:flex; flex-direction:column; gap:10px; min-height:120px; }
+
+.q-card { background:var(--gb); backdrop-filter:blur(20px) saturate(160%); border:1px solid var(--gbo); border-radius:var(--r-sm); box-shadow:var(--gs); overflow:hidden; transition:border-color .15s; }
 .q-card:hover { border-color:rgba(0,0,0,0.2); }
 .q-card-head { padding:14px 16px 10px; }
-.q-tag {
-  font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:700;
-  text-transform:uppercase; letter-spacing:0.1em; color:var(--muted);
-  background:rgba(0,0,0,0.05); padding:2px 8px; border-radius:999px;
-  display:inline-block; margin-bottom:8px;
-}
+.q-tag { font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); background:rgba(0,0,0,0.05); padding:2px 8px; border-radius:999px; display:inline-block; margin-bottom:8px; }
 .q-title { font-size:13px; font-weight:800; letter-spacing:-0.01em; line-height:1.4; }
-.q-date { font-size:10px; color:var(--muted); margin-top:5px; font-family:'JetBrains Mono',monospace; }
-.q-desc {
-  font-size:12px; color:var(--sub); line-height:1.6;
-  padding:0 16px 12px; display:none;
-}
+.q-date  { font-size:10px; color:var(--muted); margin-top:5px; font-family:'JetBrains Mono',monospace; }
+.q-desc  { font-size:12px; color:var(--sub); line-height:1.6; padding:0 16px 12px; display:none; }
 .q-desc.open { display:block; }
-.q-section {
-  border-top:1px solid var(--line); padding:12px 16px;
-}
-.q-section-label {
-  font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:700;
-  text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); margin-bottom:8px;
-}
-.q-section-text { font-size:12px; color:var(--sub); line-height:1.6; }
+.q-section { border-top:1px solid var(--line); padding:12px 16px; }
+.q-section-label { font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); margin-bottom:8px; }
+.q-section-text  { font-size:12px; color:var(--sub); line-height:1.6; }
 .q-section-text.answer { color:var(--black); font-weight:500; }
 .q-section-text.advice { color:var(--sub); font-style:italic; }
-.q-actions {
-  border-top:1px solid var(--line); padding:10px 14px;
-  display:flex; gap:6px; flex-wrap:wrap;
-}
-.q-btn {
-  padding:5px 12px; border-radius:999px; font-size:11px; font-weight:700;
-  cursor:pointer; border:1.5px solid var(--line); background:rgba(255,255,255,0.8);
-  color:var(--sub); transition:all .15s; font-family:inherit;
-}
+.q-actions { border-top:1px solid var(--line); padding:10px 14px; display:flex; gap:6px; flex-wrap:wrap; }
+.q-btn { padding:5px 12px; border-radius:999px; font-size:11px; font-weight:700; cursor:pointer; border:1.5px solid var(--line); background:rgba(255,255,255,0.8); color:var(--sub); transition:all .15s; font-family:inherit; }
 .q-btn:hover { border-color:var(--black); color:var(--black); }
 .q-btn.primary { background:var(--black); color:#fff; border-color:var(--black); }
 .q-btn.primary:hover { background:#333; }
-.q-btn.danger { color:var(--red); border-color:rgba(220,38,38,0.3); }
-.q-btn.danger:hover { background:var(--red); color:#fff; border-color:var(--red); }
+.q-btn.danger  { color:var(--red); border-color:rgba(220,38,38,0.3); }
+.q-btn.danger:hover  { background:var(--red); color:#fff; border-color:var(--red); }
 .q-btn.green-btn { color:var(--green-ok); border-color:rgba(22,163,74,0.3); }
 .q-btn.green-btn:hover { background:var(--green-ok); color:#fff; border-color:var(--green-ok); }
-.q-empty {
-  text-align:center; padding:32px 16px;
-  font-size:12px; color:var(--muted); font-weight:500;
-}
-.q-empty-icon { font-size:28px; margin-bottom:8px; opacity:.3; }
+.q-empty { text-align:center; padding:32px 16px; font-size:12px; color:var(--muted); font-weight:500; }
 
 /* MODAL */
-.modal-overlay {
-  position:fixed; inset:0; background:rgba(0,0,0,0.4);
-  backdrop-filter:blur(8px); z-index:1000;
-  display:none; align-items:center; justify-content:center; padding:20px;
-}
+.modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.4); backdrop-filter:blur(8px); z-index:1000; display:none; align-items:center; justify-content:center; padding:20px; }
 .modal-overlay.open { display:flex; }
-.modal {
-  background:#fff; border-radius:var(--r); padding:32px;
-  width:100%; max-width:560px;
-  box-shadow:0 24px 80px rgba(0,0,0,0.2);
-  max-height:90vh; overflow-y:auto;
-}
+.modal { background:#fff; border-radius:var(--r); padding:32px; width:100%; max-width:560px; box-shadow:0 24px 80px rgba(0,0,0,0.2); max-height:90vh; overflow-y:auto; }
 .modal-title { font-size:20px; font-weight:900; letter-spacing:-0.03em; margin-bottom:24px; }
-.form-field { margin-bottom:18px; }
-.form-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:var(--muted); margin-bottom:8px; display:block; }
-.form-input {
-  width:100%; border:1.5px solid var(--line); border-radius:10px;
-  padding:11px 14px; font-size:13px; color:var(--black);
-  background:#fff; font-family:inherit; outline:none;
-  transition:border-color .15s; font-weight:500;
-}
+.form-field   { margin-bottom:18px; }
+.form-label   { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:var(--muted); margin-bottom:8px; display:block; }
+.form-input   { width:100%; border:1.5px solid var(--line); border-radius:10px; padding:11px 14px; font-size:13px; color:var(--black); background:#fff; font-family:inherit; outline:none; transition:border-color .15s; font-weight:500; }
 .form-input:focus { border-color:var(--black); }
 textarea.form-input { resize:vertical; min-height:90px; }
 .form-actions { display:flex; gap:10px; margin-top:24px; justify-content:flex-end; }
-
-/* INLINE EDIT */
-.inline-edit-area {
-  width:100%; border:1.5px solid var(--line); border-radius:8px;
-  padding:9px 12px; font-size:12px; color:var(--black);
-  background:rgba(255,255,255,0.9); font-family:inherit; outline:none;
-  resize:vertical; min-height:70px; transition:border-color .15s;
-}
-.inline-edit-area:focus { border-color:var(--black); }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ── NAV (English) ────────────────────────────────── -->
 <nav>
   <a class="nav-brand" href="index.html">BODRO</a>
   <div class="nav-tabs">
@@ -467,94 +339,64 @@ textarea.form-input { resize:vertical; min-height:90px; }
   <div class="nav-meta">Samara · 2026</div>
 </nav>
 
-<!-- ══════════ ROADMAP ══════════ -->
+<!-- ══════════ РОАДМАП ══════════ -->
 <div id="page-roadmap" class="page active">
   <div class="page-head">
     <div class="page-head-inner">
-      <div class="page-eyebrow"><div class="page-eyebrow-dot"></div>PROJECT · DARK KITCHEN · SAMARA</div>
-      <div class="page-title">Launch Roadmap</div>
-      <div class="page-desc">Full plan from market research to scale — from recipe cards to 1M+ RUB/month revenue</div>
+      <div class="page-eyebrow"><div class="page-eyebrow-dot"></div>ПРОЕКТ · DARK KITCHEN · САМАРА</div>
+      <div class="page-title">Роадмап запуска</div>
+      <div class="page-desc">Полный план от исследования рынка до масштабирования — от тех. карт до выхода на 1 млн ₽/мес</div>
     </div>
   </div>
 
   <div class="g4 mb20">
-    <div class="stat">
-      <div class="stat-val" style="color:var(--green-ok)">4</div>
-      <div class="stat-lbl">Tasks completed</div>
-    </div>
-    <div class="stat">
-      <div class="stat-val" style="color:#F59E0B">1</div>
-      <div class="stat-lbl">In progress</div>
-    </div>
-    <div class="stat">
-      <div class="stat-val" style="color:var(--muted)">28</div>
-      <div class="stat-lbl">Upcoming</div>
-    </div>
-    <div class="stat" style="border-color:rgba(0,0,0,0.15);">
-      <div class="stat-val">1.5M</div>
-      <div class="stat-lbl">Starting budget, RUB</div>
-    </div>
+    <div class="stat"><div class="stat-val" style="color:var(--green-ok)">4</div><div class="stat-lbl">Задачи выполнены</div></div>
+    <div class="stat"><div class="stat-val" style="color:#F59E0B">1</div><div class="stat-lbl">В работе сейчас</div></div>
+    <div class="stat"><div class="stat-val" style="color:var(--muted)">28</div><div class="stat-lbl">Предстоит сделать</div></div>
+    <div class="stat" style="border-color:rgba(0,0,0,0.15);"><div class="stat-val">1.5 млн</div><div class="stat-lbl">Стартовый бюджет, ₽</div></div>
   </div>
 
   <div class="g2" style="align-items:start; gap:20px;">
     <div>
-      <div class="tl-phase">
-        <div class="tl-phase-label">Phase 0 — Research & Development · Completed</div>
-        <div id="phase0"></div>
-      </div>
-      <div class="tl-phase">
-        <div class="tl-phase-label">Phase 1 — Legal Setup · Month 1</div>
-        <div id="phase1"></div>
-      </div>
-      <div class="tl-phase">
-        <div class="tl-phase-label">Phase 2 — Kitchen Preparation · Month 1–2</div>
-        <div id="phase2"></div>
-      </div>
+      <div class="tl-phase"><div class="tl-phase-label">Фаза 0 — Исследование и разработка · Выполнено</div><div id="phase0"></div></div>
+      <div class="tl-phase"><div class="tl-phase-label">Фаза 1 — Юридическое оформление · Мес. 1</div><div id="phase1"></div></div>
+      <div class="tl-phase"><div class="tl-phase-label">Фаза 2 — Подготовка кухни · Мес. 1–2</div><div id="phase2"></div></div>
     </div>
     <div>
-      <div class="tl-phase">
-        <div class="tl-phase-label">Phase 3 — Launch · Month 2–3</div>
-        <div id="phase3"></div>
-      </div>
-      <div class="tl-phase">
-        <div class="tl-phase-label">Phase 4 — Growth · Month 4–6</div>
-        <div id="phase4"></div>
-      </div>
-      <div class="tl-phase">
-        <div class="tl-phase-label">Phase 5 — Scale · Month 6–12</div>
-        <div id="phase5"></div>
-      </div>
+      <div class="tl-phase"><div class="tl-phase-label">Фаза 3 — Запуск · Мес. 2–3</div><div id="phase3"></div></div>
+      <div class="tl-phase"><div class="tl-phase-label">Фаза 4 — Рост · Мес. 4–6</div><div id="phase4"></div></div>
+      <div class="tl-phase"><div class="tl-phase-label">Фаза 5 — Масштаб · Мес. 6–12</div><div id="phase5"></div></div>
     </div>
   </div>
 </div>
 
-<!-- ══════════ MENU ══════════ -->
+<!-- ══════════ МЕНЮ ══════════ -->
 <div id="page-menu" class="page">
   <div class="page-head">
     <div class="page-head-inner">
-      <div class="page-eyebrow"><div class="page-eyebrow-dot"></div>RECIPE CARDS</div>
-      <div class="page-title">Menu · 18 dishes</div>
-      <div class="page-desc">Ingredients, food cost, CALS/P/F/C per 100g and per portion. Source data for Value Chain.</div>
+      <div class="page-eyebrow"><div class="page-eyebrow-dot"></div>ТЕХНОЛОГИЧЕСКИЕ КАРТЫ</div>
+      <div class="page-title">Меню · 18 блюд</div>
+      <div class="page-desc">Состав, себестоимость, КБЖУ на 100 г и на порцию. Данные для расчёта Value Chain.</div>
     </div>
   </div>
   <div class="pills" id="menuPills">
-    <div class="pill active" onclick="filterMenu('all',this)">All (18)</div>
-    <div class="pill" onclick="filterMenu('Суп',this)">Soups</div>
-    <div class="pill" onclick="filterMenu('Второе',this)">Mains</div>
-    <div class="pill" onclick="filterMenu('Салат',this)">Salads</div>
-    <div class="pill" onclick="filterMenu('Гарнир',this)">Sides</div>
-    <div class="pill" onclick="filterMenu('Десерт',this)">Desserts</div>
+    <div class="pill active" onclick="filterMenu('all',this)">Все (18)</div>
+    <div class="pill" onclick="filterMenu('Суп',this)">Супы</div>
+    <div class="pill" onclick="filterMenu('Второе',this)">Вторые блюда</div>
+    <div class="pill" onclick="filterMenu('Салат',this)">Салаты</div>
+    <div class="pill" onclick="filterMenu('Гарнир',this)">Гарниры</div>
+    <div class="pill" onclick="filterMenu('Десерт',this)">Десерты</div>
   </div>
   <div class="g-auto" id="menuGrid"></div>
 </div>
 
-<!-- ══════════ BRAND ══════════ -->
+<!-- ══════════ БРЕНД ══════════ -->
 <div id="page-brand" class="page">
   <div class="page-head">
     <div class="page-head-inner">
-      <div class="page-eyebrow"><div class="page-eyebrow-dot"></div>BRAND REVIEW</div>
-      <div class="page-title">Two brands. One kitchen.</div>
-      <div class="page-desc">Positioning, naming and brand strategy for BODRO and BODRO SMART</div>
+      <div class="page-eyebrow"><div class="page-eyebrow-dot"></div>БРЕНД РЕВЬЮ</div>
+      <div class="page-title">Два бренда. Одна кухня.</div>
+      <div class="page-desc">Позиционирование, нейминг и стратегия развития BODRO и BODRO SMART</div>
     </div>
   </div>
 
@@ -563,43 +405,39 @@ textarea.form-input { resize:vertical; min-height:90px; }
       <div class="brand-header" style="border-bottom:3px solid #0D0D0B;">
         <div class="flex justify-between items-center">
           <div class="brand-name">BODRO</div>
-          <span class="chip">Comfort food</span>
+          <span class="chip">Комфорт-еда</span>
         </div>
-        <div class="brand-pos">Good food, straightforward. No wellness posturing. Restaurant quality at canteen price. For people who don't waste time.</div>
+        <div class="brand-pos">Просто хорошая еда. Без ЗОЖ-пафоса. Ресторанное качество по цене столовой. Для всех, кто не хочет тратить время.</div>
       </div>
       <div class="brand-body">
         <div class="brand-section">
-          <div class="brand-section-title">Brand essence</div>
+          <div class="brand-section-title">Суть бренда</div>
           <div class="promo-list">
-            <div class="promo-item"><div class="promo-bullet" style="background:#0D0D0B;"></div><div class="promo-text"><strong>No wellness posturing</strong> — honest, tasty, filling food.</div></div>
-            <div class="promo-item"><div class="promo-bullet" style="background:#0D0D0B;"></div><div class="promo-text"><strong>Audience</strong> — office worker 25–40 y.o., not wasting time on lunch.</div></div>
-            <div class="promo-item"><div class="promo-bullet" style="background:#0D0D0B;"></div><div class="promo-text"><strong>Tagline</strong> — "Don't waste time — we spent it for you."</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#0D0D0B;"></div><div class="promo-text"><strong>Без ЗОЖ-пафоса</strong> — честная, вкусная, насыщающая еда.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#0D0D0B;"></div><div class="promo-text"><strong>Аудитория</strong> — офисный работник 25–40 лет, не теряющий время на обед.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#0D0D0B;"></div><div class="promo-text"><strong>Слоган</strong> — «Не трать время — мы потратили его за тебя.»</div></div>
           </div>
         </div>
         <div class="brand-section">
-          <div class="brand-section-title">Naming options</div>
+          <div class="brand-section-title">Ключевые варианты нейминга</div>
           <div class="naming-grid">
-            <div class="naming-card" style="border-color:#0D0D0B; border-width:2px;">
-              <div class="naming-name">BODRO</div>
-              <div class="naming-desc">Energetic, Russian-rooted. Archivo 900, white packaging, minimalism.</div>
-              <span class="chip chip-dark naming-badge">Selected</span>
-            </div>
-            <div class="naming-card"><div class="naming-name">EAT (EM)</div><div class="naming-desc">Anti-brand. Monosyllabic, short domain.</div></div>
-            <div class="naming-card"><div class="naming-name">STOLOVKA</div><div class="naming-desc">Soviet canteen reimagined: irony + nostalgia.</div></div>
-            <div class="naming-card"><div class="naming-name">GORYACHO</div><div class="naming-desc">Temperature branding. Freshness and home-feel.</div></div>
+            <div class="naming-card" style="border-color:#0D0D0B; border-width:2px;"><div class="naming-name">BODRO</div><div class="naming-desc">Живо, бодро, по-русски. Archivo 900, белая упаковка, минимализм.</div><span class="chip chip-dark naming-badge">Выбрано</span></div>
+            <div class="naming-card"><div class="naming-name">ЕМ</div><div class="naming-desc">Антибренд. Моносиллаб, короткий домен.</div></div>
+            <div class="naming-card"><div class="naming-name">СТОЛОВКА</div><div class="naming-desc">Переосмысление советского формата: ирония + ностальгия.</div></div>
+            <div class="naming-card"><div class="naming-name">ГОРЯЧО</div><div class="naming-desc">Температурный брендинг. Свежесть и домашность.</div></div>
           </div>
         </div>
         <div class="brand-section">
-          <div class="brand-section-title">Marketing channels</div>
+          <div class="brand-section-title">Продвижение</div>
           <div class="promo-list">
-            <div class="promo-item"><div class="promo-bullet" style="background:#0D0D0B;"></div><div class="promo-text"><strong>Yandex Food</strong> — main launch channel. Real dish photos, no stock imagery.</div></div>
-            <div class="promo-item"><div class="promo-bullet" style="background:#0D0D0B;"></div><div class="promo-text"><strong>Telegram channel</strong> — "today's lunch". Daily post with menu and portion count.</div></div>
-            <div class="promo-item"><div class="promo-bullet" style="background:#0D0D0B;"></div><div class="promo-text"><strong>Office building tastings</strong> — sampling at business centers. QR code to bot.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#0D0D0B;"></div><div class="promo-text"><strong>Яндекс.Еда</strong> — основной канал старта. Фото реальных блюд, без стоков.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#0D0D0B;"></div><div class="promo-text"><strong>Telegram-канал</strong> — «сегодня на обед». Ежедневный пост с меню и количеством порций.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#0D0D0B;"></div><div class="promo-text"><strong>Дегустации в БЦ</strong> — выход в офисные центры с пробниками. QR-код на бот.</div></div>
           </div>
         </div>
         <div class="g2" style="gap:10px;">
-          <div class="stat"><div class="stat-val">Repeat Rate</div><div class="stat-lbl">Repeat orders — key KPI</div></div>
-          <div class="stat"><div class="stat-val">NPS</div><div class="stat-lbl">"Would you recommend?"</div></div>
+          <div class="stat"><div class="stat-val">Repeat Rate</div><div class="stat-lbl">Повторные заказы — ключевой KPI</div></div>
+          <div class="stat"><div class="stat-val">NPS</div><div class="stat-lbl">«Посоветуешь другу?»</div></div>
         </div>
       </div>
     </div>
@@ -608,55 +446,51 @@ textarea.form-input { resize:vertical; min-height:90px; }
       <div class="brand-header" style="border-bottom:3px solid #B5D64E; background:#0D0D0B;">
         <div class="flex justify-between items-center">
           <div class="brand-name" style="color:#B5D64E;">BODRO SMART</div>
-          <span class="chip" style="background:rgba(181,214,78,0.15);color:#B5D64E;border:1px solid rgba(181,214,78,0.3);">Precise nutrition</span>
+          <span class="chip" style="background:rgba(181,214,78,0.15);color:#B5D64E;border:1px solid rgba(181,214,78,0.3);">Точное питание</span>
         </div>
-        <div class="brand-pos" style="color:rgba(255,255,255,0.6);">Everything calculated for you. Black packaging, macros up front. For people who track.</div>
+        <div class="brand-pos" style="color:rgba(255,255,255,0.6);">Всё посчитано за тебя. Чёрная упаковка, КБЖУ крупно. Для тех, кто считает.</div>
       </div>
       <div class="brand-body">
         <div class="brand-section">
-          <div class="brand-section-title">Brand essence</div>
+          <div class="brand-section-title">Суть бренда</div>
           <div class="promo-list">
-            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>Macros are the hero</strong> — P / F / C / KCAL large on the front of packaging.</div></div>
-            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>Audience</strong> — fitness crowd, protein trackers, 23–35 y.o.</div></div>
-            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>Tagline</strong> — "Everything calculated for you."</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>КБЖУ — герой упаковки</strong> — Белки / Жиры / Углев / Ккал крупно на лицевой стороне.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>Аудитория</strong> — фитнес-аудитория, считающие белок, 23–35 лет.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>Слоган</strong> — «Всё посчитано за тебя.»</div></div>
           </div>
         </div>
         <div class="brand-section">
-          <div class="brand-section-title">Naming options</div>
+          <div class="brand-section-title">Ключевые варианты нейминга</div>
           <div class="naming-grid">
-            <div class="naming-card" style="border-color:#B5D64E; border-width:2px; background:#0D0D0B;">
-              <div class="naming-name" style="color:#B5D64E;">BODRO SMART</div>
-              <div class="naming-desc" style="color:rgba(255,255,255,0.6);">Black packaging, lime macros. Archivo 900 + JetBrains Mono.</div>
-              <span class="chip naming-badge" style="background:rgba(181,214,78,0.15);color:#B5D64E;border:1px solid rgba(181,214,78,0.3);">Selected</span>
-            </div>
-            <div class="naming-card"><div class="naming-name">NORMA</div><div class="naming-desc">Works on three semantic levels.</div></div>
-            <div class="naming-card"><div class="naming-name">TOCHNO</div><div class="naming-desc">Macro precision. Honesty and measurability.</div></div>
-            <div class="naming-card"><div class="naming-name">KCAL</div><div class="naming-desc">Direct functional name.</div></div>
+            <div class="naming-card" style="border-color:#B5D64E; border-width:2px; background:#0D0D0B;"><div class="naming-name" style="color:#B5D64E;">BODRO SMART</div><div class="naming-desc" style="color:rgba(255,255,255,0.6);">Чёрная упаковка, лайм-цифры КБЖУ. Archivo 900 + JetBrains Mono.</div><span class="chip naming-badge" style="background:rgba(181,214,78,0.15);color:#B5D64E;border:1px solid rgba(181,214,78,0.3);">Выбрано</span></div>
+            <div class="naming-card"><div class="naming-name">НОРМА</div><div class="naming-desc">Работает на трёх смысловых уровнях.</div></div>
+            <div class="naming-card"><div class="naming-name">ТОЧНО</div><div class="naming-desc">Точность КБЖУ. Честность и измеримость.</div></div>
+            <div class="naming-card"><div class="naming-name">ККАЛ</div><div class="naming-desc">Прямое функциональное название.</div></div>
           </div>
         </div>
         <div class="brand-section">
-          <div class="brand-section-title">Marketing channels</div>
+          <div class="brand-section-title">Продвижение</div>
           <div class="promo-list">
-            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>Fitness community</strong> — Telegram healthy lifestyle channels, Samara gyms, trainers.</div></div>
-            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>BODRO SMART stations</strong> — branded fridge in the office. Capex 57–106k/station.</div></div>
-            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>P / F / C / KCAL per 100g</strong> large on the front. Visual differentiator.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>Фитнес-комьюнити</strong> — Telegram-каналы ЗОЖ, спортзалы Самары, тренеры.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>Станции BODRO SMART</strong> — брендированный холодильник в офисе. Capex 57–106к/станция.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>Белки / Жиры / Углев / Ккал·100г</strong> крупно на лицевой стороне. Визуальный дифференциатор.</div></div>
           </div>
         </div>
         <div class="g2" style="gap:10px;">
-          <div class="stat" style="border-color:rgba(181,214,78,0.4);"><div class="stat-val">57–106k RUB</div><div class="stat-lbl">Capex per station</div></div>
-          <div class="stat" style="border-color:rgba(181,214,78,0.4);"><div class="stat-val">~1 month</div><div class="stat-lbl">Payback at 30 portions/day</div></div>
+          <div class="stat" style="border-color:rgba(181,214,78,0.4);"><div class="stat-val">57–106к ₽</div><div class="stat-lbl">Capex на одну станцию</div></div>
+          <div class="stat" style="border-color:rgba(181,214,78,0.4);"><div class="stat-val">~1 мес</div><div class="stat-lbl">Окупаемость при 30 порц/день</div></div>
         </div>
       </div>
     </div>
   </div>
 
   <div class="card card-p-lg">
-    <div class="sec-label">Strategy</div>
-    <div class="sec-title mb12">Two brands — one kitchen</div>
+    <div class="sec-label">Общая стратегия</div>
+    <div class="sec-title mb12">Два бренда — одна кухня</div>
     <div class="g3" style="gap:14px;">
-      <div class="stat"><div class="stat-val fs13 fw700">Phase 1 — Yandex Food</div><div class="stat-note">Both brands on aggregator. BODRO — main. BODRO SMART — separate nearby profile.</div></div>
-      <div class="stat"><div class="stat-val fs13 fw700">Phase 2 — DTC Subscription</div><div class="stat-note">Telegram bot: BODRO SMART — "weekly plan" with macros. BODRO — "lunch for the week".</div></div>
-      <div class="stat"><div class="stat-val fs13 fw700">Phase 3 — Offline + B2B</div><div class="stat-note">BODRO SMART stations in offices. BODRO — corporate lunch on demand.</div></div>
+      <div class="stat"><div class="stat-val fs13 fw700">Фаза 1 — Яндекс.Еда</div><div class="stat-note">Оба бренда на агрегатор. BODRO — главная, BODRO SMART — отдельный профиль рядом.</div></div>
+      <div class="stat"><div class="stat-val fs13 fw700">Фаза 2 — DTC-подписка</div><div class="stat-note">Telegram-бот: BODRO SMART — «рацион недели» с КБЖУ. BODRO — «обед на неделю».</div></div>
+      <div class="stat"><div class="stat-val fs13 fw700">Фаза 3 — Офлайн + B2B</div><div class="stat-note">Станции BODRO SMART в офисах. BODRO — корпоративный обед под заказ.</div></div>
     </div>
   </div>
 </div>
@@ -665,227 +499,143 @@ textarea.form-input { resize:vertical; min-height:90px; }
 <div id="page-vc" class="page">
   <div class="page-head">
     <div class="page-head-inner">
-      <div class="page-eyebrow"><div class="page-eyebrow-dot"></div>PRICING MODEL · P&amp;L</div>
+      <div class="page-eyebrow"><div class="page-eyebrow-dot"></div>ЦЕНОВАЯ МОДЕЛЬ · P&amp;L</div>
       <div class="page-title">Value Chain</div>
-      <div class="page-desc">Restaurant pricing model: food cost → markup → sales volume → P&amp;L. Adjust parameters — calculations update live.</div>
+      <div class="page-desc">Ресторанная модель ценообразования: себестоимость → наценка → объём продаж → P&amp;L. Настройте параметры — расчёт обновится автоматически.</div>
     </div>
   </div>
 
   <div class="g2" style="gap:20px; align-items:start;">
     <div>
-      <!-- 1. PRICING -->
       <div class="card card-p mb16">
         <div class="vc-section-header">
           <div class="vc-section-icon">01</div>
-          <div><div class="vc-section-title">Pricing</div><div class="vc-section-sub">Food cost from menu + packaging + markup</div></div>
+          <div><div class="vc-section-title">Ценообразование</div><div class="vc-section-sub">Себестоимость из меню + упаковка + наценка</div></div>
         </div>
-
         <div class="g2 mb12" style="gap:10px;">
-          <div class="stat">
-            <div class="stat-val" id="res_avg_fc_display">69 RUB</div>
-            <div class="stat-lbl">Avg dish food cost</div>
-            <div class="stat-note">From 18 recipe cards</div>
-          </div>
-          <div class="stat">
-            <div class="stat-val" id="res_cogs_display">77 RUB</div>
-            <div class="stat-lbl">COGS / dish</div>
-            <div class="stat-note">Food cost + packaging</div>
-          </div>
+          <div class="stat"><div class="stat-val" id="res_avg_fc_display">69 ₽</div><div class="stat-lbl">Ср. себестоимость блюда</div><div class="stat-note">Из 18 тех. карт меню</div></div>
+          <div class="stat"><div class="stat-val" id="res_cogs_display">77 ₽</div><div class="stat-lbl">COGS / блюдо</div><div class="stat-note">Себестоимость + упаковка</div></div>
         </div>
-
         <div class="slider-row">
-          <div class="slider-top">
-            <span class="slider-label">Packaging (PP container), RUB/unit</span>
-            <span class="slider-val" id="lbl_pkg">8 RUB</span>
-          </div>
+          <div class="slider-top"><span class="slider-label">Упаковка (PP-контейнер), ₽/шт</span><span class="slider-val" id="lbl_pkg">8 ₽</span></div>
           <input type="range" id="sl_pkg" min="7" max="12" value="8" step="1" oninput="calcVC()">
-          <div class="footnote">PP containers 500/750/1000 ml. Wholesale from manufacturer — <strong>7–10 RUB/unit</strong> at 5,000+ units. Plus KCAL sticker ~1–2 RUB.</div>
+          <div class="footnote">PP-контейнеры 500/750/1000 мл. Оптовая цена от производителя — <strong>7–10 ₽/шт</strong> при объёме 5 000+ шт. Плюс стикер КБЖУ ~1–2 ₽.</div>
         </div>
-
         <div class="slider-row">
-          <div class="slider-top">
-            <span class="slider-label">Markup on COGS, %</span>
-            <span class="slider-val" id="lbl_markup">200%</span>
-          </div>
+          <div class="slider-top"><span class="slider-label">Наценка на COGS, %</span><span class="slider-val" id="lbl_markup">200%</span></div>
           <input type="range" id="sl_markup" min="80" max="450" value="200" step="10" oninput="calcVC()">
-          <div class="footnote"><strong>How restaurants calculate:</strong> Food Cost % = 100 / (1 + markup/100). At 200% → food cost 33%. Dark kitchen target: 200–300% (food cost 25–33%). Below 150% — loss risk.</div>
+          <div class="footnote"><strong>Как считают рестораны:</strong> Food Cost % = 100 / (1 + наценка/100). При 200% → food cost 33%. Норма для dark kitchen: 200–300% (food cost 25–33%). Ниже 150% — риск убытков.</div>
         </div>
-
         <div class="g2 mt12" style="gap:10px;">
-          <div class="stat" style="border-color:rgba(0,0,0,0.15);">
-            <div class="stat-val" id="res_sale_price">—</div>
-            <div class="stat-lbl">Sale price, RUB/dish</div>
-          </div>
-          <div class="stat" style="border-color:rgba(0,0,0,0.15);">
-            <div class="stat-val" id="res_food_cost_pct">—</div>
-            <div class="stat-lbl">Food Cost %</div>
-          </div>
+          <div class="stat" style="border-color:rgba(0,0,0,0.15);"><div class="stat-val" id="res_sale_price">—</div><div class="stat-lbl">Цена продажи, ₽/блюдо</div></div>
+          <div class="stat" style="border-color:rgba(0,0,0,0.15);"><div class="stat-val" id="res_food_cost_pct">—</div><div class="stat-lbl">Food Cost %</div></div>
         </div>
       </div>
 
-      <!-- 2. CHANNELS -->
       <div class="card card-p mb16">
         <div class="vc-section-header">
           <div class="vc-section-icon">02</div>
-          <div><div class="vc-section-title">Sales channels</div><div class="vc-section-sub">Aggregator commissions and channel mix</div></div>
+          <div><div class="vc-section-title">Каналы продаж</div><div class="vc-section-sub">Комиссии агрегаторов и доли каналов</div></div>
         </div>
-
-        <div class="slider-row">
-          <div class="slider-top"><span class="slider-label">Yandex Food — commission</span><span class="slider-val" id="lbl_ya">27%</span></div>
-          <input type="range" id="sl_ya" min="20" max="35" value="27" oninput="calcVC()">
-        </div>
-        <div class="slider-row">
-          <div class="slider-top"><span class="slider-label">Yandex Food — share of sales</span><span class="slider-val" id="lbl_ya_share">60%</span></div>
-          <input type="range" id="sl_ya_share" min="0" max="100" value="60" oninput="calcVC()">
-        </div>
-        <div class="slider-row">
-          <div class="slider-top"><span class="slider-label">DTC (Telegram/site) — discount from price</span><span class="slider-val" id="lbl_dtc">5%</span></div>
-          <input type="range" id="sl_dtc" min="0" max="20" value="5" oninput="calcVC()">
-        </div>
-        <div class="slider-row">
-          <div class="slider-top"><span class="slider-label">DTC — share of sales</span><span class="slider-val" id="lbl_dtc_share">25%</span></div>
-          <input type="range" id="sl_dtc_share" min="0" max="100" value="25" oninput="calcVC()">
-        </div>
-
-        <div class="footnote">B2B / corporate takes the rest: <strong id="b2b_share_txt">15%</strong>. 10–15% discount from retail but no aggregator fee — most margin-efficient channel.</div>
+        <div class="slider-row"><div class="slider-top"><span class="slider-label">Яндекс.Еда — комиссия</span><span class="slider-val" id="lbl_ya">27%</span></div><input type="range" id="sl_ya" min="20" max="35" value="27" oninput="calcVC()"></div>
+        <div class="slider-row"><div class="slider-top"><span class="slider-label">Яндекс.Еда — доля в продажах</span><span class="slider-val" id="lbl_ya_share">60%</span></div><input type="range" id="sl_ya_share" min="0" max="100" value="60" oninput="calcVC()"></div>
+        <div class="slider-row"><div class="slider-top"><span class="slider-label">DTC (Telegram/сайт) — скидка от цены</span><span class="slider-val" id="lbl_dtc">5%</span></div><input type="range" id="sl_dtc" min="0" max="20" value="5" oninput="calcVC()"></div>
+        <div class="slider-row"><div class="slider-top"><span class="slider-label">DTC — доля в продажах</span><span class="slider-val" id="lbl_dtc_share">25%</span></div><input type="range" id="sl_dtc_share" min="0" max="100" value="25" oninput="calcVC()"></div>
+        <div class="footnote">B2B / корпоратив занимает оставшееся: <strong id="b2b_share_txt">15%</strong>. Скидка 10–15% от розницы, но без комиссии агрегатора — самый маржинальный канал.</div>
       </div>
 
-      <!-- 3. VOLUME -->
       <div class="card card-p mb16">
         <div class="vc-section-header">
           <div class="vc-section-icon">03</div>
-          <div><div class="vc-section-title">Sales volume</div><div class="vc-section-sub">Built for weekday lunches Mon–Fri. Weekends are a problem.</div></div>
+          <div><div class="vc-section-title">Объём продаж</div><div class="vc-section-sub">Мы заточены под обеды Пн–Пт. Выходные — проблема.</div></div>
         </div>
-
+        <div class="slider-row"><div class="slider-top"><span class="slider-label">Порций в день (Пн–Пт)</span><span class="slider-val" id="lbl_wkday">80</span></div><input type="range" id="sl_wkday" min="20" max="400" value="80" step="5" oninput="calcVC()"></div>
         <div class="slider-row">
-          <div class="slider-top"><span class="slider-label">Portions per day (Mon–Fri)</span><span class="slider-val" id="lbl_wkday">80</span></div>
-          <input type="range" id="sl_wkday" min="20" max="400" value="80" step="5" oninput="calcVC()">
-        </div>
-        <div class="slider-row">
-          <div class="slider-top"><span class="slider-label">Weekends — % of weekday volume</span><span class="slider-val" id="lbl_wkend">20%</span></div>
+          <div class="slider-top"><span class="slider-label">Выходные — % от буднего дня</span><span class="slider-val" id="lbl_wkend">20%</span></div>
           <input type="range" id="sl_wkend" min="0" max="80" value="20" step="5" oninput="calcVC()">
-          <div class="footnote">At 20% → Saturday and Sunday sell only <strong id="wkend_dishes_txt">16 portions/day</strong>. Fixed costs don't drop. This is the core risk of a lunch-focused model.</div>
+          <div class="footnote">При 20% → в субботу и воскресенье продаётся всего <strong id="wkend_dishes_txt">16 порц/день</strong>. Фиксированные расходы при этом не снижаются. Это главный риск модели обедов.</div>
         </div>
-
         <div class="g2 mt8" style="gap:10px;">
-          <div class="stat">
-            <div class="stat-val" id="res_monthly_dishes">—</div>
-            <div class="stat-lbl">Portions / month</div>
-            <div class="stat-note" id="res_monthly_note">22 × weekday + 8 × weekend</div>
-          </div>
-          <div class="stat">
-            <div class="stat-val" id="res_revenue_gross">—</div>
-            <div class="stat-lbl">Revenue / month</div>
-            <div class="stat-note">Before commissions</div>
-          </div>
+          <div class="stat"><div class="stat-val" id="res_monthly_dishes">—</div><div class="stat-lbl">Порций / месяц</div><div class="stat-note" id="res_monthly_note">22 × буд + 8 × вых</div></div>
+          <div class="stat"><div class="stat-val" id="res_revenue_gross">—</div><div class="stat-lbl">Выручка / месяц</div><div class="stat-note">До вычета комиссий</div></div>
         </div>
       </div>
 
-      <!-- 4. PAYROLL -->
       <div class="card card-p mb16">
         <div class="vc-section-header">
           <div class="vc-section-icon">04</div>
-          <div><div class="vc-section-title">Payroll</div><div class="vc-section-sub">Salaries + social contributions ~30%</div></div>
+          <div><div class="vc-section-title">ФОТ — Персонал</div><div class="vc-section-sub">Зарплаты + страховые взносы ~30%</div></div>
         </div>
         <div style="display:grid; gap:8px;">
-          <div class="inp-row"><span class="inp-label">Manager</span><input class="inp inp-small" id="fot_manager" type="number" value="100000" oninput="calcVC()"><span class="inp-val" id="fot_manager_with_tax">130,000</span></div>
-          <div class="inp-row"><span class="inp-label">Cook 1</span><input class="inp inp-small" id="fot_cook1" type="number" value="60000" oninput="calcVC()"><span class="inp-val" id="fot_cook1_with_tax">78,000</span></div>
-          <div class="inp-row"><span class="inp-label">Cook 2</span><input class="inp inp-small" id="fot_cook2" type="number" value="60000" oninput="calcVC()"><span class="inp-val" id="fot_cook2_with_tax">78,000</span></div>
-          <div class="inp-row"><span class="inp-label">Accountant</span><input class="inp inp-small" id="fot_acc" type="number" value="40000" oninput="calcVC()"><span class="inp-val" id="fot_acc_with_tax">52,000</span></div>
+          <div class="inp-row"><span class="inp-label">Управляющий</span><input class="inp inp-small" id="fot_manager" type="number" value="100000" oninput="calcVC()"><span class="inp-val" id="fot_manager_with_tax">130 000 ₽</span></div>
+          <div class="inp-row"><span class="inp-label">Повар 1</span><input class="inp inp-small" id="fot_cook1" type="number" value="60000" oninput="calcVC()"><span class="inp-val" id="fot_cook1_with_tax">78 000 ₽</span></div>
+          <div class="inp-row"><span class="inp-label">Повар 2</span><input class="inp inp-small" id="fot_cook2" type="number" value="60000" oninput="calcVC()"><span class="inp-val" id="fot_cook2_with_tax">78 000 ₽</span></div>
+          <div class="inp-row"><span class="inp-label">Бухгалтер</span><input class="inp inp-small" id="fot_acc" type="number" value="40000" oninput="calcVC()"><span class="inp-val" id="fot_acc_with_tax">52 000 ₽</span></div>
         </div>
         <div class="divider"></div>
         <div class="flex justify-between items-center">
-          <span class="fs12 c-muted">Total payroll with taxes (×1.3) / month</span>
-          <span class="fw700 mono" id="fot_total">338,000 RUB</span>
+          <span class="fs12 c-muted">Итого ФОТ с налогами (×1.3) / мес</span>
+          <span class="fw700 mono" id="fot_total">338 000 ₽</span>
         </div>
-        <div class="footnote">Social contributions ~30% on simplified tax. Can be reduced to 15% working with self-employed contractors. <strong>Manager</strong> — hire priority #1.</div>
+        <div class="footnote">Страховые взносы ≈ 30% на УСН. Можно снизить до 15% при работе через самозанятых. <strong>Управляющий</strong> — приоритет #1 при найме.</div>
       </div>
 
-      <!-- 5. FIXED COSTS -->
       <div class="card card-p">
         <div class="vc-section-header">
           <div class="vc-section-icon">05</div>
-          <div><div class="vc-section-title">Fixed costs</div><div class="vc-section-sub">Independent of sales volume</div></div>
+          <div><div class="vc-section-title">Постоянные расходы</div><div class="vc-section-sub">Независимо от объёма продаж</div></div>
         </div>
         <div style="display:grid; gap:8px;">
-          <div class="inp-row"><span class="inp-label">Rent (~60 sqm kitchen)</span><input class="inp inp-small" id="fc_rent" type="number" value="80000" oninput="calcVC()"></div>
-          <div class="inp-row"><span class="inp-label">Utilities (gas, electricity, water)</span><input class="inp inp-small" id="fc_util" type="number" value="30000" oninput="calcVC()"></div>
-          <div class="inp-row"><span class="inp-label">Marketing & SMM</span><input class="inp inp-small" id="fc_mkt" type="number" value="25000" oninput="calcVC()"></div>
-          <div class="inp-row"><span class="inp-label">Other (consumables, cleaning)</span><input class="inp inp-small" id="fc_other" type="number" value="20000" oninput="calcVC()"></div>
+          <div class="inp-row"><span class="inp-label">Аренда кухни (~60 м²)</span><input class="inp inp-small" id="fc_rent" type="number" value="80000" oninput="calcVC()"></div>
+          <div class="inp-row"><span class="inp-label">Коммунальные (газ, свет, вода)</span><input class="inp inp-small" id="fc_util" type="number" value="30000" oninput="calcVC()"></div>
+          <div class="inp-row"><span class="inp-label">Маркетинг и SMM</span><input class="inp inp-small" id="fc_mkt" type="number" value="25000" oninput="calcVC()"></div>
+          <div class="inp-row"><span class="inp-label">Прочее (расходники, уборка)</span><input class="inp inp-small" id="fc_other" type="number" value="20000" oninput="calcVC()"></div>
         </div>
         <div class="divider"></div>
         <div class="flex justify-between items-center">
-          <span class="fs12 c-muted">Total fixed / month</span>
-          <span class="fw700 mono" id="fixed_total">155,000 RUB</span>
+          <span class="fs12 c-muted">Итого постоянные / мес</span>
+          <span class="fw700 mono" id="fixed_total">155 000 ₽</span>
         </div>
-        <div class="footnote">Samara: production space 60–80 sqm with equipment — <strong>60–120k RUB/month</strong> depending on district and condition.</div>
+        <div class="footnote">Самара: аренда производственного помещения 60–80 м² с оборудованием — <strong>60–120 тыс. ₽/мес</strong> в зависимости от района и состояния.</div>
       </div>
     </div>
 
-    <!-- RIGHT: RESULTS -->
     <div>
       <div class="g2 mb16" style="gap:12px;">
-        <div class="kpi-card">
-          <div class="kpi-num" id="kpi_ebitda">—</div>
-          <div class="kpi-label">EBITDA / month</div>
-          <div class="kpi-sub" id="kpi_ebitda_pct">— % of revenue</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-num" id="kpi_breakeven">—</div>
-          <div class="kpi-label">Break-even / day</div>
-          <div class="kpi-sub">portions to zero</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-num" id="kpi_gm">—</div>
-          <div class="kpi-label">Gross Margin</div>
-          <div class="kpi-sub">after COGS and commissions</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-num" id="kpi_margin_dish">—</div>
-          <div class="kpi-label">Margin / dish</div>
-          <div class="kpi-sub">after COGS + commissions</div>
-        </div>
+        <div class="kpi-card"><div class="kpi-num" id="kpi_ebitda">—</div><div class="kpi-label">EBITDA / мес</div><div class="kpi-sub" id="kpi_ebitda_pct">— % от выручки</div></div>
+        <div class="kpi-card"><div class="kpi-num" id="kpi_breakeven">—</div><div class="kpi-label">Break-even / день</div><div class="kpi-sub">порций для нуля</div></div>
+        <div class="kpi-card"><div class="kpi-num" id="kpi_gm">—</div><div class="kpi-label">Gross Margin</div><div class="kpi-sub">после COGS и комиссий</div></div>
+        <div class="kpi-card"><div class="kpi-num" id="kpi_margin_dish">—</div><div class="kpi-label">Маржа / блюдо</div><div class="kpi-sub">после COGS + комиссий</div></div>
       </div>
 
       <div class="card card-p mb16">
-        <div class="sec-label">P&amp;L · MONTHLY</div>
+        <div class="sec-label">P&amp;L · Месяц</div>
         <div id="pl_waterfall" style="margin-top:4px;"></div>
       </div>
 
       <div class="card card-p mb16">
-        <div class="sec-label">WEEKLY REVENUE PATTERN</div>
+        <div class="sec-label">Недельный паттерн — выручка по дням</div>
         <div class="week-grid mt16 mb16" id="week_bars"></div>
-        <div class="footnote" id="week_footnote">Loading...</div>
+        <div class="footnote" id="week_footnote">Загрузка...</div>
         <div class="divider"></div>
-        <div class="sec-label mt12" style="margin-bottom:10px;">WEEKEND SOLUTIONS</div>
+        <div class="sec-label mt12" style="margin-bottom:10px;">Решения для выходных</div>
         <div style="display:grid; gap:8px;">
-          <div class="promo-item">
-            <div class="promo-bullet" style="background:#0D0D0B;"></div>
-            <div class="promo-text"><strong>Event format (1kg boxes)</strong> — ready meals in large boxes for parties, birthdays, office meetups. Avg check 1,200–2,000 RUB vs 250 RUB standard. Low competition in Samara.</div>
-          </div>
-          <div class="promo-item">
-            <div class="promo-bullet" style="background:#0D0D0B;"></div>
-            <div class="promo-text"><strong>Meal Prep Sunday</strong> — weekly ration delivery on Sundays. Subscribers receive 5 dishes. Fixed revenue without aggregator.</div>
-          </div>
-          <div class="promo-item">
-            <div class="promo-bullet" style="background:#0D0D0B;"></div>
-            <div class="promo-text"><strong>B2B weekly pre-orders</strong> — corporate client pays for 5 workdays upfront on Friday. Production Sat–Sun loads the kitchen without retail demand.</div>
-          </div>
+          <div class="promo-item"><div class="promo-bullet" style="background:#0D0D0B;"></div><div class="promo-text"><strong>EVENT-формат (1 кг)</strong> — готовые блюда в больших боксах для вечеринок, дней рождения, офисных встреч. Средний чек 1 200–2 000 ₽ vs 250 ₽ за обычный. Слабая конкуренция в Самаре.</div></div>
+          <div class="promo-item"><div class="promo-bullet" style="background:#0D0D0B;"></div><div class="promo-text"><strong>Meal Prep Sunday</strong> — воскресная доставка рационов на неделю. Подписчики получают 5 блюд по воскресеньям. Фиксированная выручка без агрегатора.</div></div>
+          <div class="promo-item"><div class="promo-bullet" style="background:#0D0D0B;"></div><div class="promo-text"><strong>B2B пред-заказы на неделю</strong> — корпоративный клиент платит за 5 рабочих дней вперёд в пятницу. Производство в субботу-воскресенье загружает кухню без розничного спроса.</div></div>
         </div>
       </div>
 
       <div class="card card-p">
-        <div class="sec-label">P&amp;L SCENARIOS</div>
+        <div class="sec-label">P&amp;L Сценарии</div>
         <div class="sc-tabs mt12">
-          <button class="sc-tab active" onclick="showSc(40,this)">Start<br><span style="font-size:10px;">40 p/day</span></button>
-          <button class="sc-tab" onclick="showSc(80,this)">Growth<br><span style="font-size:10px;">80 p/day</span></button>
-          <button class="sc-tab" onclick="showSc(150,this)">Target<br><span style="font-size:10px;">150 p/day</span></button>
-          <button class="sc-tab" onclick="showSc(300,this)">Scale<br><span style="font-size:10px;">300 p/day</span></button>
+          <button class="sc-tab active" onclick="showSc(40,this)">Старт<br><span style="font-size:10px;">40 порц/д</span></button>
+          <button class="sc-tab" onclick="showSc(80,this)">Рост<br><span style="font-size:10px;">80 порц/д</span></button>
+          <button class="sc-tab" onclick="showSc(150,this)">Цель<br><span style="font-size:10px;">150 порц/д</span></button>
+          <button class="sc-tab" onclick="showSc(300,this)">Масштаб<br><span style="font-size:10px;">300 порц/д</span></button>
         </div>
         <div id="sc_table" class="mt8"></div>
-        <div class="footnote mt12">
-          <strong>How it's calculated:</strong> Month = 22 weekdays + 8 weekend days × weekend factor. Net revenue = Gross Revenue × (1 − weighted avg commission). EBITDA = GP − all fixed costs (payroll + rent + utilities + marketing + other).
-        </div>
+        <div class="footnote mt12"><strong>Как считается:</strong> Месяц = 22 буд. дня + 8 вых. дней × доля выходных. Выручка нетто = Gross Revenue × (1 − средневзвешенная комиссия). EBITDA = GP − все постоянные расходы (ФОТ + аренда + КУ + маркетинг + прочее).</div>
       </div>
     </div>
   </div>
@@ -895,175 +645,162 @@ textarea.form-input { resize:vertical; min-height:90px; }
 <div id="page-questions" class="page">
   <div class="page-head">
     <div class="page-head-inner">
-      <div class="page-eyebrow"><div class="page-eyebrow-dot"></div>OPEN QUESTIONS · DECISIONS · ISSUES</div>
-      <div class="page-title">Questions Board</div>
-      <div class="page-desc">Track open questions, decisions and blockers. Add your answer, get a recommendation, archive when resolved.</div>
+      <div class="page-eyebrow"><div class="page-eyebrow-dot"></div>ОТКРЫТЫЕ ВОПРОСЫ · РЕШЕНИЯ · БЛОКЕРЫ</div>
+      <div class="page-title">Доска вопросов</div>
+      <div class="page-desc">Фиксируй открытые вопросы и решения. Добавляй ответ, получай рекомендацию, отправляй в архив когда закрыто.</div>
     </div>
   </div>
 
   <div class="flex justify-between items-center mb20">
     <div class="flex gap8" id="q-stats-row"></div>
-    <button class="btn btn-black" onclick="openModal()">+ New question</button>
+    <button class="btn btn-black" onclick="openModal()">+ Новый вопрос</button>
   </div>
 
   <div class="board" id="board">
     <div class="board-col">
-      <div class="board-col-header">
-        <span class="board-col-title">Active</span>
-        <span class="board-col-count" id="cnt-active">0</span>
-      </div>
+      <div class="board-col-header"><span class="board-col-title">Активный вопрос</span><span class="board-col-count" id="cnt-active">0</span></div>
       <div class="board-col-body" id="col-active"></div>
     </div>
     <div class="board-col">
-      <div class="board-col-header">
-        <span class="board-col-title">Answered</span>
-        <span class="board-col-count" id="cnt-answered">0</span>
-      </div>
+      <div class="board-col-header"><span class="board-col-title">Вопрос / Ответ</span><span class="board-col-count" id="cnt-answered">0</span></div>
       <div class="board-col-body" id="col-answered"></div>
     </div>
     <div class="board-col">
-      <div class="board-col-header">
-        <span class="board-col-title">Archive</span>
-        <span class="board-col-count" id="cnt-archive">0</span>
-      </div>
+      <div class="board-col-header"><span class="board-col-title">Архив</span><span class="board-col-count" id="cnt-archive">0</span></div>
       <div class="board-col-body" id="col-archive"></div>
     </div>
   </div>
 </div>
 
-<!-- ADD QUESTION MODAL -->
+<!-- MODAL: добавить/редактировать вопрос -->
 <div class="modal-overlay" id="modal-add">
   <div class="modal">
-    <div class="modal-title" id="modal-title">New question</div>
+    <div class="modal-title" id="modal-title">Новый вопрос</div>
     <div class="form-field">
-      <label class="form-label">Title *</label>
-      <input type="text" class="form-input" id="q-input-title" placeholder="What needs to be decided?" maxlength="120">
+      <label class="form-label">Вопрос *</label>
+      <input type="text" class="form-input" id="q-input-title" placeholder="Что нужно решить?" maxlength="120">
     </div>
     <div class="form-field">
-      <label class="form-label">Description / context</label>
-      <textarea class="form-input" id="q-input-desc" placeholder="Background, constraints, what options exist..."></textarea>
+      <label class="form-label">Контекст / описание</label>
+      <textarea class="form-input" id="q-input-desc" placeholder="Предпосылки, ограничения, какие варианты есть..."></textarea>
     </div>
     <div class="form-field">
-      <label class="form-label">Tag / category</label>
-      <input type="text" class="form-input" id="q-input-tag" placeholder="e.g. Packaging, Finance, Operations...">
+      <label class="form-label">Тег / категория</label>
+      <input type="text" class="form-input" id="q-input-tag" placeholder="Например: Упаковка, Финансы, Операции...">
     </div>
     <input type="hidden" id="q-edit-id">
     <div class="form-actions">
-      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
-      <button class="btn btn-black" onclick="saveQuestion()">Save question</button>
+      <button class="btn btn-ghost" onclick="closeModal()">Отмена</button>
+      <button class="btn btn-black" onclick="saveQuestion()">Сохранить</button>
     </div>
   </div>
 </div>
 
-<!-- ANSWER MODAL -->
+<!-- MODAL: ответ -->
 <div class="modal-overlay" id="modal-answer">
   <div class="modal">
-    <div class="modal-title">Your answer / decision</div>
+    <div class="modal-title">Ответ / решение</div>
     <div style="font-size:13px; color:var(--sub); margin-bottom:20px;" id="answer-modal-title"></div>
     <div class="form-field">
-      <label class="form-label">Answer or decision made</label>
-      <textarea class="form-input" id="answer-input" placeholder="Describe the decision you made..." style="min-height:120px;"></textarea>
+      <label class="form-label">Твоё решение</label>
+      <textarea class="form-input" id="answer-input" placeholder="Опиши принятое решение..." style="min-height:120px;"></textarea>
     </div>
     <div class="form-field">
-      <label class="form-label">Claude's recommendation (paste from chat)</label>
-      <textarea class="form-input" id="advice-input" placeholder="Copy a recommendation from Claude and paste it here..."></textarea>
+      <label class="form-label">Рекомендация Claude (вставь из чата)</label>
+      <textarea class="form-input" id="advice-input" placeholder="Скопируй рекомендацию из чата с Claude и вставь сюда..."></textarea>
     </div>
     <input type="hidden" id="answer-q-id">
     <div class="form-actions">
-      <button class="btn btn-ghost" onclick="closeAnswerModal()">Cancel</button>
-      <button class="btn btn-black" onclick="saveAnswer()">Save & mark answered</button>
+      <button class="btn btn-ghost" onclick="closeAnswerModal()">Отмена</button>
+      <button class="btn btn-black" onclick="saveAnswer()">Сохранить и отметить отвеченным</button>
     </div>
   </div>
 </div>
 
 <!-- ══════════ JS ══════════ -->
 <script>
-// ── DATA ─────────────────────────────────────────────
 const MENU_DATA = [
-  {name:"Борщ с говядиной",cat:"Суп",weight:350,fc:73,kcal_p:245.7,b_p:12.9,f_p:15.2,c_p:14.7,ingr:"Beef (shoulder), white cabbage, beetroot, potato, carrot, onion, tomato paste, sour cream"},
-  {name:"Суп-пюре грибной с курицей",cat:"Суп",weight:300,fc:95,kcal_p:385.2,b_p:26.9,f_p:20.7,c_p:22.6,ingr:"Chicken breast, champignons, potato, carrot, onion, butter, 10% cream, croutons"},
-  {name:"Суп томатный с печёными перцами",cat:"Суп",weight:300,fc:110,kcal_p:103.9,b_p:3.1,f_p:3.4,c_p:14.4,ingr:"Polpa tomatoes, sweet pepper, onion, carrot, celery, vegetable oil, basil, oregano"},
-  {name:"Куриное филе гриль, булгур, овощи",cat:"Второе",weight:277,fc:65,kcal_p:460.4,b_p:31.9,f_p:14.1,c_p:48.2,ingr:"Chicken breast, bulgur, onion, carrot, parsley, lemon juice, garlic"},
-  {name:"Оладьи куриные из грудки",cat:"Второе",weight:151,fc:64,kcal_p:363.4,b_p:29.3,f_p:20.2,c_p:13.9,ingr:"Chicken breast, wheat bread, milk, onion, egg yolk, nutmeg"},
-  {name:"Бризоль куриная с рисом",cat:"Второе",weight:230,fc:45,kcal_p:353.4,b_p:21.5,f_p:9.4,c_p:43.8,ingr:"Minced chicken, egg, milk, wheat flour, garlic, long-grain rice, parsley"},
-  {name:"Тальятелле, грудка, сычуанский перец",cat:"Второе",weight:240,fc:91,kcal_p:462,b_p:36.4,f_p:11.2,c_p:53.1,ingr:"Chicken breast, tagliatelle pasta, parsley, green butter, lemon juice, Sichuan pepper"},
-  {name:"Говядина наршараб, мятый картофель",cat:"Второе",weight:230,fc:110,kcal_p:305.5,b_p:27.7,f_p:8.4,c_p:30.0,ingr:"Beef (shoulder), narsharab sauce, potato, 2.5% milk, rosemary, thyme"},
-  {name:"Бефстроганов с картофельным пюре",cat:"Второе",weight:220,fc:78,kcal_p:341.7,b_p:18.6,f_p:17.4,c_p:27.2,ingr:"Beef (shoulder), onion, 20% sour cream, potato, 2.5% milk, butter"},
-  {name:"Грудка су-вид в специях, бурый рис",cat:"Второе",weight:225,fc:60,kcal_p:329.2,b_p:26.8,f_p:3.0,c_p:46.7,ingr:"Chicken breast, brown rice, smoked paprika, Italian herbs, dried garlic"},
-  {name:"Биточки куриные паровые, киноа",cat:"Второе",weight:225,fc:54,kcal_p:348.4,b_p:21.3,f_p:11.9,c_p:36.0,ingr:"Chicken breast, wheat loaf, 2.5% milk, onion, egg, quinoa, butter"},
-  {name:"Овощи бланшированные",cat:"Гарнир",weight:150,fc:40,kcal_p:50,b_p:3.4,f_p:0.5,c_p:8.4,ingr:"Carrot, cauliflower, broccoli, frozen green beans"},
-  {name:"Салат-микс зелёный с бальзамиком",cat:"Салат",weight:70,fc:55,kcal_p:69.2,b_p:1.0,f_p:6.1,c_p:2.5,ingr:"Iceberg, romano, spinach, chard, balsamic dressing"},
-  {name:"Витаминный салат с заправкой кимчи",cat:"Салат",weight:150,fc:32,kcal_p:92.5,b_p:3.2,f_p:0.3,c_p:19.1,ingr:"White cabbage, carrot, red sweet pepper, kimchi sauce, lemon"},
-  {name:"Винегрет с горчичной заправкой",cat:"Салат",weight:175,fc:28,kcal_p:163.6,b_p:3.0,f_p:9.2,c_p:17.0,ingr:"Beetroot, potato, carrot, pickled cucumber, sauerkraut, peas, mustard"},
-  {name:"Зелёный салат, грудка су-вид, кукуруза",cat:"Салат",weight:95,fc:56,kcal_p:113,b_p:10.2,f_p:6.1,c_p:5.0,ingr:"Iceberg, romano, spinach, corn, sous-vide breast, honey, soy sauce, mustard"},
-  {name:"Сырники со сметаной",cat:"Десерт",weight:175,fc:112,kcal_p:639,b_p:37.0,f_p:22.2,c_p:73.2,ingr:"5% cottage cheese, semolina, sugar, egg, flour, 15% sour cream"},
-  {name:"Протеиновый брауни с бананом",cat:"Десерт",weight:120,fc:74,kcal_p:197.7,b_p:21.5,f_p:6.9,c_p:10.7,ingr:"Banana, egg, whey protein, cocoa powder, Greek yogurt, baking powder"}
+  {name:"Борщ с говядиной",cat:"Суп",weight:350,fc:73,kcal_p:245.7,b_p:12.9,f_p:15.2,c_p:14.7,ingr:"Говядина (лопатка), капуста белокочанная, свекла, картофель, морковь, лук репчатый, томатная паста, сметана"},
+  {name:"Суп-пюре грибной с курицей",cat:"Суп",weight:300,fc:95,kcal_p:385.2,b_p:26.9,f_p:20.7,c_p:22.6,ingr:"Грудка куриная, шампиньоны, картофель, морковь, лук, масло сливочное, сливки 10%, гренки"},
+  {name:"Суп томатный с печёными перцами",cat:"Суп",weight:300,fc:110,kcal_p:103.9,b_p:3.1,f_p:3.4,c_p:14.4,ingr:"Томаты Polpa, перец сладкий, лук, морковь, сельдерей, масло растительное, базилик, орегано"},
+  {name:"Куриное филе гриль, булгур, овощи",cat:"Второе",weight:277,fc:65,kcal_p:460.4,b_p:31.9,f_p:14.1,c_p:48.2,ingr:"Грудка куриная, булгур, лук, морковь, петрушка, лимонный сок, чеснок"},
+  {name:"Оладьи куриные из грудки",cat:"Второе",weight:151,fc:64,kcal_p:363.4,b_p:29.3,f_p:20.2,c_p:13.9,ingr:"Грудка куриная, хлеб пшеничный, молоко, лук, желток, мускатный орех"},
+  {name:"Бризоль куриная с рисом",cat:"Второе",weight:230,fc:45,kcal_p:353.4,b_p:21.5,f_p:9.4,c_p:43.8,ingr:"Фарш куриный, яйцо (меланж), молоко, мука пшеничная, чеснок, рис длиннозерный, петрушка"},
+  {name:"Тальятелле, грудка, сычуанский перец",cat:"Второе",weight:240,fc:91,kcal_p:462,b_p:36.4,f_p:11.2,c_p:53.1,ingr:"Грудка куриная, паста тальятелле, петрушка, масло зелёное, лимонный сок, перец сычуанский"},
+  {name:"Говядина наршараб, мятый картофель",cat:"Второе",weight:230,fc:110,kcal_p:305.5,b_p:27.7,f_p:8.4,c_p:30.0,ingr:"Говядина (лопатка), соус наршараб, картофель, молоко 2.5%, розмарин, тимьян"},
+  {name:"Бефстроганов с картофельным пюре",cat:"Второе",weight:220,fc:78,kcal_p:341.7,b_p:18.6,f_p:17.4,c_p:27.2,ingr:"Говядина (лопатка), лук, сметана 20%, картофель, молоко 2.5%, масло сливочное"},
+  {name:"Грудка су-вид в специях, бурый рис",cat:"Второе",weight:225,fc:60,kcal_p:329.2,b_p:26.8,f_p:3.0,c_p:46.7,ingr:"Грудка куриная, рис бурый, паприка копчёная, итальянские травы, чеснок сушёный"},
+  {name:"Биточки куриные паровые, киноа",cat:"Второе",weight:225,fc:54,kcal_p:348.4,b_p:21.3,f_p:11.9,c_p:36.0,ingr:"Грудка куриная, батон пшеничный, молоко 2.5%, лук, яйцо (меланж), крупа киноа, масло"},
+  {name:"Овощи бланшированные",cat:"Гарнир",weight:150,fc:40,kcal_p:50,b_p:3.4,f_p:0.5,c_p:8.4,ingr:"Морковь, цветная капуста, брокколи, фасоль стручковая замороженная"},
+  {name:"Салат-микс зелёный с бальзамиком",cat:"Салат",weight:70,fc:55,kcal_p:69.2,b_p:1.0,f_p:6.1,c_p:2.5,ingr:"Айсберг, романо, шпинат, мангольд, заправка бальзамическая"},
+  {name:"Витаминный салат с заправкой кимчи",cat:"Салат",weight:150,fc:32,kcal_p:92.5,b_p:3.2,f_p:0.3,c_p:19.1,ingr:"Капуста белокочанная, морковь, перец сладкий красный, соус кимчи, лимон"},
+  {name:"Винегрет с горчичной заправкой",cat:"Салат",weight:175,fc:28,kcal_p:163.6,b_p:3.0,f_p:9.2,c_p:17.0,ingr:"Свекла, картофель, морковь, огурцы солёные, капуста квашеная, горошек, горчица"},
+  {name:"Зелёный салат, грудка су-вид, кукуруза",cat:"Салат",weight:95,fc:56,kcal_p:113,b_p:10.2,f_p:6.1,c_p:5.0,ingr:"Айсберг, романо, шпинат, кукуруза, грудка су-вид, мёд, соевый соус, горчица"},
+  {name:"Сырники со сметаной",cat:"Десерт",weight:175,fc:112,kcal_p:639,b_p:37.0,f_p:22.2,c_p:73.2,ingr:"Творог 5%, крупа манная, сахар, яйцо (меланж), мука, сметана 15%"},
+  {name:"Протеиновый брауни с бананом",cat:"Десерт",weight:120,fc:74,kcal_p:197.7,b_p:21.5,f_p:6.9,c_p:10.7,ingr:"Банан, яйцо, протеин сывороточный, какао-порошок, йогурт греческий, разрыхлитель"}
 ];
 const AVG_FC = Math.round(MENU_DATA.reduce((s,m)=>s+m.fc,0)/MENU_DATA.length);
 
-// ── NAVIGATION ────────────────────────────────────────
 function goPage(id, btn) {
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(b=>b.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
   btn.classList.add('active');
-  if(id==='menu'      && !window._menuBuilt)  buildMenu();
-  if(id==='vc'        && !window._vcBuilt)    { window._vcBuilt=true; calcVC(); }
-  if(id==='questions' && !window._qBuilt)     { window._qBuilt=true; renderBoard(); }
+  if(id==='menu'      && !window._menuBuilt) buildMenu();
+  if(id==='vc'        && !window._vcBuilt)   { window._vcBuilt=true; calcVC(); }
+  if(id==='questions' && !window._qBuilt)    { window._qBuilt=true; renderBoard(); }
 }
 
-// ── ROADMAP ───────────────────────────────────────────
 const ROADMAP = {
   phase0:[
-    {done:true, name:"Samara market analysis", desc:"Competitors studied: Mealty, Level Kitchen, Perfect Balance, Willfood, GBalance, PriEm, FitBox. Niche identified.", dur:""},
-    {done:true, name:"Two-brand concept", desc:"Positioning and identity for BODRO (comfort food, white packaging) and BODRO SMART (macro-focus, black).", dur:""},
-    {done:true, name:"Recipe cards (18 dishes)", desc:"Recipes, weights, food cost per dish.", dur:""},
-    {done:true, name:"Financial model", desc:"P&L across 4 scenarios, Value Chain, break-even calculation.", dur:""},
-    {prog:true, name:"Packaging: design concept", desc:"BODRO SMART: macros large on black lid. BODRO: dish name + white minimalist lid. Archivo 900 + JetBrains Mono.", dur:"In progress"},
+    {done:true,name:"Анализ рынка Самары",desc:"Изучены конкуренты: Mealty, Level Kitchen, Perfect Balance, Willfood, GBalance, ПриЕм, FitBox. Выявлена ниша.",dur:""},
+    {done:true,name:"Концепция двух брендов",desc:"Позиционирование и айдентика для BODRO (комфорт-еда, белая упаковка) и BODRO SMART (КБЖУ-фокус, чёрная).",dur:""},
+    {done:true,name:"Технологические карты (18 блюд)",desc:"Рецептуры, граммовки, себестоимость каждого блюда.",dur:""},
+    {done:true,name:"Финансовая модель (Excel)",desc:"P&L по 4 сценариям, Value Chain, расчёт точки безубыточности.",dur:""},
+    {prog:true,name:"Упаковка: дизайн-концепция",desc:"BODRO SMART: КБЖУ крупно на чёрной крышке. BODRO: название блюда + белая минималистичная крышка.",dur:"В работе"},
   ],
   phase1:[
-    {name:"Register as sole proprietor", desc:"OKVED 56.10 (restaurant activities), 56.21 (ready meal delivery). State fee 800 RUB, 3 business days.", dur:"3 days"},
-    {name:"Open business bank account", desc:"Recommended: T-Bank (Tinkoff) — acquiring and terminals in one place.", dur:"1 day"},
-    {name:"Tax registration", desc:"Notification to apply simplified tax 15% 'income minus expenses'.", dur:"1–3 days"},
+    {name:"Регистрация ИП",desc:"ОКВЭД 56.10 (ресторанная деятельность), 56.21 (поставка готовых блюд). Госпошлина 800 ₽, срок 3 рабочих дня.",dur:"3 дня"},
+    {name:"Открытие расчётного счёта",desc:"Рекомендуем Т-Банк (Тинькофф): эквайринг и терминалы в одном окне.",dur:"1 день"},
+    {name:"Постановка на учёт в налоговую",desc:"Уведомление о применении УСН 15% «доходы минус расходы».",dur:"1–3 дня"},
   ],
   phase2:[
-    {name:"Find premises", desc:"60–80 sqm, production zone, sink, restroom, ventilation, 380V outlet.", dur:"2–4 weeks"},
-    {name:"Legal lease arrangement", desc:"Lease agreement, premises transfer act. Renovation coordination.", dur:"1 week"},
-    {name:"Renovation to SanPiN standards", desc:"Zoning (cold shop, hot shop, wash station). Tile, stainless steel, ventilation. Budget 150–250k RUB.", dur:"3–5 weeks"},
-    {name:"Equipment purchase (used)", desc:"Combi oven, refrigerators, stainless table, vacuum packer, meat grinder, blender. Budget 250–350k RUB.", dur:"1–2 weeks"},
-    {name:"Hire manager — priority #1", desc:"80–120k RUB + 5–10% of profit. Hire personally and carefully. Don't launch without one.", dur:"2–4 weeks"},
-    {name:"Hire 2 cooks", desc:"60k RUB each. Experience in hot kitchen, recipe adherence.", dur:"1–2 weeks"},
-    {name:"Health certificates for staff", desc:"Required for all food handlers. Rospotrebnadzor.", dur:"1 week"},
-    {name:"Notify Rospotrebnadzor", desc:"Submit notification of business commencement.", dur:"1 day"},
-    {name:"Waste removal contract", desc:"Mandatory contract with licensed organization.", dur:"3 days"},
-    {name:"Packaging procurement", desc:"PP containers 500/750/1000 ml. BODRO SMART stickers (macros) and BODRO. Budget 50k RUB for 3 months.", dur:"1 week"},
+    {name:"Поиск помещения",desc:"Площадь 60–80 м², производственная зона, мойка, санузел, вытяжка, выход 380В.",dur:"2–4 нед"},
+    {name:"Юридическое оформление аренды",desc:"Договор аренды, акт передачи помещения. Согласование перепланировки.",dur:"1 нед"},
+    {name:"Ремонт под требования СанПиН",desc:"Зонирование (холодный цех, горячий цех, моечная). Кафель, нержавейка, вытяжка. Бюджет 150–250 тыс. ₽.",dur:"3–5 нед"},
+    {name:"Закупка оборудования (б/у)",desc:"Конвектомат, холодильные шкафы, стол нержавейка, вакуум-пакователь, мясорубка, блендер. Бюджет 250–350 тыс. ₽.",dur:"1–2 нед"},
+    {name:"Найм управляющего — приоритет #1",desc:"80–120 тыс. ₽ + 5–10% от прибыли. Лично и тщательно. Без него не запускать.",dur:"2–4 нед"},
+    {name:"Найм 2 поваров",desc:"60 тыс. ₽ каждый. Опыт горячего цеха, соблюдение рецептур.",dur:"1–2 нед"},
+    {name:"Санитарные книжки персонала",desc:"Обязательно для всех, кто работает с едой. Роспотребнадзор.",dur:"1 нед"},
+    {name:"Уведомление в Роспотребнадзор",desc:"Подача уведомления о начале деятельности.",dur:"1 день"},
+    {name:"Договор на вывоз ТБО",desc:"Обязательный договор с лицензированной организацией.",dur:"3 дня"},
+    {name:"Закупка упаковки",desc:"PP-контейнеры 500/750/1000 мл. Стикеры BODRO SMART (КБЖУ) и BODRO. Бюджет 50 тыс. ₽ на 3 мес.",dur:"1 нед"},
   ],
   phase3:[
-    {name:"Launch on Yandex Food", desc:"Partner registration. Professional dish photography (mandatory). Commission 25–28%.", dur:"1–2 weeks"},
-    {name:"Launch Telegram channel", desc:"Daily 'today's menu' post + Telegram bot for direct orders. No aggregator commission.", dur:"3 days"},
-    {name:"First sales", desc:"Target: 20–40 portions per day. Collect feedback. Repeat rate from first order.", dur:"2–4 weeks"},
-    {name:"B2B cold outreach", desc:"Calls to offices with 30–100 people. Corporate lunch proposal.", dur:"Ongoing"},
-    {name:"Business center tastings", desc:"Visit 3–5 Samara BCs with samples. QR code to subscription or bot.", dur:"2–3 weeks"},
+    {name:"Запуск на Яндекс.Еда",desc:"Регистрация партнёра. Фотосъёмка блюд (обязательно хорошего качества). Комиссия 25–28%.",dur:"1–2 нед"},
+    {name:"Запуск Telegram-канала",desc:"Ежедневный пост «меню дня» + Telegram-бот для заказов напрямую. Без агрегаторной комиссии.",dur:"3 дня"},
+    {name:"Первые продажи",desc:"Цель: 20–40 порций в день. Собираем обратную связь. Repeat rate с первого заказа.",dur:"2–4 нед"},
+    {name:"B2B холодные звонки",desc:"Звонки в офисы 30–100 человек. Предложение корпоративного обеда.",dur:"Постоянно"},
+    {name:"Дегустации в бизнес-центрах",desc:"Выезд с пробниками в 3–5 самарских БЦ. QR-код на подписку или бот.",dur:"2–3 нед"},
   ],
   phase4:[
-    {name:"Reach break-even", desc:"60–80 portions per day. Control food cost, minimize write-offs.", dur:"Month 3–4"},
-    {name:"DTC subscription (weekly plan)", desc:"'Lunch for the week from BODRO' and 'BODRO SMART weekly plan'. Prepayment.", dur:"Month 4"},
-    {name:"First BODRO SMART stations (3–5 offices)", desc:"Install fridges in offices. Daily restock before 9:00. No aggregator.", dur:"Month 4–5"},
-    {name:"Corporate contracts", desc:"Supply agreement. Monthly prepayment. Most margin-efficient channel.", dur:"Month 5–6"},
+    {name:"Выход на точку безубыточности",desc:"60–80 порций в день. Контроль food cost, минимизация списаний.",dur:"Мес. 3–4"},
+    {name:"DTC-подписка (недельный план)",desc:"«Обед на неделю от BODRO» и «Рацион недели BODRO SMART». Предоплата.",dur:"Мес. 4"},
+    {name:"Первые Станции BODRO SMART (3–5 офисов)",desc:"Установка холодильников в офисах. Ежедневное пополнение до 9:00. Нет агрегатора.",dur:"Мес. 4–5"},
+    {name:"Корпоративные контракты",desc:"Договор на поставку обедов. Предоплата помесячно. Самый маржинальный канал.",dur:"Мес. 5–6"},
   ],
   phase5:[
-    {name:"150–225 portions per day", desc:"Owner income 500k RUB/month. Mixed channel: Yandex + DTC + B2B.", dur:"Month 6–8"},
-    {name:"Hire additional cook", desc:"At 150+ portions volume. Third cook or night shift.", dur:"Month 6"},
-    {name:"DTC website and app", desc:"Site for subscriptions. Integration with delivery (own courier or CDEK Last Mile).", dur:"Month 7–9"},
-    {name:"350 portions/day — 1M RUB/month", desc:"Developing own channels reduces Yandex share. Margin grows to 30%+ business-wide.", dur:"Month 10–12"},
-    {name:"Consider second city", desc:"Tolyatti (nearby) or Kazan. Replicate model with managing partner.", dur:"Month 12–18"},
+    {name:"150–225 порций в день",desc:"Доход собственника 500 тыс. ₽/мес. Смешанный канал: Яндекс + DTC + B2B.",dur:"Мес. 6–8"},
+    {name:"Найм дополнительного повара",desc:"При объёме 150+ порций. Третий повар или ночная смена.",dur:"Мес. 6"},
+    {name:"DTC-сайт и приложение",desc:"Сайт для подписок. Интеграция с доставкой (собственный курьер или CDEK Last Mile).",dur:"Мес. 7–9"},
+    {name:"350 порций/день — 1 млн ₽/мес",desc:"Развитие собственных каналов снижает долю Яндекса. Маржа растёт до 30%+ по бизнесу.",dur:"Мес. 10–12"},
+    {name:"Рассмотрение второго города",desc:"Тольятти (рядом) или Казань. Тиражирование модели с управляющим-партнёром.",dur:"Мес. 12–18"},
   ],
 };
 
 function renderPhase(phaseKey, elId) {
-  const tasks = ROADMAP[phaseKey];
-  const el = document.getElementById(elId);
-  el.innerHTML = tasks.map((t,i) => `
+  const tasks=ROADMAP[phaseKey], el=document.getElementById(elId);
+  el.innerHTML=tasks.map((t,i)=>`
     <div class="tl-item ${t.done?'done':''}">
       <div class="tl-status">
         <div class="s-dot ${t.done?'s-done':t.prog?'s-progress':'s-pending'}"></div>
@@ -1078,435 +815,253 @@ function renderPhase(phaseKey, elId) {
 }
 ['phase0','phase1','phase2','phase3','phase4','phase5'].forEach(k=>renderPhase(k,k));
 
-// ── MENU ──────────────────────────────────────────────
-function buildMenu() { window._menuBuilt=true; renderMenuCards('all'); }
-function filterMenu(filter, btn) {
-  document.querySelectorAll('#menuPills .pill').forEach(p=>p.classList.remove('active'));
-  btn.classList.add('active'); renderMenuCards(filter);
-}
-function renderMenuCards(filter) {
-  const CAT_LABELS = {'Суп':'Soup','Второе':'Main','Гарнир':'Side','Салат':'Salad','Десерт':'Dessert'};
-  const items = filter==='all' ? MENU_DATA : MENU_DATA.filter(m=>m.cat===filter);
-  document.getElementById('menuGrid').innerHTML = items.map(m => {
-    const w=m.weight;
-    const k100=(m.kcal_p/w*100).toFixed(0), b100=(m.b_p/w*100).toFixed(1);
-    const f100=(m.f_p/w*100).toFixed(1),    c100=(m.c_p/w*100).toFixed(1);
+// MENU
+function buildMenu(){ window._menuBuilt=true; renderMenuCards('all'); }
+function filterMenu(filter,btn){ document.querySelectorAll('#menuPills .pill').forEach(p=>p.classList.remove('active')); btn.classList.add('active'); renderMenuCards(filter); }
+function renderMenuCards(filter){
+  const items=filter==='all'?MENU_DATA:MENU_DATA.filter(m=>m.cat===filter);
+  document.getElementById('menuGrid').innerHTML=items.map(m=>{
+    const w=m.weight, k100=(m.kcal_p/w*100).toFixed(0), b100=(m.b_p/w*100).toFixed(1), f100=(m.f_p/w*100).toFixed(1), c100=(m.c_p/w*100).toFixed(1);
     return `<div class="m-card">
       <div class="flex justify-between items-start mb8">
-        <span class="chip">${CAT_LABELS[m.cat]||m.cat}</span>
-        <span class="fs12 c-muted">${m.weight} g</span>
+        <span class="chip">${m.cat}</span>
+        <span class="fs12 c-muted">${m.weight} г</span>
       </div>
       <div class="m-name">${m.name}</div>
-      <div class="m-cat">Portion · ${m.weight} g</div>
-      <div class="m-ingr"><strong>Ingredients:</strong> ${m.ingr}</div>
+      <div class="m-cat">Порция · ${m.weight} г</div>
+      <div class="m-ingr"><strong>Состав:</strong> ${m.ingr}</div>
       <div class="divider"></div>
-      <div class="mono fs10 c-muted mb8" style="text-transform:uppercase;letter-spacing:.08em;font-weight:700;">NUTRITION · per 100 g</div>
+      <div class="mono fs10 c-muted mb8" style="text-transform:uppercase;letter-spacing:.08em;font-weight:700;">КБЖУ · 100 г</div>
       <div class="kbju-grid mb12">
-        <div class="kbju-cell"><div class="kbju-v kbju-red">${k100}</div><div class="kbju-l">KCAL</div></div>
-        <div class="kbju-cell"><div class="kbju-v">${b100}</div><div class="kbju-l">PROT</div></div>
-        <div class="kbju-cell"><div class="kbju-v">${f100}</div><div class="kbju-l">FAT</div></div>
-        <div class="kbju-cell"><div class="kbju-v">${c100}</div><div class="kbju-l">CARB</div></div>
+        <div class="kbju-cell"><div class="kbju-v kbju-red">${k100}</div><div class="kbju-l">ККАЛ</div></div>
+        <div class="kbju-cell"><div class="kbju-v">${b100}</div><div class="kbju-l">БЕЛКИ</div></div>
+        <div class="kbju-cell"><div class="kbju-v">${f100}</div><div class="kbju-l">ЖИРЫ</div></div>
+        <div class="kbju-cell"><div class="kbju-v">${c100}</div><div class="kbju-l">УГЛЕВ.</div></div>
       </div>
-      <div class="mono fs10 c-muted mb8" style="text-transform:uppercase;letter-spacing:.08em;font-weight:700;">NUTRITION · portion ${w} g</div>
+      <div class="mono fs10 c-muted mb8" style="text-transform:uppercase;letter-spacing:.08em;font-weight:700;">КБЖУ · порция ${w} г</div>
       <div class="kbju-grid">
-        <div class="kbju-cell"><div class="kbju-v kbju-red">${m.kcal_p}</div><div class="kbju-l">KCAL</div></div>
-        <div class="kbju-cell"><div class="kbju-v">${m.b_p}</div><div class="kbju-l">PROT</div></div>
-        <div class="kbju-cell"><div class="kbju-v">${m.f_p}</div><div class="kbju-l">FAT</div></div>
-        <div class="kbju-cell"><div class="kbju-v">${m.c_p}</div><div class="kbju-l">CARB</div></div>
+        <div class="kbju-cell"><div class="kbju-v kbju-red">${m.kcal_p}</div><div class="kbju-l">ККАЛ</div></div>
+        <div class="kbju-cell"><div class="kbju-v">${m.b_p}</div><div class="kbju-l">БЕЛКИ</div></div>
+        <div class="kbju-cell"><div class="kbju-v">${m.f_p}</div><div class="kbju-l">ЖИРЫ</div></div>
+        <div class="kbju-cell"><div class="kbju-v">${m.c_p}</div><div class="kbju-l">УГЛЕВ.</div></div>
       </div>
       <div class="divider"></div>
-      <div class="m-fc">Ingredient cost: <strong>${m.fc} RUB</strong></div>
+      <div class="m-fc">Себестоимость ингредиентов: <strong>${m.fc} ₽</strong></div>
     </div>`;
   }).join('');
 }
 
-// ── VALUE CHAIN ───────────────────────────────────────
-let scDishes = 40;
+// VALUE CHAIN
+let scDishes=40;
 function v(id){ return parseFloat(document.getElementById(id).value)||0; }
-function fmt(n){ return (n<0?'–':'')+Math.abs(Math.round(n)).toLocaleString('ru')+' RUB'; }
-function fmtK(n){ return Math.round(n/1000)+'k'; }
+function fmt(n){ return (n<0?'–':'')+Math.abs(Math.round(n)).toLocaleString('ru')+' ₽'; }
+function fmtK(n){ return Math.round(n/1000)+'к'; }
 
-function calcVC() {
-  const pkg        = v('sl_pkg');
-  const markup     = v('sl_markup');
-  const avgFc      = AVG_FC;
-  const cogsPerDish= avgFc + pkg;
-  const salePrice  = Math.round(cogsPerDish * (1 + markup/100));
-  const fcPct      = Math.round(cogsPerDish / salePrice * 100);
+function calcVC(){
+  const pkg=v('sl_pkg'), markup=v('sl_markup'), avgFc=AVG_FC, cogsPerDish=avgFc+pkg;
+  const salePrice=Math.round(cogsPerDish*(1+markup/100)), fcPct=Math.round(cogsPerDish/salePrice*100);
+  const yaComm=v('sl_ya')/100, dtcDisc=v('sl_dtc')/100, yaShare=v('sl_ya_share')/100, dtcShare=v('sl_dtc_share')/100;
+  const b2bShare=Math.max(0,1-yaShare-dtcShare), wtdComm=yaShare*yaComm+dtcShare*dtcDisc+b2bShare*0.10;
+  const netPerDish=salePrice*(1-wtdComm), marginDish=netPerDish-cogsPerDish;
+  const wkday=v('sl_wkday'), wkendFactor=v('sl_wkend')/100, wkend=Math.round(wkday*wkendFactor);
+  const monthDishes=Math.round(wkday*22+wkend*8);
+  const revGross=monthDishes*salePrice, commLoss=monthDishes*salePrice*wtdComm;
+  const revNet=revGross-commLoss, cogsTotal=monthDishes*cogsPerDish;
+  const gp=revNet-cogsTotal, gpPct=revGross>0?Math.round(gp/revGross*100):0;
+  const fot=(v('fot_manager')+v('fot_cook1')+v('fot_cook2')+v('fot_acc'))*1.3;
+  const fixedOther=v('fc_rent')+v('fc_util')+v('fc_mkt')+v('fc_other');
+  const allFixed=fot+fixedOther, ebitda=gp-allFixed;
+  const ebitdaPct=revGross>0?Math.round(ebitda/revGross*100):0;
+  const beMonthly=marginDish>0?Math.ceil(allFixed/marginDish):0;
+  const beDaily=beMonthly>0?Math.ceil(beMonthly/(22+8*wkendFactor)):0;
 
-  const yaComm     = v('sl_ya')/100;
-  const dtcDisc    = v('sl_dtc')/100;
-  const yaShare    = v('sl_ya_share')/100;
-  const dtcShare   = v('sl_dtc_share')/100;
-  const b2bShare   = Math.max(0, 1 - yaShare - dtcShare);
-  const wtdComm    = yaShare*yaComm + dtcShare*dtcDisc + b2bShare*0.10;
-  const netPerDish = salePrice*(1-wtdComm);
-  const marginDish = netPerDish - cogsPerDish;
+  document.getElementById('lbl_pkg').textContent=pkg+' ₽';
+  document.getElementById('lbl_markup').textContent=markup+'%';
+  document.getElementById('res_avg_fc_display').textContent=avgFc+' ₽';
+  document.getElementById('res_cogs_display').textContent=cogsPerDish+' ₽';
+  document.getElementById('res_sale_price').textContent=salePrice+' ₽';
+  document.getElementById('res_food_cost_pct').textContent=fcPct+'%';
+  document.getElementById('lbl_ya').textContent=v('sl_ya')+'%';
+  document.getElementById('lbl_ya_share').textContent=v('sl_ya_share')+'%';
+  document.getElementById('lbl_dtc').textContent=v('sl_dtc')+'%';
+  document.getElementById('lbl_dtc_share').textContent=v('sl_dtc_share')+'%';
+  document.getElementById('b2b_share_txt').textContent=Math.round(b2bShare*100)+'%';
+  document.getElementById('lbl_wkday').textContent=wkday;
+  document.getElementById('lbl_wkend').textContent=v('sl_wkend')+'%';
+  document.getElementById('wkend_dishes_txt').textContent=wkend+' порц/день';
+  document.getElementById('res_monthly_dishes').textContent=monthDishes.toLocaleString('ru');
+  document.getElementById('res_revenue_gross').textContent=fmtK(revGross)+'к ₽';
+  document.getElementById('res_monthly_note').textContent=`${wkday}×22 + ${wkend}×8 дней`;
+  ['manager','cook1','cook2','acc'].forEach(k=>{ const el=document.getElementById('fot_'+k+'_with_tax'); if(el) el.textContent=fmt(v('fot_'+k)*1.3); });
+  document.getElementById('fot_total').textContent=fmt(fot);
+  document.getElementById('fixed_total').textContent=fmt(fixedOther);
 
-  const wkday      = v('sl_wkday');
-  const wkendFactor= v('sl_wkend')/100;
-  const wkend      = Math.round(wkday * wkendFactor);
-  const monthDishes= Math.round(wkday*22 + wkend*8);
+  const eEl=document.getElementById('kpi_ebitda');
+  eEl.textContent=fmt(ebitda); eEl.className='kpi-num '+(ebitda>=0?'kpi-ok':'kpi-bad');
+  document.getElementById('kpi_ebitda_pct').textContent=`${ebitdaPct>0?'+':''}${ebitdaPct}% от выручки`;
+  const beEl=document.getElementById('kpi_breakeven');
+  beEl.textContent=beDaily>0?beDaily+' порц':'—'; beEl.className='kpi-num '+(beDaily>0&&wkday>=beDaily?'kpi-ok':'kpi-bad');
+  document.getElementById('kpi_gm').textContent=gpPct+'%';
+  document.getElementById('kpi_gm').className='kpi-num '+(gpPct>=40?'kpi-ok':'kpi-bad');
+  const mdEl=document.getElementById('kpi_margin_dish');
+  mdEl.textContent=(marginDish>=0?'+':'')+Math.round(marginDish)+' ₽'; mdEl.className='kpi-num '+(marginDish>0?'kpi-ok':'kpi-bad');
 
-  const revGross   = monthDishes * salePrice;
-  const commLoss   = monthDishes * salePrice * wtdComm;
-  const revNet     = revGross - commLoss;
-  const cogsTotal  = monthDishes * cogsPerDish;
-  const gp         = revNet - cogsTotal;
-  const gpPct      = revGross>0 ? Math.round(gp/revGross*100):0;
-
-  const fot        = (v('fot_manager')+v('fot_cook1')+v('fot_cook2')+v('fot_acc'))*1.3;
-  const fixedOther = v('fc_rent')+v('fc_util')+v('fc_mkt')+v('fc_other');
-  const allFixed   = fot + fixedOther;
-  const ebitda     = gp - allFixed;
-  const ebitdaPct  = revGross>0 ? Math.round(ebitda/revGross*100):0;
-
-  const beMonthly  = marginDish>0 ? Math.ceil(allFixed / marginDish):0;
-  const beDaily    = beMonthly>0 ? Math.ceil(beMonthly / (22+8*wkendFactor)):0;
-
-  document.getElementById('lbl_pkg').textContent     = pkg+' RUB';
-  document.getElementById('lbl_markup').textContent  = markup+'%';
-  document.getElementById('res_avg_fc_display').textContent = avgFc+' RUB';
-  document.getElementById('res_cogs_display').textContent   = cogsPerDish+' RUB';
-  document.getElementById('res_sale_price').textContent     = salePrice+' RUB';
-  document.getElementById('res_food_cost_pct').textContent  = fcPct+'%';
-
-  document.getElementById('lbl_ya').textContent       = v('sl_ya')+'%';
-  document.getElementById('lbl_ya_share').textContent = v('sl_ya_share')+'%';
-  document.getElementById('lbl_dtc').textContent      = v('sl_dtc')+'%';
-  document.getElementById('lbl_dtc_share').textContent= v('sl_dtc_share')+'%';
-  document.getElementById('b2b_share_txt').textContent= Math.round(b2bShare*100)+'%';
-
-  document.getElementById('lbl_wkday').textContent     = wkday;
-  document.getElementById('lbl_wkend').textContent     = v('sl_wkend')+'%';
-  document.getElementById('wkend_dishes_txt').textContent = wkend+' portions/day';
-  document.getElementById('res_monthly_dishes').textContent = monthDishes.toLocaleString('ru');
-  document.getElementById('res_revenue_gross').textContent  = fmtK(revGross)+'k RUB';
-  document.getElementById('res_monthly_note').textContent   = `${wkday}×22 + ${wkend}×8 days`;
-
-  ['manager','cook1','cook2','acc'].forEach(k=>{
-    const el=document.getElementById('fot_'+k+'_with_tax');
-    if(el) el.textContent = fmt(v('fot_'+k)*1.3);
-  });
-  document.getElementById('fot_total').textContent  = fmt(fot);
-  document.getElementById('fixed_total').textContent= fmt(fixedOther);
-
-  const ebitdaEl = document.getElementById('kpi_ebitda');
-  ebitdaEl.textContent = fmt(ebitda);
-  ebitdaEl.className = 'kpi-num '+(ebitda>=0?'kpi-ok':'kpi-bad');
-  document.getElementById('kpi_ebitda_pct').textContent = `${ebitdaPct>0?'+':''}${ebitdaPct}% of revenue`;
-
-  const beEl = document.getElementById('kpi_breakeven');
-  beEl.textContent = beDaily > 0 ? beDaily+' portions' : '—';
-  beEl.className = 'kpi-num '+(beDaily>0&&wkday>=beDaily?'kpi-ok':'kpi-bad');
-
-  document.getElementById('kpi_gm').textContent = gpPct+'%';
-  document.getElementById('kpi_gm').className = 'kpi-num '+(gpPct>=40?'kpi-ok':'kpi-bad');
-
-  const mdEl = document.getElementById('kpi_margin_dish');
-  mdEl.textContent = (marginDish>=0?'+':'')+Math.round(marginDish)+' RUB';
-  mdEl.className = 'kpi-num '+(marginDish>0?'kpi-ok':'kpi-bad');
-
-  const rows = [
-    {name:'Revenue (gross)', val:revGross},
-    {name:'— Channel commissions', val:-commLoss, sub:true},
-    {name:'Net revenue', val:revNet, bold:true, line:true},
-    {name:'— COGS (ingredients + packaging)', val:-cogsTotal, sub:true},
-    {name:'Gross profit (GP '+gpPct+'%)', val:gp, bold:true, line:true},
-    {name:'— Payroll with taxes', val:-fot, sub:true},
-    {name:'— Rent + utilities', val:-(v('fc_rent')+v('fc_util')), sub:true},
-    {name:'— Marketing + other', val:-(v('fc_mkt')+v('fc_other')), sub:true},
-    {name:'EBITDA ('+ebitdaPct+'%)', val:ebitda, bold:true, total:true},
+  const rows=[
+    {name:'Выручка (gross)',val:revGross},
+    {name:'— Комиссии каналов',val:-commLoss,sub:true},
+    {name:'Выручка нетто',val:revNet,bold:true,line:true},
+    {name:'— COGS (ингред. + упаковка)',val:-cogsTotal,sub:true},
+    {name:'Валовая прибыль (GP '+gpPct+'%)',val:gp,bold:true,line:true},
+    {name:'— ФОТ с налогами',val:-fot,sub:true},
+    {name:'— Аренда + коммуналка',val:-(v('fc_rent')+v('fc_util')),sub:true},
+    {name:'— Маркетинг + прочее',val:-(v('fc_mkt')+v('fc_other')),sub:true},
+    {name:'EBITDA ('+ebitdaPct+'%)',val:ebitda,bold:true,total:true},
   ];
-  document.getElementById('pl_waterfall').innerHTML = rows.map(r=>{
-    const color = r.val<0?'var(--red)':r.val===revGross||r.val===revNet?'var(--black)':r.val>=0?'var(--green-ok)':'var(--black)';
-    const cls = r.total?'pl-row pl-total':'pl-row';
-    return `<div class="${cls}" style="${r.line?'margin-top:4px;':''}">
+  document.getElementById('pl_waterfall').innerHTML=rows.map(r=>{
+    const color=r.val<0?'var(--red)':r.val===revGross||r.val===revNet?'var(--black)':r.val>=0?'var(--green-ok)':'var(--black)';
+    return `<div class="${r.total?'pl-row pl-total':'pl-row'}" style="${r.line?'margin-top:4px;':''}">
       <span class="${r.bold?'pl-name strong':'pl-name'}">${r.name}</span>
       <span class="pl-amount" style="color:${color};">${fmt(r.val)}</span>
     </div>`;
   }).join('');
 
-  const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-  const factors = [1.0, 1.0, 0.98, 0.95, 0.90, wkendFactor, wkendFactor*0.85];
-  const dayRevs = factors.map(f=>wkday*f*netPerDish);
-  const maxRev = Math.max(...dayRevs);
-  document.getElementById('week_bars').innerHTML = days.map((d,i)=>{
-    const hPct = maxRev>0 ? Math.round(dayRevs[i]/maxRev*100):0;
-    const isWkend = i>=5;
+  const days=['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+  const factors=[1.0,1.0,0.98,0.95,0.90,wkendFactor,wkendFactor*0.85];
+  const dayRevs=factors.map(f=>wkday*f*netPerDish), maxRev=Math.max(...dayRevs);
+  document.getElementById('week_bars').innerHTML=days.map((d,i)=>{
+    const hPct=maxRev>0?Math.round(dayRevs[i]/maxRev*100):0, isWk=i>=5;
     return `<div class="day-bar-wrap">
       <div class="day-val">${fmtK(dayRevs[i])}</div>
-      <div class="day-bar-outer">
-        <div class="day-bar-fill" style="height:${hPct}%; background:${isWkend?'#ccc':'var(--black)'}"></div>
-      </div>
-      <div class="day-label" style="color:${isWkend?'var(--muted)':'var(--black)'}">${d}</div>
+      <div class="day-bar-outer"><div class="day-bar-fill" style="height:${hPct}%;background:${isWk?'#ccc':'var(--black)'}"></div></div>
+      <div class="day-label" style="color:${isWk?'var(--muted)':'var(--black)'}">${d}</div>
     </div>`;
   }).join('');
 
-  const weekdayTotal = dayRevs.slice(0,5).reduce((a,b)=>a+b,0)*4.4;
-  const wkendTotal   = dayRevs.slice(5).reduce((a,b)=>a+b,0)*4;
-  const wkendShare   = revNet>0 ? Math.round(wkendTotal/(weekdayTotal+wkendTotal)*100):0;
-  const gapAmt       = wkday*netPerDish*8 - wkend*netPerDish*8;
-  document.getElementById('week_footnote').innerHTML =
-    `Weekends contribute only <strong>${wkendShare}%</strong> of revenue at ${Math.round(wkendFactor*100)}% of weekday volume. `+
-    `Monthly shortfall from 8 weekend days: ~<strong>${fmtK(gapAmt)}k RUB</strong>. `+
-    `Fixed costs of <strong>${fmtK(allFixed/30*8)}k RUB</strong> for those days don't decrease.`;
+  const wkdayTotal=dayRevs.slice(0,5).reduce((a,b)=>a+b,0)*4.4, wkendTotal=dayRevs.slice(5).reduce((a,b)=>a+b,0)*4;
+  const wkendShare=revNet>0?Math.round(wkendTotal/(wkdayTotal+wkendTotal)*100):0;
+  const gapAmt=wkday*netPerDish*8-wkend*netPerDish*8;
+  document.getElementById('week_footnote').innerHTML=`Выходные дают только <strong>${wkendShare}%</strong> выручки при ${Math.round(wkendFactor*100)}% от буднего объёма. Недобор за 8 выходных дней в месяц: ~<strong>${fmtK(gapAmt)}к ₽</strong>. При этом постоянные расходы <strong>${fmtK(allFixed/30*8)}к ₽</strong> за выходные не снижаются.`;
 
-  renderScTable(scDishes, salePrice, cogsPerDish, wtdComm, wkendFactor, allFixed);
+  renderScTable(scDishes,salePrice,cogsPerDish,wtdComm,wkendFactor,allFixed);
 }
 
-function showSc(dishes, btn) {
-  scDishes = dishes;
-  document.querySelectorAll('.sc-tab').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  const pkg=v('sl_pkg'), markup=v('sl_markup'), avgFc=AVG_FC, cogs=avgFc+pkg;
-  const sp=Math.round(cogs*(1+markup/100));
-  const ya=v('sl_ya')/100, dtc=v('sl_dtc')/100, yaS=v('sl_ya_share')/100, dtcS=v('sl_dtc_share')/100;
-  const b2b=Math.max(0,1-yaS-dtcS), wc=yaS*ya+dtcS*dtc+b2b*0.10, wf=v('sl_wkend')/100;
+function showSc(dishes,btn){
+  scDishes=dishes; document.querySelectorAll('.sc-tab').forEach(b=>b.classList.remove('active')); btn.classList.add('active');
+  const pkg=v('sl_pkg'),markup=v('sl_markup'),avgFc=AVG_FC,cogs=avgFc+pkg,sp=Math.round(cogs*(1+markup/100));
+  const ya=v('sl_ya')/100,dtc=v('sl_dtc')/100,yaS=v('sl_ya_share')/100,dtcS=v('sl_dtc_share')/100;
+  const b2b=Math.max(0,1-yaS-dtcS),wc=yaS*ya+dtcS*dtc+b2b*0.10,wf=v('sl_wkend')/100;
   const fot=(v('fot_manager')+v('fot_cook1')+v('fot_cook2')+v('fot_acc'))*1.3;
   renderScTable(dishes,sp,cogs,wc,wf,fot+v('fc_rent')+v('fc_util')+v('fc_mkt')+v('fc_other'));
 }
 
-function renderScTable(dailyWkday, salePrice, cogs, wtdComm, wkendF, allFixed) {
-  const wkend=Math.round(dailyWkday*wkendF), monthDishes=Math.round(dailyWkday*22+wkend*8);
-  const revGross=monthDishes*salePrice, commLoss=revGross*wtdComm;
-  const revNet=revGross-commLoss, cogsTotal=monthDishes*cogs;
-  const gp=revNet-cogsTotal, ebitda=gp-allFixed;
-  const gpPct=revGross>0?Math.round(gp/revGross*100):0, ebPct=revGross>0?Math.round(ebitda/revGross*100):0;
+function renderScTable(dailyWkday,salePrice,cogs,wtdComm,wkendF,allFixed){
+  const wkend=Math.round(dailyWkday*wkendF),monthDishes=Math.round(dailyWkday*22+wkend*8);
+  const revGross=monthDishes*salePrice,commLoss=revGross*wtdComm,revNet=revGross-commLoss;
+  const cogsTotal=monthDishes*cogs,gp=revNet-cogsTotal,ebitda=gp-allFixed;
+  const gpPct=revGross>0?Math.round(gp/revGross*100):0,ebPct=revGross>0?Math.round(ebitda/revGross*100):0;
   document.getElementById('sc_table').innerHTML=`
     <table class="sc-table">
-      <thead><tr><th>Metric</th><th class="num">RUB / month</th></tr></thead>
+      <thead><tr><th>Показатель</th><th class="num">₽ / мес</th></tr></thead>
       <tbody>
-        <tr><td>Portions: weekday / weekend / month</td><td class="num fw700">${dailyWkday} / ${wkend} / ${monthDishes.toLocaleString('ru')}</td></tr>
-        <tr><td>Revenue (gross)</td><td class="num">${fmt(revGross)}</td></tr>
-        <tr><td>— Channel commissions</td><td class="num" style="color:var(--red);">– ${fmt(commLoss)}</td></tr>
-        <tr><td>Net revenue</td><td class="num fw700">${fmt(revNet)}</td></tr>
-        <tr><td>— COGS</td><td class="num" style="color:var(--red);">– ${fmt(cogsTotal)}</td></tr>
-        <tr><td>Gross profit (GP)</td><td class="num fw700">${fmt(gp)} · ${gpPct}%</td></tr>
-        <tr><td>— All fixed costs</td><td class="num" style="color:var(--red);">– ${fmt(allFixed)}</td></tr>
+        <tr><td>Порций: будни / вых / месяц</td><td class="num fw700">${dailyWkday} / ${wkend} / ${monthDishes.toLocaleString('ru')}</td></tr>
+        <tr><td>Выручка (gross)</td><td class="num">${fmt(revGross)}</td></tr>
+        <tr><td>— Комиссии каналов</td><td class="num" style="color:var(--red);">– ${fmt(commLoss)}</td></tr>
+        <tr><td>Выручка нетто</td><td class="num fw700">${fmt(revNet)}</td></tr>
+        <tr><td>— COGS (ингред. + упаковка)</td><td class="num" style="color:var(--red);">– ${fmt(cogsTotal)}</td></tr>
+        <tr><td>Валовая прибыль (GP)</td><td class="num fw700">${fmt(gp)} · ${gpPct}%</td></tr>
+        <tr><td>— Все постоянные расходы</td><td class="num" style="color:var(--red);">– ${fmt(allFixed)}</td></tr>
         <tr style="background:rgba(0,0,0,0.04);"><td style="font-weight:800;">EBITDA</td><td class="num fw700" style="color:${ebitda>=0?'var(--green-ok)':'var(--red)'};">${ebitda>=0?'+':''}${fmt(ebitda)} · ${ebPct}%</td></tr>
       </tbody>
     </table>`;
 }
 
-// ── QUESTIONS BOARD ───────────────────────────────────
-const LS_KEY = 'bodro_questions_v1';
+// QUESTIONS BOARD
+const LS_KEY='bodro_questions_v1';
+function loadQs(){ try{ return JSON.parse(localStorage.getItem(LS_KEY)||'[]'); }catch(e){ return []; } }
+function saveQs(qs){ localStorage.setItem(LS_KEY,JSON.stringify(qs)); }
 
-function loadQs() {
-  try { return JSON.parse(localStorage.getItem(LS_KEY) || '[]'); }
-  catch(e) { return []; }
+function renderBoard(){
+  const qs=loadQs();
+  const active=qs.filter(q=>q.status==='active'), answered=qs.filter(q=>q.status==='answered'), archived=qs.filter(q=>q.status==='archived');
+  document.getElementById('cnt-active').textContent=active.length;
+  document.getElementById('cnt-answered').textContent=answered.length;
+  document.getElementById('cnt-archive').textContent=archived.length;
+  document.getElementById('col-active').innerHTML=active.length?active.map(renderCard).join(''):'<div class="q-empty">Нет активных вопросов</div>';
+  document.getElementById('col-answered').innerHTML=answered.length?answered.map(renderCard).join(''):'<div class="q-empty">Нет отвеченных вопросов</div>';
+  document.getElementById('col-archive').innerHTML=archived.length?archived.map(renderCard).join(''):'<div class="q-empty">Архив пуст</div>';
+  document.getElementById('q-stats-row').innerHTML=qs.length?`
+    <div class="stat" style="padding:12px 18px;"><div class="stat-val" style="font-size:18px;">${active.length}</div><div class="stat-lbl">Открытых</div></div>
+    <div class="stat" style="padding:12px 18px;"><div class="stat-val" style="font-size:18px;">${answered.length}</div><div class="stat-lbl">Отвеченных</div></div>
+    <div class="stat" style="padding:12px 18px;"><div class="stat-val" style="font-size:18px;">${archived.length}</div><div class="stat-lbl">В архиве</div></div>`:'';
 }
-function saveQs(qs) {
-  localStorage.setItem(LS_KEY, JSON.stringify(qs));
-}
 
-function renderBoard() {
-  const qs = loadQs();
-  const active   = qs.filter(q=>q.status==='active');
-  const answered = qs.filter(q=>q.status==='answered');
-  const archived = qs.filter(q=>q.status==='archived');
+function esc(s){ if(!s) return ''; return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>'); }
 
-  document.getElementById('cnt-active').textContent   = active.length;
-  document.getElementById('cnt-answered').textContent = answered.length;
-  document.getElementById('cnt-archive').textContent  = archived.length;
-
-  document.getElementById('col-active').innerHTML   = active.length   ? active.map(renderCard).join('')   : emptyCol('No active questions');
-  document.getElementById('col-answered').innerHTML = answered.length ? answered.map(renderCard).join('') : emptyCol('No answered questions');
-  document.getElementById('col-archive').innerHTML  = archived.length ? archived.map(renderCard).join('') : emptyCol('Archive is empty');
-
-  // stats
-  const total = qs.length;
-  document.getElementById('q-stats-row').innerHTML = total > 0 ? `
-    <div class="stat" style="padding:12px 18px;">
-      <div class="stat-val" style="font-size:18px;">${active.length}</div>
-      <div class="stat-lbl">Open</div>
+function renderCard(q){
+  const d=new Date(q.createdAt).toLocaleDateString('ru-RU',{day:'numeric',month:'short',year:'numeric'});
+  const isArchived=q.status==='archived', isAnswered=q.status==='answered';
+  const answerSec=q.answer?`<div class="q-section"><div class="q-section-label">Решение / ответ</div><div class="q-section-text answer">${esc(q.answer)}</div></div>`:'';
+  const adviceSec=q.advice?`<div class="q-section"><div class="q-section-label">Рекомендация Claude</div><div class="q-section-text advice">${esc(q.advice)}</div></div>`:'';
+  return `<div class="q-card" id="qcard-${q.id}">
+    <div class="q-card-head">
+      ${q.tag?`<div class="q-tag">${esc(q.tag)}</div>`:''}
+      <div class="q-title">${esc(q.title)}</div>
+      <div class="q-date">${d}</div>
     </div>
-    <div class="stat" style="padding:12px 18px;">
-      <div class="stat-val" style="font-size:18px;">${answered.length}</div>
-      <div class="stat-lbl">Answered</div>
-    </div>
-    <div class="stat" style="padding:12px 18px;">
-      <div class="stat-val" style="font-size:18px;">${archived.length}</div>
-      <div class="stat-lbl">Archived</div>
-    </div>` : '';
-}
-
-function emptyCol(text) {
-  return `<div class="q-empty"><div class="q-empty-icon">—</div>${text}</div>`;
-}
-
-function renderCard(q) {
-  const dateStr = new Date(q.createdAt).toLocaleDateString('en-GB', {day:'numeric',month:'short',year:'numeric'});
-  const isArchived = q.status === 'archived';
-  const isAnswered = q.status === 'answered';
-
-  let answerSection = '';
-  if (q.answer) {
-    answerSection = `
-      <div class="q-section">
-        <div class="q-section-label">Decision / Answer</div>
-        <div class="q-section-text answer" id="answer-text-${q.id}">${escHtml(q.answer)}</div>
-      </div>`;
-  }
-  let adviceSection = '';
-  if (q.advice) {
-    adviceSection = `
-      <div class="q-section">
-        <div class="q-section-label">Claude's recommendation</div>
-        <div class="q-section-text advice">${escHtml(q.advice)}</div>
-      </div>`;
-  }
-
-  let actions = `
+    ${q.desc?`<div class="q-desc" id="desc-${q.id}">${esc(q.desc)}</div>`:''}
+    ${answerSec}${adviceSec}
     <div class="q-actions">
-      ${!isArchived ? `<button class="q-btn" onclick="toggleDesc('${q.id}')">Details</button>` : ''}
-      ${!isArchived ? `<button class="q-btn" onclick="editQuestion('${q.id}')">Edit</button>` : ''}
-      ${!isArchived ? `<button class="q-btn primary" onclick="openAnswerModal('${q.id}')">${q.answer ? 'Edit answer' : 'Add answer'}</button>` : ''}
-      ${isAnswered  ? `<button class="q-btn green-btn" onclick="archiveQ('${q.id}')">Archive</button>` : ''}
-      ${q.status === 'active' && !isArchived ? `<button class="q-btn green-btn" onclick="openAnswerModal('${q.id}')">Resolve</button>` : ''}
-      ${isArchived  ? `<button class="q-btn" onclick="reopenQ('${q.id}')">Reopen</button>` : ''}
-      <button class="q-btn danger" onclick="deleteQ('${q.id}')">Delete</button>
-    </div>`;
-
-  return `
-    <div class="q-card" id="qcard-${q.id}">
-      <div class="q-card-head">
-        ${q.tag ? `<div class="q-tag">${escHtml(q.tag)}</div>` : ''}
-        <div class="q-title">${escHtml(q.title)}</div>
-        <div class="q-date">${dateStr}</div>
-      </div>
-      ${q.desc ? `<div class="q-desc" id="desc-${q.id}">${escHtml(q.desc)}</div>` : ''}
-      ${answerSection}
-      ${adviceSection}
-      ${actions}
-    </div>`;
+      ${q.desc&&!isArchived?`<button class="q-btn" onclick="toggleDesc('${q.id}')">Детали</button>`:''}
+      ${!isArchived?`<button class="q-btn" onclick="editQuestion('${q.id}')">Редактировать</button>`:''}
+      ${!isArchived?`<button class="q-btn primary" onclick="openAnswerModal('${q.id}')">${q.answer?'Изменить ответ':'Добавить ответ'}</button>`:''}
+      ${isAnswered?`<button class="q-btn green-btn" onclick="archiveQ('${q.id}')">В архив</button>`:''}
+      ${isArchived?`<button class="q-btn" onclick="reopenQ('${q.id}')">Переоткрыть</button>`:''}
+      <button class="q-btn danger" onclick="deleteQ('${q.id}')">Удалить</button>
+    </div>
+  </div>`;
 }
 
-function escHtml(str) {
-  if (!str) return '';
-  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
-}
-
-function toggleDesc(id) {
-  const el = document.getElementById('desc-'+id);
-  if (el) el.classList.toggle('open');
-}
-
-// ── ADD / EDIT QUESTION ──
-function openModal(id) {
-  document.getElementById('q-input-title').value = '';
-  document.getElementById('q-input-desc').value  = '';
-  document.getElementById('q-input-tag').value   = '';
-  document.getElementById('q-edit-id').value     = '';
-  document.getElementById('modal-title').textContent = 'New question';
-  if (id) {
-    const qs = loadQs();
-    const q = qs.find(x=>x.id===id);
-    if (q) {
-      document.getElementById('q-input-title').value = q.title;
-      document.getElementById('q-input-desc').value  = q.desc || '';
-      document.getElementById('q-input-tag').value   = q.tag  || '';
-      document.getElementById('q-edit-id').value     = id;
-      document.getElementById('modal-title').textContent = 'Edit question';
-    }
-  }
+function toggleDesc(id){ const el=document.getElementById('desc-'+id); if(el) el.classList.toggle('open'); }
+function openModal(id){
+  document.getElementById('q-input-title').value=''; document.getElementById('q-input-desc').value=''; document.getElementById('q-input-tag').value=''; document.getElementById('q-edit-id').value='';
+  document.getElementById('modal-title').textContent='Новый вопрос';
+  if(id){ const q=loadQs().find(x=>x.id===id); if(q){ document.getElementById('q-input-title').value=q.title; document.getElementById('q-input-desc').value=q.desc||''; document.getElementById('q-input-tag').value=q.tag||''; document.getElementById('q-edit-id').value=id; document.getElementById('modal-title').textContent='Редактировать вопрос'; } }
   document.getElementById('modal-add').classList.add('open');
   document.getElementById('q-input-title').focus();
 }
-
-function editQuestion(id) { openModal(id); }
-
-function closeModal() {
-  document.getElementById('modal-add').classList.remove('open');
+function editQuestion(id){ openModal(id); }
+function closeModal(){ document.getElementById('modal-add').classList.remove('open'); }
+function saveQuestion(){
+  const title=document.getElementById('q-input-title').value.trim(); if(!title){ document.getElementById('q-input-title').focus(); return; }
+  const desc=document.getElementById('q-input-desc').value.trim(), tag=document.getElementById('q-input-tag').value.trim(), editId=document.getElementById('q-edit-id').value;
+  let qs=loadQs();
+  if(editId){ const idx=qs.findIndex(x=>x.id===editId); if(idx>-1){ qs[idx].title=title; qs[idx].desc=desc; qs[idx].tag=tag; qs[idx].updatedAt=new Date().toISOString(); } }
+  else{ qs.unshift({id:Date.now().toString(),title,desc,tag,status:'active',answer:'',advice:'',createdAt:new Date().toISOString(),updatedAt:new Date().toISOString()}); }
+  saveQs(qs); closeModal(); renderBoard();
 }
-
-function saveQuestion() {
-  const title = document.getElementById('q-input-title').value.trim();
-  if (!title) { document.getElementById('q-input-title').focus(); return; }
-
-  const desc  = document.getElementById('q-input-desc').value.trim();
-  const tag   = document.getElementById('q-input-tag').value.trim();
-  const editId= document.getElementById('q-edit-id').value;
-
-  let qs = loadQs();
-  if (editId) {
-    const idx = qs.findIndex(x=>x.id===editId);
-    if (idx > -1) { qs[idx].title=title; qs[idx].desc=desc; qs[idx].tag=tag; qs[idx].updatedAt=new Date().toISOString(); }
-  } else {
-    qs.unshift({ id: Date.now().toString(), title, desc, tag, status:'active', answer:'', advice:'', createdAt:new Date().toISOString(), updatedAt:new Date().toISOString() });
-  }
-  saveQs(qs);
-  closeModal();
-  renderBoard();
+function openAnswerModal(id){
+  const q=loadQs().find(x=>x.id===id); if(!q) return;
+  document.getElementById('answer-modal-title').textContent=q.title;
+  document.getElementById('answer-input').value=q.answer||''; document.getElementById('advice-input').value=q.advice||''; document.getElementById('answer-q-id').value=id;
+  document.getElementById('modal-answer').classList.add('open'); document.getElementById('answer-input').focus();
 }
-
-// ── ANSWER MODAL ──
-function openAnswerModal(id) {
-  const qs = loadQs();
-  const q = qs.find(x=>x.id===id);
-  if (!q) return;
-  document.getElementById('answer-modal-title').textContent = q.title;
-  document.getElementById('answer-input').value  = q.answer  || '';
-  document.getElementById('advice-input').value  = q.advice  || '';
-  document.getElementById('answer-q-id').value   = id;
-  document.getElementById('modal-answer').classList.add('open');
-  document.getElementById('answer-input').focus();
+function closeAnswerModal(){ document.getElementById('modal-answer').classList.remove('open'); }
+function saveAnswer(){
+  const id=document.getElementById('answer-q-id').value, answer=document.getElementById('answer-input').value.trim(), advice=document.getElementById('advice-input').value.trim();
+  if(!answer){ document.getElementById('answer-input').focus(); return; }
+  let qs=loadQs(); const idx=qs.findIndex(x=>x.id===id);
+  if(idx>-1){ qs[idx].answer=answer; qs[idx].advice=advice; qs[idx].status='answered'; qs[idx].updatedAt=new Date().toISOString(); }
+  saveQs(qs); closeAnswerModal(); renderBoard();
 }
+function archiveQ(id){ let qs=loadQs(); const idx=qs.findIndex(x=>x.id===id); if(idx>-1){ qs[idx].status='archived'; qs[idx].updatedAt=new Date().toISOString(); } saveQs(qs); renderBoard(); }
+function reopenQ(id){ let qs=loadQs(); const idx=qs.findIndex(x=>x.id===id); if(idx>-1){ qs[idx].status='active'; qs[idx].updatedAt=new Date().toISOString(); } saveQs(qs); renderBoard(); }
+function deleteQ(id){ if(!confirm('Удалить этот вопрос?')) return; saveQs(loadQs().filter(x=>x.id!==id)); renderBoard(); }
 
-function closeAnswerModal() {
-  document.getElementById('modal-answer').classList.remove('open');
-}
+document.getElementById('modal-add').addEventListener('click',function(e){ if(e.target===this) closeModal(); });
+document.getElementById('modal-answer').addEventListener('click',function(e){ if(e.target===this) closeAnswerModal(); });
+document.getElementById('q-input-title').addEventListener('keydown',function(e){ if(e.key==='Enter') saveQuestion(); });
 
-function saveAnswer() {
-  const id     = document.getElementById('answer-q-id').value;
-  const answer = document.getElementById('answer-input').value.trim();
-  const advice = document.getElementById('advice-input').value.trim();
-  if (!answer) { document.getElementById('answer-input').focus(); return; }
-
-  let qs = loadQs();
-  const idx = qs.findIndex(x=>x.id===id);
-  if (idx > -1) {
-    qs[idx].answer = answer;
-    qs[idx].advice = advice;
-    qs[idx].status = 'answered';
-    qs[idx].updatedAt = new Date().toISOString();
-  }
-  saveQs(qs);
-  closeAnswerModal();
-  renderBoard();
-}
-
-// ── STATUS ACTIONS ──
-function archiveQ(id) {
-  let qs = loadQs();
-  const idx = qs.findIndex(x=>x.id===id);
-  if (idx > -1) { qs[idx].status='archived'; qs[idx].updatedAt=new Date().toISOString(); }
-  saveQs(qs); renderBoard();
-}
-
-function reopenQ(id) {
-  let qs = loadQs();
-  const idx = qs.findIndex(x=>x.id===id);
-  if (idx > -1) { qs[idx].status='active'; qs[idx].updatedAt=new Date().toISOString(); }
-  saveQs(qs); renderBoard();
-}
-
-function deleteQ(id) {
-  if (!confirm('Delete this question?')) return;
-  let qs = loadQs();
-  saveQs(qs.filter(x=>x.id!==id));
-  renderBoard();
-}
-
-// Close modals on overlay click
-document.getElementById('modal-add').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
-document.getElementById('modal-answer').addEventListener('click', function(e){ if(e.target===this) closeAnswerModal(); });
-
-// Enter to save in title field
-document.getElementById('q-input-title').addEventListener('keydown', function(e){ if(e.key==='Enter') saveQuestion(); });
-
-// ── INIT ──────────────────────────────────────────────
-document.getElementById('res_avg_fc_display').textContent = AVG_FC+' RUB';
+document.getElementById('res_avg_fc_display').textContent=AVG_FC+' ₽';
 </script>
 </body>
 </html>
