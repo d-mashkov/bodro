@@ -755,6 +755,23 @@ textarea.form-input { resize:vertical; min-height:90px; }
   </div>
 </div>
 
+<!-- PASSWORD GATE -->
+<div class="modal-overlay" id="modal-vc-lock">
+  <div class="modal" style="max-width:380px; text-align:center;">
+    <div style="width:48px;height:48px;background:var(--black);border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="5" y="9" width="10" height="8" rx="2" fill="white"/><path d="M7 9V6.5a3 3 0 016 0V9" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+    </div>
+    <div class="modal-title" style="margin-bottom:8px;">Value Chain</div>
+    <div style="font-size:13px;color:var(--muted);margin-bottom:24px;">Раздел защищён паролем</div>
+    <input type="password" class="form-input" id="vc-password-input" placeholder="Введи пароль" style="text-align:center;letter-spacing:0.15em;font-size:16px;margin-bottom:8px;" maxlength="20">
+    <div id="vc-password-error" style="font-size:12px;color:var(--red);min-height:18px;margin-bottom:12px;"></div>
+    <div class="form-actions" style="justify-content:center;">
+      <button class="btn btn-ghost" onclick="closeVcLock()">Отмена</button>
+      <button class="btn btn-black" onclick="checkVcPassword()">Войти</button>
+    </div>
+  </div>
+</div>
+
 <!-- ══════════ JS ══════════ -->
 <script>
 const MENU_DATA = [
@@ -779,7 +796,22 @@ const MENU_DATA = [
 ];
 const AVG_FC = Math.round(MENU_DATA.reduce((s,m)=>s+m.fc,0)/MENU_DATA.length);
 
+const VC_PASS = '43520';
+let _vcPendingBtn = null;
+
 function goPage(id, btn) {
+  if(id==='vc' && sessionStorage.getItem('vc_unlocked')!=='1'){
+    _vcPendingBtn = btn;
+    document.getElementById('vc-password-input').value='';
+    document.getElementById('vc-password-error').textContent='';
+    document.getElementById('modal-vc-lock').classList.add('open');
+    setTimeout(()=>document.getElementById('vc-password-input').focus(), 80);
+    return;
+  }
+  _activatePage(id, btn);
+}
+
+function _activatePage(id, btn){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(b=>b.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
@@ -787,6 +819,27 @@ function goPage(id, btn) {
   if(id==='menu'      && !window._menuBuilt) buildMenu();
   if(id==='vc'        && !window._vcBuilt)   { window._vcBuilt=true; calcVC(); }
   if(id==='questions' && !window._qBuilt)    { window._qBuilt=true; initDefaultQuestions(); renderBoard(); }
+}
+
+function checkVcPassword(){
+  const val = document.getElementById('vc-password-input').value.trim();
+  if(val === VC_PASS){
+    sessionStorage.setItem('vc_unlocked','1');
+    document.getElementById('modal-vc-lock').classList.remove('open');
+    if(_vcPendingBtn) _activatePage('vc', _vcPendingBtn);
+    _vcPendingBtn = null;
+  } else {
+    const inp = document.getElementById('vc-password-input');
+    document.getElementById('vc-password-error').textContent='Неверный пароль';
+    inp.style.borderColor='var(--red)';
+    inp.select();
+    setTimeout(()=>{ inp.style.borderColor=''; },1200);
+  }
+}
+
+function closeVcLock(){
+  document.getElementById('modal-vc-lock').classList.remove('open');
+  _vcPendingBtn = null;
 }
 
 const ROADMAP = {
@@ -1191,7 +1244,9 @@ function deleteQ(id){ if(!confirm('Удалить этот вопрос?')) retu
 
 document.getElementById('modal-add').addEventListener('click',function(e){ if(e.target===this) closeModal(); });
 document.getElementById('modal-answer').addEventListener('click',function(e){ if(e.target===this) closeAnswerModal(); });
+document.getElementById('modal-vc-lock').addEventListener('click',function(e){ if(e.target===this) closeVcLock(); });
 document.getElementById('q-input-title').addEventListener('keydown',function(e){ if(e.key==='Enter') saveQuestion(); });
+document.getElementById('vc-password-input').addEventListener('keydown',function(e){ if(e.key==='Enter') checkVcPassword(); });
 
 document.getElementById('res_avg_fc_display').textContent=AVG_FC+' ₽';
 </script>
