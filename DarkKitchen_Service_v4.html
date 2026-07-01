@@ -422,85 +422,122 @@ textarea.form-input { resize:vertical; min-height:90px; }
     </div>
   </div>
 
-  <div class="g2 mb20" style="gap:20px; align-items:start;">
-    <div class="brand-card">
-      <div class="brand-header" style="border-bottom:3px solid #0D0D0B;">
-        <div class="flex justify-between items-center">
-          <div class="brand-name">BODRO</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:stretch; margin-bottom:20px;">
+
+    <!-- BODRO -->
+    <div class="brand-card" style="display:flex; flex-direction:column;">
+      <div class="brand-header" style="border-bottom:2px solid var(--black);">
+        <div class="flex justify-between items-center mb8">
+          <div class="brand-name" style="font-size:32px;">BODRO</div>
           <span class="chip">Комфорт-еда</span>
         </div>
-        <div class="brand-pos">Просто хорошая еда. Без ЗОЖ-пафоса. Ресторанное качество по цене столовой. Для всех, кто не хочет тратить время.</div>
+        <div style="display:flex; gap:10px; margin-bottom:12px; flex-wrap:wrap;">
+          <div style="background:var(--black); color:#fff; border-radius:8px; padding:8px 14px; font-size:11px; font-weight:700; font-family:'JetBrains Mono',monospace; letter-spacing:0.05em;">Archivo 900 · Белая упаковка</div>
+          <div style="background:var(--bg); border:1px solid var(--line); border-radius:8px; padding:8px 14px; font-size:11px; font-weight:700; font-family:'JetBrains Mono',monospace; color:var(--sub);">Чёрный · Белый · #F5F5F3</div>
+        </div>
+        <div class="brand-pos">Просто хорошая еда. Без ЗОЖ-пафоса. Ресторанное качество по цене столовой.</div>
       </div>
-      <div class="brand-body">
+      <div class="brand-body" style="flex:1; display:flex; flex-direction:column;">
         <div class="brand-section">
           <div class="brand-section-title">Суть бренда</div>
           <div class="promo-list">
-            <div class="promo-item"><div class="promo-bullet" style="background:#0D0D0B;"></div><div class="promo-text"><strong>Без ЗОЖ-пафоса</strong> — честная, вкусная, насыщающая еда.</div></div>
-            <div class="promo-item"><div class="promo-bullet" style="background:#0D0D0B;"></div><div class="promo-text"><strong>Аудитория</strong> — офисный работник 25–40 лет, не теряющий время на обед.</div></div>
-            <div class="promo-item"><div class="promo-bullet" style="background:#0D0D0B;"></div><div class="promo-text"><strong>Слоган</strong> — «Не трать время — мы потратили его за тебя.»</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:var(--black);"></div><div class="promo-text"><strong>Аудитория</strong> — офисный работник 25–40 лет. Не хочет тратить время на обед.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:var(--black);"></div><div class="promo-text"><strong>Слоган</strong> — «Не трать время — мы потратили его за тебя.»</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:var(--black);"></div><div class="promo-text"><strong>Цена</strong> — 230–320 ₽/блюдо. Ресторанный уровень блюд по цене бизнес-ланча.</div></div>
           </div>
         </div>
         <div class="brand-section">
-          <div class="brand-section-title">Ключевые варианты нейминга</div>
+          <div class="brand-section-title">Варианты нейминга (рассматривались)</div>
           <div class="naming-grid">
-            <div class="naming-card" style="border-color:#0D0D0B; border-width:2px;"><div class="naming-name">BODRO</div><div class="naming-desc">Живо, бодро, по-русски. Archivo 900, белая упаковка, минимализм.</div><span class="chip chip-dark naming-badge">Выбрано</span></div>
-            <div class="naming-card"><div class="naming-name">ЕМ</div><div class="naming-desc">Антибренд. Моносиллаб, короткий домен.</div></div>
-            <div class="naming-card"><div class="naming-name">СТОЛОВКА</div><div class="naming-desc">Переосмысление советского формата: ирония + ностальгия.</div></div>
-            <div class="naming-card"><div class="naming-name">ГОРЯЧО</div><div class="naming-desc">Температурный брендинг. Свежесть и домашность.</div></div>
+            <div class="naming-card" style="border-color:var(--black); border-width:2px;">
+              <div class="naming-name">BODRO</div>
+              <div class="naming-desc">Живо, по-русски. Archivo 900, белая упаковка, минимализм.</div>
+              <span class="chip chip-dark naming-badge">Выбрано</span>
+            </div>
+            <div class="naming-card">
+              <div class="naming-name">ЕМ</div>
+              <div class="naming-desc">Антибренд. Моносиллаб, предельно короткий.</div>
+            </div>
+            <div class="naming-card">
+              <div class="naming-name">СТОЛОВКА</div>
+              <div class="naming-desc">Переосмысление советского формата: ирония + ностальгия.</div>
+            </div>
+            <div class="naming-card">
+              <div class="naming-name">ГОРЯЧО</div>
+              <div class="naming-desc">Температурный брендинг. Свежесть и домашность.</div>
+            </div>
           </div>
         </div>
         <div class="brand-section">
-          <div class="brand-section-title">Продвижение</div>
+          <div class="brand-section-title">Каналы продвижения</div>
           <div class="promo-list">
-            <div class="promo-item"><div class="promo-bullet" style="background:#0D0D0B;"></div><div class="promo-text"><strong>Яндекс.Еда</strong> — основной канал старта. Фото реальных блюд, без стоков.</div></div>
-            <div class="promo-item"><div class="promo-bullet" style="background:#0D0D0B;"></div><div class="promo-text"><strong>Telegram-канал</strong> — «сегодня на обед». Ежедневный пост с меню и количеством порций.</div></div>
-            <div class="promo-item"><div class="promo-bullet" style="background:#0D0D0B;"></div><div class="promo-text"><strong>Дегустации в БЦ</strong> — выход в офисные центры с пробниками. QR-код на бот.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:var(--black);"></div><div class="promo-text"><strong>Яндекс.Еда</strong> — основной старт. Реальные фото, без стоков.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:var(--black);"></div><div class="promo-text"><strong>Telegram-канал</strong> — «сегодня на обед». Ежедневный пост с меню и остатком порций.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:var(--black);"></div><div class="promo-text"><strong>Дегустации в БЦ</strong> — 100 г пробник, баннер с QR-кодом, промокод на первый заказ.</div></div>
           </div>
         </div>
-        <div class="g2" style="gap:10px;">
-          <div class="stat"><div class="stat-val">Repeat Rate</div><div class="stat-lbl">Повторные заказы — ключевой KPI</div></div>
+        <div class="g2 mt8" style="gap:10px; margin-top:auto;">
+          <div class="stat"><div class="stat-val">Repeat Rate</div><div class="stat-lbl">Ключевой KPI — повторный заказ</div></div>
           <div class="stat"><div class="stat-val">NPS</div><div class="stat-lbl">«Посоветуешь другу?»</div></div>
         </div>
       </div>
     </div>
 
-    <div class="brand-card" style="border-color:#0D0D0B;">
-      <div class="brand-header" style="border-bottom:3px solid #B5D64E; background:#0D0D0B;">
-        <div class="flex justify-between items-center">
-          <div class="brand-name" style="color:#B5D64E;">BODRO SMART</div>
-          <span class="chip" style="background:rgba(181,214,78,0.15);color:#B5D64E;border:1px solid rgba(181,214,78,0.3);">Точное питание</span>
+    <!-- BODRO SMART -->
+    <div class="brand-card" style="border-color:var(--black); display:flex; flex-direction:column;">
+      <div class="brand-header" style="background:var(--black); border-bottom:2px solid rgba(255,255,255,0.15);">
+        <div class="flex justify-between items-center mb8">
+          <div class="brand-name" style="font-size:32px; color:#fff;">BODRO SMART</div>
+          <span class="chip" style="background:rgba(255,255,255,0.1); color:rgba(255,255,255,0.7); border-color:rgba(255,255,255,0.2);">Точное питание</span>
         </div>
-        <div class="brand-pos" style="color:rgba(255,255,255,0.6);">Всё посчитано за тебя. Чёрная упаковка, КБЖУ крупно. Для тех, кто считает.</div>
+        <div style="display:flex; gap:10px; margin-bottom:12px; flex-wrap:wrap;">
+          <div style="background:rgba(255,255,255,0.12); border-radius:8px; padding:8px 14px; font-size:11px; font-weight:700; font-family:'JetBrains Mono',monospace; color:rgba(255,255,255,0.7); letter-spacing:0.05em;">Archivo 900 + JetBrains Mono</div>
+          <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:8px; padding:8px 14px; font-size:11px; font-weight:700; font-family:'JetBrains Mono',monospace; color:rgba(255,255,255,0.5);">Чёрный · Белый · Акцент</div>
+        </div>
+        <div class="brand-pos" style="color:rgba(255,255,255,0.55);">Всё посчитано за тебя. Чёрная упаковка, КБЖУ крупно на лицевой стороне.</div>
       </div>
-      <div class="brand-body">
+      <div class="brand-body" style="flex:1; display:flex; flex-direction:column;">
         <div class="brand-section">
           <div class="brand-section-title">Суть бренда</div>
           <div class="promo-list">
-            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>КБЖУ — герой упаковки</strong> — Белки / Жиры / Углев / Ккал крупно на лицевой стороне.</div></div>
-            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>Аудитория</strong> — фитнес-аудитория, считающие белок, 23–35 лет.</div></div>
-            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>Слоган</strong> — «Всё посчитано за тебя.»</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:var(--black);"></div><div class="promo-text"><strong>КБЖУ — герой упаковки</strong> — Белки / Жиры / Углев / Ккал крупно на лицевой стороне.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:var(--black);"></div><div class="promo-text"><strong>Аудитория</strong> — считающие белок, фитнес, 23–35 лет. Тренеры, самозанятые, офис.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:var(--black);"></div><div class="promo-text"><strong>Слоган</strong> — «Всё посчитано за тебя.»</div></div>
           </div>
         </div>
         <div class="brand-section">
-          <div class="brand-section-title">Ключевые варианты нейминга</div>
+          <div class="brand-section-title">Варианты нейминга (рассматривались)</div>
           <div class="naming-grid">
-            <div class="naming-card" style="border-color:#B5D64E; border-width:2px; background:#0D0D0B;"><div class="naming-name" style="color:#B5D64E;">BODRO SMART</div><div class="naming-desc" style="color:rgba(255,255,255,0.6);">Чёрная упаковка, лайм-цифры КБЖУ. Archivo 900 + JetBrains Mono.</div><span class="chip naming-badge" style="background:rgba(181,214,78,0.15);color:#B5D64E;border:1px solid rgba(181,214,78,0.3);">Выбрано</span></div>
-            <div class="naming-card"><div class="naming-name">НОРМА</div><div class="naming-desc">Работает на трёх смысловых уровнях.</div></div>
-            <div class="naming-card"><div class="naming-name">ТОЧНО</div><div class="naming-desc">Точность КБЖУ. Честность и измеримость.</div></div>
-            <div class="naming-card"><div class="naming-name">ККАЛ</div><div class="naming-desc">Прямое функциональное название.</div></div>
+            <div class="naming-card" style="border-color:var(--black); border-width:2px; background:var(--black);">
+              <div class="naming-name" style="color:#fff;">BODRO SMART</div>
+              <div class="naming-desc" style="color:rgba(255,255,255,0.55);">Суббренд BODRO. КБЖУ-фокус, чёрная упаковка, JetBrains Mono.</div>
+              <span class="chip naming-badge" style="background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.2);">Выбрано</span>
+            </div>
+            <div class="naming-card">
+              <div class="naming-name">ТОЧНО</div>
+              <div class="naming-desc">Точность КБЖУ, честность состава, измеримый результат.</div>
+            </div>
+            <div class="naming-card">
+              <div class="naming-name">ККАЛ</div>
+              <div class="naming-desc">Прямое функциональное название. Работает как в SEO, так и на полке.</div>
+            </div>
+            <div class="naming-card">
+              <div class="naming-name">ПРОФИТ</div>
+              <div class="naming-desc">Двойной смысл: выгодно и профит для тела. Игровой тон.</div>
+            </div>
           </div>
         </div>
         <div class="brand-section">
-          <div class="brand-section-title">Продвижение</div>
+          <div class="brand-section-title">Каналы продвижения</div>
           <div class="promo-list">
-            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>Фитнес-комьюнити</strong> — Telegram-каналы ЗОЖ, спортзалы Самары, тренеры.</div></div>
-            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>Станции BODRO SMART</strong> — брендированный холодильник в офисе. Capex 57–106к/станция.</div></div>
-            <div class="promo-item"><div class="promo-bullet" style="background:#B5D64E;"></div><div class="promo-text"><strong>Белки / Жиры / Углев / Ккал·100г</strong> крупно на лицевой стороне. Визуальный дифференциатор.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:var(--black);"></div><div class="promo-text"><strong>Яндекс.Еда</strong> — отдельный профиль рядом с BODRO. Фильтр «Правильное питание».</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:var(--black);"></div><div class="promo-text"><strong>Фитнес-комьюнити</strong> — Telegram ЗОЖ, спортзалы Самары, тренеры. Бартер / CPA.</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:var(--black);"></div><div class="promo-text"><strong>Станции BODRO SMART</strong> — брендированный холодильник в офисе/спортзале.</div></div>
           </div>
         </div>
-        <div class="g2" style="gap:10px;">
-          <div class="stat" style="border-color:rgba(181,214,78,0.4);"><div class="stat-val">57–106к ₽</div><div class="stat-lbl">Capex на одну станцию</div></div>
-          <div class="stat" style="border-color:rgba(181,214,78,0.4);"><div class="stat-val">~1 мес</div><div class="stat-lbl">Окупаемость при 30 порц/день</div></div>
+        <div class="g2 mt8" style="gap:10px; margin-top:auto;">
+          <div class="stat"><div class="stat-val">57–106к ₽</div><div class="stat-lbl">Capex одна станция</div></div>
+          <div class="stat"><div class="stat-val">~1 мес</div><div class="stat-lbl">Окупаемость при 30 порц/день</div></div>
         </div>
       </div>
     </div>
@@ -510,9 +547,18 @@ textarea.form-input { resize:vertical; min-height:90px; }
     <div class="sec-label">Общая стратегия</div>
     <div class="sec-title mb12">Два бренда — одна кухня</div>
     <div class="g3" style="gap:14px;">
-      <div class="stat"><div class="stat-val fs13 fw700">Фаза 1 — Яндекс.Еда</div><div class="stat-note">Оба бренда на агрегатор. BODRO — главная, BODRO SMART — отдельный профиль рядом.</div></div>
-      <div class="stat"><div class="stat-val fs13 fw700">Фаза 2 — DTC-подписка</div><div class="stat-note">Telegram-бот: BODRO SMART — «рацион недели» с КБЖУ. BODRO — «обед на неделю».</div></div>
-      <div class="stat"><div class="stat-val fs13 fw700">Фаза 3 — Офлайн + B2B</div><div class="stat-note">Станции BODRO SMART в офисах. BODRO — корпоративный обед под заказ.</div></div>
+      <div class="stat">
+        <div class="stat-val fs13 fw700">Фаза 1 — Агрегатор</div>
+        <div class="stat-note">Оба бренда на Яндекс.Еду. BODRO — главная точка, BODRO SMART — отдельный профиль рядом. Цель: 100+ порц/день суммарно.</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val fs13 fw700">Фаза 2 — DTC + подписка</div>
+        <div class="stat-note">Telegram-бот: BODRO SMART — «рацион недели» с КБЖУ. BODRO — «обед на неделю». Скидка 5–10% без комиссии агрегатора.</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val fs13 fw700">Фаза 3 — B2B + Станции</div>
+        <div class="stat-note">Станции BODRO SMART в офисных центрах. BODRO — корпоративный обед под заказ. Гарантированный объём без агрегатора.</div>
+      </div>
     </div>
   </div>
 </div>
