@@ -311,6 +311,28 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:20px; h
 .q-btn.green-btn:hover { background:var(--green-ok); color:#fff; border-color:var(--green-ok); }
 .q-empty { text-align:center; padding:32px 16px; font-size:12px; color:var(--muted); font-weight:500; }
 
+/* PRIORITY BADGES */
+.q-priority { display:inline-flex; align-items:center; gap:5px; padding:2px 9px; border-radius:999px; font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px; }
+.q-priority-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+.q-priority.urgent { background:rgba(220,38,38,0.1); color:var(--red); border:1px solid rgba(220,38,38,0.25); }
+.q-priority.urgent .q-priority-dot { background:var(--red); }
+.q-priority.hold   { background:rgba(217,119,6,0.1); color:#D97706; border:1px solid rgba(217,119,6,0.25); }
+.q-priority.hold .q-priority-dot   { background:#D97706; }
+
+/* DRAG & DROP */
+.q-card { cursor:grab; }
+.q-card.dragging { opacity:0.35; cursor:grabbing; }
+.board-col-body.drag-over { background:rgba(0,0,0,0.04); outline:2px dashed rgba(0,0,0,0.15); outline-offset:-6px; border-radius:var(--r-sm); }
+
+/* PRIORITY SELECTOR IN MODAL */
+.priority-opts { display:flex; gap:8px; flex-wrap:wrap; }
+.priority-opt { padding:7px 16px; border-radius:999px; font-size:12px; font-weight:700; cursor:pointer; border:1.5px solid var(--line); background:rgba(255,255,255,0.8); color:var(--muted); transition:all .15s; display:flex; align-items:center; gap:6px; }
+.priority-opt:hover { border-color:var(--black); color:var(--black); }
+.priority-opt.sel-none   { border-color:var(--black); color:var(--black); background:#fff; }
+.priority-opt.sel-urgent { border-color:var(--red); color:var(--red); background:rgba(220,38,38,0.07); }
+.priority-opt.sel-hold   { border-color:#D97706; color:#D97706; background:rgba(217,119,6,0.07); }
+.popt-dot { width:8px; height:8px; border-radius:50%; }
+
 /* MODAL */
 .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.4); backdrop-filter:blur(8px); z-index:1000; display:none; align-items:center; justify-content:center; padding:20px; }
 .modal-overlay.open { display:flex; }
@@ -660,15 +682,15 @@ textarea.form-input { resize:vertical; min-height:90px; }
   <div class="board" id="board">
     <div class="board-col">
       <div class="board-col-header"><span class="board-col-title">Активный вопрос</span><span class="board-col-count" id="cnt-active">0</span></div>
-      <div class="board-col-body" id="col-active"></div>
+      <div class="board-col-body" id="col-active" ondragover="colDragOver(event)" ondragleave="colDragLeave(event)" ondrop="colDrop(event,'active')"></div>
     </div>
     <div class="board-col">
       <div class="board-col-header"><span class="board-col-title">Вопрос / Ответ</span><span class="board-col-count" id="cnt-answered">0</span></div>
-      <div class="board-col-body" id="col-answered"></div>
+      <div class="board-col-body" id="col-answered" ondragover="colDragOver(event)" ondragleave="colDragLeave(event)" ondrop="colDrop(event,'answered')"></div>
     </div>
     <div class="board-col">
       <div class="board-col-header"><span class="board-col-title">Архив</span><span class="board-col-count" id="cnt-archive">0</span></div>
-      <div class="board-col-body" id="col-archive"></div>
+      <div class="board-col-body" id="col-archive" ondragover="colDragOver(event)" ondragleave="colDragLeave(event)" ondrop="colDrop(event,'archived')"></div>
     </div>
   </div>
 </div>
@@ -689,6 +711,21 @@ textarea.form-input { resize:vertical; min-height:90px; }
       <label class="form-label">Тег / категория</label>
       <input type="text" class="form-input" id="q-input-tag" placeholder="Например: Упаковка, Финансы, Операции...">
     </div>
+    <div class="form-field">
+      <label class="form-label">Приоритет</label>
+      <div class="priority-opts" id="priority-opts">
+        <button type="button" class="priority-opt sel-none" data-p="" onclick="selectPriority(this,'')">
+          <span class="popt-dot" style="background:var(--muted)"></span>Без приоритета
+        </button>
+        <button type="button" class="priority-opt" data-p="urgent" onclick="selectPriority(this,'urgent')">
+          <span class="popt-dot" style="background:var(--red)"></span>Срочно
+        </button>
+        <button type="button" class="priority-opt" data-p="hold" onclick="selectPriority(this,'hold')">
+          <span class="popt-dot" style="background:#D97706"></span>Холдер
+        </button>
+      </div>
+    </div>
+    <input type="hidden" id="q-input-priority" value="">
     <input type="hidden" id="q-edit-id">
     <div class="form-actions">
       <button class="btn btn-ghost" onclick="closeModal()">Отмена</button>
@@ -1027,8 +1064,16 @@ function renderCard(q){
   const isArchived=q.status==='archived', isAnswered=q.status==='answered';
   const answerSec=q.answer?`<div class="q-section"><div class="q-section-label">Решение / ответ</div><div class="q-section-text answer">${esc(q.answer)}</div></div>`:'';
   const adviceSec=q.advice?`<div class="q-section"><div class="q-section-label">Рекомендация Claude</div><div class="q-section-text advice">${esc(q.advice)}</div></div>`:'';
-  return `<div class="q-card" id="qcard-${q.id}">
+  const prioHtml=q.priority==='urgent'
+    ?`<div class="q-priority urgent"><span class="q-priority-dot"></span>Срочно</div>`
+    :q.priority==='hold'
+    ?`<div class="q-priority hold"><span class="q-priority-dot"></span>Холдер</div>`
+    :'';
+  return `<div class="q-card" id="qcard-${q.id}" draggable="true"
+    ondragstart="cardDragStart(event,'${q.id}')"
+    ondragend="cardDragEnd(event)">
     <div class="q-card-head">
+      ${prioHtml}
       ${q.tag?`<div class="q-tag">${esc(q.tag)}</div>`:''}
       <div class="q-title">${esc(q.title)}</div>
       <div class="q-date">${d}</div>
@@ -1047,10 +1092,33 @@ function renderCard(q){
 }
 
 function toggleDesc(id){ const el=document.getElementById('desc-'+id); if(el) el.classList.toggle('open'); }
+
+function selectPriority(btn, val){
+  document.getElementById('q-input-priority').value=val;
+  document.querySelectorAll('.priority-opt').forEach(b=>{
+    b.className='priority-opt';
+    if(b.dataset.p===val) b.classList.add(val===''?'sel-none':val==='urgent'?'sel-urgent':'sel-hold');
+  });
+}
+
 function openModal(id){
-  document.getElementById('q-input-title').value=''; document.getElementById('q-input-desc').value=''; document.getElementById('q-input-tag').value=''; document.getElementById('q-edit-id').value='';
+  document.getElementById('q-input-title').value='';
+  document.getElementById('q-input-desc').value='';
+  document.getElementById('q-input-tag').value='';
+  document.getElementById('q-edit-id').value='';
   document.getElementById('modal-title').textContent='Новый вопрос';
-  if(id){ const q=loadQs().find(x=>x.id===id); if(q){ document.getElementById('q-input-title').value=q.title; document.getElementById('q-input-desc').value=q.desc||''; document.getElementById('q-input-tag').value=q.tag||''; document.getElementById('q-edit-id').value=id; document.getElementById('modal-title').textContent='Редактировать вопрос'; } }
+  selectPriority(null,'');
+  if(id){
+    const q=loadQs().find(x=>x.id===id);
+    if(q){
+      document.getElementById('q-input-title').value=q.title;
+      document.getElementById('q-input-desc').value=q.desc||'';
+      document.getElementById('q-input-tag').value=q.tag||'';
+      document.getElementById('q-edit-id').value=id;
+      document.getElementById('modal-title').textContent='Редактировать вопрос';
+      selectPriority(null, q.priority||'');
+    }
+  }
   document.getElementById('modal-add').classList.add('open');
   document.getElementById('q-input-title').focus();
 }
@@ -1058,11 +1126,50 @@ function editQuestion(id){ openModal(id); }
 function closeModal(){ document.getElementById('modal-add').classList.remove('open'); }
 function saveQuestion(){
   const title=document.getElementById('q-input-title').value.trim(); if(!title){ document.getElementById('q-input-title').focus(); return; }
-  const desc=document.getElementById('q-input-desc').value.trim(), tag=document.getElementById('q-input-tag').value.trim(), editId=document.getElementById('q-edit-id').value;
+  const desc=document.getElementById('q-input-desc').value.trim();
+  const tag=document.getElementById('q-input-tag').value.trim();
+  const priority=document.getElementById('q-input-priority').value;
+  const editId=document.getElementById('q-edit-id').value;
   let qs=loadQs();
-  if(editId){ const idx=qs.findIndex(x=>x.id===editId); if(idx>-1){ qs[idx].title=title; qs[idx].desc=desc; qs[idx].tag=tag; qs[idx].updatedAt=new Date().toISOString(); } }
-  else{ qs.unshift({id:Date.now().toString(),title,desc,tag,status:'active',answer:'',advice:'',createdAt:new Date().toISOString(),updatedAt:new Date().toISOString()}); }
+  if(editId){
+    const idx=qs.findIndex(x=>x.id===editId);
+    if(idx>-1){ qs[idx].title=title; qs[idx].desc=desc; qs[idx].tag=tag; qs[idx].priority=priority; qs[idx].updatedAt=new Date().toISOString(); }
+  } else {
+    qs.unshift({id:Date.now().toString(),title,desc,tag,priority,status:'active',answer:'',advice:'',createdAt:new Date().toISOString(),updatedAt:new Date().toISOString()});
+  }
   saveQs(qs); closeModal(); renderBoard();
+}
+
+// DRAG & DROP
+let _dragId=null;
+function cardDragStart(e,id){
+  _dragId=id;
+  e.dataTransfer.effectAllowed='move';
+  e.dataTransfer.setData('text/plain',id);
+  setTimeout(()=>{ const el=document.getElementById('qcard-'+id); if(el) el.classList.add('dragging'); },0);
+}
+function cardDragEnd(e){
+  if(_dragId){ const el=document.getElementById('qcard-'+_dragId); if(el) el.classList.remove('dragging'); }
+  document.querySelectorAll('.board-col-body').forEach(c=>c.classList.remove('drag-over'));
+  _dragId=null;
+}
+function colDragOver(e){
+  e.preventDefault(); e.dataTransfer.dropEffect='move';
+  e.currentTarget.classList.add('drag-over');
+}
+function colDragLeave(e){
+  if(!e.currentTarget.contains(e.relatedTarget)) e.currentTarget.classList.remove('drag-over');
+}
+function colDrop(e,status){
+  e.preventDefault();
+  e.currentTarget.classList.remove('drag-over');
+  const id=e.dataTransfer.getData('text/plain')||_dragId;
+  if(!id) return;
+  let qs=loadQs(); const idx=qs.findIndex(x=>x.id===id);
+  if(idx>-1 && qs[idx].status!==status){
+    qs[idx].status=status; qs[idx].updatedAt=new Date().toISOString();
+    saveQs(qs); renderBoard();
+  }
 }
 function openAnswerModal(id){
   const q=loadQs().find(x=>x.id===id); if(!q) return;
