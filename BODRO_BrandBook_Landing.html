@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BODRO — Brand Book</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+
+:root{
+  --black:#0D0D0B;
+  --sand:#F2EDE5;
+  --lime:#B5D64E;
+  --white:#FFFFFF;
+  --sub:#9E9C96;
+  --line:rgba(255,255,255,0.1);
+  --glass-d:rgba(255,255,255,0.06);
+  --glass-l:rgba(255,255,255,0.72);
+}
+
+body{
+  font-family:'Archivo',sans-serif;
+  background:var(--black);
+  color:var(--white);
+  overflow-x:hidden;
+}
+
+/* ─── GRAIN OVERLAY ─── */
+.grain{
+  position:fixed;inset:0;z-index:1000;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity:0.032;
+  animation:grain 8s steps(10) infinite;
+}
+@keyframes grain{
+  0%,100%{transform:translate(0,0);}
+  10%{transform:translate(-2%,-3%);}
+  20%{transform:translate(3%,1%);}
+  30%{transform:translate(-1%,2%);}
+  40%{transform:translate(2%,-2%);}
+  50%{transform:translate(-3%,1%);}
+  60%{transform:translate(1%,3%);}
+  70%{transform:translate(-2%,2%);}
+  80%{transform:translate(3%,-1%);}
+  90%{transform:translate(-1%,-2%);}
+}
+
+/* ─── SCROLL PROGRESS ─── */
+.progress-bar{
+  position:fixed;top:0;left:0;z-index:999;
+  height:2px;width:0%;
+  background:linear-gradient(90deg,var(--lime),rgba(181,214,78,0.4));
+  transition:width .05s linear;
+  box-shadow:0 0 12px rgba(181,214,78,0.5);
+}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  padding:0 48px;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(13,13,11,0.6);
+  backdrop-filter:blur(28px) saturate(180%);
+  -webkit-backdrop-filter:blur(28px) saturate(180%);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  transition:all .3s;
+}
+.nav-brand{font-size:17px;font-weight:900;letter-spacing:-0.04em;color:var(--white);}
+.nav-tag{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.25);}
+.nav-cta{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--lime);padding:8px 16px;border:1px solid rgba(181,214,78,0.3);border-radius:999px;text-decoration:none;transition:all .2s;}
+.nav-cta:hover{background:rgba(181,214,78,0.08);border-color:var(--lime);}
+
+/* ─── SECTIONS ─── */
+section{position:relative;overflow:hidden;}
+
+/* ─── 01 HERO ─── */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  justify-content:flex-end;padding:0 80px 80px;
+  background:var(--black);
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 60% 30%,rgba(181,214,78,0.04) 0%,transparent 70%),
+    radial-gradient(ellipse 40% 40% at 20% 80%,rgba(242,237,229,0.02) 0%,transparent 60%);
+  animation:heroBg 12s ease-in-out infinite alternate;
+}
+@keyframes heroBg{
+  0%{transform:scale(1) translate(0,0);}
+  100%{transform:scale(1.08) translate(1%,-1%);}
+}
+.hero-num{
+  font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;
+  letter-spacing:0.25em;text-transform:uppercase;
+  color:rgba(255,255,255,0.2);margin-bottom:40px;
+  display:flex;align-items:center;gap:16px;
+}
+.hero-num::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.06);}
+.hero-title{
+  font-size:clamp(72px,10vw,160px);
+  font-weight:900;letter-spacing:-0.05em;line-height:0.88;
+  margin-bottom:40px;
+  clip-path:inset(100% 0 0 0);
+  transition:clip-path .9s cubic-bezier(.16,1,.3,1),opacity .9s;
+  opacity:0;
+}
+.hero-title.revealed{clip-path:inset(0 0 0 0);opacity:1;}
+.hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;}
+.hero-slogan{
+  font-size:clamp(16px,2vw,22px);font-weight:700;
+  letter-spacing:0.15em;text-transform:uppercase;
+  color:rgba(255,255,255,0.6);
+  opacity:0;transform:translateY(20px);
+  transition:opacity .8s .4s,transform .8s .4s cubic-bezier(.16,1,.3,1);
+}
+.hero-slogan.revealed{opacity:1;transform:translateY(0);}
+.hero-meta{
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  color:rgba(255,255,255,0.2);letter-spacing:0.1em;
+  text-align:right;line-height:2;
+  opacity:0;transition:opacity .8s .6s;
+}
+.hero-meta.revealed{opacity:1;}
+.hero-scroll{
+  position:absolute;bottom:40px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  opacity:0;animation:fadeIn .8s 1.4s forwards;
+}
+.hero-scroll-line{width:1px;height:40px;background:rgba(255,255,255,0.15);animation:scrollLine 1.5s 1.6s infinite;}
+@keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top;}50%{transform:scaleY(1);}100%{transform:scaleY(0);transform-origin:bottom;}}
+
+/* ─── IMAGE SECTIONS ─── */
+.img-full{width:100%;height:80vh;object-fit:cover;display:block;}
+.img-section{position:relative;}
+.img-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 50%,rgba(13,13,11,0.9) 100%);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:60px 80px;
+}
+.img-caption{
+  font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;
+  letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.35);
+  margin-bottom:8px;
+}
+.img-title{font-size:28px;font-weight:900;letter-spacing:-0.03em;color:var(--white);}
+
+/* ─── GLASS CARD ─── */
+.glass{
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(24px) saturate(180%);
+  -webkit-backdrop-filter:blur(24px) saturate(180%);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:24px;
+  box-shadow:0 8px 40px rgba(0,0,0,0.4),inset 0 1px 0 rgba(255,255,255,0.08);
+}
+.glass-lime{
+  background:rgba(181,214,78,0.08);
+  border:1px solid rgba(181,214,78,0.2);
+  border-radius:24px;
+  box-shadow:0 0 40px rgba(181,214,78,0.05);
+}
+
+/* ─── INNER SECTIONS ─── */
+.sec{padding:120px 80px;}
+.sec-sm{padding:80px 80px;}
+.sec-sand{background:var(--sand);color:var(--black);}
+.sec-dark{background:var(--black);}
+.sec-darker{background:#080806;}
+
+.label{
+  font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;
+  letter-spacing:0.25em;text-transform:uppercase;
+  display:flex;align-items:center;gap:16px;margin-bottom:24px;
+}
+.sec-dark .label,.sec-darker .label{color:rgba(255,255,255,0.2);}
+.sec-dark .label::after,.sec-darker .label::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.07);}
+.sec-sand .label{color:rgba(0,0,0,0.3);}
+.sec-sand .label::after{content:'';flex:1;height:1px;background:rgba(0,0,0,0.1);}
+
+.h1{font-size:clamp(40px,5vw,72px);font-weight:900;letter-spacing:-0.04em;line-height:1.0;}
+.h2{font-size:clamp(28px,3vw,44px);font-weight:900;letter-spacing:-0.04em;line-height:1.05;}
+.body{font-size:16px;line-height:1.7;font-weight:400;}
+.body-muted{color:rgba(255,255,255,0.45);}
+.body-sand{color:rgba(13,13,11,0.55);}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+
+/* ─── 02 PHILOSOPHY (big quote) ─── */
+.big-quote{
+  font-size:clamp(32px,4.5vw,60px);font-weight:900;
+  letter-spacing:-0.04em;line-height:1.1;
+  max-width:900px;
+  background:linear-gradient(135deg,#fff 30%,rgba(255,255,255,0.4) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.big-quote em{font-style:normal;-webkit-text-fill-color:rgba(255,255,255,0.3);}
+
+/* ─── 03 PROMISE CARD ─── */
+.promise-card{
+  padding:56px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:28px;
+  position:relative;overflow:hidden;
+}
+.promise-card::before{
+  content:'';position:absolute;top:-60px;right:-60px;
+  width:200px;height:200px;
+  background:radial-gradient(circle,rgba(181,214,78,0.08) 0%,transparent 70%);
+  pointer-events:none;
+}
+
+/* ─── 04 PILLARS ─── */
+.pillar{padding:32px;border-radius:20px;transition:transform .2s;}
+.pillar:hover{transform:translateY(-4px);}
+.pillar-num{
+  font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;
+  letter-spacing:0.2em;color:rgba(255,255,255,0.2);margin-bottom:20px;
+}
+.pillar-title{font-size:22px;font-weight:800;letter-spacing:-0.03em;margin-bottom:10px;}
+.pillar-desc{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6;}
+
+/* ─── 05 SLOGAN SPLIT ─── */
+.slogan-split{display:grid;grid-template-columns:1fr 1fr;min-height:70vh;}
+.slogan-panel{padding:80px;display:flex;flex-direction:column;justify-content:center;}
+.slogan-panel-b{background:var(--sand);}
+.slogan-panel-s{background:var(--black);}
+.slogan-brand{
+  font-size:clamp(36px,5vw,64px);font-weight:900;
+  letter-spacing:-0.05em;margin-bottom:32px;
+}
+.slogan-panel-b .slogan-brand{color:var(--black);}
+.slogan-panel-s .slogan-brand{color:var(--white);}
+.slogan-main{
+  font-size:clamp(20px,2.5vw,30px);font-weight:800;
+  letter-spacing:-0.02em;margin-bottom:24px;border-bottom:2px solid;padding-bottom:20px;
+}
+.slogan-panel-b .slogan-main{color:var(--black);border-color:rgba(0,0,0,0.15);}
+.slogan-panel-s .slogan-main{color:var(--white);border-color:rgba(255,255,255,0.1);}
+.slogan-alts{display:flex;flex-direction:column;gap:6px;}
+.slogan-alt{font-size:13px;padding:6px 0;border-bottom:1px solid;}
+.slogan-panel-b .slogan-alt{color:rgba(0,0,0,0.45);border-color:rgba(0,0,0,0.06);}
+.slogan-panel-s .slogan-alt{color:rgba(255,255,255,0.3);border-color:rgba(255,255,255,0.05);}
+.slogan-alt:last-child{border-bottom:none;}
+.lime-text{color:var(--lime);}
+
+/* ─── 06 TOV ─── */
+.tov-wrap{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:48px;}
+.tov-col{border-radius:20px;padding:32px;}
+.tov-wrong{background:rgba(200,30,30,0.06);border:1px solid rgba(200,30,30,0.12);}
+.tov-right{background:rgba(181,214,78,0.06);border:1px solid rgba(181,214,78,0.12);}
+.tov-head{
+  font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;
+  letter-spacing:0.2em;text-transform:uppercase;margin-bottom:20px;
+}
+.tov-wrong .tov-head{color:rgba(200,80,80,0.8);}
+.tov-right .tov-head{color:rgba(181,214,78,0.8);}
+.tov-item{
+  font-size:14px;padding:10px 0;line-height:1.5;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+.tov-item:last-child{border-bottom:none;}
+.tov-wrong .tov-item{color:rgba(255,180,180,0.6);}
+.tov-right .tov-item{color:rgba(255,255,255,0.75);}
+
+/* ─── 07 ARCH ─── */
+.arch-card{border-radius:20px;overflow:hidden;transition:transform .2s;cursor:default;}
+.arch-card:hover{transform:translateY(-4px);}
+.arch-top{padding:32px 28px 24px;}
+.arch-bottom{padding:16px 28px 24px;border-top:1px solid rgba(255,255,255,0.06);}
+.arch-tag{
+  display:inline-block;padding:4px 12px;border-radius:999px;
+  font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:700;
+  letter-spacing:0.15em;text-transform:uppercase;margin-bottom:16px;
+}
+.arch-name{font-size:18px;font-weight:800;letter-spacing:-0.02em;margin-bottom:8px;}
+.arch-desc{font-size:12px;line-height:1.6;}
+.arch-items{display:flex;flex-direction:column;gap:6px;}
+.arch-item{font-size:11px;display:flex;gap:8px;}
+.arch-item::before{content:'—';opacity:0.3;flex-shrink:0;}
+.card-bodro{background:var(--sand);}
+.card-bodro .arch-tag{background:var(--black);color:#fff;}
+.card-bodro .arch-name,.card-bodro .arch-desc,.card-bodro .arch-item{color:rgba(0,0,0,0.6);}
+.card-bodro .arch-bottom{border-top-color:rgba(0,0,0,0.08);}
+.card-smart{background:#111110;}
+.card-smart .arch-tag{background:var(--lime);color:var(--black);}
+.card-smart .arch-name{color:#fff;}
+.card-smart .arch-desc,.card-smart .arch-item{color:rgba(255,255,255,0.35);}
+.card-week,.card-office{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);}
+.card-week .arch-tag,.card-office .arch-tag{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6);}
+.card-week .arch-name,.card-office .arch-name{color:rgba(255,255,255,0.85);}
+.card-week .arch-desc,.card-week .arch-item,.card-office .arch-desc,.card-office .arch-item{color:rgba(255,255,255,0.3);}
+
+/* ─── 08 PALETTE ─── */
+.palette-row{display:flex;gap:16px;margin-top:48px;flex-wrap:wrap;}
+.pal{flex:1;min-width:140px;}
+.pal-swatch{height:160px;border-radius:16px;margin-bottom:16px;position:relative;overflow:hidden;}
+.pal-swatch-inner{position:absolute;inset:0;display:flex;align-items:flex-end;padding:16px;}
+.pal-hex-badge{
+  background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);
+  padding:4px 10px;border-radius:999px;
+  font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.7);
+}
+.pal-name{font-size:18px;font-weight:800;letter-spacing:-0.02em;margin-bottom:4px;}
+.pal-role{font-size:12px;color:rgba(255,255,255,0.35);line-height:1.5;}
+.pal-rule{
+  margin-top:24px;padding:16px 20px;border-radius:12px;
+  background:rgba(181,214,78,0.06);border:1px solid rgba(181,214,78,0.12);
+  font-size:12px;color:rgba(181,214,78,0.7);line-height:1.5;
+  font-family:'JetBrains Mono',monospace;letter-spacing:0.05em;
+}
+
+/* ─── 09 TYPE ─── */
+.type-scale{margin-top:48px;display:flex;flex-direction:column;gap:0;}
+.type-row{
+  display:flex;align-items:baseline;gap:32px;
+  padding:24px 0;border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.type-row:first-child{border-top:1px solid rgba(255,255,255,0.06);}
+.type-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(255,255,255,0.2);width:120px;flex-shrink:0;letter-spacing:0.1em;}
+
+/* ─── 10 BACK COVER ─── */
+.back-cover{
+  min-height:80vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  background:var(--black);padding:80px;
+  position:relative;overflow:hidden;
+}
+.back-cover-glow{
+  position:absolute;width:600px;height:600px;
+  background:radial-gradient(circle,rgba(181,214,78,0.05) 0%,transparent 70%);
+  pointer-events:none;
+  animation:glowPulse 4s ease-in-out infinite alternate;
+}
+@keyframes glowPulse{0%{transform:scale(0.9);opacity:.6;}100%{transform:scale(1.1);opacity:1;}}
+.back-wordmark{
+  font-size:clamp(80px,12vw,180px);font-weight:900;
+  letter-spacing:-0.06em;line-height:0.85;
+  color:rgba(255,255,255,0.06);margin-bottom:32px;
+  user-select:none;
+}
+.back-formula{font-size:15px;color:rgba(255,255,255,0.3);line-height:2;font-weight:400;}
+.back-formula strong{color:rgba(255,255,255,0.6);font-weight:700;}
+.back-footer{
+  position:absolute;bottom:32px;left:0;right:0;
+  display:flex;justify-content:center;
+  font-family:'JetBrains Mono',monospace;font-size:9px;
+  color:rgba(255,255,255,0.1);letter-spacing:0.2em;text-transform:uppercase;
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(32px);}to{opacity:1;transform:translateY(0);}}
+
+.anim-up{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);}
+.anim-up.in{opacity:1;transform:translateY(0);}
+.anim-up-d1{transition-delay:.1s;}
+.anim-up-d2{transition-delay:.2s;}
+.anim-up-d3{transition-delay:.3s;}
+.anim-up-d4{transition-delay:.4s;}
+.anim-fade{opacity:0;transition:opacity .8s cubic-bezier(.16,1,.3,1);}
+.anim-fade.in{opacity:1;}
+.anim-scale{opacity:0;transform:scale(0.96);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);}
+.anim-scale.in{opacity:1;transform:scale(1);}
+
+/* ─── DIVIDER ─── */
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);margin:0 80px;}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  .hero{padding:0 32px 60px;}
+  .sec,.sec-sm{padding:80px 32px;}
+  .grid-2,.grid-4,.arch-grid,.tov-wrap{grid-template-columns:1fr;}
+  .slogan-split{grid-template-columns:1fr;}
+  .slogan-panel{padding:56px 32px;}
+  nav{padding:0 24px;}
+  .img-overlay{padding:32px;}
+  .divider{margin:0 32px;}
+  .palette-row{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+<div class="progress-bar" id="prog"></div>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <div>
+    <div class="nav-brand">BODRO</div>
+    <div class="nav-tag">Brand Book · 2025</div>
+  </div>
+  <a class="nav-cta" href="index.html">← Главная</a>
+</nav>
+
+<!-- ─── 01 HERO ─── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-num">01 · Идентичность</div>
+  <h1 class="hero-title" id="heroTitle">BODRO</h1>
+  <div class="hero-bottom">
+    <div class="hero-slogan" id="heroSlogan">Еда. Каждый день.</div>
+    <div class="hero-meta" id="heroMeta">
+      Dark Kitchen · Самара<br>
+      Brand Book · v1.0 · 2025<br>
+      Конфиденциально
+    </div>
+  </div>
+  <div class="hero-scroll" id="heroScroll">
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- ─── BRAND BOARD IMAGE ─── -->
+<section class="img-section anim-scale">
+  <img class="img-full" src="images/brand-board.jpg"
+    onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+    alt="BODRO Brand Board" style="object-position:center top;">
+  <!-- fallback if image not found -->
+  <div style="display:none;width:100%;height:60vh;background:rgba(255,255,255,0.03);border:1px dashed rgba(255,255,255,0.1);align-items:center;justify-content:center;flex-direction:column;gap:12px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.2);letter-spacing:0.2em;">ИЗОБРАЖЕНИЕ</div>
+    <div style="font-size:13px;color:rgba(255,255,255,0.4);">Сохрани как <code style="color:rgba(181,214,78,0.7);">images/brand-board.jpg</code></div>
+  </div>
+  <div class="img-overlay">
+    <div class="img-caption">Бренд-борд · Айдентика · Упаковка</div>
+    <div class="img-title">Система на трёх цветах. Два характера. Один голос.</div>
+  </div>
+</section>
+
+<!-- ─── 02 ГЛАВНАЯ ИДЕЯ ─── -->
+<section class="sec sec-dark">
+  <div class="label">02 · Главная идея</div>
+  <p class="big-quote anim-up">
+    Еда, которая не требует <em>решений.</em>
+  </p>
+  <div style="height:48px;"></div>
+  <div class="grid-2">
+    <p class="body body-muted anim-up anim-up-d1">
+      Ты не думаешь, что приготовить. Не считаешь состав. Не выбираешь между «полезно» и «нормально вкусно». Просто берёшь, разогреваешь и едешь дальше по своему дню.
+    </p>
+    <div class="promise-card anim-up anim-up-d2">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-bottom:16px;">Brand Promise</div>
+      <div style="font-size:18px;font-weight:700;line-height:1.5;color:rgba(255,255,255,0.85);">BODRO каждый день закрывает вопрос еды. Не вдохновляет. Не учит жить. Просто делает так, чтобы нормальная еда была под рукой.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── 03 ПОЗИЦИОНИРОВАНИЕ ─── -->
+<section class="sec sec-dark">
+  <div class="label">03 · Позиционирование</div>
+  <div class="grid-2" style="gap:80px;">
+    <div>
+      <h2 class="h2 anim-up" style="margin-bottom:24px;">Не диета.<br>Не фитнес-культ.<br>Не «ПП».</h2>
+      <p class="body body-muted anim-up anim-up-d1">
+        Готовая еда для нормального ежедневного ритма. Удобная, понятная, хорошо сделанная — на каждый день. Инфраструктура питания, а не образ жизни.
+      </p>
+      <div style="margin-top:32px;padding:20px 24px;background:rgba(255,255,255,0.03);border-left:2px solid rgba(255,255,255,0.15);border-radius:0 12px 12px 0;" class="anim-up anim-up-d2">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(255,255,255,0.2);letter-spacing:0.15em;margin-bottom:8px;">МИССИЯ</div>
+        <div style="font-size:14px;color:rgba(255,255,255,0.6);line-height:1.7;">Сделать ежедневную еду простой, честной и предсказуемо хорошей.</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <div class="glass" style="padding:28px;" class="anim-up">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-bottom:12px;">BODRO</div>
+        <div style="font-size:15px;font-weight:700;color:rgba(255,255,255,0.85);margin-bottom:8px;">Обычная еда для всех</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.35);line-height:1.6;">Плов, паста, борщ, котлета, супы, морсы. Акцент на блюде, не на данных. Для городского жителя, которому нужно просто поесть.</div>
+      </div>
+      <div class="glass-lime" style="padding:28px;" class="anim-up anim-up-d1">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(181,214,78,0.4);margin-bottom:12px;">BODRO SMART</div>
+        <div style="font-size:15px;font-weight:700;color:rgba(255,255,255,0.85);margin-bottom:8px;">Точное питание</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.4);line-height:1.6;">Больше белка, понятные КБЖУ, контроль без усложнения. Не «спортпит» — нормальная еда для тех, кто хочет видеть цифры.</div>
+      </div>
+      <div style="padding:16px 20px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:rgba(255,255,255,0.18);letter-spacing:0.15em;margin-bottom:6px;">РЫНОК</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.3);line-height:1.6;">США и Европа: ready-to-eat растёт. Factor — 30 г+ белка. M&S запускает nutrient-dense линейки. Рынок идёт туда.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 04 ФИЛОСОФИЯ / PILLARS ─── -->
+<section class="sec sec-darker">
+  <div class="label">04 · Философия</div>
+  <h2 class="h2 anim-up" style="margin-bottom:56px;max-width:500px;">Четыре принципа бренда</h2>
+  <div class="grid-4">
+    <div class="pillar glass anim-up anim-up-d1">
+      <div class="pillar-num">01</div>
+      <div class="pillar-title">Честно</div>
+      <div class="pillar-desc">Состав без скрытых ингредиентов. КБЖУ без округлений. Цена без маркетинговой наценки.</div>
+    </div>
+    <div class="pillar glass anim-up anim-up-d2">
+      <div class="pillar-num">02</div>
+      <div class="pillar-title">Просто</div>
+      <div class="pillar-desc">Взял. Разогрел. Поел. Никаких лишних шагов и решений. Минимум трения на пути к еде.</div>
+    </div>
+    <div class="pillar glass anim-up anim-up-d3">
+      <div class="pillar-num">03</div>
+      <div class="pillar-title">Рационально</div>
+      <div class="pillar-desc">Меню для повтора. Не праздничная еда — рабочая. Та, которую заказывают снова в среду.</div>
+    </div>
+    <div class="pillar glass anim-up anim-up-d4">
+      <div class="pillar-num">04</div>
+      <div class="pillar-title">Без шума</div>
+      <div class="pillar-desc">Без агрессивных продаж. Без обещаний новой версии себя. Бренд говорит спокойно.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FRIDGE IMAGE ─── -->
+<section class="img-section anim-scale">
+  <img class="img-full" src="images/fridge.jpg"
+    onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+    alt="BODRO Station" style="height:90vh;object-position:center;">
+  <div style="display:none;width:100%;height:60vh;background:rgba(255,255,255,0.03);border:1px dashed rgba(255,255,255,0.1);align-items:center;justify-content:center;flex-direction:column;gap:12px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.2);letter-spacing:0.2em;">ИЗОБРАЖЕНИЕ</div>
+    <div style="font-size:13px;color:rgba(255,255,255,0.4);">Сохрани как <code style="color:rgba(181,214,78,0.7);">images/fridge.jpg</code></div>
+  </div>
+  <div class="img-overlay">
+    <div class="img-caption">BODRO STATION · Офисный холодильник</div>
+    <div class="img-title">Вся линейка. Прямо в офисе.</div>
+  </div>
+</section>
+
+<!-- ─── 05 SLOGANS ─── -->
+<section class="slogan-split">
+  <div class="slogan-panel slogan-panel-b">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(0,0,0,0.25);margin-bottom:24px;">BODRO</div>
+    <div class="slogan-brand">BODRO</div>
+    <div class="slogan-main">Еда. Каждый день.</div>
+    <div class="slogan-alts">
+      <div class="slogan-alt">Хорошая еда. Каждый день.</div>
+      <div class="slogan-alt">Есть можно проще.</div>
+      <div class="slogan-alt">Сегодня можно не готовить.</div>
+      <div class="slogan-alt">Еда для жизни. Не наоборот.</div>
+      <div class="slogan-alt">Поел. Дальше живёшь.</div>
+      <div class="slogan-alt">Готово сегодня.</div>
+    </div>
+  </div>
+  <div class="slogan-panel slogan-panel-s">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(181,214,78,0.3);margin-bottom:24px;">BODRO SMART</div>
+    <div class="slogan-brand lime-text">SMART</div>
+    <div class="slogan-main">Всё посчитано.</div>
+    <div class="slogan-alts">
+      <div class="slogan-alt">Белок. Вкус. Контроль.</div>
+      <div class="slogan-alt">КБЖУ без культа.</div>
+      <div class="slogan-alt">Больше белка. Меньше шума.</div>
+      <div class="slogan-alt">Точное питание. Нормальная еда.</div>
+      <div class="slogan-alt">Контроль без усложнения.</div>
+      <div class="slogan-alt">Видишь цифры. Ешь спокойно.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 06 TOV ─── -->
+<section class="sec sec-dark">
+  <div class="label">06 · Tone of Voice</div>
+  <div class="grid-2" style="gap:80px;">
+    <div>
+      <h2 class="h2 anim-up" style="margin-bottom:20px;">Как говорим.</h2>
+      <p class="body body-muted anim-up anim-up-d1">Коротко. Без мотивационных фраз. Без «будь лучшей версией себя». Без восклицательных знаков.</p>
+    </div>
+    <div>
+      <div style="padding:28px;border-radius:16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);" class="anim-up">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(181,214,78,0.5);letter-spacing:0.15em;margin-bottom:12px;">ПРИМЕР · TELEGRAM</div>
+        <div style="font-size:14px;color:rgba(255,255,255,0.6);line-height:1.8;font-family:'JetBrains Mono',monospace;">
+          Меню на четверг:<br>
+          — Плов с курицей<br>
+          — Грудка су-вид, бурый рис<br>
+          — Борщ с говядиной<br><br>
+          Заказать: /order
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tov-wrap">
+    <div class="tov-col tov-wrong anim-up">
+      <div class="tov-head">Не говорим</div>
+      <div class="tov-item">Заряди себя энергией на весь день!</div>
+      <div class="tov-item">Питайся правильно с BODRO.</div>
+      <div class="tov-item">Будь бодрым каждый день!</div>
+      <div class="tov-item">Твоя новая жизнь начинается с обеда.</div>
+      <div class="tov-item">Вкусно и полезно!</div>
+      <div class="tov-item">Натуральные ингредиенты.</div>
+      <div class="tov-item">Домашняя еда. Мы любим вас!</div>
+    </div>
+    <div class="tov-col tov-right anim-up anim-up-d1">
+      <div class="tov-head">Говорим</div>
+      <div class="tov-item">Сегодня можно не готовить.</div>
+      <div class="tov-item">Плов с курицей. Готово сегодня.</div>
+      <div class="tov-item">31 г белка. Без лишних слов.</div>
+      <div class="tov-item">Обед закрыт.</div>
+      <div class="tov-item">Борщ. 400 г. 246 ккал.</div>
+      <div class="tov-item">Состав: говядина, свекла, капуста.</div>
+      <div class="tov-item">Готово. Разогрей за 3 минуты.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── 07 BRAND ARCHITECTURE ─── -->
+<section class="sec sec-dark">
+  <div class="label">07 · Архитектура бренда</div>
+  <div class="grid-2" style="margin-bottom:48px;gap:80px;">
+    <h2 class="h2 anim-up">Один зонтик.<br>Четыре направления.</h2>
+    <p class="body body-muted anim-up anim-up-d1">BODRO — родительский бренд. Под ним развиваются специализированные направления, каждое со своей аудиторией и механикой.</p>
+  </div>
+  <div class="grid-4" style="gap:12px;" id="arch-grid">
+    <div class="arch-card card-bodro anim-up anim-up-d1">
+      <div class="arch-top">
+        <div class="arch-tag">BODRO</div>
+        <div class="arch-name" style="color:var(--black);">Обычная еда для всех</div>
+        <div class="arch-desc">Плов, паста, борщ, котлета, супы, морсы. Светлая упаковка.</div>
+      </div>
+      <div class="arch-bottom" style="border-top-color:rgba(0,0,0,0.08);">
+        <div class="arch-items">
+          <div class="arch-item" style="color:rgba(0,0,0,0.4);">Аудитория 25–45</div>
+          <div class="arch-item" style="color:rgba(0,0,0,0.4);">Чек 250–350 ₽</div>
+        </div>
+      </div>
+    </div>
+    <div class="arch-card card-smart anim-up anim-up-d2">
+      <div class="arch-top">
+        <div class="arch-tag">BODRO SMART</div>
+        <div class="arch-name">Точное питание</div>
+        <div class="arch-desc">Высокобелковые блюда. Чёрная упаковка. КБЖУ в центре.</div>
+      </div>
+      <div class="arch-bottom">
+        <div class="arch-items">
+          <div class="arch-item">Аудитория 22–38, ЗОЖ</div>
+          <div class="arch-item">30 г+ белка · Чек 300–450 ₽</div>
+        </div>
+      </div>
+    </div>
+    <div class="arch-card card-week anim-up anim-up-d3">
+      <div class="arch-top">
+        <div class="arch-tag">BODRO WEEK</div>
+        <div class="arch-name">Подписка на неделю</div>
+        <div class="arch-desc">Набор на 5 рабочих дней. DTC без агрегаторов.</div>
+      </div>
+      <div class="arch-bottom">
+        <div class="arch-items">
+          <div class="arch-item">Доставка к 8:00 или к обеду</div>
+          <div class="arch-item">Запуск с мес. 4</div>
+        </div>
+      </div>
+    </div>
+    <div class="arch-card card-office anim-up anim-up-d4">
+      <div class="arch-top">
+        <div class="arch-tag">BODRO OFFICE</div>
+        <div class="arch-name">Корпоративное питание</div>
+        <div class="arch-desc">Ежедневная доставка. Офисы от 10 человек.</div>
+      </div>
+      <div class="arch-bottom">
+        <div class="arch-items">
+          <div class="arch-item">Без комиссии агрегаторов</div>
+          <div class="arch-item">Мес. 3–4 — старт B2B</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 08 ЦВЕТ ─── -->
+<section class="sec sec-darker">
+  <div class="label">08 · Цвет</div>
+  <div class="grid-2" style="gap:80px;align-items:start;">
+    <div>
+      <h2 class="h2 anim-up" style="margin-bottom:0;">Три цвета.<br>Строгая система.</h2>
+    </div>
+    <div>
+      <p class="body body-muted anim-up">Лайм принадлежит только BODRO SMART — только для цифр КБЖУ. Никогда в материалах BODRO. Два мира: светлый и тёмный.</p>
+    </div>
+  </div>
+  <div class="palette-row">
+    <div class="pal anim-up anim-up-d1">
+      <div class="pal-swatch" style="background:#0D0D0B;border:1px solid rgba(255,255,255,0.06);">
+        <div class="pal-swatch-inner"><div class="pal-hex-badge">#0D0D0B</div></div>
+      </div>
+      <div class="pal-name">Чёрный</div>
+      <div class="pal-role">BODRO SMART · фон · основной текст</div>
+    </div>
+    <div class="pal anim-up anim-up-d2">
+      <div class="pal-swatch" style="background:#F2EDE5;border:1px solid rgba(0,0,0,0.08);">
+        <div class="pal-swatch-inner"><div class="pal-hex-badge" style="background:rgba(0,0,0,0.08);color:rgba(0,0,0,0.5);">#F2EDE5</div></div>
+      </div>
+      <div class="pal-name">Сэнд</div>
+      <div class="pal-role">BODRO · упаковка · нейтральный фон</div>
+    </div>
+    <div class="pal anim-up anim-up-d3">
+      <div class="pal-swatch" style="background:#B5D64E;">
+        <div class="pal-swatch-inner"><div class="pal-hex-badge" style="background:rgba(0,0,0,0.15);color:rgba(0,0,0,0.7);">#B5D64E</div></div>
+      </div>
+      <div class="pal-name">Лайм</div>
+      <div class="pal-role">Только BODRO SMART · КБЖУ · акценты</div>
+    </div>
+  </div>
+  <div class="pal-rule anim-up" style="margin-top:24px;">
+    ПРАВИЛО: Лайм #B5D64E — только BODRO SMART. Использование в BODRO = ошибка.
+  </div>
+</section>
+
+<!-- ─── 09 ТИПОГРАФИКА ─── -->
+<section class="sec sec-dark">
+  <div class="label">09 · Типографика</div>
+  <div class="grid-2" style="gap:80px;align-items:start;">
+    <div>
+      <h2 class="h2 anim-up" style="margin-bottom:24px;">Два шрифта.<br>Чёткое разделение.</h2>
+      <p class="body body-muted anim-up anim-up-d1">Archivo — для всего человеческого. JetBrains Mono — только для данных: КБЖУ, цифры, состав.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;" class="anim-up">
+      <div style="padding:28px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:rgba(255,255,255,0.2);letter-spacing:0.15em;margin-bottom:16px;">ARCHIVO · ОСНОВНОЙ</div>
+        <div style="font-size:52px;font-weight:900;letter-spacing:-0.05em;line-height:0.9;margin-bottom:12px;">BODRO</div>
+        <div style="font-size:20px;font-weight:700;margin-bottom:6px;">Борщ с говядиной</div>
+        <div style="font-size:13px;font-weight:400;color:rgba(255,255,255,0.4);">Логотип, названия, заголовки, этикетка</div>
+      </div>
+      <div style="padding:28px;background:#0A0A09;border:1px solid rgba(255,255,255,0.06);border-radius:16px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:rgba(181,214,78,0.35);letter-spacing:0.15em;margin-bottom:16px;">JETBRAINS MONO · ДАННЫЕ</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:48px;font-weight:700;color:#B5D64E;line-height:1;margin-bottom:8px;">246</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(255,255,255,0.3);">ККАЛ · Б: 12.9 · Ж: 15.2 · У: 14.7</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.15);margin-top:8px;">Только для цифровых данных</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="type-scale anim-up" style="margin-top:60px;">
+    <div class="type-row">
+      <div class="type-label">Display · 900</div>
+      <div style="font-size:60px;font-weight:900;letter-spacing:-0.05em;line-height:1;color:rgba(255,255,255,0.85);">BODRO</div>
+    </div>
+    <div class="type-row">
+      <div class="type-label">H1 · 900</div>
+      <div style="font-size:36px;font-weight:900;letter-spacing:-0.04em;color:rgba(255,255,255,0.85);">Борщ с говядиной</div>
+    </div>
+    <div class="type-row">
+      <div class="type-label">H2 · 700</div>
+      <div style="font-size:24px;font-weight:700;letter-spacing:-0.02em;color:rgba(255,255,255,0.7);">Куриное филе гриль, бурый рис</div>
+    </div>
+    <div class="type-row">
+      <div class="type-label">Body · 400</div>
+      <div style="font-size:15px;font-weight:400;color:rgba(255,255,255,0.4);">Грудка куриная, булгур, лук, морковь, чеснок, соль, перец</div>
+    </div>
+    <div class="type-row">
+      <div class="type-label">Mono Data</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--lime);">Б: 31 г · Ж: 11 г · У: 28 г · 352 ККАЛ</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 10 BACK COVER ─── -->
+<section class="back-cover">
+  <div class="back-cover-glow"></div>
+  <div class="back-wordmark anim-fade">BODRO</div>
+  <div class="back-formula anim-up">
+    <strong>BODRO</strong> — еда без лишних решений.<br>
+    <strong>BODRO SMART</strong> — еда, где всё посчитано.
+  </div>
+  <div class="back-footer">Brand Book v1.0 · 2025 · Dark Kitchen · Самара · Конфиденциально</div>
+</section>
+
+<script>
+// ── PROGRESS BAR ──
+const prog = document.getElementById('prog');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  prog.style.width = (window.scrollY / h * 100) + '%';
+}, { passive: true });
+
+// ── HERO REVEAL ──
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('heroTitle').classList.add('revealed');
+    document.getElementById('heroSlogan').classList.add('revealed');
+    document.getElementById('heroMeta').classList.add('revealed');
+    document.getElementById('heroScroll').style.opacity = '1';
+  }, 200);
+});
+
+// ── INTERSECTION OBSERVER ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.anim-up, .anim-fade, .anim-scale').forEach(el => observer.observe(el));
+
+// ── NAV SCROLL ──
+const nav = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+  nav.style.background = window.scrollY > 60
+    ? 'rgba(13,13,11,0.85)'
+    : 'rgba(13,13,11,0.6)';
+}, { passive: true });
+
+// ── PARALLAX HERO BG ──
+window.addEventListener('scroll', () => {
+  const bg = document.querySelector('.hero-bg');
+  if (bg) bg.style.transform = `translateY(${window.scrollY * 0.3}px)`;
+}, { passive: true });
+</script>
+</body>
+</html>
