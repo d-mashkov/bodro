@@ -418,12 +418,13 @@ textarea.form-input { resize:vertical; min-height:90px; }
     </div>
   </div>
   <div class="pills" id="menuPills">
-    <div class="pill active" onclick="filterMenu('all',this)">Все (18)</div>
+    <div class="pill active" onclick="filterMenu('all',this)">Все (22)</div>
     <div class="pill" onclick="filterMenu('Суп',this)">Супы</div>
     <div class="pill" onclick="filterMenu('Второе',this)">Вторые блюда</div>
     <div class="pill" onclick="filterMenu('Салат',this)">Салаты</div>
     <div class="pill" onclick="filterMenu('Гарнир',this)">Гарниры</div>
     <div class="pill" onclick="filterMenu('Десерт',this)">Десерты</div>
+    <div class="pill" onclick="filterMenu('Напиток',this)">Напитки</div>
   </div>
   <div class="g-auto" id="menuGrid"></div>
 </div>
@@ -692,24 +693,28 @@ textarea.form-input { resize:vertical; min-height:90px; }
 <!-- ══════════ JS ══════════ -->
 <script>
 const MENU_DATA = [
-  {name:"Борщ с говядиной",cat:"Суп",weight:350,fc:73,kcal_p:245.7,b_p:12.9,f_p:15.2,c_p:14.7,ingr:"Говядина (лопатка), капуста белокочанная, свекла, картофель, морковь, лук репчатый, томатная паста, сметана"},
-  {name:"Суп-пюре грибной с курицей",cat:"Суп",weight:300,fc:95,kcal_p:385.2,b_p:26.9,f_p:20.7,c_p:22.6,ingr:"Грудка куриная, шампиньоны, картофель, морковь, лук, масло сливочное, сливки 10%, гренки"},
-  {name:"Суп томатный с печёными перцами",cat:"Суп",weight:300,fc:110,kcal_p:103.9,b_p:3.1,f_p:3.4,c_p:14.4,ingr:"Томаты Polpa, перец сладкий, лук, морковь, сельдерей, масло растительное, базилик, орегано"},
-  {name:"Куриное филе гриль, булгур, овощи",cat:"Второе",weight:277,fc:65,kcal_p:460.4,b_p:31.9,f_p:14.1,c_p:48.2,ingr:"Грудка куриная, булгур, лук, морковь, петрушка, лимонный сок, чеснок"},
-  {name:"Оладьи куриные из грудки",cat:"Второе",weight:151,fc:64,kcal_p:363.4,b_p:29.3,f_p:20.2,c_p:13.9,ingr:"Грудка куриная, хлеб пшеничный, молоко, лук, желток, мускатный орех"},
-  {name:"Бризоль куриная с рисом",cat:"Второе",weight:230,fc:45,kcal_p:353.4,b_p:21.5,f_p:9.4,c_p:43.8,ingr:"Фарш куриный, яйцо (меланж), молоко, мука пшеничная, чеснок, рис длиннозерный, петрушка"},
-  {name:"Тальятелле, грудка, сычуанский перец",cat:"Второе",weight:240,fc:91,kcal_p:462,b_p:36.4,f_p:11.2,c_p:53.1,ingr:"Грудка куриная, паста тальятелле, петрушка, масло зелёное, лимонный сок, перец сычуанский"},
-  {name:"Говядина наршараб, мятый картофель",cat:"Второе",weight:230,fc:110,kcal_p:305.5,b_p:27.7,f_p:8.4,c_p:30.0,ingr:"Говядина (лопатка), соус наршараб, картофель, молоко 2.5%, розмарин, тимьян"},
-  {name:"Бефстроганов с картофельным пюре",cat:"Второе",weight:220,fc:78,kcal_p:341.7,b_p:18.6,f_p:17.4,c_p:27.2,ingr:"Говядина (лопатка), лук, сметана 20%, картофель, молоко 2.5%, масло сливочное"},
-  {name:"Грудка су-вид в специях, бурый рис",cat:"Второе",weight:225,fc:60,kcal_p:329.2,b_p:26.8,f_p:3.0,c_p:46.7,ingr:"Грудка куриная, рис бурый, паприка копчёная, итальянские травы, чеснок сушёный"},
-  {name:"Биточки куриные паровые, киноа",cat:"Второе",weight:225,fc:54,kcal_p:348.4,b_p:21.3,f_p:11.9,c_p:36.0,ingr:"Грудка куриная, батон пшеничный, молоко 2.5%, лук, яйцо (меланж), крупа киноа, масло"},
-  {name:"Овощи бланшированные",cat:"Гарнир",weight:150,fc:40,kcal_p:50,b_p:3.4,f_p:0.5,c_p:8.4,ingr:"Морковь, цветная капуста, брокколи, фасоль стручковая замороженная"},
-  {name:"Салат-микс зелёный с бальзамиком",cat:"Салат",weight:70,fc:55,kcal_p:69.2,b_p:1.0,f_p:6.1,c_p:2.5,ingr:"Айсберг, романо, шпинат, мангольд, заправка бальзамическая"},
-  {name:"Витаминный салат с заправкой кимчи",cat:"Салат",weight:150,fc:32,kcal_p:92.5,b_p:3.2,f_p:0.3,c_p:19.1,ingr:"Капуста белокочанная, морковь, перец сладкий красный, соус кимчи, лимон"},
-  {name:"Винегрет с горчичной заправкой",cat:"Салат",weight:175,fc:28,kcal_p:163.6,b_p:3.0,f_p:9.2,c_p:17.0,ingr:"Свекла, картофель, морковь, огурцы солёные, капуста квашеная, горошек, горчица"},
-  {name:"Зелёный салат, грудка су-вид, кукуруза",cat:"Салат",weight:95,fc:56,kcal_p:113,b_p:10.2,f_p:6.1,c_p:5.0,ingr:"Айсберг, романо, шпинат, кукуруза, грудка су-вид, мёд, соевый соус, горчица"},
-  {name:"Сырники со сметаной",cat:"Десерт",weight:175,fc:112,kcal_p:639,b_p:37.0,f_p:22.2,c_p:73.2,ingr:"Творог 5%, крупа манная, сахар, яйцо (меланж), мука, сметана 15%"},
-  {name:"Протеиновый брауни с бананом",cat:"Десерт",weight:120,fc:74,kcal_p:197.7,b_p:21.5,f_p:6.9,c_p:10.7,ingr:"Банан, яйцо, протеин сывороточный, какао-порошок, йогурт греческий, разрыхлитель"}
+  {name:"Борщ с говядиной",cat:"Суп",weight:350,fc:73,kcal_p:245.7,b_p:12.9,f_p:15.2,c_p:14.7,ingr:"Говядина (лопатка), капуста белокочанная, свекла, картофель, морковь, лук репчатый, томатная паста, сметана",file:"ТК_Борщ_с_говядиной.xlsx"},
+  {name:"Суп-пюре грибной с курицей",cat:"Суп",weight:300,fc:95,kcal_p:385.2,b_p:26.9,f_p:20.7,c_p:22.6,ingr:"Грудка куриная, шампиньоны, картофель, морковь, лук, масло сливочное, сливки 10%, гренки",file:"ТК_Суп_пюре_грибной_с_курицей.xlsx"},
+  {name:"Суп томатный с печёными перцами",cat:"Суп",weight:300,fc:110,kcal_p:103.9,b_p:3.1,f_p:3.4,c_p:14.4,ingr:"Томаты Polpa, перец сладкий, лук, морковь, сельдерей, масло растительное, базилик, орегано",file:"ТК_Суп_томатный_с_перцами.xlsx"},
+  {name:"Куриное филе гриль, булгур, овощи",cat:"Второе",weight:277,fc:65,kcal_p:460.4,b_p:31.9,f_p:14.1,c_p:48.2,ingr:"Грудка куриная, булгур, лук, морковь, петрушка, лимонный сок, чеснок",file:"ТК_Куриное_филе_булгур_овощи.xlsx"},
+  {name:"Оладьи куриные из грудки",cat:"Второе",weight:151,fc:64,kcal_p:363.4,b_p:29.3,f_p:20.2,c_p:13.9,ingr:"Грудка куриная, хлеб пшеничный, молоко, лук, желток, мускатный орех",file:"ТК_Оладьи_куриные.xlsx"},
+  {name:"Бризоль куриная с рисом",cat:"Второе",weight:230,fc:45,kcal_p:353.4,b_p:21.5,f_p:9.4,c_p:43.8,ingr:"Фарш куриный, яйцо (меланж), молоко, мука пшеничная, чеснок, рис длиннозерный, петрушка",file:"ТК_Бризоль_куриная_с_рисом.xlsx"},
+  {name:"Тальятелле, грудка, сычуанский перец",cat:"Второе",weight:240,fc:91,kcal_p:462,b_p:36.4,f_p:11.2,c_p:53.1,ingr:"Грудка куриная, паста тальятелле, петрушка, масло зелёное, лимонный сок, перец сычуанский",file:"ТК_Тальятелле_с_грудкой_сычуанский_перец.xlsx"},
+  {name:"Говядина наршараб, мятый картофель",cat:"Второе",weight:230,fc:110,kcal_p:305.5,b_p:27.7,f_p:8.4,c_p:30.0,ingr:"Говядина (лопатка), соус наршараб, картофель, молоко 2.5%, розмарин, тимьян",file:"ТК_Говядина_наршараб_мятый_картофель.xlsx"},
+  {name:"Бефстроганов с картофельным пюре",cat:"Второе",weight:220,fc:78,kcal_p:341.7,b_p:18.6,f_p:17.4,c_p:27.2,ingr:"Говядина (лопатка), лук, сметана 20%, картофель, молоко 2.5%, масло сливочное",file:"ТК_Бефстроганов_с_пюре.xlsx"},
+  {name:"Грудка су-вид в специях, бурый рис",cat:"Второе",weight:225,fc:60,kcal_p:329.2,b_p:26.8,f_p:3.0,c_p:46.7,ingr:"Грудка куриная, рис бурый, паприка копчёная, итальянские травы, чеснок сушёный",file:"ТК_Грудка_су_вид_бурый_рис.xlsx"},
+  {name:"Биточки куриные паровые, киноа",cat:"Второе",weight:225,fc:54,kcal_p:348.4,b_p:21.3,f_p:11.9,c_p:36.0,ingr:"Грудка куриная, батон пшеничный, молоко 2.5%, лук, яйцо (меланж), крупа киноа, масло",file:"ТК_Биточки_куриные_паровые_киноа.xlsx"},
+  {name:"Овощи бланшированные",cat:"Гарнир",weight:150,fc:40,kcal_p:50,b_p:3.4,f_p:0.5,c_p:8.4,ingr:"Морковь, цветная капуста, брокколи, фасоль стручковая замороженная",file:"ТК_Овощи_бланшированные.xlsx"},
+  {name:"Салат-микс зелёный с бальзамиком",cat:"Салат",weight:70,fc:55,kcal_p:69.2,b_p:1.0,f_p:6.1,c_p:2.5,ingr:"Айсберг, романо, шпинат, мангольд, заправка бальзамическая",file:"ТК_Салат_микс_с_бальзамиком.xlsx"},
+  {name:"Витаминный салат с заправкой кимчи",cat:"Салат",weight:150,fc:32,kcal_p:92.5,b_p:3.2,f_p:0.3,c_p:19.1,ingr:"Капуста белокочанная, морковь, перец сладкий красный, соус кимчи, лимон",file:"ТК_Салат_витаминный_кимчи.xlsx"},
+  {name:"Винегрет с горчичной заправкой",cat:"Салат",weight:175,fc:28,kcal_p:163.6,b_p:3.0,f_p:9.2,c_p:17.0,ingr:"Свекла, картофель, морковь, огурцы солёные, капуста квашеная, горошек, горчица",file:"ТК_Винегрет.xlsx"},
+  {name:"Зелёный салат, грудка су-вид, кукуруза",cat:"Салат",weight:95,fc:56,kcal_p:113,b_p:10.2,f_p:6.1,c_p:5.0,ingr:"Айсберг, романо, шпинат, кукуруза, грудка су-вид, мёд, соевый соус, горчица",file:"ТК_Зеленый_салат_кукуруза_грудка_су_вид.xlsx"},
+  {name:"Сырники со сметаной",cat:"Десерт",weight:175,fc:112,kcal_p:639,b_p:37.0,f_p:22.2,c_p:73.2,ingr:"Творог 5%, крупа манная, сахар, яйцо (меланж), мука, сметана 15%",file:"ТК_Сырники_со_сметаной.xlsx"},
+  {name:"Протеиновый брауни с бананом",cat:"Десерт",weight:120,fc:74,kcal_p:197.7,b_p:21.5,f_p:6.9,c_p:10.7,ingr:"Банан, яйцо, протеин сывороточный, какао-порошок, йогурт греческий, разрыхлитель",file:"ТК_Протеиновый_брауни.xlsx"},
+  {name:"Морс из вишни",cat:"Напиток",weight:500,fc:48,kcal_p:72.8,b_p:1.12,f_p:0.28,c_p:14.84,ingr:"Вишня замороженная, вода питьевая, эритрит, сукралоза",file:"ТК_Морс_из_вишни.xlsx"},
+  {name:"Морс из чёрной смородины",cat:"Напиток",weight:500,fc:40,kcal_p:55,b_p:1.26,f_p:0.49,c_p:8.97,ingr:"Смородина чёрная замороженная, лимон, вода питьевая, эритрит, сукралоза",file:"ТК_Морс_из_черной_смородины.xlsx"},
+  {name:"Зелёный чай холодный с лимоном",cat:"Напиток",weight:500,fc:13,kcal_p:7.5,b_p:0,f_p:0,c_p:0.2,ingr:"Чай зелёный листовой, лимон, вода питьевая, эритрит, сукралоза",file:"ТК_Зеленый_чай_холодный_с_лимоном.xlsx"},
+  {name:"Подсластитель (эритрит + сукралоза)",cat:"Напиток",weight:100,fc:73,kcal_p:0,b_p:0,f_p:0,c_p:0,ingr:"Эритрит 95%, сукралоза 5% · эквивалент сахара ×25",file:"ТК_Подсластитель.xlsx"},
 ];
 const AVG_FC = Math.round(MENU_DATA.reduce((s,m)=>s+m.fc,0)/MENU_DATA.length);
 
@@ -846,11 +851,25 @@ function filterMenu(filter,btn){ document.querySelectorAll('#menuPills .pill').f
 function renderMenuCards(filter){
   const items=filter==='all'?MENU_DATA:MENU_DATA.filter(m=>m.cat===filter);
   document.getElementById('menuGrid').innerHTML=items.map(m=>{
-    const w=m.weight, k100=(m.kcal_p/w*100).toFixed(0), b100=(m.b_p/w*100).toFixed(1), f100=(m.f_p/w*100).toFixed(1), c100=(m.c_p/w*100).toFixed(1);
-    return `<div class="m-card">
+    const w=m.weight;
+    const k100=(m.kcal_p/w*100).toFixed(0), b100=(m.b_p/w*100).toFixed(1), f100=(m.f_p/w*100).toFixed(1), c100=(m.c_p/w*100).toFixed(1);
+    const isLowCal = m.kcal_p < 100;
+    const isHighProt = parseFloat(b100) >= 10;
+    const fcPct = m.kcal_p > 0 ? Math.round(m.b_p*4/(m.kcal_p)*100) : 0; // % калорий из белка
+    const fileBtn = m.file
+      ? `<a href="${m.file}" target="_blank" style="display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:999px;font-size:12px;font-weight:700;border:1.5px solid var(--line);background:rgba(255,255,255,0.8);color:var(--sub);text-decoration:none;transition:all .15s;" onmouseover="this.style.borderColor='var(--black)';this.style.color='var(--black)'" onmouseout="this.style.borderColor='var(--line)';this.style.color='var(--sub)'">
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 2h7l3 3v7H2V2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 2v4h4" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          ТК · Excel
+        </a>`
+      : '';
+    return `<div class="m-card" style="display:flex;flex-direction:column;">
       <div class="flex justify-between items-start mb8">
         <span class="chip">${m.cat}</span>
-        <span class="fs12 c-muted">${m.weight} г</span>
+        <div style="display:flex;gap:4px;align-items:center;">
+          ${isHighProt?'<span class="chip chip-dark" style="font-size:9px;padding:2px 7px;">ПРОТЕИН</span>':''}
+          ${isLowCal?'<span class="chip" style="font-size:9px;padding:2px 7px;background:rgba(34,197,94,.1);border-color:rgba(34,197,94,.3);color:#16A34A;">ЛЕГКОЕ</span>':''}
+          <span class="fs12 c-muted">${m.weight} г</span>
+        </div>
       </div>
       <div class="m-name">${m.name}</div>
       <div class="m-cat">Порция · ${m.weight} г</div>
@@ -864,14 +883,18 @@ function renderMenuCards(filter){
         <div class="kbju-cell"><div class="kbju-v">${c100}</div><div class="kbju-l">УГЛЕВ.</div></div>
       </div>
       <div class="mono fs10 c-muted mb8" style="text-transform:uppercase;letter-spacing:.08em;font-weight:700;">КБЖУ · порция ${w} г</div>
-      <div class="kbju-grid">
+      <div class="kbju-grid mb12">
         <div class="kbju-cell"><div class="kbju-v kbju-red">${m.kcal_p}</div><div class="kbju-l">ККАЛ</div></div>
         <div class="kbju-cell"><div class="kbju-v">${m.b_p}</div><div class="kbju-l">БЕЛКИ</div></div>
         <div class="kbju-cell"><div class="kbju-v">${m.f_p}</div><div class="kbju-l">ЖИРЫ</div></div>
         <div class="kbju-cell"><div class="kbju-v">${m.c_p}</div><div class="kbju-l">УГЛЕВ.</div></div>
       </div>
+      ${fcPct>0?`<div class="mono fs10 c-muted mb12" style="letter-spacing:.03em;">% калорий из белка: <strong style="color:var(--black)">${fcPct}%</strong></div>`:''}
       <div class="divider"></div>
-      <div class="m-fc">Себестоимость ингредиентов: <strong>${m.fc} ₽</strong></div>
+      <div class="flex justify-between items-center" style="margin-top:auto;">
+        <div class="m-fc">Себестоимость: <strong>${m.fc} ₽</strong></div>
+        ${fileBtn}
+      </div>
     </div>`;
   }).join('');
 }
