@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BODRO — Dark Kitchen · Самара</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23B5D64E'/><text x='16' y='23' font-size='19' text-anchor='middle' fill='%230D0D0B' font-family='Arial' font-weight='900'>R</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230D0D0B'/><text x='16' y='23' font-size='16' text-anchor='middle' fill='%23F2EDE5' font-family='Arial' font-weight='900'>B</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -35,9 +35,7 @@ nav{
   box-shadow:0 1px 12px rgba(0,0,0,0.04);
   display:flex;align-items:center;padding:0 40px;height:60px;gap:0;
 }
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:36px;}
-.logo-mark{width:32px;height:32px;background:var(--lime);border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.logo-mark span{font-family:'Archivo',sans-serif;font-weight:900;font-size:20px;color:var(--black);letter-spacing:-0.04em;line-height:1;}
+.logo{display:flex;align-items:center;gap:0;text-decoration:none;margin-right:36px;}
 .logo-text{display:flex;flex-direction:column;gap:0;}
 .logo-name{font-weight:900;font-size:17px;letter-spacing:-0.04em;color:var(--black);line-height:1.1;}
 .logo-sub{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);line-height:1;}
@@ -113,10 +111,8 @@ nav{
 .bb-cover-noise{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");opacity:.5;pointer-events:none;}
 .bb-cover-glow{position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(181,214,78,0.15) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
 .bb-cover-inner{position:relative;z-index:1;max-width:800px;}
-.bb-cover-logo{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:56px;}
-.bb-cover-mark{width:64px;height:64px;background:var(--lime);border-radius:14px;display:flex;align-items:center;justify-content:center;}
-.bb-cover-mark span{font-family:'Archivo',sans-serif;font-weight:900;font-size:40px;color:var(--black);letter-spacing:-0.04em;line-height:1;}
-.bb-cover-wordmark{font-family:'Archivo',sans-serif;font-weight:900;font-size:40px;letter-spacing:-0.04em;color:var(--white);}
+.bb-cover-logo{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:56px;}
+.bb-cover-wordmark{font-family:'Archivo',sans-serif;font-weight:900;font-size:56px;letter-spacing:-0.05em;color:var(--white);}
 .bb-cover-title{font-size:clamp(14px,1.5vw,16px);font-family:'JetBrains Mono',monospace;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:64px;}
 .bb-cover-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.06);border-radius:12px;overflow:hidden;}
 .bb-cover-cell{background:var(--black);padding:24px 20px;text-align:left;}
@@ -188,13 +184,7 @@ nav{
 .bb-brand-card-top{padding:40px 32px 32px;}
 .bb-brand-card.bodro .bb-brand-card-top{background:var(--white);}
 .bb-brand-card.smart .bb-brand-card-top{background:var(--black);}
-.bb-brand-logo{display:flex;align-items:center;gap:10px;margin-bottom:24px;}
-.bb-brand-mark{width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;}
-.bb-brand-card.bodro .bb-brand-mark{background:var(--black);}
-.bb-brand-card.smart .bb-brand-mark{background:var(--lime);}
-.bb-brand-mark-r{font-family:'Archivo',sans-serif;font-weight:900;font-size:24px;letter-spacing:-0.04em;line-height:1;}
-.bb-brand-card.bodro .bb-brand-mark-r{color:var(--white);}
-.bb-brand-card.smart .bb-brand-mark-r{color:var(--black);}
+.bb-brand-logo{display:flex;align-items:center;gap:0;margin-bottom:24px;}
 .bb-brand-name{font-size:22px;font-weight:900;letter-spacing:-0.04em;}
 .bb-brand-card.bodro .bb-brand-name{color:var(--black);}
 .bb-brand-card.smart .bb-brand-name{color:var(--white);}
@@ -258,9 +248,7 @@ nav{
 
 /* ── FOOTER ── */
 footer{background:var(--black);color:rgba(255,255,255,0.3);padding:32px 80px;display:flex;align-items:center;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;}
-.footer-logo{display:flex;align-items:center;gap:10px;}
-.footer-mark{width:24px;height:24px;background:var(--lime);border-radius:5px;display:flex;align-items:center;justify-content:center;}
-.footer-mark span{font-family:'Archivo',sans-serif;font-weight:900;font-size:14px;color:var(--black);letter-spacing:-0.04em;}
+.footer-logo{display:flex;align-items:center;gap:0;}
 .footer-name{color:rgba(255,255,255,0.5);font-weight:700;letter-spacing:0.1em;}
 </style>
 </head>
@@ -269,7 +257,6 @@ footer{background:var(--black);color:rgba(255,255,255,0.3);padding:32px 80px;dis
 <!-- ── NAV ── -->
 <nav>
   <a class="logo" href="#" onclick="showSection('home',this);return false;">
-    <div class="logo-mark"><span>R</span></div>
     <div class="logo-text">
       <div class="logo-name">BODRO</div>
       <div class="logo-sub">Dark Kitchen · Самара</div>
@@ -406,7 +393,6 @@ footer{background:var(--black);color:rgba(255,255,255,0.3);padding:32px 80px;dis
   <!-- FOOTER -->
   <footer>
     <div class="footer-logo">
-      <div class="footer-mark"><span>R</span></div>
       <span class="footer-name">BODRO</span>
     </div>
     <span>Dark Kitchen · Самара · 2025</span>
@@ -426,7 +412,6 @@ footer{background:var(--black);color:rgba(255,255,255,0.3);padding:32px 80px;dis
     <div class="bb-cover-glow"></div>
     <div class="bb-cover-inner">
       <div class="bb-cover-logo">
-        <div class="bb-cover-mark"><span>R</span></div>
         <div class="bb-cover-wordmark">BODRO</div>
       </div>
       <div class="bb-cover-title">Brand Book · Версия 1.0 · 2025</div>
@@ -655,7 +640,6 @@ footer{background:var(--black);color:rgba(255,255,255,0.3);padding:32px 80px;dis
       <div class="bb-brand-card bodro">
         <div class="bb-brand-card-top">
           <div class="bb-brand-logo">
-            <div class="bb-brand-mark"><span class="bb-brand-mark-r">R</span></div>
             <div class="bb-brand-name">BODRO</div>
           </div>
           <div class="bb-brand-tagline">Комфортная еда на каждый день. Тёплая, честная, без суеты. Для тех, кто просто хочет поесть.</div>
@@ -677,7 +661,6 @@ footer{background:var(--black);color:rgba(255,255,255,0.3);padding:32px 80px;dis
       <div class="bb-brand-card smart">
         <div class="bb-brand-card-top">
           <div class="bb-brand-logo">
-            <div class="bb-brand-mark"><span class="bb-brand-mark-r" style="color:#0D0D0B;">R</span></div>
             <div class="bb-brand-name">BODRO SMART</div>
           </div>
           <div class="bb-brand-tagline">Питание с данными. КБЖУ в центре. Для тех, кто считает, планирует, контролирует.</div>
@@ -866,9 +849,8 @@ footer{background:var(--black);color:rgba(255,255,255,0.3);padding:32px 80px;dis
 
   <!-- BACK COVER -->
   <div style="background:var(--black);padding:80px;text-align:center;color:rgba(255,255,255,0.2);">
-    <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:24px;">
-      <div style="width:40px;height:40px;background:var(--lime);border-radius:9px;display:flex;align-items:center;justify-content:center;"><span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:24px;color:var(--black);letter-spacing:-0.04em;">R</span></div>
-      <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:28px;color:var(--white);letter-spacing:-0.04em;">BODRO</span>
+    <div style="display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:24px;">
+      <span style="font-family:'Archivo',sans-serif;font-weight:900;font-size:36px;color:var(--white);letter-spacing:-0.05em;">BODRO</span>
     </div>
     <div style="font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-bottom:8px;">Brand Book v1.0 · 2025</div>
     <div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;color:rgba(255,255,255,0.12);">Конфиденциально · Dark Kitchen · Самара</div>
