@@ -426,6 +426,77 @@ section{position:relative;}
 .type-row:first-child{border-top:1px solid rgba(255,255,255,.06);}
 .type-k{font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.18);width:100px;flex-shrink:0;}
 
+/* ─ BRAND EXTENSION ─ */
+.sec-extend{background:var(--black);padding:128px 0 0;}
+.ext-hero{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;padding:0 80px;margin-top:56px;}
+.ext-visual{border-radius:20px;overflow:hidden;box-shadow:0 48px 120px rgba(0,0,0,.7);border:1px solid rgba(255,255,255,.06);cursor:zoom-in;position:relative;}
+.ext-visual img{display:block;width:100%;height:auto;transition:transform .8s cubic-bezier(.16,1,.3,1);}
+.ext-visual:hover img{transform:scale(1.01);}
+.ext-visual::after{content:'⊕  просмотр';position:absolute;bottom:20px;right:20px;font-family:var(--mono);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.7);background:rgba(0,0,0,.55);backdrop-filter:blur(8px);padding:5px 12px;border-radius:999px;opacity:0;transition:opacity .25s;pointer-events:none;}
+.ext-visual:hover::after{opacity:1;}
+
+.ext-text{}
+.ext-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:999px;background:rgba(181,214,78,.07);border:1px solid rgba(181,214,78,.18);font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--lime);margin-bottom:24px;}
+.ext-phase{width:6px;height:6px;border-radius:50%;background:var(--lime);}
+.ext-h{font-size:clamp(28px,3.2vw,48px);font-weight:900;letter-spacing:-.04em;line-height:1.05;margin-bottom:20px;}
+.ext-desc{font-size:15px;color:rgba(255,255,255,.38);line-height:1.8;margin-bottom:36px;}
+.ext-attrs{display:flex;flex-direction:column;gap:0;}
+.ext-attr{display:grid;grid-template-columns:24px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06);align-items:start;}
+.ext-attr:last-child{border-bottom:none;}
+.ext-icon{font-size:13px;margin-top:1px;opacity:.7;}
+.ext-attr-t{font-size:13px;font-weight:700;letter-spacing:-.01em;margin-bottom:2px;}
+.ext-attr-d{font-size:11px;color:rgba(255,255,255,.32);line-height:1.55;}
+
+.ext-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin:3px 80px 0;}
+.ext-pillar{padding:40px 40px;background:rgba(255,255,255,.02);border-top:2px solid rgba(255,255,255,.04);transition:background .2s;}
+.ext-pillar:hover{background:rgba(255,255,255,.04);}
+.ext-p-num{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.2em;color:rgba(181,214,78,.25);margin-bottom:16px;}
+.ext-p-t{font-size:17px;font-weight:900;letter-spacing:-.02em;margin-bottom:8px;}
+.ext-p-d{font-size:12px;color:rgba(255,255,255,.32);line-height:1.7;}
+
+.ext-benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin:3px 80px 0;}
+.ext-ben{padding:32px 36px;background:rgba(181,214,78,.03);border:1px solid rgba(181,214,78,.06);transition:background .2s;}
+.ext-ben:hover{background:rgba(181,214,78,.06);}
+.ext-ben-icon{font-size:18px;margin-bottom:12px;}
+.ext-ben-t{font-size:13px;font-weight:900;letter-spacing:-.01em;color:var(--lime);margin-bottom:4px;}
+.ext-ben-d{font-size:11px;color:rgba(255,255,255,.28);line-height:1.6;}
+
+.ext-saturation{margin:3px 80px 0;padding:48px 56px;background:rgba(255,255,255,.02);}
+.ext-sat-hd{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.15);margin-bottom:32px;}
+.ext-weeks{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;}
+.ext-week{padding:28px 28px;background:rgba(255,255,255,.02);border-top:2px solid;}
+.ext-week:nth-child(1){border-color:rgba(181,214,78,.12);}
+.ext-week:nth-child(2){border-color:rgba(181,214,78,.25);}
+.ext-week:nth-child(3){border-color:rgba(181,214,78,.45);}
+.ext-week:nth-child(4){border-color:var(--lime);}
+.ext-wk-n{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.15em;color:rgba(255,255,255,.18);margin-bottom:10px;}
+.ext-wk-t{font-size:13px;font-weight:800;letter-spacing:-.01em;margin-bottom:6px;}
+.ext-wk-d{font-size:11px;color:rgba(255,255,255,.28);line-height:1.6;}
+
+.ext-roadmap{margin:3px 80px 0;padding:48px 56px;background:rgba(255,255,255,.02);}
+.ext-rdm-hd{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.15);margin-bottom:32px;}
+.ext-rdm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;}
+.ext-rdm-item{padding:28px;background:rgba(255,255,255,.02);border-top:2px solid rgba(255,255,255,.04);position:relative;}
+.ext-rdm-item.active{border-color:var(--lime);background:rgba(181,214,78,.04);}
+.ext-rdm-phase{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.2em;color:rgba(255,255,255,.15);margin-bottom:12px;}
+.ext-rdm-item.active .ext-rdm-phase{color:rgba(181,214,78,.5);}
+.ext-rdm-name{font-size:16px;font-weight:900;letter-spacing:-.02em;margin-bottom:6px;}
+.ext-rdm-item.active .ext-rdm-name{color:var(--lime);}
+.ext-rdm-sub{font-size:11px;color:rgba(255,255,255,.28);line-height:1.55;}
+.ext-rdm-tag{display:inline-block;margin-top:14px;padding:3px 10px;border-radius:999px;font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;}
+.ext-rdm-item.active .ext-rdm-tag{background:rgba(181,214,78,.1);color:rgba(181,214,78,.7);}
+.ext-rdm-item:not(.active) .ext-rdm-tag{background:rgba(255,255,255,.05);color:rgba(255,255,255,.2);}
+
+.ext-why{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin:3px 80px 80px;}
+.ext-why-l{padding:48px 52px;background:rgba(255,255,255,.02);}
+.ext-why-r{padding:48px 52px;background:rgba(181,214,78,.04);border:1px solid rgba(181,214,78,.06);}
+.ext-why-lbl{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;margin-bottom:16px;}
+.ext-why-l .ext-why-lbl{color:rgba(255,255,255,.15);}
+.ext-why-r .ext-why-lbl{color:rgba(181,214,78,.4);}
+.ext-why-t{font-size:22px;font-weight:900;letter-spacing:-.03em;line-height:1.15;margin-bottom:14px;}
+.ext-why-r .ext-why-t{color:var(--lime);}
+.ext-why-d{font-size:13px;color:rgba(255,255,255,.38);line-height:1.75;}
+
 /* ─ BACK COVER ─ */
 .back{
   min-height:72vh;display:flex;flex-direction:column;align-items:center;
@@ -904,6 +975,198 @@ section{position:relative;}
   </div>
 </section>
 
+<!-- ══════════════ РАСШИРЕНИЕ БРЕНДА ══════════════ -->
+<section class="sec-extend on-dark">
+  <div class="wrap">
+    <div class="ey au">Расширение бренда · Wellness Direction</div>
+    <p style="font-size:clamp(28px,3.5vw,46px);font-weight:900;letter-spacing:-.04em;max-width:720px;" class="au d1">Еда — начало.<br>Не предел.</p>
+    <p style="font-size:15px;color:rgba(255,255,255,.35);line-height:1.75;max-width:560px;margin-top:16px;" class="au d2">BODRO строится на одном принципе: ежедневная привычка без лишних решений. Wellness-продукты — следующий логичный шаг. Та же аудитория, та же механика, тот же язык.</p>
+  </div>
+
+  <!-- Hero: product + text -->
+  <div class="ext-hero">
+    <div class="ext-visual au d1" id="ext-visual">
+      <img src="images/BodroStick.jpg" alt="BODRO STICK — Creatine + Electrolytes">
+    </div>
+    <div class="ext-text au d2">
+      <div class="ext-badge"><div class="ext-phase"></div>Пилотный Wellness-продукт</div>
+      <div class="ext-h">BODRO STICK<br><span style="color:var(--lime);">Creatine + Electrolytes</span></div>
+      <div class="ext-desc">1 стик в день. Высыпать в воду. Не думать.<br>Ежедневная поддержка — без кофеина, без сахара, без культа добавок.</div>
+      <div class="ext-attrs">
+        <div class="ext-attr">
+          <div class="ext-icon">⚡</div>
+          <div>
+            <div class="ext-attr-t">5g Креатин моногидрат</div>
+            <div class="ext-attr-d">Наиболее изученная добавка. Энергия для мышц и мозга без стимуляторов.</div>
+          </div>
+        </div>
+        <div class="ext-attr">
+          <div class="ext-icon">💧</div>
+          <div>
+            <div class="ext-attr-t">800mg Электролиты</div>
+            <div class="ext-attr-d">Натрий, калий, магний. Оптимальная клеточная гидратация — как фундамент для работы креатина.</div>
+          </div>
+        </div>
+        <div class="ext-attr">
+          <div class="ext-icon">💪</div>
+          <div>
+            <div class="ext-attr-t">1000mg Таурин</div>
+            <div class="ext-attr-d">Устойчивая энергия без пика и падения. Поддержка восстановления.</div>
+          </div>
+        </div>
+        <div class="ext-attr">
+          <div class="ext-icon">✓</div>
+          <div>
+            <div class="ext-attr-t">Без сахара. Без красителей.</div>
+            <div class="ext-attr-d">Состав без лишнего — как и в еде BODRO. Чистая формула, читаемый состав.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 positioning pillars -->
+  <div class="ext-pillars" style="margin-top:56px;">
+    <div class="ext-pillar au d1">
+      <div class="ext-p-num">01 · ТЕЗИС</div>
+      <div class="ext-p-t">Та же привычка — другой формат</div>
+      <div class="ext-p-d">BODRO закрывает обед. BODRO STICK закрывает утро. Один бренд — один ритм жизни. Клиент, который уже доверяет нам в еде, легко добавляет стик в свою рутину.</div>
+    </div>
+    <div class="ext-pillar au d2">
+      <div class="ext-p-num">02 · ТЕЗИС</div>
+      <div class="ext-p-t">Состав без лишнего — как в еде</div>
+      <div class="ext-p-d">Конкурент Create позиционирует: «not too sweet, not too salty. Effective enough to count.» Для BODRO это звучит как «Состав виден. Цифры честные. Без культа.» — тот же принцип, наш язык.</div>
+    </div>
+    <div class="ext-pillar au d3">
+      <div class="ext-p-num">03 · ТЕЗИС</div>
+      <div class="ext-p-t">Daily Wellness — не спорт, а жизнь</div>
+      <div class="ext-p-d">Create доказал: крупнейший сегмент их покупателей — не атлеты, а «Active daily people». BODRO STICK не про качалку — про человека с плотным ритмом, который хочет работать лучше каждый день.</div>
+    </div>
+  </div>
+
+  <!-- 4 benefits -->
+  <div class="ext-benefits" style="margin-top:3px;">
+    <div class="ext-ben au d1">
+      <div class="ext-ben-icon">⚡</div>
+      <div class="ext-ben-t">Энергия</div>
+      <div class="ext-ben-d">Без кофеина. АТФ через фосфокреатин — устойчиво, без пика.</div>
+    </div>
+    <div class="ext-ben au d2">
+      <div class="ext-ben-icon">💧</div>
+      <div class="ext-ben-t">Гидратация</div>
+      <div class="ext-ben-d">Электролиты вводят воду в клетки. Баланс весь день.</div>
+    </div>
+    <div class="ext-ben au d3">
+      <div class="ext-ben-icon">💪</div>
+      <div class="ext-ben-t">Восстановление</div>
+      <div class="ext-ben-d">Меньше мышечной крепатуры. Быстрее готовность к следующему дню.</div>
+    </div>
+    <div class="ext-ben au d4">
+      <div class="ext-ben-icon">🧠</div>
+      <div class="ext-ben-t">Когниция</div>
+      <div class="ext-ben-d">Фокус и ментальная чёткость — мозг потребляет 20% АТФ тела.</div>
+    </div>
+  </div>
+
+  <!-- Saturation curve (адаптировано от Create) -->
+  <div class="ext-saturation au">
+    <div class="ext-sat-hd">Как работает насыщение · Недели 1–4</div>
+    <div class="ext-weeks">
+      <div class="ext-week">
+        <div class="ext-wk-n">Неделя 1</div>
+        <div class="ext-wk-t">Накопление начинается</div>
+        <div class="ext-wk-d">Уровень креатина в мышцах растёт. Фосфокреатин становится доступнее для регенерации АТФ.</div>
+      </div>
+      <div class="ext-week">
+        <div class="ext-wk-n">Неделя 2</div>
+        <div class="ext-wk-t">Гидратация и выносливость</div>
+        <div class="ext-wk-d">Запасы продолжают расти. Улучшается восстановление между нагрузками. Меньше усталости.</div>
+      </div>
+      <div class="ext-week">
+        <div class="ext-wk-n">Неделя 3</div>
+        <div class="ext-wk-t">Близко к насыщению</div>
+        <div class="ext-wk-d">Близко к полному насыщению. Прирост силы и рабочей ёмкости становится заметным.</div>
+      </div>
+      <div class="ext-week">
+        <div class="ext-wk-n">Неделя 4+</div>
+        <div class="ext-wk-t">Стабильный эффект</div>
+        <div class="ext-wk-d">Уровни стабилизированы. Ежедневный приём поддерживает постоянную энергию и восстановление.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Brand extension roadmap -->
+  <div class="ext-roadmap au">
+    <div class="ext-rdm-hd">Дорожная карта Wellness · BODRO Beyond Food</div>
+    <div class="ext-rdm-grid">
+      <div class="ext-rdm-item active">
+        <div class="ext-rdm-phase">Фаза 1 · Сейчас</div>
+        <div class="ext-rdm-name">BODRO STICK</div>
+        <div class="ext-rdm-sub">Creatine + Electrolytes + Taurine. 30 стиков. 4 вкуса. Дополнение к еде BODRO.</div>
+        <div class="ext-rdm-tag">В разработке</div>
+      </div>
+      <div class="ext-rdm-item">
+        <div class="ext-rdm-phase">Фаза 2 · ~6 мес.</div>
+        <div class="ext-rdm-name">BODRO SLEEP</div>
+        <div class="ext-rdm-sub">Магний глицинат + L-теанин + Ашваганда. Восстановление через качество сна.</div>
+        <div class="ext-rdm-tag">В плане</div>
+      </div>
+      <div class="ext-rdm-item">
+        <div class="ext-rdm-phase">Фаза 3 · ~12 мес.</div>
+        <div class="ext-rdm-name">BODRO DAILY</div>
+        <div class="ext-rdm-sub">Мультивитаминный стик. Закрывает базовые нутриенты без таблеток и сложных схем.</div>
+        <div class="ext-rdm-tag">Идея</div>
+      </div>
+      <div class="ext-rdm-item">
+        <div class="ext-rdm-phase">Фаза 4 · Перспектива</div>
+        <div class="ext-rdm-name">BODRO FIBER</div>
+        <div class="ext-rdm-sub">Функциональная клетчатка. Добавляется к еде. Мост между Food и Wellness линейками.</div>
+        <div class="ext-rdm-tag">Концепт</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Why organic for BODRO -->
+  <div class="ext-why">
+    <div class="ext-why-l au d1">
+      <div class="ext-why-lbl">Почему это органично для BODRO</div>
+      <div class="ext-why-t">Та же аудитория.<br>Та же логика.</div>
+      <div class="ext-why-d" style="margin-top:14px;">Наш клиент уже делает правильный выбор в еде — он осознан, занят, не хочет разбираться в добавках. BODRO STICK закрывает следующий шаг его дня тем же способом, которым BODRO закрывает обед: просто, честно, без решений.</div>
+      <div class="ext-why-d" style="margin-top:12px;">Create (США) строит $60/мес бизнес на этом же принципе и достиг 100K+ клиентов без агрессивного фитнес-нарратива. В России этот сегмент не занят.</div>
+    </div>
+    <div class="ext-why-r au d2">
+      <div class="ext-why-lbl">Позиционирование BODRO vs Create</div>
+      <div class="ext-why-t">1 стик = 1 решение<br>закрыто.</div>
+      <div style="margin-top:20px;display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;gap:16px;padding:10px 0;border-bottom:1px solid rgba(181,214,78,.08);">
+          <div style="font-family:var(--mono);font-size:8px;color:rgba(181,214,78,.35);width:80px;flex-shrink:0;text-transform:uppercase;letter-spacing:.1em;padding-top:2px;">Create</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.32);">«Make it part of your morning routine»</div>
+        </div>
+        <div style="display:flex;gap:16px;padding:10px 0;border-bottom:1px solid rgba(181,214,78,.08);">
+          <div style="font-family:var(--mono);font-size:8px;color:var(--lime);width:80px;flex-shrink:0;text-transform:uppercase;letter-spacing:.1em;font-weight:700;padding-top:2px;">BODRO</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.7);font-weight:600;">«Ещё одно утреннее решение закрыто.»</div>
+        </div>
+        <div style="display:flex;gap:16px;padding:10px 0;border-bottom:1px solid rgba(181,214,78,.08);">
+          <div style="font-family:var(--mono);font-size:8px;color:rgba(181,214,78,.35);width:80px;flex-shrink:0;text-transform:uppercase;letter-spacing:.1em;padding-top:2px;">Create</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.32);">«Not too sweet, not too salty. Effective enough to count.»</div>
+        </div>
+        <div style="display:flex;gap:16px;padding:10px 0;border-bottom:1px solid rgba(181,214,78,.08);">
+          <div style="font-family:var(--mono);font-size:8px;color:var(--lime);width:80px;flex-shrink:0;text-transform:uppercase;letter-spacing:.1em;font-weight:700;padding-top:2px;">BODRO</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.7);font-weight:600;">«Состав читается. Цифры честные. Без лишнего.»</div>
+        </div>
+        <div style="display:flex;gap:16px;padding:10px 0;">
+          <div style="font-family:var(--mono);font-size:8px;color:rgba(181,214,78,.35);width:80px;flex-shrink:0;text-transform:uppercase;letter-spacing:.1em;padding-top:2px;">Create</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.32);">«Benefits for Everybody: Daily Wellness / Performance / Longevity»</div>
+        </div>
+        <div style="display:flex;gap:16px;padding:10px 0;">
+          <div style="font-family:var(--mono);font-size:8px;color:var(--lime);width:80px;flex-shrink:0;text-transform:uppercase;letter-spacing:.1em;font-weight:700;padding-top:2px;">BODRO</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.7);font-weight:600;">«Работает фоном, пока ты живёшь.»</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ══════════════ BACK COVER ══════════════ -->
 <section class="back">
   <div class="back-orb"></div>
@@ -966,6 +1229,13 @@ const retailFrame = document.getElementById('retail-frame');
 if (retailFrame) {
   const img = retailFrame.querySelector('img');
   if (img) retailFrame.addEventListener('click', () => lbOpen(img.src, 'BODRO · Торговая секция · ТЦ'));
+}
+
+// Wire up ext-visual (BODRO STICK)
+const extVisual = document.getElementById('ext-visual');
+if (extVisual) {
+  const img = extVisual.querySelector('img');
+  if (img) extVisual.addEventListener('click', () => lbOpen(img.src, 'BODRO STICK · Creatine + Electrolytes Daily Mix'));
 }
 
 // PROGRESS
