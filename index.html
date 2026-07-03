@@ -4,427 +4,246 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BODRO — Dark Kitchen · Самара</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230D0D0B'/><text x='16' y='23' font-size='16' text-anchor='middle' fill='%23F2EDE5' font-family='Arial' font-weight='900'>B</text></svg>">
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-
+html{scroll-behavior:smooth;}
 :root{
-  --black:#0D0D0B;
-  --white:#FFFFFF;
-  --sand:#F2EDE5;
-  --lime:#B5D64E;
-  --bg:#F5F5F3;
-  --line:#E5E4E0;
-  --sub:#5C5C5A;
-  --muted:#9E9C96;
-  --gb:rgba(255,255,255,0.78);
-  --gs:0 4px 24px rgba(0,0,0,0.07),0 1px 2px rgba(0,0,0,0.04),inset 0 1px 0 rgba(255,255,255,1);
-  --r:16px;
+  --black:#0D0D0B;--sand:#F2EDE5;--lime:#B5D64E;--white:#FFFFFF;
+  --mono:'JetBrains Mono',monospace;
 }
+body{font-family:'Archivo',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;}
 
-body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--black);min-height:100vh;}
+/* ─ UNIVERSAL NAV ─ */
+.u-nav{position:fixed;top:0;left:0;right:0;z-index:900;height:54px;display:flex;align-items:center;padding:0 52px;gap:0;background:rgba(13,13,11,.88);backdrop-filter:blur(32px) saturate(200%);-webkit-backdrop-filter:blur(32px) saturate(200%);border-bottom:1px solid rgba(255,255,255,.07);}
+.u-logo{display:flex;align-items:baseline;gap:9px;text-decoration:none;margin-right:32px;}
+.u-wordmark{font-size:15px;font-weight:900;letter-spacing:-.04em;color:var(--white);}
+.u-sub{font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.18);letter-spacing:.14em;text-transform:uppercase;}
+.u-links{display:flex;gap:2px;margin-left:auto;}
+.u-link{font-size:12px;font-weight:600;color:rgba(255,255,255,.3);text-decoration:none;padding:5px 13px;border-radius:7px;transition:all .15s;letter-spacing:-.01em;white-space:nowrap;}
+.u-link:hover{color:rgba(255,255,255,.85);background:rgba(255,255,255,.07);}
+.u-link.active{color:var(--white);background:rgba(255,255,255,.1);}
 
-/* ── NAV ── */
-nav{
-  position:sticky;top:0;z-index:300;
-  background:rgba(255,255,255,0.9);
-  backdrop-filter:blur(24px) saturate(200%);
-  -webkit-backdrop-filter:blur(24px) saturate(200%);
-  border-bottom:1px solid rgba(0,0,0,0.07);
-  box-shadow:0 1px 12px rgba(0,0,0,0.04);
-  display:flex;align-items:center;padding:0 40px;height:60px;gap:0;
-}
-.logo{display:flex;align-items:center;gap:0;text-decoration:none;margin-right:36px;}
-.logo-text{display:flex;flex-direction:column;gap:0;}
-.logo-name{font-weight:900;font-size:17px;letter-spacing:-0.04em;color:var(--black);line-height:1.1;}
-.logo-sub{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);line-height:1;}
-.nav-tabs{display:flex;gap:0;}
-.nav-tab{padding:0 18px;height:60px;font-size:13px;font-weight:600;cursor:pointer;border:none;background:transparent;color:var(--muted);transition:color .15s;white-space:nowrap;position:relative;border-bottom:2px solid transparent;margin-bottom:-1px;font-family:inherit;letter-spacing:-0.01em;}
-.nav-tab:hover{color:var(--black);}
-.nav-tab.active{color:var(--black);font-weight:700;border-bottom-color:var(--black);}
-.nav-right{margin-left:auto;display:flex;align-items:center;gap:12px;}
-.nav-link{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:6px 12px;border-radius:999px;border:1.5px solid var(--line);transition:all .15s;}
-.nav-link:hover{color:var(--black);border-color:var(--black);}
-
-/* ── SECTIONS ── */
-.section{display:none;}
-.section.active{display:block;}
-
-/* ══════════════════════════════════════
-   ГЛАВНАЯ
-══════════════════════════════════════ */
-/* HERO */
+/* ─ HERO ─ */
 .hero{
-  padding:80px 80px 72px;
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;padding:80px 40px 60px;position:relative;overflow:hidden;
   background:var(--black);
-  color:var(--white);
-  position:relative;
-  overflow:hidden;
 }
-.hero::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse at 70% 50%,rgba(181,214,78,0.12) 0%,transparent 60%);
-  pointer-events:none;
+.hero-orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(90px);}
+.orb1{width:700px;height:700px;background:rgba(181,214,78,.035);top:-120px;left:50%;transform:translateX(-50%);}
+.orb2{width:450px;height:450px;background:rgba(242,237,229,.02);bottom:-100px;left:10%;}
+.orb3{width:350px;height:350px;background:rgba(181,214,78,.025);bottom:0;right:5%;}
+
+.hero-tag{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.12);margin-bottom:52px;}
+.hero-wordmark{font-size:clamp(120px,18vw,260px);font-weight:900;letter-spacing:-.07em;line-height:.82;position:relative;z-index:1;}
+.hero-slogan{font-size:clamp(16px,2vw,24px);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-top:32px;position:relative;z-index:1;}
+.hero-desc{font-size:15px;color:rgba(255,255,255,.32);line-height:1.75;max-width:480px;margin:20px auto 0;position:relative;z-index:1;}
+
+.hero-stats{display:flex;gap:0;margin-top:64px;border:1px solid rgba(255,255,255,.07);border-radius:16px;overflow:hidden;position:relative;z-index:1;}
+.h-stat{flex:1;padding:24px 32px;border-right:1px solid rgba(255,255,255,.07);}
+.h-stat:last-child{border-right:none;}
+.h-stat-v{font-family:var(--mono);font-size:28px;font-weight:700;letter-spacing:-.02em;margin-bottom:4px;}
+.h-stat-l{font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.2);letter-spacing:.15em;text-transform:uppercase;}
+
+/* ─ PAGES GRID ─ */
+.pages-section{padding:100px 80px;background:#080806;}
+.pages-eyebrow{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.16);display:flex;align-items:center;gap:20px;margin-bottom:48px;}
+.pages-eyebrow::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.06);}
+
+.pages-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;}
+.page-card{
+  padding:36px 32px;background:rgba(255,255,255,.025);
+  border:1px solid rgba(255,255,255,.04);
+  text-decoration:none;color:var(--white);
+  transition:background .2s,border-color .2s,transform .2s;
+  display:flex;flex-direction:column;gap:0;
+  position:relative;overflow:hidden;
 }
-.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--lime);margin-bottom:20px;}
-.hero-title{font-size:clamp(48px,6vw,80px);font-weight:900;letter-spacing:-0.04em;line-height:0.96;margin-bottom:24px;}
-.hero-title em{font-style:normal;color:var(--lime);}
-.hero-desc{font-size:16px;color:rgba(255,255,255,0.55);line-height:1.65;max-width:480px;margin-bottom:40px;font-weight:400;}
-.hero-stats{display:flex;gap:40px;flex-wrap:wrap;}
-.hero-stat-v{font-size:32px;font-weight:900;letter-spacing:-0.04em;color:var(--white);}
-.hero-stat-l{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-top:4px;}
+.page-card:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1);transform:translateY(-2px);}
+.page-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent, rgba(255,255,255,.1));transform:scaleX(0);transition:transform .2s;transform-origin:left;}
+.page-card:hover::before{transform:scaleX(1);}
 
-/* ROADMAP */
-.roadmap-wrap{padding:60px 80px 80px;max-width:1320px;margin:0 auto;}
-.section-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
-.section-title{font-size:clamp(24px,3vw,36px);font-weight:900;letter-spacing:-0.04em;margin-bottom:4px;}
-.section-sub{font-size:14px;color:var(--sub);margin-bottom:40px;line-height:1.6;}
+.pc-num{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.2em;color:rgba(255,255,255,.14);margin-bottom:24px;}
+.pc-title{font-size:20px;font-weight:900;letter-spacing:-.03em;margin-bottom:10px;line-height:1.1;}
+.pc-desc{font-size:12px;color:rgba(255,255,255,.3);line-height:1.65;flex:1;}
+.pc-arrow{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.2);margin-top:24px;transition:color .2s;}
+.page-card:hover .pc-arrow{color:rgba(255,255,255,.5);}
 
-.phases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px;}
-.phases-row2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+/* colour accents */
+.card-brand{--accent:rgba(242,237,229,.6);}
+.card-lime{--accent:var(--lime);}
+.card-white{--accent:rgba(255,255,255,.4);}
 
-.phase-card{background:var(--gb);backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(255,255,255,0.95);border-radius:var(--r);box-shadow:var(--gs);padding:24px;cursor:default;}
-.phase-num{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
-.phase-name{font-size:16px;font-weight:800;letter-spacing:-0.02em;margin-bottom:4px;}
-.phase-period{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:16px;}
-.phase-items{display:flex;flex-direction:column;gap:8px;}
-.phase-item{display:flex;gap:10px;align-items:flex-start;}
-.phase-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:5px;}
-.phase-dot.done{background:#22C55E;}
-.phase-dot.prog{background:#F59E0B;}
-.phase-dot.pend{background:var(--line);border:1.5px solid var(--muted);}
-.phase-item-text{font-size:12px;line-height:1.5;color:var(--sub);}
-.phase-item-text strong{color:var(--black);font-weight:600;}
+/* ─ MANIFESTO ─ */
+.manifesto{padding:128px 80px;background:var(--black);}
+.manifesto-inner{max-width:880px;margin:0 auto;text-align:center;}
+.m-quote{font-size:clamp(28px,4vw,54px);font-weight:900;letter-spacing:-.04em;line-height:1.05;color:rgba(255,255,255,.85);}
+.m-quote span{color:rgba(255,255,255,.22);}
+.m-sub{font-size:14px;color:rgba(255,255,255,.25);margin-top:32px;line-height:1.8;max-width:560px;margin-left:auto;margin-right:auto;}
 
-/* ══════════════════════════════════════
-   BRANDBOOK LANDING
-══════════════════════════════════════ */
-.bb{overflow:hidden;}
+/* ─ FOOTER ─ */
+footer{padding:40px 80px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;}
+.ft-left{display:flex;align-items:baseline;gap:12px;}
+.ft-logo{font-size:15px;font-weight:900;letter-spacing:-.04em;}
+.ft-tag{font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.15);letter-spacing:.15em;text-transform:uppercase;}
+.ft-right{font-family:var(--mono);font-size:9px;color:rgba(255,255,255,.1);letter-spacing:.1em;}
 
-/* 01 COVER */
-.bb-cover{
-  min-height:100vh;display:flex;align-items:center;justify-content:center;
-  background:var(--black);color:var(--white);
-  position:relative;overflow:hidden;text-align:center;padding:60px 40px;
-}
-.bb-cover-noise{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");opacity:.5;pointer-events:none;}
-.bb-cover-glow{position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(181,214,78,0.15) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
-.bb-cover-inner{position:relative;z-index:1;max-width:800px;}
-.bb-cover-logo{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:56px;}
-.bb-cover-wordmark{font-family:'Archivo',sans-serif;font-weight:900;font-size:56px;letter-spacing:-0.05em;color:var(--white);}
-.bb-cover-title{font-size:clamp(14px,1.5vw,16px);font-family:'JetBrains Mono',monospace;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:64px;}
-.bb-cover-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.06);border-radius:12px;overflow:hidden;}
-.bb-cover-cell{background:var(--black);padding:24px 20px;text-align:left;}
-.bb-cover-cell-k{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:8px;}
-.bb-cover-cell-v{font-size:15px;font-weight:700;color:var(--white);}
+/* ─ ANIM ─ */
+.au{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);}
+.au.in{opacity:1;transform:none;}
+.d1{transition-delay:.1s!important;}.d2{transition-delay:.2s!important;}.d3{transition-delay:.3s!important;}.d4{transition-delay:.4s!important;}.d5{transition-delay:.5s!important;}.d6{transition-delay:.6s!important;}.d7{transition-delay:.7s!important;}
 
-/* SECTION DIVIDER */
-.bb-sec{padding:100px 80px;}
-.bb-sec-label{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:12px;}
-.bb-sec-label::after{content:'';flex:1;height:1px;background:var(--line);}
-.bb-sec-h{font-size:clamp(32px,4vw,52px);font-weight:900;letter-spacing:-0.04em;line-height:1.05;margin-bottom:24px;}
-.bb-sec-p{font-size:16px;color:var(--sub);line-height:1.7;max-width:640px;}
-
-/* 02 PHILOSOPHY */
-.bb-philosophy{background:var(--sand);}
-.bb-phil-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;margin-top:60px;}
-.bb-phil-col{}
-.bb-phil-quote{font-size:clamp(20px,2.5vw,28px);font-weight:900;letter-spacing:-0.03em;line-height:1.25;margin-bottom:24px;color:var(--black);}
-.bb-phil-items{display:flex;flex-direction:column;gap:16px;}
-.bb-phil-item{display:flex;gap:16px;align-items:flex-start;padding:16px;background:rgba(255,255,255,0.6);border-radius:12px;border:1px solid rgba(0,0,0,0.06);}
-.bb-phil-item-icon{width:36px;height:36px;background:var(--black);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.bb-phil-item-body{}
-.bb-phil-item-title{font-size:13px;font-weight:700;margin-bottom:3px;}
-.bb-phil-item-desc{font-size:12px;color:var(--sub);line-height:1.5;}
-
-/* 03 COLORS */
-.bb-colors{background:var(--white);}
-.bb-color-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:48px;}
-.bb-color-swatch{border-radius:12px;overflow:hidden;border:1px solid rgba(0,0,0,0.06);}
-.bb-color-fill{height:140px;}
-.bb-color-info{padding:14px;}
-.bb-color-name{font-size:14px;font-weight:700;margin-bottom:2px;}
-.bb-color-hex{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);}
-.bb-color-use{font-size:11px;color:var(--sub);margin-top:6px;line-height:1.4;}
-
-/* 04 TYPOGRAPHY */
-.bb-typo{background:var(--bg);}
-.bb-typo-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:48px;}
-.bb-font-card{padding:32px;background:var(--white);border-radius:16px;border:1px solid var(--line);}
-.bb-font-preview{font-size:clamp(36px,5vw,64px);font-weight:900;letter-spacing:-0.04em;line-height:0.95;margin-bottom:20px;}
-.bb-font-preview.mono{font-family:'JetBrains Mono',monospace;font-size:clamp(20px,3vw,36px);}
-.bb-font-name{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
-.bb-font-desc{font-size:12px;color:var(--sub);line-height:1.6;}
-.bb-font-weights{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;}
-.bb-font-weight{padding:4px 12px;background:var(--bg);border-radius:999px;font-size:11px;font-weight:700;color:var(--muted);}
-
-/* 05 VOICE & TONE */
-.bb-voice{background:var(--black);color:var(--white);}
-.bb-voice .bb-sec-label{color:rgba(255,255,255,0.25);}
-.bb-voice .bb-sec-label::after{background:rgba(255,255,255,0.08);}
-.bb-voice .bb-sec-h{color:var(--white);}
-.bb-voice-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:48px;}
-.bb-voice-card{padding:24px;border-radius:12px;}
-.bb-voice-card.dont{background:rgba(220,38,38,0.08);border:1px solid rgba(220,38,38,0.15);}
-.bb-voice-card.do{background:rgba(181,214,78,0.08);border:1px solid rgba(181,214,78,0.15);}
-.bb-voice-card-label{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:16px;}
-.bb-voice-card.dont .bb-voice-card-label{color:rgba(220,38,38,0.7);}
-.bb-voice-card.do .bb-voice-card-label{color:var(--lime);}
-.bb-voice-items{display:flex;flex-direction:column;gap:10px;}
-.bb-voice-item{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.5;color:rgba(255,255,255,0.7);}
-.bb-voice-item::before{content:'';width:4px;height:4px;border-radius:50%;margin-top:7px;flex-shrink:0;}
-.bb-voice-card.dont .bb-voice-item::before{background:rgba(220,38,38,0.6);}
-.bb-voice-card.do .bb-voice-item::before{background:var(--lime);}
-
-/* 06 BRAND ARCHITECTURE */
-.bb-arch{background:var(--white);}
-.bb-arch-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:48px;}
-.bb-brand-card{border-radius:16px;overflow:hidden;border:1px solid var(--line);}
-.bb-brand-card-top{padding:40px 32px 32px;}
-.bb-brand-card.bodro .bb-brand-card-top{background:var(--white);}
-.bb-brand-card.smart .bb-brand-card-top{background:var(--black);}
-.bb-brand-logo{display:flex;align-items:center;gap:0;margin-bottom:24px;}
-.bb-brand-name{font-size:22px;font-weight:900;letter-spacing:-0.04em;}
-.bb-brand-card.bodro .bb-brand-name{color:var(--black);}
-.bb-brand-card.smart .bb-brand-name{color:var(--white);}
-.bb-brand-tagline{font-size:13px;line-height:1.55;margin-bottom:24px;max-width:280px;}
-.bb-brand-card.bodro .bb-brand-tagline{color:var(--sub);}
-.bb-brand-card.smart .bb-brand-tagline{color:rgba(255,255,255,0.5);}
-.bb-brand-attrs{display:flex;flex-direction:column;gap:8px;}
-.bb-brand-attr{display:flex;gap:10px;align-items:center;font-size:12px;}
-.bb-brand-card.bodro .bb-brand-attr{color:var(--sub);}
-.bb-brand-card.smart .bb-brand-attr{color:rgba(255,255,255,0.55);}
-.bb-brand-attr-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
-.bb-brand-card.bodro .bb-brand-attr-dot{background:var(--black);}
-.bb-brand-card.smart .bb-brand-attr-dot{background:var(--lime);}
-.bb-brand-card-bottom{padding:20px 32px;border-top:1px solid rgba(0,0,0,0.06);}
-.bb-brand-card.smart .bb-brand-card-bottom{border-top-color:rgba(255,255,255,0.06);}
-.bb-brand-card.bodro .bb-brand-card-bottom{background:var(--sand);}
-.bb-brand-card.smart .bb-brand-card-bottom{background:rgba(181,214,78,0.06);}
-.bb-brand-card-bottom-label{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
-.bb-brand-card.smart .bb-brand-card-bottom-label{color:rgba(181,214,78,0.5);}
-.bb-brand-card-bottom-val{font-size:13px;font-weight:700;}
-.bb-brand-card.smart .bb-brand-card-bottom-val{color:var(--lime);}
-
-/* 07 LABEL PREVIEW */
-.bb-label{background:var(--sand);}
-.bb-label-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:48px;align-items:start;}
-.bb-label-mockup{border-radius:16px;padding:32px;display:flex;align-items:center;justify-content:center;min-height:280px;}
-.bb-label-mockup.bodro{background:var(--white);border:1px solid var(--line);}
-.bb-label-mockup.smart{background:#0D0D0B;border:1px solid rgba(255,255,255,0.1);}
-.bb-label-info{padding:8px 0;}
-.bb-label-info-title{font-size:20px;font-weight:900;letter-spacing:-0.03em;margin-bottom:8px;}
-.bb-label-info-desc{font-size:13px;color:var(--sub);line-height:1.6;margin-bottom:20px;}
-.bb-label-specs{display:flex;flex-direction:column;gap:8px;}
-.bb-label-spec{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-size:12px;}
-.bb-label-spec:last-child{border-bottom:none;}
-.bb-label-spec-k{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;}
-.bb-label-spec-v{font-weight:700;font-size:12px;}
-
-/* label SVG previews */
-.lbl-bodro{width:220px;height:156px;background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:6px;position:relative;overflow:hidden;font-family:'Archivo',sans-serif;}
-.lbl-smart{width:220px;height:156px;background:#0D0D0B;border:1px solid rgba(255,255,255,0.1);border-radius:6px;position:relative;overflow:hidden;font-family:'Archivo',sans-serif;}
-
-/* ══════════════════════════════════════
-   LABEL SYSTEM
-══════════════════════════════════════ */
-.ls-wrap{width:100%;height:calc(100vh - 60px);}
-.ls-wrap iframe{width:100%;height:100%;border:none;display:block;}
-
-/* ── UTILS ── */
-.mono{font-family:'JetBrains Mono',monospace;}
-.fw900{font-weight:900;}
-
-/* TIMELINE ITEMS (home roadmap) */
-.tl-item{display:flex;gap:14px;align-items:flex-start;padding:14px 18px;margin-bottom:6px;background:var(--gb);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.95);border-radius:12px;box-shadow:var(--gs);}
-.tl-name{font-size:13px;font-weight:700;margin-bottom:2px;letter-spacing:-0.01em;}
-.tl-desc{font-size:11px;color:var(--sub);line-height:1.5;}
-.tl-dur{display:inline-block;background:rgba(0,0,0,0.05);padding:2px 8px;border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:9px;margin-top:4px;color:var(--muted);}
-.s-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:4px;}
-.s-done{background:#22C55E;box-shadow:0 0 0 3px rgba(34,197,94,0.15);}
-.s-progress{background:#F59E0B;box-shadow:0 0 0 3px rgba(245,158,11,0.15);}
-.s-pending{background:var(--line);border:2px solid var(--muted);}
-
-/* ── FOOTER ── */
-footer{background:var(--black);color:rgba(255,255,255,0.3);padding:32px 80px;display:flex;align-items:center;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;}
-.footer-logo{display:flex;align-items:center;gap:0;}
-.footer-name{color:rgba(255,255,255,0.5);font-weight:700;letter-spacing:0.1em;}
+@media(max-width:1100px){.pages-grid{grid-template-columns:1fr 1fr;}.pages-section,.manifesto{padding:80px 40px;}.hero{padding:80px 24px 48px;}.u-nav{padding:0 28px;}.u-sub{display:none;}.hero-stats{flex-direction:column;}.h-stat{border-right:none;border-bottom:1px solid rgba(255,255,255,.07);}.h-stat:last-child{border-bottom:none;}}
+@media(max-width:640px){.pages-grid{grid-template-columns:1fr;}.u-links{gap:0;}.u-link{padding:4px 8px;font-size:11px;}}
 </style>
 </head>
 <body>
 
-<!-- ── NAV ── -->
-<nav>
-  <a class="logo" href="#" onclick="showSection('home',this);return false;">
-    <div class="logo-text">
-      <div class="logo-name">BODRO</div>
-      <div class="logo-sub">Dark Kitchen · Самара</div>
-    </div>
+<!-- NAV -->
+<nav class="u-nav">
+  <a href="index.html" class="u-logo">
+    <span class="u-wordmark">BODRO</span>
+    <span class="u-sub">Dark Kitchen · Самара</span>
   </a>
-  <div class="nav-tabs">
-    <button class="nav-tab active" onclick="showSection('home',this)">Главная</button>
-    <button class="nav-tab" onclick="showSection('brandbook',this)">BrandBook</button>
-    <button class="nav-tab" onclick="showSection('labels',this)">Label System</button>
-  </div>
-  <div class="nav-right">
-    <a class="nav-link" href="DarkKitchen_Service_v4.html" target="_blank">Dashboard →</a>
+  <div class="u-links">
+    <a href="BODRO_BrandBook_Landing.html" class="u-link active">BrandBook</a>
+    <a href="labelsystem.html" class="u-link">Labels</a>
+    <a href="roadmap.html" class="u-link">Roadmap</a>
+    <a href="menu.html" class="u-link">Menu</a>
+    <a href="brand.html" class="u-link">Brand</a>
+    <a href="valuechain.html" class="u-link">Value Chain</a>
+    <a href="questions.html" class="u-link">Questions</a>
   </div>
 </nav>
 
-<!-- ═══════════════════════════════════
-     ГЛАВНАЯ
-═══════════════════════════════════ -->
-<div class="section active" id="sec-home">
-
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero::before"></div>
-    <div class="hero-eyebrow">Dark Kitchen · Самара · 2025</div>
-    <h1 class="hero-title">Еда, которая<br><em>просто работает</em></h1>
-    <p class="hero-desc">Две линейки готовой еды для городского жителя — BODRO для комфорта и BODRO SMART для осознанного питания. Тёмная кухня, прямая доставка, без лишнего.</p>
-    <div class="hero-stats">
-      <div>
-        <div class="hero-stat-v">22</div>
-        <div class="hero-stat-l">позиции в меню</div>
-      </div>
-      <div>
-        <div class="hero-stat-v">2</div>
-        <div class="hero-stat-l">бренда</div>
-      </div>
-      <div>
-        <div class="hero-stat-v">1.5М ₽</div>
-        <div class="hero-stat-l">бюджет запуска</div>
-      </div>
-      <div>
-        <div class="hero-stat-v">Мес. 1</div>
-        <div class="hero-stat-l">старт</div>
-      </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-orb orb1"></div>
+  <div class="hero-orb orb2"></div>
+  <div class="hero-orb orb3"></div>
+  <div class="hero-tag au" id="t1">Dark Kitchen · Самара · 2025</div>
+  <div class="hero-wordmark au" id="t2">BODRO</div>
+  <div class="hero-slogan au" id="t3">Еда. Каждый день.</div>
+  <div class="hero-desc au" id="t4">Два бренда готовой еды. BODRO — просто хорошая еда. BODRO SMART — всё посчитано.</div>
+  <div class="hero-stats au" id="t5">
+    <div class="h-stat">
+      <div class="h-stat-v">22</div>
+      <div class="h-stat-l">Блюда в меню</div>
+    </div>
+    <div class="h-stat">
+      <div class="h-stat-v">2</div>
+      <div class="h-stat-l">Бренда</div>
+    </div>
+    <div class="h-stat">
+      <div class="h-stat-v">1.5М</div>
+      <div class="h-stat-l">Бюджет, ₽</div>
+    </div>
+    <div class="h-stat">
+      <div class="h-stat-v">Мес. 1</div>
+      <div class="h-stat-l">Старт</div>
     </div>
   </div>
+</section>
 
-  <!-- ROADMAP -->
-  <div class="roadmap-wrap">
-    <div class="section-eyebrow">Roadmap</div>
-    <div class="section-title">От идеи до масштаба</div>
-    <div class="section-sub">5 фаз запуска и роста dark kitchen в Самаре. Фаза 0 уже завершена.</div>
+<!-- PAGES -->
+<section class="pages-section">
+  <div class="pages-eyebrow">Разделы сайта</div>
+  <div class="pages-grid">
 
-    <div class="phases-grid">
+    <a href="BODRO_BrandBook_Landing.html" class="page-card card-brand au d1">
+      <div class="pc-num">01</div>
+      <div class="pc-title">BrandBook</div>
+      <div class="pc-desc">Философия, слоганы, визуальная система, TOV, цвет и типографика. Полный брендбук BODRO и BODRO SMART.</div>
+      <div class="pc-arrow">→ Открыть</div>
+    </a>
 
-      <!-- Фаза 0 -->
-      <div class="phase-card" style="border-left:3px solid #22C55E;">
-        <div class="phase-num">Фаза 0 · Готово</div>
-        <div class="phase-name">Подготовка</div>
-        <div class="phase-period">Выполнено</div>
-        <div class="phase-items">
-          <div class="phase-item"><div class="phase-dot done"></div><div class="phase-item-text"><strong>Анализ рынка Самары</strong> — изучены конкуренты, выявлена ниша</div></div>
-          <div class="phase-item"><div class="phase-dot done"></div><div class="phase-item-text"><strong>Концепция двух брендов</strong> — BODRO и BODRO SMART</div></div>
-          <div class="phase-item"><div class="phase-dot done"></div><div class="phase-item-text"><strong>22 технологические карты</strong> от технолога</div></div>
-          <div class="phase-item"><div class="phase-dot done"></div><div class="phase-item-text"><strong>Финансовая модель</strong> — P&L, Value Chain</div></div>
-          <div class="phase-item"><div class="phase-dot prog"></div><div class="phase-item-text"><strong>Дизайн упаковки</strong> — в работе</div></div>
-        </div>
-      </div>
+    <a href="labelsystem.html" class="page-card card-white au d2">
+      <div class="pc-num">02</div>
+      <div class="pc-title">Label System</div>
+      <div class="pc-desc">Система этикеток для контейнеров 187×137 мм. Шаблоны BODRO и BODRO SMART с полями для КБЖУ и состава.</div>
+      <div class="pc-arrow">→ Открыть</div>
+    </a>
 
-      <!-- Фаза 1 -->
-      <div class="phase-card">
-        <div class="phase-num">Фаза 1</div>
-        <div class="phase-name">Юридическое оформление</div>
-        <div class="phase-period">Месяц 1 · ~1 нед</div>
-        <div class="phase-items">
-          <div class="phase-item"><div class="phase-dot pend"></div><div class="phase-item-text"><strong>Регистрация ИП</strong> — ОКВЭД 56.10, 56.21. Госпошлина 800 ₽</div></div>
-          <div class="phase-item"><div class="phase-dot pend"></div><div class="phase-item-text"><strong>Расчётный счёт</strong> — Т-Банк, эквайринг</div></div>
-          <div class="phase-item"><div class="phase-dot pend"></div><div class="phase-item-text"><strong>УСН 15%</strong> «доходы минус расходы»</div></div>
-        </div>
-      </div>
+    <a href="roadmap.html" class="page-card card-white au d3">
+      <div class="pc-num">03</div>
+      <div class="pc-title">Roadmap</div>
+      <div class="pc-desc">5 фаз запуска от подготовки до масштабирования. Статусы задач, сроки, ответственные.</div>
+      <div class="pc-arrow">→ Открыть</div>
+    </a>
 
-      <!-- Фаза 2 -->
-      <div class="phase-card">
-        <div class="phase-num">Фаза 2</div>
-        <div class="phase-name">Подготовка кухни</div>
-        <div class="phase-period">Месяц 1–2 · 6–10 нед</div>
-        <div class="phase-items">
-          <div class="phase-item"><div class="phase-dot pend"></div><div class="phase-item-text"><strong>Помещение 60–80 м²</strong> — производственная зона</div></div>
-          <div class="phase-item"><div class="phase-dot pend"></div><div class="phase-item-text"><strong>Ремонт под СанПиН</strong> — 150–250 тыс. ₽</div></div>
-          <div class="phase-item"><div class="phase-dot pend"></div><div class="phase-item-text"><strong>Оборудование (б/у)</strong> — 250–350 тыс. ₽</div></div>
-          <div class="phase-item"><div class="phase-dot pend"></div><div class="phase-item-text"><strong>Найм управляющего</strong> — приоритет #1</div></div>
-          <div class="phase-item"><div class="phase-dot pend"></div><div class="phase-item-text"><strong>2 повара + санкнижки</strong></div></div>
-        </div>
-      </div>
+    <a href="menu.html" class="page-card card-white au d4">
+      <div class="pc-num">04</div>
+      <div class="pc-title">Menu</div>
+      <div class="pc-desc">22 блюда с технологическими картами. Состав, КБЖУ на 100 г и порцию, себестоимость каждой позиции.</div>
+      <div class="pc-arrow">→ Открыть</div>
+    </a>
 
-    </div>
-    <div class="phases-row2">
+    <a href="brand.html" class="page-card card-brand au d5">
+      <div class="pc-num">05</div>
+      <div class="pc-title">Brand</div>
+      <div class="pc-desc">Архитектура двух брендов, нейминг, позиционирование, каналы продвижения, стратегия роста.</div>
+      <div class="pc-arrow">→ Открыть</div>
+    </a>
 
-      <!-- Фаза 3 -->
-      <div class="phase-card">
-        <div class="phase-num">Фаза 3</div>
-        <div class="phase-name">Запуск</div>
-        <div class="phase-period">Месяц 2–3</div>
-        <div class="phase-items">
-          <div class="phase-item"><div class="phase-dot pend"></div><div class="phase-item-text"><strong>Яндекс.Еда</strong> — фотосъёмка, регистрация партнёра (комиссия 25–28%)</div></div>
-          <div class="phase-item"><div class="phase-dot pend"></div><div class="phase-item-text"><strong>Telegram-канал + бот</strong> — меню дня, заказы без комиссии</div></div>
-          <div class="phase-item"><div class="phase-dot pend"></div><div class="phase-item-text"><strong>Цель: 20–40 порций/день</strong> — сбор обратной связи</div></div>
-          <div class="phase-item"><div class="phase-dot pend"></div><div class="phase-item-text"><strong>B2B холодные звонки</strong> — офисы 30–100 чел.</div></div>
-        </div>
-      </div>
+    <a href="valuechain.html" class="page-card card-lime au d6">
+      <div class="pc-num">06</div>
+      <div class="pc-title">Value Chain</div>
+      <div class="pc-desc">Интерактивная P&L модель. Слайдеры себестоимости, каналов, расходов. EBITDA, точка безубыточности, сценарии.</div>
+      <div class="pc-arrow">→ Открыть</div>
+    </a>
 
-      <!-- Фаза 4–5 -->
-      <div class="phase-card" style="border-left:3px solid var(--lime);">
-        <div class="phase-num">Фаза 4–5</div>
-        <div class="phase-name">Рост · Масштаб</div>
-        <div class="phase-period">Месяц 4–12+</div>
-        <div class="phase-items">
-          <div class="phase-item"><div class="phase-dot pend"></div><div class="phase-item-text"><strong>Точка безубыточности</strong> — 60–80 порций/день (мес. 3–4)</div></div>
-          <div class="phase-item"><div class="phase-dot pend"></div><div class="phase-item-text"><strong>DTC-подписка</strong> — «Обед на неделю» (мес. 4)</div></div>
-          <div class="phase-item"><div class="phase-dot pend"></div><div class="phase-item-text"><strong>Станции BODRO SMART</strong> — холодильники в 3–5 офисах (мес. 4–5)</div></div>
-          <div class="phase-item"><div class="phase-dot pend"></div><div class="phase-item-text"><strong>150–225 порций/день</strong> — доход 500 тыс. ₽/мес (мес. 6–8)</div></div>
-          <div class="phase-item"><div class="phase-dot pend"></div><div class="phase-item-text"><strong>350 порций/день → 1 млн ₽/мес</strong> — возможен второй город</div></div>
-        </div>
-      </div>
+    <a href="questions.html" class="page-card card-white au d7">
+      <div class="pc-num">07</div>
+      <div class="pc-title">Questions</div>
+      <div class="pc-desc">Доска открытых вопросов и блокеров. Kanban: активный → отвечен → архив. Приоритеты, теги, решения.</div>
+      <div class="pc-arrow">→ Открыть</div>
+    </a>
 
+    <div class="page-card au d7" style="background:rgba(181,214,78,.03);border-color:rgba(181,214,78,.08);cursor:default;">
+      <div class="pc-num" style="color:rgba(181,214,78,.3);">08</div>
+      <div class="pc-title" style="color:rgba(181,214,78,.5);">BODRO SMART</div>
+      <div class="pc-desc" style="color:rgba(181,214,78,.2);">Точное питание. КБЖУ-фокус, чёрная упаковка. Суббренд с высокобелковым меню.</div>
+      <div class="pc-arrow" style="font-family:var(--mono);font-size:10px;color:rgba(181,214,78,.2);">Всё посчитано.</div>
     </div>
 
-    <div style="margin-top:24px;text-align:center;">
-      <a href="DarkKitchen_Service_v4.html" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--black);color:#fff;border-radius:999px;font-size:13px;font-weight:700;text-decoration:none;letter-spacing:-0.01em;transition:background .15s;" onmouseover="this.style.background='#333'" onmouseout="this.style.background='var(--black)'">
-        Открыть полный Dashboard →
-      </a>
-    </div>
   </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-logo">
-      <span class="footer-name">BODRO</span>
-    </div>
-    <span>Dark Kitchen · Самара · 2025</span>
-    <span>Конфиденциально</span>
-  </footer>
-</div>
-
-<!-- ═══════════════════════════════════
-     BRANDBOOK
-═══════════════════════════════════ -->
-<div class="section" id="sec-brandbook">
-<div style="width:100%;height:calc(100vh - 60px);">
-  <iframe src="BODRO_BrandBook_Landing.html" style="width:100%;height:100%;border:none;display:block;" title="BODRO Brand Book"></iframe>
-</div>
-
-<!-- ═══════════════════════════════════
-     LABEL SYSTEM
-═══════════════════════════════════ -->
-<div class="section" id="sec-labels">
-  <div class="ls-wrap">
-    <iframe src="BODRO_LabelSystem.html" title="BODRO Label System"></iframe>
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <div class="manifesto-inner">
+    <div class="m-quote au"><span>BODRO — </span>еда без лишних решений.<br><span>BODRO SMART — </span>еда, где всё посчитано.</div>
+    <div class="m-sub au d1">Dark Kitchen в Самаре. Две линейки. Одна кухня. Прямые продажи, доставка, офисный формат.</div>
   </div>
-</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-left">
+    <div class="ft-logo">BODRO</div>
+    <div class="ft-tag">Dark Kitchen · Самара · 2025</div>
+  </div>
+  <div class="ft-right">Конфиденциально</div>
+</footer>
 
 <script>
-function showSection(id, btn) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
-  document.getElementById('sec-' + id).classList.add('active');
-  if (btn && btn.classList.contains('nav-tab')) btn.classList.add('active');
-  window.scrollTo(0, 0);
-}
+// Activate nav link (home = no active, since logo is the home)
+// Remove active from all
+document.querySelectorAll('.u-link').forEach(l=>l.classList.remove('active'));
+
+// Scroll animations
+const io = new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:.07,rootMargin:'0px 0px -20px 0px'});
+document.querySelectorAll('.au').forEach(el=>io.observe(el));
+
+// Hero: trigger immediately
+setTimeout(()=>{
+  ['t1','t2','t3','t4','t5'].forEach((id,i)=>{
+    const el=document.getElementById(id);
+    if(el){setTimeout(()=>el.classList.add('in'),i*80);}
+  });
+},60);
 </script>
 </body>
 </html>

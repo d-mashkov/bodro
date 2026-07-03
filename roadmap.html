@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roadmap — BODRO Dark Kitchen</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--black:#0D0D0B;--sand:#F2EDE5;--lime:#B5D64E;--white:#FFFFFF;--bg:#F5F4F1;--line:#E5E3DF;--sub:#5C5A57;--muted:#9E9C96;--gb:rgba(255,255,255,.85);--gs:0 2px 20px rgba(0,0,0,.07),0 1px 2px rgba(0,0,0,.04);--mono:'JetBrains Mono',monospace;}
+body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--black);padding-top:54px;}
+
+/* NAV */
+.u-nav{position:fixed;top:0;left:0;right:0;z-index:900;height:54px;display:flex;align-items:center;padding:0 52px;background:rgba(13,13,11,.92);backdrop-filter:blur(32px) saturate(200%);-webkit-backdrop-filter:blur(32px) saturate(200%);border-bottom:1px solid rgba(255,255,255,.07);}
+.u-logo{display:flex;align-items:baseline;gap:9px;text-decoration:none;margin-right:32px;}
+.u-wordmark{font-size:15px;font-weight:900;letter-spacing:-.04em;color:#fff;}
+.u-sub{font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.18);letter-spacing:.14em;text-transform:uppercase;}
+.u-links{display:flex;gap:2px;margin-left:auto;}
+.u-link{font-size:12px;font-weight:600;color:rgba(255,255,255,.3);text-decoration:none;padding:5px 13px;border-radius:7px;transition:all .15s;letter-spacing:-.01em;white-space:nowrap;}
+.u-link:hover{color:rgba(255,255,255,.85);background:rgba(255,255,255,.07);}
+.u-link.active{color:#fff;background:rgba(255,255,255,.1);}
+
+/* PAGE */
+.page-head{background:var(--black);color:#fff;padding:56px 80px 48px;}
+.page-eyebrow{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:14px;}
+.ey-dot{width:6px;height:6px;border-radius:50%;background:var(--lime);flex-shrink:0;}
+.page-title{font-size:clamp(32px,4vw,52px);font-weight:900;letter-spacing:-.04em;margin-bottom:8px;}
+.page-desc{font-size:14px;color:rgba(255,255,255,.42);line-height:1.65;max-width:600px;}
+
+.wrap{padding:48px 80px 80px;max-width:1400px;}
+
+/* STATS */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:40px;}
+.stat{background:var(--gb);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.9);border-radius:14px;padding:20px 24px;box-shadow:var(--gs);}
+.stat-val{font-size:28px;font-weight:900;letter-spacing:-.03em;margin-bottom:3px;}
+.stat-lbl{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;}
+
+/* PHASES */
+.phases{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.tl-phase{margin-bottom:20px;}
+.tl-phase-label{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:10px 0 10px 14px;border-left:2px solid var(--line);}
+.tl-phase-label.done{border-color:#22C55E;color:#16A34A;}
+.tl-phase-label.prog{border-color:#F59E0B;color:#D97706;}
+.tl-items{margin-top:6px;display:flex;flex-direction:column;gap:6px;}
+.tl-item{display:flex;gap:12px;align-items:flex-start;background:var(--gb);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.9);border-radius:12px;padding:14px 18px;box-shadow:var(--gs);}
+.s-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:4px;}
+.s-done{background:#22C55E;box-shadow:0 0 0 3px rgba(34,197,94,.15);}
+.s-prog{background:#F59E0B;box-shadow:0 0 0 3px rgba(245,158,11,.15);}
+.s-pend{background:var(--line);border:2px solid var(--muted);}
+.tl-name{font-size:13px;font-weight:700;letter-spacing:-.01em;margin-bottom:2px;}
+.tl-name.done-text{color:var(--muted);text-decoration:line-through;opacity:.7;}
+.tl-desc{font-size:11px;color:var(--sub);line-height:1.5;}
+.tl-dur{display:inline-block;background:rgba(0,0,0,.05);padding:2px 8px;border-radius:6px;font-family:var(--mono);font-size:9px;margin-top:4px;color:var(--muted);}
+
+@media(max-width:900px){.wrap{padding:40px 28px 60px;}.page-head{padding:48px 28px 40px;}.phases{grid-template-columns:1fr;}.stats-row{grid-template-columns:1fr 1fr;}.u-nav{padding:0 24px;}.u-sub{display:none;}}
+</style>
+</head>
+<body>
+<nav class="u-nav">
+  <a href="index.html" class="u-logo"><span class="u-wordmark">BODRO</span><span class="u-sub">Dark Kitchen · Самара</span></a>
+  <div class="u-links">
+    <a href="BODRO_BrandBook_Landing.html" class="u-link">BrandBook</a>
+    <a href="labelsystem.html" class="u-link">Labels</a>
+    <a href="roadmap.html" class="u-link active">Roadmap</a>
+    <a href="menu.html" class="u-link">Menu</a>
+    <a href="brand.html" class="u-link">Brand</a>
+    <a href="valuechain.html" class="u-link">Value Chain</a>
+    <a href="questions.html" class="u-link">Questions</a>
+  </div>
+</nav>
+
+<div class="page-head">
+  <div class="page-eyebrow"><div class="ey-dot"></div>ПРОЕКТ · DARK KITCHEN · САМАРА</div>
+  <div class="page-title">Роадмап запуска</div>
+  <div class="page-desc">Полный план от исследования рынка до масштабирования — от тех. карт до выхода на 1 млн ₽/мес</div>
+</div>
+
+<div class="wrap">
+  <div class="stats-row">
+    <div class="stat"><div class="stat-val" style="color:#22C55E;">4</div><div class="stat-lbl">Задачи выполнены</div></div>
+    <div class="stat"><div class="stat-val" style="color:#F59E0B;">1</div><div class="stat-lbl">В работе сейчас</div></div>
+    <div class="stat"><div class="stat-val" style="color:var(--muted);">28</div><div class="stat-lbl">Предстоит сделать</div></div>
+    <div class="stat"><div class="stat-val">1.5 млн</div><div class="stat-lbl">Стартовый бюджет, ₽</div></div>
+  </div>
+  <div class="phases">
+    <div>
+      <div class="tl-phase"><div class="tl-phase-label done">Фаза 0 — Исследование и разработка · Выполнено</div><div id="phase0" class="tl-items"></div></div>
+      <div class="tl-phase"><div class="tl-phase-label">Фаза 1 — Юридическое оформление · Мес. 1</div><div id="phase1" class="tl-items"></div></div>
+      <div class="tl-phase"><div class="tl-phase-label">Фаза 2 — Подготовка кухни · Мес. 1–2</div><div id="phase2" class="tl-items"></div></div>
+    </div>
+    <div>
+      <div class="tl-phase"><div class="tl-phase-label">Фаза 3 — Запуск · Мес. 2–3</div><div id="phase3" class="tl-items"></div></div>
+      <div class="tl-phase"><div class="tl-phase-label">Фаза 4 — Рост · Мес. 4–6</div><div id="phase4" class="tl-items"></div></div>
+      <div class="tl-phase"><div class="tl-phase-label">Фаза 5 — Масштаб · Мес. 6–12</div><div id="phase5" class="tl-items"></div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const ROADMAP = {
+  phase0:[
+    {done:true,name:"Анализ рынка Самары",desc:"Изучены конкуренты: Mealty, Level Kitchen, Perfect Balance, Willfood, GBalance, ПриЕм, FitBox. Выявлена ниша.",dur:""},
+    {done:true,name:"Концепция двух брендов",desc:"Позиционирование и айдентика для BODRO (комфорт-еда, белая упаковка) и BODRO SMART (КБЖУ-фокус, чёрная).",dur:""},
+    {done:true,name:"Технологические карты (22 блюда)",desc:"Рецептуры, граммовки, себестоимость каждого блюда.",dur:""},
+    {done:true,name:"Финансовая модель",desc:"P&L по 4 сценариям, Value Chain, расчёт точки безубыточности.",dur:""},
+    {prog:true,name:"Упаковка: дизайн-концепция",desc:"BODRO SMART: КБЖУ крупно на чёрной крышке. BODRO: название блюда + белая минималистичная крышка.",dur:"В работе"},
+  ],
+  phase1:[
+    {name:"Регистрация ИП",desc:"ОКВЭД 56.10 (ресторанная деятельность), 56.21 (поставка готовых блюд). Госпошлина 800 ₽, срок 3 рабочих дня.",dur:"3 дня"},
+    {name:"Открытие расчётного счёта",desc:"Рекомендуем Т-Банк: эквайринг и терминалы в одном окне.",dur:"1 день"},
+    {name:"Постановка на учёт в налоговую",desc:"Уведомление о применении УСН 15% «доходы минус расходы».",dur:"1–3 дня"},
+  ],
+  phase2:[
+    {name:"Аренда помещения",desc:"60–80 м², производственная зона + хранение. Бюджет: 60–80 тыс. ₽/мес.",dur:"2–4 нед"},
+    {name:"Ремонт и подготовка",desc:"Отделка под СанПиН: нержавейка, плитка, вентиляция. Бюджет: 150–250 тыс. ₽.",dur:"4–6 нед"},
+    {name:"Оборудование",desc:"Конвекционная печь, холодильные шкафы, слайсер, упаковщик. Б/у: 250–350 тыс. ₽.",dur:"2–3 нед"},
+    {name:"Санитарно-эпидемиологическое заключение",desc:"Документы для Роспотребнадзора. Вызов инспектора после ремонта.",dur:"2–4 нед"},
+    {name:"Найм персонала",desc:"Управляющий (приоритет 1), 2 повара + санкнижки, курьер (опционально).",dur:"2–4 нед"},
+    {name:"Закуп продуктов и тест-приготовление",desc:"Тест-выпуск всех 22 позиций. Корректировка рецептур по факту.",dur:"1–2 нед"},
+  ],
+  phase3:[
+    {name:"Регистрация на Яндекс.Еде",desc:"Фотосъёмка блюд, описания, подключение к партнёрскому кабинету. Комиссия 25–28%.",dur:"1–2 нед"},
+    {name:"Telegram-канал + бот",desc:"Ежедневное меню, заказы без комиссии, напоминания, промокоды.",dur:"1 нед"},
+    {name:"Первые продажи",desc:"Цель: 20–40 порций/день. Сбор обратной связи, корректировка меню.",dur:"Мес. 2–3"},
+    {name:"B2B: холодные звонки",desc:"Офисы 30–100 человек, корпоративные обеды, пакетные предложения.",dur:"Мес. 3"},
+  ],
+  phase4:[
+    {name:"Точка безубыточности",desc:"60–80 порций/день при среднем чеке 290 ₽. Ожидаемый выход: мес. 3–4.",dur:"Мес. 3–4"},
+    {name:"DTC-подписка",desc:"«Обед на неделю» — скидка 5% без комиссии агрегатора. BODRO SMART: «Рацион недели».",dur:"Мес. 4"},
+    {name:"Станции BODRO SMART",desc:"Умные холодильники в 3–5 офисных центрах Самары. Аренда холодильника + наполнение.",dur:"Мес. 4–5"},
+    {name:"150–225 порций/день",desc:"Выручка 500 тыс. ₽/мес gross. Найм 3-го повара или 2-й смены.",dur:"Мес. 6–8"},
+  ],
+  phase5:[
+    {name:"350 порций/день",desc:"Выручка 1 млн ₽/мес gross. EBITDA ~10–12%. Выход на операционную прибыль.",dur:"Мес. 8–12"},
+    {name:"Франчайзинг / второй город",desc:"Упаковка модели: стандарты, меню, поставщики, обучение. Нижний Новгород, Казань.",dur:"Мес. 10–14"},
+    {name:"BODRO SMART: отдельный бренд",desc:"Собственный сайт, приложение с личным КБЖУ-кабинетом, доставка на неделю.",dur:"Мес. 12+"},
+  ],
+};
+function renderPhase(key,id){
+  const items=ROADMAP[key]||[];
+  document.getElementById(id).innerHTML=items.map(t=>`
+    <div class="tl-item">
+      <div class="${t.done?'s-dot s-done':t.prog?'s-dot s-prog':'s-dot s-pend'}"></div>
+      <div>
+        <div class="tl-name ${t.done?'done-text':''}">${t.name}</div>
+        <div class="tl-desc">${t.desc}</div>
+        ${t.dur?`<div class="tl-dur">${t.dur}</div>`:''}
+      </div>
+    </div>`).join('');
+}
+['phase0','phase1','phase2','phase3','phase4','phase5'].forEach(k=>renderPhase(k,k));
+</script>
+</body>
+</html>

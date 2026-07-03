@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Questions — BODRO</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--mono:'JetBrains Mono',monospace;}
+body{font-family:'Archivo',sans-serif;background:#F5F4F1;padding-top:54px;height:100vh;display:flex;flex-direction:column;}
+.u-nav{position:fixed;top:0;left:0;right:0;z-index:900;height:54px;display:flex;align-items:center;padding:0 52px;background:rgba(13,13,11,.92);backdrop-filter:blur(32px) saturate(200%);-webkit-backdrop-filter:blur(32px) saturate(200%);border-bottom:1px solid rgba(255,255,255,.07);}
+.u-logo{display:flex;align-items:baseline;gap:9px;text-decoration:none;margin-right:32px;}
+.u-wordmark{font-size:15px;font-weight:900;letter-spacing:-.04em;color:#fff;}
+.u-sub{font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.18);letter-spacing:.14em;text-transform:uppercase;}
+.u-links{display:flex;gap:2px;margin-left:auto;}
+.u-link{font-size:12px;font-weight:600;color:rgba(255,255,255,.3);text-decoration:none;padding:5px 13px;border-radius:7px;transition:all .15s;letter-spacing:-.01em;white-space:nowrap;}
+.u-link:hover{color:rgba(255,255,255,.85);background:rgba(255,255,255,.07);}
+.u-link.active{color:#fff;background:rgba(255,255,255,.1);}
+iframe{flex:1;border:none;width:100%;display:block;}
+@media(max-width:900px){.u-nav{padding:0 24px;}.u-sub{display:none;}}
+</style>
+</head>
+<body>
+<nav class="u-nav">
+  <a href="index.html" class="u-logo"><span class="u-wordmark">BODRO</span><span class="u-sub">Dark Kitchen · Самара</span></a>
+  <div class="u-links">
+    <a href="BODRO_BrandBook_Landing.html" class="u-link">BrandBook</a>
+    <a href="labelsystem.html" class="u-link">Labels</a>
+    <a href="roadmap.html" class="u-link">Roadmap</a>
+    <a href="menu.html" class="u-link">Menu</a>
+    <a href="brand.html" class="u-link">Brand</a>
+    <a href="valuechain.html" class="u-link">Value Chain</a>
+    <a href="questions.html" class="u-link active">Questions</a>
+  </div>
+</nav>
+<iframe src="DarkKitchen_Service_v4.html?embed=1&page=questions" title="Questions Board"></iframe>
+</body>
+</html>

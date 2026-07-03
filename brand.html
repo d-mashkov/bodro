@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand — BODRO Dark Kitchen</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--black:#0D0D0B;--sand:#F2EDE5;--lime:#B5D64E;--white:#FFFFFF;--bg:#F5F4F1;--line:#E5E3DF;--sub:#5C5A57;--muted:#9E9C96;--gb:rgba(255,255,255,.88);--gs:0 2px 20px rgba(0,0,0,.07);--mono:'JetBrains Mono',monospace;}
+body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--black);padding-top:54px;}
+
+/* NAV */
+.u-nav{position:fixed;top:0;left:0;right:0;z-index:900;height:54px;display:flex;align-items:center;padding:0 52px;background:rgba(13,13,11,.92);backdrop-filter:blur(32px) saturate(200%);-webkit-backdrop-filter:blur(32px) saturate(200%);border-bottom:1px solid rgba(255,255,255,.07);}
+.u-logo{display:flex;align-items:baseline;gap:9px;text-decoration:none;margin-right:32px;}
+.u-wordmark{font-size:15px;font-weight:900;letter-spacing:-.04em;color:#fff;}
+.u-sub{font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.18);letter-spacing:.14em;text-transform:uppercase;}
+.u-links{display:flex;gap:2px;margin-left:auto;}
+.u-link{font-size:12px;font-weight:600;color:rgba(255,255,255,.3);text-decoration:none;padding:5px 13px;border-radius:7px;transition:all .15s;letter-spacing:-.01em;white-space:nowrap;}
+.u-link:hover{color:rgba(255,255,255,.85);background:rgba(255,255,255,.07);}
+.u-link.active{color:#fff;background:rgba(255,255,255,.1);}
+
+/* PAGE */
+.page-head{background:var(--black);color:#fff;padding:56px 80px 48px;}
+.page-eyebrow{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:14px;}
+.ey-dot{width:6px;height:6px;border-radius:50%;background:var(--lime);flex-shrink:0;}
+.page-title{font-size:clamp(32px,4vw,52px);font-weight:900;letter-spacing:-.04em;margin-bottom:8px;}
+.page-desc{font-size:14px;color:rgba(255,255,255,.42);line-height:1.65;max-width:600px;}
+
+.wrap{padding:40px 80px 80px;max-width:1400px;}
+
+/* BRAND CARDS */
+.brands-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:40px;}
+.brand-card{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--gb);box-shadow:var(--gs);}
+.brand-header{padding:32px 32px 24px;}
+.brand-header.dark{background:var(--black);}
+.brand-name{font-size:32px;font-weight:900;letter-spacing:-.04em;margin-bottom:6px;}
+.brand-name.lime{color:var(--lime);}
+.brand-pos{font-size:13px;line-height:1.6;margin-top:12px;}
+.brand-pos.light{color:rgba(255,255,255,.5);}
+.brand-pos.dark{color:var(--sub);}
+.tag{display:inline-block;padding:5px 14px;border-radius:999px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;}
+.tag-b{background:var(--black);color:#fff;}
+.tag-l{background:rgba(181,214,78,.15);color:var(--lime);border:1px solid rgba(181,214,78,.3);}
+.tag-g{background:rgba(0,0,0,.06);color:var(--muted);}
+.brand-body{padding:24px 32px 32px;}
+.sec-label{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.sec-title{font-size:20px;font-weight:900;letter-spacing:-.02em;margin-bottom:16px;}
+.promo-list{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
+.promo-item{display:flex;gap:12px;align-items:flex-start;font-size:13px;line-height:1.5;color:var(--sub);}
+.promo-item strong{color:var(--black);}
+.promo-bullet{width:6px;height:6px;border-radius:50%;background:var(--black);margin-top:5px;flex-shrink:0;}
+.promo-bullet.lime{background:var(--lime);}
+
+/* NAMING GRID */
+.naming-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+.naming-card{padding:16px;border:1.5px solid var(--line);border-radius:12px;background:#fff;}
+.naming-name{font-size:16px;font-weight:900;letter-spacing:-.02em;margin-bottom:4px;}
+.naming-name.lime{color:var(--lime);}
+.naming-desc{font-size:11px;color:var(--sub);line-height:1.4;}
+.naming-badge{margin-top:8px;display:inline-block;}
+
+/* STRATEGY */
+.strategy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px;}
+.stat-card{background:var(--gb);border:1px solid rgba(255,255,255,.9);border-radius:14px;padding:20px 22px;box-shadow:var(--gs);}
+.stat-val-sm{font-size:13px;font-weight:800;margin-bottom:6px;}
+.stat-note{font-size:12px;color:var(--sub);line-height:1.5;}
+
+/* LINK TO BRANDBOOK */
+.bb-link{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--black);color:#fff;border-radius:999px;font-size:13px;font-weight:700;text-decoration:none;transition:background .15s;margin-top:8px;}
+.bb-link:hover{background:#333;}
+
+@media(max-width:900px){.wrap{padding:32px 24px 60px;}.page-head{padding:48px 24px 40px;}.brands-grid{grid-template-columns:1fr;}.strategy-grid{grid-template-columns:1fr 1fr;}.naming-grid{grid-template-columns:1fr;}.u-nav{padding:0 24px;}.u-sub{display:none;}}
+</style>
+</head>
+<body>
+<nav class="u-nav">
+  <a href="index.html" class="u-logo"><span class="u-wordmark">BODRO</span><span class="u-sub">Dark Kitchen · Самара</span></a>
+  <div class="u-links">
+    <a href="BODRO_BrandBook_Landing.html" class="u-link">BrandBook</a>
+    <a href="labelsystem.html" class="u-link">Labels</a>
+    <a href="roadmap.html" class="u-link">Roadmap</a>
+    <a href="menu.html" class="u-link">Menu</a>
+    <a href="brand.html" class="u-link active">Brand</a>
+    <a href="valuechain.html" class="u-link">Value Chain</a>
+    <a href="questions.html" class="u-link">Questions</a>
+  </div>
+</nav>
+
+<div class="page-head">
+  <div class="page-eyebrow"><div class="ey-dot"></div>БРЕНД РЕВЬЮ</div>
+  <div class="page-title">Два бренда. Одна кухня.</div>
+  <div class="page-desc">Позиционирование, нейминг и стратегия развития BODRO и BODRO SMART</div>
+</div>
+
+<div class="wrap">
+
+  <div class="brands-grid">
+    <!-- BODRO -->
+    <div class="brand-card">
+      <div class="brand-header">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+          <div class="brand-name">BODRO</div>
+          <span class="tag tag-g">Комфорт-еда</span>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
+          <span class="tag tag-b" style="font-size:9px;">Archivo 900 · Белая упаковка</span>
+          <span class="tag tag-g" style="font-size:9px;">Чёрный · Белый · #F5F5F3</span>
+        </div>
+        <div class="brand-pos dark">Просто хорошая еда. Без ЗОЖ-пафоса. Ресторанное качество по цене столовой.</div>
+      </div>
+      <div class="brand-body">
+        <div class="sec-label">Суть бренда</div>
+        <div class="promo-list">
+          <div class="promo-item"><div class="promo-bullet"></div><div><strong>Аудитория</strong> — офисный работник 25–40 лет. Не хочет тратить время на обед.</div></div>
+          <div class="promo-item"><div class="promo-bullet"></div><div><strong>Слоган</strong> — «Еда. Каждый день.»</div></div>
+          <div class="promo-item"><div class="promo-bullet"></div><div><strong>Цена</strong> — 230–320 ₽/блюдо. Ресторанный уровень блюд по цене бизнес-ланча.</div></div>
+        </div>
+
+        <div class="sec-label">Варианты нейминга</div>
+        <div class="naming-grid">
+          <div class="naming-card" style="border-color:var(--black);border-width:2px;">
+            <div class="naming-name">BODRO</div>
+            <div class="naming-desc">Живо, по-русски. Archivo 900, белая упаковка, минимализм.</div>
+            <span class="tag tag-b naming-badge" style="font-size:8px;margin-top:8px;">Выбрано</span>
+          </div>
+          <div class="naming-card"><div class="naming-name">ЕМ</div><div class="naming-desc">Антибренд. Моносиллаб, предельно короткий.</div></div>
+          <div class="naming-card"><div class="naming-name">СТОЛОВКА</div><div class="naming-desc">Переосмысление советского формата: ирония + ностальгия.</div></div>
+          <div class="naming-card"><div class="naming-name">ГОРЯЧО</div><div class="naming-desc">Температурный брендинг. Свежесть и домашность.</div></div>
+        </div>
+
+        <div class="sec-label">Каналы продвижения</div>
+        <div class="promo-list">
+          <div class="promo-item"><div class="promo-bullet"></div><div><strong>Яндекс.Еда</strong> — основной старт. Реальные фото, без стоков.</div></div>
+          <div class="promo-item"><div class="promo-bullet"></div><div><strong>Telegram-канал</strong> — «сегодня на обед». Ежедневный пост с меню и остатком порций.</div></div>
+          <div class="promo-item"><div class="promo-bullet"></div><div><strong>Дегустации в БЦ</strong> — 100 г пробник, баннер с QR-кодом, промокод на первый заказ.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BODRO SMART -->
+    <div class="brand-card" style="border-color:rgba(181,214,78,.35);border-width:2px;">
+      <div class="brand-header dark">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+          <div class="brand-name lime">BODRO SMART</div>
+          <span class="tag tag-l">Точное питание</span>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
+          <span style="background:rgba(181,214,78,.12);border-radius:6px;padding:5px 10px;font-size:9px;font-weight:700;font-family:var(--mono);color:var(--lime);letter-spacing:.06em;">Archivo 900 + JetBrains Mono</span>
+          <span style="background:rgba(255,255,255,.07);border:1px solid rgba(181,214,78,.2);border-radius:6px;padding:5px 10px;font-size:9px;font-weight:700;font-family:var(--mono);color:rgba(255,255,255,.4);">Чёрный · Белый · #B5D64E</span>
+        </div>
+        <div class="brand-pos light">Всё посчитано за тебя. Чёрная упаковка, КБЖУ крупно на лицевой стороне.</div>
+      </div>
+      <div class="brand-body">
+        <div class="sec-label">Суть бренда</div>
+        <div class="promo-list">
+          <div class="promo-item"><div class="promo-bullet lime"></div><div><strong>КБЖУ — герой упаковки</strong> — Белки / Жиры / Углев / Ккал крупно на лицевой стороне.</div></div>
+          <div class="promo-item"><div class="promo-bullet lime"></div><div><strong>Аудитория</strong> — считающие белок, фитнес, 23–35 лет. Тренеры, самозанятые, офис.</div></div>
+          <div class="promo-item"><div class="promo-bullet lime"></div><div><strong>Слоган</strong> — «Всё посчитано.»</div></div>
+        </div>
+
+        <div class="sec-label">Варианты нейминга</div>
+        <div class="naming-grid">
+          <div class="naming-card" style="border-color:var(--lime);border-width:2px;background:var(--black);">
+            <div class="naming-name lime">BODRO SMART</div>
+            <div class="naming-desc" style="color:rgba(255,255,255,.5);">Суббренд BODRO. КБЖУ-фокус, чёрная упаковка, JetBrains Mono.</div>
+            <span class="tag tag-l naming-badge" style="font-size:8px;margin-top:8px;">Выбрано</span>
+          </div>
+          <div class="naming-card"><div class="naming-name">ТОЧНО</div><div class="naming-desc">Высказывание точности. Двойной смысл: точное питание и «точно вкусно».</div></div>
+          <div class="naming-card"><div class="naming-name">ПРО</div><div class="naming-desc">Профессиональное питание. Короткий суббренд.</div></div>
+          <div class="naming-card"><div class="naming-name">НОРМА</div><div class="naming-desc">Дневная норма КБЖУ. Играет с понятием «нормально».</div></div>
+        </div>
+
+        <div class="sec-label">Каналы продвижения</div>
+        <div class="promo-list">
+          <div class="promo-item"><div class="promo-bullet lime"></div><div><strong>Яндекс.Еда — отдельный профиль</strong> «BODRO SMART». Рядом с основным.</div></div>
+          <div class="promo-item"><div class="promo-bullet lime"></div><div><strong>Telegram-бот</strong> — недельный рацион с КБЖУ, скидка 5–10% без комиссии.</div></div>
+          <div class="promo-item"><div class="promo-bullet lime"></div><div><strong>Станции-холодильники</strong> в офисных центрах с акцентом на суточное КБЖУ.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STRATEGY -->
+  <div class="sec-label">Общая стратегия</div>
+  <div class="sec-title">Два бренда — одна кухня</div>
+  <div class="strategy-grid">
+    <div class="stat-card">
+      <div class="stat-val-sm">Фаза 1 — Агрегатор</div>
+      <div class="stat-note">Оба бренда на Яндекс.Еду. BODRO — главная точка, BODRO SMART — отдельный профиль рядом. Цель: 100+ порц/день суммарно.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val-sm">Фаза 2 — DTC + подписка</div>
+      <div class="stat-note">Telegram-бот: BODRO SMART — «рацион недели» с КБЖУ. BODRO — «обед на неделю». Скидка 5–10% без комиссии агрегатора.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val-sm">Фаза 3 — B2B + Станции</div>
+      <div class="stat-note">Станции BODRO SMART в офисных центрах. BODRO — корпоративный обед под заказ. Гарантированный объём без агрегатора.</div>
+    </div>
+  </div>
+
+  <a href="BODRO_BrandBook_Landing.html" class="bb-link">Полный BrandBook →</a>
+
+</div>
+</body>
+</html>

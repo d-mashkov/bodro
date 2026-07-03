@@ -364,15 +364,15 @@ textarea.form-input { resize:vertical; min-height:90px; }
 </head>
 <body>
 
-<!-- ── NAV (English) ────────────────────────────────── -->
-<nav>
+<!-- ── NAV (hidden in embed mode) ─────────────────── -->
+<nav id="svc-nav">
   <a class="nav-brand" href="index.html">BODRO</a>
   <div class="nav-tabs">
-    <button class="nav-tab active" onclick="goPage('roadmap',this)">Roadmap</button>
-    <button class="nav-tab" onclick="goPage('menu',this)">Menu</button>
-    <button class="nav-tab" onclick="goPage('brand',this)">Brand</button>
-    <button class="nav-tab" onclick="goPage('vc',this)">Value Chain</button>
-    <button class="nav-tab" onclick="goPage('questions',this)">Questions</button>
+    <button class="nav-tab active" id="tab-roadmap" onclick="goPage('roadmap',this)">Roadmap</button>
+    <button class="nav-tab" id="tab-menu" onclick="goPage('menu',this)">Menu</button>
+    <button class="nav-tab" id="tab-brand" onclick="goPage('brand',this)">Brand</button>
+    <button class="nav-tab" id="tab-vc" onclick="goPage('vc',this)">Value Chain</button>
+    <button class="nav-tab" id="tab-questions" onclick="goPage('questions',this)">Questions</button>
   </div>
   <div class="nav-meta">Samara · 2026</div>
 </nav>
@@ -1206,6 +1206,22 @@ document.getElementById('q-input-title').addEventListener('keydown',function(e){
 document.getElementById('vc-password-input').addEventListener('keydown',function(e){ if(e.key==='Enter') checkVcPassword(); });
 
 const _el_afc=document.getElementById('res_avg_fc_display'); if(_el_afc) _el_afc.textContent=AVG_FC+' ₽';
+
+// ── EMBED + URL PARAM SUPPORT ────────────────────────
+(function(){
+  const params=new URLSearchParams(window.location.search);
+  // Hide nav in embed mode (used by wrapper pages)
+  if(params.get('embed')==='1'){
+    const nav=document.getElementById('svc-nav');
+    if(nav){ nav.style.display='none'; document.body.style.paddingTop='0'; }
+  }
+  // Auto-navigate to requested page
+  const pg=params.get('page');
+  if(pg){
+    const btn=document.getElementById('tab-'+pg);
+    if(btn) goPage(pg,btn);
+  }
+})();
 </script>
 </body>
 </html>

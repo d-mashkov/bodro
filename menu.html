@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu — BODRO Dark Kitchen</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--black:#0D0D0B;--sand:#F2EDE5;--lime:#B5D64E;--white:#FFFFFF;--bg:#F5F4F1;--line:#E5E3DF;--sub:#5C5A57;--muted:#9E9C96;--gb:rgba(255,255,255,.88);--gs:0 2px 20px rgba(0,0,0,.07);--mono:'JetBrains Mono',monospace;}
+body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--black);padding-top:54px;}
+
+/* NAV */
+.u-nav{position:fixed;top:0;left:0;right:0;z-index:900;height:54px;display:flex;align-items:center;padding:0 52px;background:rgba(13,13,11,.92);backdrop-filter:blur(32px) saturate(200%);-webkit-backdrop-filter:blur(32px) saturate(200%);border-bottom:1px solid rgba(255,255,255,.07);}
+.u-logo{display:flex;align-items:baseline;gap:9px;text-decoration:none;margin-right:32px;}
+.u-wordmark{font-size:15px;font-weight:900;letter-spacing:-.04em;color:#fff;}
+.u-sub{font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.18);letter-spacing:.14em;text-transform:uppercase;}
+.u-links{display:flex;gap:2px;margin-left:auto;}
+.u-link{font-size:12px;font-weight:600;color:rgba(255,255,255,.3);text-decoration:none;padding:5px 13px;border-radius:7px;transition:all .15s;letter-spacing:-.01em;white-space:nowrap;}
+.u-link:hover{color:rgba(255,255,255,.85);background:rgba(255,255,255,.07);}
+.u-link.active{color:#fff;background:rgba(255,255,255,.1);}
+
+/* PAGE */
+.page-head{background:var(--black);color:#fff;padding:56px 80px 48px;}
+.page-eyebrow{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:14px;}
+.ey-dot{width:6px;height:6px;border-radius:50%;background:var(--lime);flex-shrink:0;}
+.page-title{font-size:clamp(32px,4vw,52px);font-weight:900;letter-spacing:-.04em;margin-bottom:8px;}
+.page-desc{font-size:14px;color:rgba(255,255,255,.42);line-height:1.65;max-width:600px;}
+
+.wrap{padding:40px 80px 80px;}
+
+/* PILLS */
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;}
+.pill{padding:7px 18px;border-radius:999px;font-size:12px;font-weight:700;cursor:pointer;border:1.5px solid var(--line);background:var(--gb);color:var(--sub);transition:all .15s;user-select:none;}
+.pill:hover{border-color:var(--black);color:var(--black);}
+.pill.active{background:var(--black);border-color:var(--black);color:#fff;}
+
+/* MENU GRID */
+.g-auto{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;}
+.m-card{background:var(--gb);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.9);border-radius:16px;padding:22px 22px 20px;box-shadow:var(--gs);display:flex;flex-direction:column;}
+.chip{display:inline-block;padding:3px 10px;border-radius:999px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.1);color:var(--sub);}
+.chip-dark{background:var(--black);color:#fff;border-color:var(--black);}
+.m-name{font-size:15px;font-weight:800;letter-spacing:-.02em;margin:10px 0 3px;}
+.m-cat{font-family:var(--mono);font-size:9px;color:var(--muted);margin-bottom:10px;}
+.m-ingr{font-size:11px;color:var(--sub);line-height:1.5;margin-bottom:14px;}
+.m-ingr strong{color:var(--black);}
+.divider{height:1px;background:var(--line);margin:12px 0;}
+.kbju-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
+.kbju-cell{background:rgba(0,0,0,.03);border-radius:8px;padding:8px 6px;text-align:center;}
+.kbju-v{font-family:var(--mono);font-size:14px;font-weight:700;margin-bottom:2px;}
+.kbju-red{color:#E53E3E;}
+.kbju-l{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;}
+.m-fc{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--sub);}
+.m-fc strong{color:var(--black);}
+.flex{display:flex;}.justify-between{justify-content:space-between;}.items-center{align-items:center;}.mb8{margin-bottom:8px;}.mb12{margin-bottom:12px;}.mt4{margin-top:4px;}
+.fs12{font-size:12px;}.fs10{font-size:10px;}.c-muted{color:var(--muted);}
+
+@media(max-width:900px){.wrap{padding:32px 24px 60px;}.page-head{padding:48px 24px 40px;}.u-nav{padding:0 24px;}.u-sub{display:none;}.g-auto{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav class="u-nav">
+  <a href="index.html" class="u-logo"><span class="u-wordmark">BODRO</span><span class="u-sub">Dark Kitchen · Самара</span></a>
+  <div class="u-links">
+    <a href="BODRO_BrandBook_Landing.html" class="u-link">BrandBook</a>
+    <a href="labelsystem.html" class="u-link">Labels</a>
+    <a href="roadmap.html" class="u-link">Roadmap</a>
+    <a href="menu.html" class="u-link active">Menu</a>
+    <a href="brand.html" class="u-link">Brand</a>
+    <a href="valuechain.html" class="u-link">Value Chain</a>
+    <a href="questions.html" class="u-link">Questions</a>
+  </div>
+</nav>
+
+<div class="page-head">
+  <div class="page-eyebrow"><div class="ey-dot"></div>ТЕХНОЛОГИЧЕСКИЕ КАРТЫ</div>
+  <div class="page-title">Меню · 22 блюда</div>
+  <div class="page-desc">Состав, себестоимость, КБЖУ на 100 г и на порцию. Данные технологических карт.</div>
+</div>
+
+<div class="wrap">
+  <div class="pills" id="menuPills">
+    <div class="pill active" onclick="filterMenu('all',this)">Все (22)</div>
+    <div class="pill" onclick="filterMenu('Суп',this)">Супы</div>
+    <div class="pill" onclick="filterMenu('Второе',this)">Вторые блюда</div>
+    <div class="pill" onclick="filterMenu('Салат',this)">Салаты</div>
+    <div class="pill" onclick="filterMenu('Гарнир',this)">Гарниры</div>
+    <div class="pill" onclick="filterMenu('Десерт',this)">Десерты</div>
+    <div class="pill" onclick="filterMenu('Напиток',this)">Напитки</div>
+  </div>
+  <div class="g-auto" id="menuGrid"></div>
+</div>
+
+<script>
+const MENU_DATA=[
+  {name:"Борщ с говядиной",cat:"Суп",weight:350,fc:73,kcal_p:245.7,b_p:12.9,f_p:15.2,c_p:14.7,ingr:"Говядина (лопатка), капуста, свекла, картофель, морковь, лук, томатная паста, сметана"},
+  {name:"Суп-пюре грибной с курицей",cat:"Суп",weight:300,fc:95,kcal_p:385.2,b_p:26.9,f_p:20.7,c_p:22.6,ingr:"Грудка куриная, шампиньоны, картофель, морковь, лук, сливочное масло, сливки, гренки"},
+  {name:"Суп томатный с печёными перцами",cat:"Суп",weight:300,fc:110,kcal_p:103.9,b_p:3.1,f_p:3.4,c_p:14.4,ingr:"Томаты Polpa, перец сладкий, лук, морковь, сельдерей, масло растительное, базилик"},
+  {name:"Куриное филе гриль, булгур, овощи",cat:"Второе",weight:277,fc:65,kcal_p:460.4,b_p:31.9,f_p:14.1,c_p:48.2,ingr:"Грудка куриная, булгур, лук, морковь, петрушка, лимонный сок, чеснок"},
+  {name:"Оладьи куриные из грудки",cat:"Второе",weight:151,fc:64,kcal_p:363.4,b_p:29.3,f_p:20.2,c_p:13.9,ingr:"Грудка куриная, хлеб пшеничный, молоко, лук, желток, мускатный орех"},
+  {name:"Бризоль куриная с рисом",cat:"Второе",weight:230,fc:45,kcal_p:353.4,b_p:21.5,f_p:9.4,c_p:43.8,ingr:"Фарш куриный, яйцо, молоко, мука, чеснок, рис длиннозерный, петрушка"},
+  {name:"Тальятелле, грудка, сычуанский перец",cat:"Второе",weight:240,fc:91,kcal_p:462,b_p:36.4,f_p:11.2,c_p:53.1,ingr:"Грудка куриная, паста тальятелле, петрушка, масло зелёное, лимонный сок, перец сычуанский"},
+  {name:"Говядина наршараб, мятый картофель",cat:"Второе",weight:230,fc:110,kcal_p:305.5,b_p:27.7,f_p:8.4,c_p:30.0,ingr:"Говядина (лопатка), соус наршараб, картофель, молоко 2.5%, розмарин, тимьян"},
+  {name:"Бефстроганов с картофельным пюре",cat:"Второе",weight:220,fc:78,kcal_p:341.7,b_p:18.6,f_p:17.4,c_p:27.2,ingr:"Говядина (лопатка), лук, сметана 20%, картофель, молоко 2.5%, масло сливочное"},
+  {name:"Грудка су-вид в специях, бурый рис",cat:"Второе",weight:225,fc:60,kcal_p:329.2,b_p:26.8,f_p:3.0,c_p:46.7,ingr:"Грудка куриная, рис бурый, паприка копчёная, итальянские травы, чеснок сушёный"},
+  {name:"Биточки куриные паровые, киноа",cat:"Второе",weight:225,fc:54,kcal_p:348.4,b_p:21.3,f_p:11.9,c_p:36.0,ingr:"Грудка куриная, батон, молоко, лук, яйцо, крупа киноа, масло"},
+  {name:"Овощи бланшированные",cat:"Гарнир",weight:150,fc:40,kcal_p:50,b_p:3.4,f_p:0.5,c_p:8.4,ingr:"Морковь, цветная капуста, брокколи, фасоль стручковая"},
+  {name:"Салат-микс зелёный с бальзамиком",cat:"Салат",weight:70,fc:55,kcal_p:69.2,b_p:1.0,f_p:6.1,c_p:2.5,ingr:"Айсберг, романо, шпинат, мангольд, заправка бальзамическая"},
+  {name:"Витаминный салат с заправкой кимчи",cat:"Салат",weight:150,fc:32,kcal_p:92.5,b_p:3.2,f_p:0.3,c_p:19.1,ingr:"Капуста белокочанная, морковь, перец сладкий, соус кимчи, лимон"},
+  {name:"Винегрет с горчичной заправкой",cat:"Салат",weight:175,fc:28,kcal_p:163.6,b_p:3.0,f_p:9.2,c_p:17.0,ingr:"Свекла, картофель, морковь, огурцы солёные, капуста квашеная, горошек, горчица"},
+  {name:"Зелёный салат, грудка су-вид, кукуруза",cat:"Салат",weight:95,fc:56,kcal_p:113,b_p:10.2,f_p:6.1,c_p:5.0,ingr:"Айсберг, романо, шпинат, кукуруза, грудка су-вид, мёд, соевый соус, горчица"},
+  {name:"Сырники со сметаной",cat:"Десерт",weight:175,fc:112,kcal_p:639,b_p:37.0,f_p:22.2,c_p:73.2,ingr:"Творог 5%, крупа манная, сахар, яйцо, мука, сметана 15%"},
+  {name:"Протеиновый брауни с бананом",cat:"Десерт",weight:120,fc:74,kcal_p:197.7,b_p:21.5,f_p:6.9,c_p:10.7,ingr:"Банан, яйцо, протеин сывороточный, какао-порошок, йогурт греческий, разрыхлитель"},
+  {name:"Морс из вишни",cat:"Напиток",weight:500,fc:48,kcal_p:72.8,b_p:1.12,f_p:0.28,c_p:14.84,ingr:"Вишня замороженная, вода питьевая, эритрит, сукралоза"},
+  {name:"Морс из чёрной смородины",cat:"Напиток",weight:500,fc:40,kcal_p:55,b_p:1.26,f_p:0.49,c_p:8.97,ingr:"Смородина чёрная замороженная, лимон, вода питьевая, эритрит, сукралоза"},
+  {name:"Зелёный чай холодный с лимоном",cat:"Напиток",weight:500,fc:13,kcal_p:7.5,b_p:0,f_p:0,c_p:0.2,ingr:"Чай зелёный листовой, лимон, вода питьевая, эритрит, сукралоза"},
+  {name:"Подсластитель (эритрит + сукралоза)",cat:"Напиток",weight:100,fc:73,kcal_p:0,b_p:0,f_p:0,c_p:0,ingr:"Эритрит 95%, сукралоза 5% · эквивалент сахара ×25"},
+];
+
+function filterMenu(filter,btn){
+  document.querySelectorAll('#menuPills .pill').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  renderMenuCards(filter);
+}
+function renderMenuCards(filter){
+  const items=filter==='all'?MENU_DATA:MENU_DATA.filter(m=>m.cat===filter);
+  document.getElementById('menuGrid').innerHTML=items.map(m=>{
+    const w=m.weight;
+    const k100=(m.kcal_p/w*100).toFixed(0),b100=(m.b_p/w*100).toFixed(1),f100=(m.f_p/w*100).toFixed(1),c100=(m.c_p/w*100).toFixed(1);
+    const isHighProt=parseFloat(b100)>=10;
+    const isLowCal=m.kcal_p<100;
+    const fcPct=m.kcal_p>0?Math.round(m.b_p*4/m.kcal_p*100):0;
+    return `<div class="m-card">
+      <div class="flex justify-between items-center mb8">
+        <span class="chip">${m.cat}</span>
+        <div style="display:flex;gap:4px;align-items:center;">
+          ${isHighProt?'<span class="chip chip-dark" style="font-size:9px;padding:2px 7px;">ПРОТЕИН</span>':''}
+          ${isLowCal?'<span class="chip" style="font-size:9px;padding:2px 7px;background:rgba(34,197,94,.1);border-color:rgba(34,197,94,.3);color:#16A34A;">ЛЁГКОЕ</span>':''}
+          <span class="fs12 c-muted">${m.weight} г</span>
+        </div>
+      </div>
+      <div class="m-name">${m.name}</div>
+      <div class="m-cat">Порция · ${m.weight} г</div>
+      <div class="m-ingr"><strong>Состав:</strong> ${m.ingr}</div>
+      <div class="divider"></div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:8px;">КБЖУ · 100 г</div>
+      <div class="kbju-grid mb12">
+        <div class="kbju-cell"><div class="kbju-v kbju-red">${k100}</div><div class="kbju-l">ККАЛ</div></div>
+        <div class="kbju-cell"><div class="kbju-v">${b100}</div><div class="kbju-l">БЕЛКИ</div></div>
+        <div class="kbju-cell"><div class="kbju-v">${f100}</div><div class="kbju-l">ЖИРЫ</div></div>
+        <div class="kbju-cell"><div class="kbju-v">${c100}</div><div class="kbju-l">УГЛЕВ.</div></div>
+      </div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:8px;">КБЖУ · порция ${w} г</div>
+      <div class="kbju-grid mb12">
+        <div class="kbju-cell"><div class="kbju-v kbju-red">${m.kcal_p}</div><div class="kbju-l">ККАЛ</div></div>
+        <div class="kbju-cell"><div class="kbju-v">${m.b_p}</div><div class="kbju-l">БЕЛКИ</div></div>
+        <div class="kbju-cell"><div class="kbju-v">${m.f_p}</div><div class="kbju-l">ЖИРЫ</div></div>
+        <div class="kbju-cell"><div class="kbju-v">${m.c_p}</div><div class="kbju-l">УГЛЕВ.</div></div>
+      </div>
+      ${fcPct>0?`<div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:10px;">% калорий из белка: <strong style="color:var(--black)">${fcPct}%</strong></div>`:''}
+      <div class="divider"></div>
+      <div class="m-fc" style="margin-top:8px;">Себестоимость: <strong>${m.fc} ₽</strong></div>
+    </div>`;
+  }).join('');
+}
+renderMenuCards('all');
+</script>
+</body>
+</html>
