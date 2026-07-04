@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BODRO — BrandBook Strategy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+
+:root{
+  --black:#0D0D0B;
+  --sand:#F2EDE5;
+  --lime:#B5D64E;
+  --white:#FFFFFF;
+  --mono:'JetBrains Mono',monospace;
+}
+
+body{
+  font-family:'Archivo',sans-serif;
+  background:var(--black);
+  color:var(--white);
+  overflow-x:hidden;
+}
+
+/* ─ GRAIN ─ */
+.grain{
+  position:fixed;inset:0;z-index:900;pointer-events:none;opacity:0.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain 8s steps(10) infinite;
+}
+@keyframes grain{
+  0%,100%{transform:translate(0,0)} 10%{transform:translate(-2%,-3%)} 20%{transform:translate(3%,1%)}
+  30%{transform:translate(-1%,2%)} 40%{transform:translate(2%,-2%)} 50%{transform:translate(-3%,1%)}
+  60%{transform:translate(1%,3%)} 70%{transform:translate(-2%,2%)} 80%{transform:translate(3%,-1%)} 90%{transform:translate(-1%,-2%)}
+}
+
+/* ─ PROGRESS ─ */
+#prog{
+  position:fixed;top:0;left:0;z-index:999;height:2px;width:0%;
+  background:linear-gradient(90deg,var(--lime),rgba(181,214,78,.2));
+  box-shadow:0 0 8px rgba(181,214,78,.5);
+  transition:width .05s linear;
+}
+
+/* ─ NAV ─ */
+.u-nav{position:fixed;top:2px;left:0;right:0;z-index:500;height:54px;display:flex;align-items:center;padding:0 52px;background:rgba(13,13,11,.88);backdrop-filter:blur(32px) saturate(200%);-webkit-backdrop-filter:blur(32px) saturate(200%);border-bottom:1px solid rgba(255,255,255,.07);}
+.u-logo{display:flex;align-items:baseline;gap:9px;text-decoration:none;margin-right:32px;}
+.u-wordmark{font-size:15px;font-weight:900;letter-spacing:-.04em;color:#fff;}
+.u-sub{font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.18);letter-spacing:.14em;text-transform:uppercase;}
+.u-links{display:flex;gap:2px;position:absolute;left:50%;transform:translateX(-50%);}
+.u-link{font-size:14px;font-weight:600;color:rgba(255,255,255,.55);text-decoration:none;padding:5px 14px;border-radius:7px;transition:all .15s;letter-spacing:-.01em;white-space:nowrap;}
+.u-link:hover{color:#fff;background:rgba(255,255,255,.07);}
+.u-link.active{color:#fff;background:rgba(255,255,255,.1);font-weight:700;}
+
+/* ─ LAYOUT ─ */
+.wrap{max-width:1280px;margin:0 auto;padding:0 80px;}
+section{position:relative;}
+
+/* ─ HERO ─ */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 80px 88px;background:var(--black);overflow:hidden;
+}
+.hero-orb{position:absolute;pointer-events:none;border-radius:50%;filter:blur(80px);}
+.orb-1{width:600px;height:600px;background:rgba(181,214,78,.04);top:-100px;right:10%;animation:orb1 14s ease-in-out infinite alternate;}
+.orb-2{width:400px;height:400px;background:rgba(242,237,229,.025);bottom:10%;left:5%;animation:orb2 18s ease-in-out infinite alternate;}
+@keyframes orb1{0%{transform:translate(0,0) scale(1);}100%{transform:translate(40px,-30px) scale(1.1);}}
+@keyframes orb2{0%{transform:translate(0,0) scale(1);}100%{transform:translate(-20px,40px) scale(1.15);}}
+
+.hero-tag{
+  font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;
+  color:rgba(255,255,255,.12);display:flex;align-items:center;gap:20px;margin-bottom:56px;
+}
+.hero-tag::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.05);}
+.hero-h{
+  font-size:clamp(96px,14vw,220px);font-weight:900;letter-spacing:-.06em;line-height:.82;
+  clip-path:inset(100% 0 0 0);opacity:0;
+  transition:clip-path 1.1s cubic-bezier(.16,1,.3,1),opacity 1.1s;
+}
+.hero-h.in{clip-path:inset(0 0 0 0);opacity:1;}
+.hero-bot{
+  display:flex;align-items:flex-end;justify-content:space-between;margin-top:48px;
+  opacity:0;transform:translateY(20px);
+  transition:opacity .9s .6s,transform .9s .6s cubic-bezier(.16,1,.3,1);
+}
+.hero-bot.in{opacity:1;transform:translateY(0);}
+.hero-sub{font-size:clamp(16px,2.2vw,26px);font-weight:900;letter-spacing:.02em;color:var(--white);}
+.hero-sub small{display:block;font-family:var(--mono);font-size:9px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-top:10px;}
+.hero-info{font-family:var(--mono);font-size:9px;color:rgba(255,255,255,.15);letter-spacing:.08em;text-align:right;line-height:2.2;}
+
+.scroll-cue{
+  position:absolute;bottom:44px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  opacity:0;animation:fi .5s 1.8s forwards;
+}
+.scroll-cue-txt{font-family:var(--mono);font-size:8px;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.1);}
+.scroll-cue-line{width:1px;height:40px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.15));animation:scrl 1.8s 2s infinite;}
+@keyframes scrl{0%{transform:scaleY(0);transform-origin:top;opacity:0;}50%{opacity:1;}100%{transform:scaleY(1);transform-origin:top;opacity:0;}}
+@keyframes fi{to{opacity:1;}}
+
+/* ─ EYEBROW ─ */
+.ey{
+  font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
+  display:flex;align-items:center;gap:20px;margin-bottom:48px;
+}
+.on-dark .ey{color:rgba(255,255,255,.18);}
+.on-dark .ey::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.07);}
+.on-sand .ey{color:rgba(0,0,0,.25);}
+.on-sand .ey::after{content:'';flex:1;height:1px;background:rgba(0,0,0,.1);}
+
+.sec-h{font-size:clamp(28px,3.5vw,46px);font-weight:900;letter-spacing:-.04em;max-width:720px;}
+.sec-sub{font-size:15px;color:rgba(255,255,255,.35);line-height:1.75;max-width:620px;margin-top:16px;}
+.on-sand .sec-sub{color:rgba(0,0,0,.5);}
+
+/* ─ TABLES (dark) ─ */
+.st-table{width:100%;border-collapse:collapse;margin-top:48px;}
+.st-table th{
+  font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(255,255,255,.25);text-align:left;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.14);
+}
+.st-table td{
+  padding:16px;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px;line-height:1.6;
+  color:rgba(255,255,255,.55);vertical-align:top;
+}
+.st-table td:first-child{font-weight:700;color:rgba(255,255,255,.85);}
+.st-table td b{color:rgba(255,255,255,.85);font-weight:700;}
+.st-table tr.lime-row td{background:rgba(181,214,78,.04);}
+.st-table td a{color:rgba(181,214,78,.6);text-decoration:none;font-family:var(--mono);font-size:11px;}
+.st-table td .m{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.3);}
+
+/* ─ ARCHITECTURE ─ */
+.arch{display:flex;flex-direction:column;align-items:center;margin-top:56px;}
+.arch-master{
+  background:var(--sand);color:var(--black);padding:32px 56px;border-radius:16px;text-align:center;
+  width:min(460px,100%);box-shadow:0 24px 64px rgba(0,0,0,.5);
+}
+.arch-master .name{font-size:34px;font-weight:900;letter-spacing:-.04em;}
+.arch-master .role{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(0,0,0,.35);margin-top:6px;}
+.arch-master .slogan{margin-top:14px;font-size:19px;font-weight:900;}
+.arch-master .slogan-note{font-family:var(--mono);font-size:9px;color:rgba(0,0,0,.3);margin-top:4px;letter-spacing:.08em;}
+.arch-stem{width:1px;height:32px;background:rgba(255,255,255,.2);}
+.arch-fork{width:min(760px,70%);height:1px;background:rgba(255,255,255,.2);}
+.arch-drops{display:flex;width:min(760px,70%);justify-content:space-between;}
+.arch-drops span{width:1px;height:32px;background:rgba(255,255,255,.2);}
+.arch-lines{display:grid;grid-template-columns:1fr 1fr;gap:24px;width:100%;}
+.line-card{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:32px 36px;transition:background .2s;}
+.line-card:hover{background:rgba(255,255,255,.04);}
+.line-card.smart{background:rgba(181,214,78,.04);border-color:rgba(181,214,78,.16);}
+.line-card .tier{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.22);}
+.line-card .name{font-size:26px;font-weight:900;letter-spacing:-.03em;margin:10px 0 6px;}
+.line-card.smart .name em{font-style:normal;background:var(--lime);color:var(--black);padding:0 8px;border-radius:6px;}
+.line-card .desc{font-size:13px;color:rgba(255,255,255,.4);line-height:1.7;margin-bottom:20px;}
+.chip{display:inline-block;font-family:var(--mono);font-size:10.5px;padding:6px 12px;border-radius:7px;margin:3px 6px 3px 0;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);}
+.chip.claim{background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);border-color:transparent;}
+.chip.claim.lime{background:var(--lime);color:var(--black);font-weight:700;border-color:transparent;}
+.rule-note{
+  margin-top:32px;background:rgba(255,255,255,.025);border-left:2px solid var(--lime);
+  padding:20px 26px;border-radius:0 12px 12px 0;font-size:14px;line-height:1.7;color:rgba(255,255,255,.55);
+}
+.rule-note b{color:rgba(255,255,255,.85);font-weight:800;}
+
+/* ─ SLOGAN DECISION ─ */
+.decision{
+  background:var(--sand);color:var(--black);border-radius:20px;padding:64px 48px;text-align:center;
+  margin-top:56px;box-shadow:0 32px 80px rgba(0,0,0,.5);
+}
+.decision .lbl{font-family:var(--mono);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:rgba(0,0,0,.35);}
+.decision .s{font-size:clamp(44px,6vw,80px);font-weight:900;letter-spacing:-.04em;margin:16px 0 12px;line-height:1;}
+.decision .why{font-size:14px;color:rgba(0,0,0,.5);max-width:560px;margin:0 auto;line-height:1.7;}
+.alts{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px;}
+.alt{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:22px 26px;}
+.alt .ph{font-weight:900;font-size:17px;letter-spacing:-.01em;}
+.alt .rw{font-size:12px;color:rgba(255,255,255,.35);margin-top:6px;line-height:1.6;}
+.alts-label{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-top:48px;}
+
+/* ─ TOV ─ */
+.tov-principles{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:56px;}
+.tp{padding:36px 32px 40px;background:rgba(255,255,255,.025);border-top:1px solid rgba(255,255,255,.07);transition:background .3s;}
+.tp:hover{background:rgba(255,255,255,.04);}
+.tp .n{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.2em;color:rgba(181,214,78,.4);margin-bottom:22px;}
+.tp h4{font-size:19px;font-weight:900;letter-spacing:-.02em;margin-bottom:10px;}
+.tp p{font-size:12.5px;color:rgba(255,255,255,.38);line-height:1.65;}
+.tov-table td:nth-child(1){color:rgba(181,214,78,.8);font-weight:600;}
+.tov-table td:nth-child(2){color:rgba(255,120,120,.55);text-decoration:line-through;text-decoration-thickness:1px;}
+
+/* ─ PACKS ─ */
+.packs{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:56px;}
+.pack{border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.08);box-shadow:0 24px 64px rgba(0,0,0,.5);}
+.pack.base{background:var(--sand);color:var(--black);}
+.pack.smart{background:#111110;color:var(--white);border-color:rgba(181,214,78,.2);}
+.p-brand{padding:16px 24px;display:flex;justify-content:space-between;align-items:baseline;}
+.pack.base .p-brand{background:var(--black);color:var(--white);}
+.pack.smart .p-brand{background:var(--lime);color:var(--black);}
+.p-brand .b{font-weight:900;font-size:19px;letter-spacing:-.02em;}
+.p-brand .d{font-family:var(--mono);font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;opacity:.65;}
+.p-window{
+  height:120px;display:flex;align-items:center;justify-content:center;text-align:center;
+  font-family:var(--mono);font-size:10px;letter-spacing:.1em;padding:0 20px;line-height:1.8;
+}
+.pack.base .p-window{color:rgba(0,0,0,.35);border-bottom:1px dashed rgba(0,0,0,.15);
+  background:repeating-linear-gradient(45deg,rgba(0,0,0,.03),rgba(0,0,0,.03) 10px,transparent 10px,transparent 20px);}
+.pack.smart .p-window{color:rgba(255,255,255,.3);border-bottom:1px dashed rgba(255,255,255,.12);
+  background:repeating-linear-gradient(45deg,rgba(181,214,78,.04),rgba(181,214,78,.04) 10px,transparent 10px,transparent 20px);}
+.p-dish{padding:24px 24px 8px;}
+.p-dish .dish{font-weight:900;font-size:26px;line-height:1.1;letter-spacing:-.02em;}
+.p-dish .w{font-size:12px;opacity:.5;margin-top:6px;}
+.p-cal{padding:10px 24px 16px;font-family:var(--mono);font-size:11px;opacity:.55;}
+.p-kbzhu{display:flex;padding:16px 24px;background:rgba(181,214,78,.08);border-top:2px solid var(--lime);}
+.p-kbzhu div{flex:1;text-align:center;border-right:1px solid rgba(181,214,78,.15);}
+.p-kbzhu div:last-child{border:none;}
+.p-kbzhu .v{font-family:var(--mono);font-weight:700;font-size:24px;color:var(--lime);}
+.p-kbzhu .l{font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;opacity:.45;margin-top:2px;}
+.p-claim{padding:12px 24px;font-family:var(--mono);font-size:10.5px;display:flex;justify-content:space-between;}
+.pack.base .p-claim{border-top:1px solid rgba(0,0,0,.1);color:rgba(0,0,0,.45);}
+.pack.smart .p-claim{border-top:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.4);}
+.pack.smart .p-claim b{color:var(--lime);}
+.zone-tags{padding:4px 24px 22px;display:flex;flex-wrap:wrap;gap:6px;}
+.zt{font-family:var(--mono);font-size:8.5px;padding:4px 9px;border-radius:5px;}
+.pack.base .zt{border:1px dashed rgba(0,0,0,.25);color:rgba(0,0,0,.4);}
+.pack.smart .zt{border:1px dashed rgba(255,255,255,.2);color:rgba(255,255,255,.35);}
+
+.rules4{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:32px;}
+.rule4{padding:28px 32px;background:rgba(255,255,255,.025);border-top:1px solid rgba(255,255,255,.06);}
+.rule4 .n{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.18em;color:rgba(181,214,78,.4);margin-bottom:10px;text-transform:uppercase;}
+.rule4 p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.7;}
+.rule4 b{color:rgba(255,255,255,.8);font-weight:700;}
+
+/* ─ PRICE ─ */
+.price-scale{position:relative;height:120px;margin:64px 0 8px;border-bottom:1px solid rgba(255,255,255,.2);}
+.band{position:absolute;bottom:0;height:52px;border-radius:10px 10px 0 0;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;}
+.band.base{left:0%;width:31%;background:var(--sand);color:var(--black);}
+.band.smart{left:38%;width:62%;background:var(--lime);color:var(--black);}
+.gap-note{position:absolute;bottom:62px;left:31%;width:7%;text-align:center;font-family:var(--mono);font-size:9px;color:rgba(255,255,255,.35);line-height:1.5;}
+.ticks{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.25);margin-top:12px;}
+
+/* ─ RTB ─ */
+.rtb{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:56px;}
+.rtb-card{padding:40px 36px 44px;background:rgba(255,255,255,.025);border-top:1px solid rgba(255,255,255,.07);transition:background .3s;}
+.rtb-card:hover{background:rgba(255,255,255,.04);}
+.rtb-card .k{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.2em;color:rgba(181,214,78,.4);margin-bottom:24px;}
+.rtb-card h3{font-size:20px;font-weight:900;letter-spacing:-.02em;margin-bottom:10px;line-height:1.2;}
+.rtb-card p{font-size:13px;color:rgba(255,255,255,.38);line-height:1.7;}
+.rtb-note{margin-top:24px;font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.22);line-height:1.8;}
+
+/* ─ CHECK MATRIX ─ */
+.check td:nth-child(2),.check td:nth-child(3){text-align:center;font-family:var(--mono);font-size:13px;}
+.no-mark{color:rgba(255,120,120,.55);font-weight:700;}
+.yes-mark{color:rgba(255,255,255,.75);font-weight:700;}
+.lime-yes{background:var(--lime);color:var(--black);font-weight:700;padding:2px 9px;border-radius:5px;}
+
+/* ─ IMAGES / LIGHTBOX ─ */
+.lb{
+  position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.92);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .35s cubic-bezier(.16,1,.3,1);
+}
+.lb.open{opacity:1;pointer-events:all;}
+.lb-img-wrap{max-width:92vw;max-height:92vh;transform:scale(.92);transition:transform .4s cubic-bezier(.16,1,.3,1);}
+.lb.open .lb-img-wrap{transform:scale(1);}
+.lb-img-wrap img{display:block;max-width:92vw;max-height:88vh;width:auto;height:auto;border-radius:12px;box-shadow:0 40px 120px rgba(0,0,0,.9);}
+.lb-close{
+  position:fixed;top:24px;right:32px;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(255,255,255,.35);cursor:pointer;padding:8px 16px;border:1px solid rgba(255,255,255,.1);border-radius:999px;
+  transition:color .2s,border-color .2s;z-index:9001;
+}
+.lb-close:hover{color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.3);}
+.lb-caption{
+  position:fixed;bottom:32px;left:50%;transform:translateX(-50%);
+  font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.2);text-align:center;
+}
+.img-frame{
+  border-radius:18px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.6);
+  border:1px solid rgba(255,255,255,.06);position:relative;cursor:zoom-in;margin-top:56px;
+}
+.img-frame img{display:block;width:100%;height:auto;transition:transform .8s cubic-bezier(.16,1,.3,1);}
+.img-frame:hover img{transform:scale(1.01);}
+.img-frame::after{
+  content:'⊕  просмотр';position:absolute;bottom:18px;right:18px;
+  font-family:var(--mono);font-size:8px;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.7);background:rgba(0,0,0,.55);backdrop-filter:blur(8px);
+  padding:5px 12px;border-radius:999px;opacity:0;transition:opacity .25s;pointer-events:none;
+}
+.img-frame:hover::after{opacity:1;}
+.img-caption{display:flex;align-items:center;justify-content:space-between;padding:18px 4px 0;}
+.ic-l{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.2);}
+.ic-t{font-size:13px;font-weight:600;color:rgba(255,255,255,.4);}
+
+.apply-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:56px;}
+.apply-item{position:relative;border-radius:16px;overflow:hidden;cursor:zoom-in;box-shadow:0 24px 64px rgba(0,0,0,.5);}
+.apply-item img{display:block;width:100%;height:auto;transition:transform .7s cubic-bezier(.16,1,.3,1);}
+.apply-item:hover img{transform:scale(1.03);}
+.apply-over{
+  position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(13,13,11,.88) 100%);
+  display:flex;flex-direction:column;justify-content:flex-end;padding:28px 32px;pointer-events:none;
+}
+.apply-lbl{font-family:var(--mono);font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:4px;}
+.apply-ttl{font-size:15px;font-weight:800;letter-spacing:-.02em;}
+
+/* ─ SYSTEM ─ */
+.system-grid{display:grid;grid-template-columns:1fr 1fr;gap:100px;margin-top:56px;}
+.pal-row{display:flex;gap:12px;margin-top:36px;}
+.pal{flex:1;}
+.swatch{height:120px;border-radius:12px;margin-bottom:12px;position:relative;overflow:hidden;}
+.sw-badge{position:absolute;bottom:10px;left:10px;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);padding:3px 10px;border-radius:999px;font-family:var(--mono);font-size:9px;color:rgba(255,255,255,.6);}
+.pal-n{font-size:14px;font-weight:800;margin-bottom:3px;}
+.pal-r{font-size:11px;color:rgba(255,255,255,.28);line-height:1.5;}
+.lime-note{margin-top:16px;padding:12px 16px;border-radius:8px;background:rgba(181,214,78,.05);border:1px solid rgba(181,214,78,.12);font-family:var(--mono);font-size:10px;color:rgba(181,214,78,.55);line-height:1.6;}
+.type-block{margin-top:36px;display:flex;flex-direction:column;gap:12px;}
+.type-card{padding:24px;border-radius:12px;border:1px solid rgba(255,255,255,.06);}
+.type-lbl{font-family:var(--mono);font-size:8px;letter-spacing:.16em;color:rgba(255,255,255,.18);margin-bottom:14px;}
+
+/* ─ NAME ─ */
+.name-canon{
+  margin-top:56px;background:var(--sand);color:var(--black);border-radius:20px;padding:48px 52px;
+  box-shadow:0 32px 80px rgba(0,0,0,.5);
+}
+.name-canon .lbl{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(0,0,0,.35);margin-bottom:20px;}
+.name-canon p{font-size:17px;line-height:1.8;color:rgba(0,0,0,.75);}
+.name-canon p b{font-weight:900;color:var(--black);}
+
+/* ─ EXTENSION (BODRO STICK) ─ */
+.ext-note{
+  margin:56px 80px 0;padding:20px 28px;border:1px dashed rgba(181,214,78,.3);border-radius:14px;
+  font-family:var(--mono);font-size:11px;color:rgba(181,214,78,.6);line-height:1.8;letter-spacing:.02em;
+}
+.ext-hero{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;padding:0 80px;margin-top:48px;}
+.ext-visual{border-radius:20px;overflow:hidden;box-shadow:0 48px 120px rgba(0,0,0,.7);border:1px solid rgba(255,255,255,.06);cursor:zoom-in;position:relative;}
+.ext-visual img{display:block;width:100%;height:auto;transition:transform .8s cubic-bezier(.16,1,.3,1);}
+.ext-visual:hover img{transform:scale(1.01);}
+.ext-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:999px;background:rgba(181,214,78,.07);border:1px solid rgba(181,214,78,.18);font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--lime);margin-bottom:24px;}
+.ext-phase{width:6px;height:6px;border-radius:50%;background:var(--lime);}
+.ext-h{font-size:clamp(28px,3.2vw,48px);font-weight:900;letter-spacing:-.04em;line-height:1.05;margin-bottom:20px;}
+.ext-desc{font-size:15px;color:rgba(255,255,255,.38);line-height:1.8;margin-bottom:36px;}
+.ext-attrs{display:flex;flex-direction:column;}
+.ext-attr{display:grid;grid-template-columns:24px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06);align-items:start;}
+.ext-attr:last-child{border-bottom:none;}
+.ext-icon{font-size:13px;margin-top:1px;opacity:.7;}
+.ext-attr-t{font-size:13px;font-weight:700;letter-spacing:-.01em;margin-bottom:2px;}
+.ext-attr-d{font-size:11px;color:rgba(255,255,255,.32);line-height:1.55;}
+.ext-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin:48px 80px 0;}
+.ext-pillar{padding:36px 40px;background:rgba(255,255,255,.02);border-top:2px solid rgba(255,255,255,.04);}
+.ext-p-num{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.2em;color:rgba(181,214,78,.25);margin-bottom:16px;}
+.ext-p-t{font-size:17px;font-weight:900;letter-spacing:-.02em;margin-bottom:8px;}
+.ext-p-d{font-size:12px;color:rgba(255,255,255,.32);line-height:1.7;}
+
+/* ─ BACK ─ */
+.back{
+  min-height:72vh;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;text-align:center;padding:80px;background:var(--black);position:relative;overflow:hidden;
+}
+.back-orb{position:absolute;width:600px;height:600px;pointer-events:none;background:radial-gradient(circle,rgba(181,214,78,.04) 0%,transparent 70%);animation:bo 5s ease-in-out infinite alternate;}
+@keyframes bo{0%{transform:scale(.85);opacity:.5;}100%{transform:scale(1.1);opacity:1;}}
+.back-ghost{font-size:clamp(110px,16vw,240px);font-weight:900;letter-spacing:-.07em;color:rgba(255,255,255,.03);line-height:.82;user-select:none;margin-bottom:32px;}
+.back-slogan{font-size:clamp(28px,4vw,52px);font-weight:900;letter-spacing:-.03em;color:rgba(255,255,255,.85);}
+.back-formula{font-size:14px;color:rgba(255,255,255,.25);line-height:2.4;margin-top:24px;}
+.back-formula strong{color:rgba(255,255,255,.5);font-weight:700;}
+.back-foot{position:absolute;bottom:28px;left:0;right:0;font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.08);letter-spacing:.2em;text-transform:uppercase;text-align:center;}
+
+/* ─ SAND SECTION ─ */
+.sec-sand{background:var(--sand);color:var(--black);}
+.sec-sand .sec-h{color:var(--black);}
+.sec-sand .st-table th{color:rgba(0,0,0,.35);border-color:rgba(0,0,0,.2);}
+.sec-sand .st-table td{color:rgba(0,0,0,.6);border-color:rgba(0,0,0,.08);}
+.sec-sand .st-table td:first-child{color:rgba(0,0,0,.85);}
+.sec-sand .st-table td b{color:rgba(0,0,0,.85);}
+.sec-sand .st-table tr.lime-row td{background:rgba(163,196,42,.12);}
+.sec-sand .st-table td .m{color:rgba(0,0,0,.4);}
+.sec-sand .st-table td a{color:rgba(90,110,20,.75);}
+
+/* ─ ANIMS ─ */
+.au{opacity:0;transform:translateY(32px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1);}
+.au.in{opacity:1;transform:translateY(0);}
+.af{opacity:0;transition:opacity .9s cubic-bezier(.16,1,.3,1);}
+.af.in{opacity:1;}
+.as{opacity:0;transform:scale(.97);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1);}
+.as.in{opacity:1;transform:scale(1);}
+.d1{transition-delay:.1s!important;}
+.d2{transition-delay:.2s!important;}
+.d3{transition-delay:.3s!important;}
+.d4{transition-delay:.4s!important;}
+
+/* ─ RESPONSIVE ─ */
+@media(max-width:1024px){
+  .wrap{padding:0 40px;}
+  .hero{padding:0 40px 72px;}
+  .arch-lines,.packs,.alts,.apply-grid,.system-grid,.ext-hero{grid-template-columns:1fr;gap:40px;}
+  .tov-principles,.rtb,.ext-pillars,.rules4{grid-template-columns:1fr;}
+  .ext-hero,.ext-pillars,.ext-note{margin-left:40px;margin-right:40px;padding-left:0;padding-right:0;}
+  .ext-note{padding:20px 24px;}
+  .u-nav{padding:0 24px;}
+  .u-sub{display:none;}
+  .u-link{padding:4px 8px;font-size:11px;}
+  .st-table{display:block;overflow-x:auto;}
+}
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+<div id="prog"></div>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb" onclick="lbClose()">
+  <div class="lb-close" onclick="lbClose()">ESC · закрыть</div>
+  <div class="lb-img-wrap" onclick="event.stopPropagation()">
+    <img id="lb-img" src="" alt="">
+  </div>
+  <div class="lb-caption" id="lb-cap"></div>
+</div>
+
+<!-- NAV -->
+<nav class="u-nav" id="nav">
+  <a href="index.html" class="u-logo"><span class="u-wordmark">BODRO</span><span class="u-sub">Dark Kitchen · Самара</span></a>
+  <div class="u-links">
+    <a href="BrandBookStrategy.html" class="u-link active">BrandBookStrategy</a>
+    <a href="labelsystem.html" class="u-link">Labels</a>
+    <a href="roadmap.html" class="u-link">Roadmap</a>
+    <a href="menu.html" class="u-link">Menu</a>
+    <a href="brand.html" class="u-link">Brand</a>
+    <a href="valuechain.html" class="u-link">Value Chain</a>
+    <a href="questions.html" class="u-link">Questions</a>
+  </div>
+</nav>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero">
+  <div class="hero-orb orb-1"></div>
+  <div class="hero-orb orb-2"></div>
+  <div class="hero-tag">BrandBook Strategy · v1.2 · Самара · Инвестиционная презентация</div>
+  <h1 class="hero-h" id="hh">BODRO</h1>
+  <div class="hero-bot" id="hb">
+    <div class="hero-sub">Еда готова.<small>Единственный слоган в системе · живёт только на уровне мастер-бренда</small></div>
+    <div class="hero-info">Dark Kitchen · Самара<br>Документ решений · Конфиденциально</div>
+  </div>
+  <div class="scroll-cue">
+    <span class="scroll-cue-txt">Скролл</span>
+    <div class="scroll-cue-line"></div>
+  </div>
+</section>
+
+<!-- ══════════════ 01 ПОЗИЦИОНИРОВАНИЕ ══════════════ -->
+<section style="background:#080806;padding:128px 0;" class="on-dark">
+  <div class="wrap">
+    <div class="ey au">01 · Позиционирование</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
+      <p class="au" style="font-size:clamp(36px,4.5vw,62px);font-weight:900;letter-spacing:-.04em;line-height:1.0;">
+        Один бренд. Серьёзный. Для тех, кто живёт каждый день.
+      </p>
+      <div>
+        <p class="au d1" style="font-size:17px;line-height:1.8;color:rgba(255,255,255,.42);">
+          BODRO — бренд для взрослых занятых людей, которые не хотят тратить время на готовку. Без иронии, без мотивации, без фото на упаковке. Уважение ко времени — главная валюта бренда.
+        </p>
+        <div class="au d2" style="margin-top:32px;padding:22px 28px;border-left:2px solid rgba(181,214,78,.4);border-radius:0 12px 12px 0;background:rgba(255,255,255,.02);">
+          <div style="font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.18);letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px;">Формула бренда</div>
+          <div style="font-size:14px;color:rgba(255,255,255,.45);line-height:1.75;">Мы сделали работу — вы получили результат. Не обещаем эмоций, констатируем решённую задачу. Это и есть уважение ко времени.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 02 РЫНОК ══════════════ -->
+<section style="background:var(--black);padding:128px 0;" class="on-dark">
+  <div class="wrap">
+    <div class="ey au">02 · Рынок и референсы</div>
+    <p class="sec-h au d1">Как говорит сформировавшийся рынок.</p>
+    <p class="sec-sub au d2">США и Европа прошли путь, который Самара только начинает. Общий паттерн всех сильных брендов: сервисная интонация «мы сделали работу — вы получили результат». Никто из лидеров не шутит и не мотивирует.</p>
+
+    <table class="st-table au">
+      <tr><th>Бренд</th><th>Позиционирование</th><th>Что берём</th></tr>
+      <tr>
+        <td>Charlie Bigham's<br><a href="https://bighams.com">bighams.com</a> <span class="m">· UK</span></td>
+        <td>«Настоящая еда, приготовленная как дома» — премиум для занятых людей, которые хотят качества без готовки. Рост ~25% в год.</td>
+        <td><b>Тон для BODRO:</b> серьёзность, уважение к еде и ко времени, сервисная формула «мы готовим, чтобы вам не пришлось».</td>
+      </tr>
+      <tr>
+        <td>Factor<br><a href="https://factor75.com">factor75.com</a> <span class="m">· США</span></td>
+        <td>Chef-prepared, охлаждённое (never frozen), разогрев 2 минуты. Эффективность для профессионалов.</td>
+        <td><b>RTB-модель:</b> «охлаждённая, не замороженная» как стандарт категории + скорость как факт, не как обещание.</td>
+      </tr>
+      <tr>
+        <td>CookUnity<br><a href="https://cookunity.com">cookunity.com</a> <span class="m">· США</span></td>
+        <td>«Not meal kits. Not frozen.» Свежие блюда от именитых шефов, срок 3–7 дней без консервантов.</td>
+        <td><b>Приём отстройки через отрицание</b> — работает в рекламе. Шеф-звёздность НЕ берём: наш путь — честность, не имена.</td>
+      </tr>
+      <tr class="lime-row">
+        <td>Trifecta<br><a href="https://trifectanutrition.com">trifectanutrition.com</a> <span class="m">· США</span></td>
+        <td>Macro-perfect: всё взвешено и порционировано под дневную цель по белку. Для тех, кто трекает.</td>
+        <td><b>Прямой аналог SMART:</b> цифры как продукт. Упаковочная иерархия «сначала макросы, потом блюдо».</td>
+      </tr>
+      <tr class="lime-row">
+        <td>Löwenanteil<br><a href="https://loewenanteil.com">loewenanteil.com</a> <span class="m">· Германия</span></td>
+        <td>Высокобелковые органик-блюда: «мы разобрались в нутрициологии за вас — вы живёте, мы закрываем еду».</td>
+        <td><b>Тон для SMART:</b> серьёзная экспертность без фитнес-истерики. Белок как забота, не как культ.</td>
+      </tr>
+      <tr>
+        <td>COOK<br><a href="https://cookfood.net">cookfood.net</a> <span class="m">· UK</span></td>
+        <td>Ремесленная еда «как приготовили бы вы сами». Честность процесса как главный актив.</td>
+        <td><b>Прозрачность:</b> показывать процесс и состав, а не рассказывать о них.</td>
+      </tr>
+      <tr>
+        <td>Freshly · Reef · allplants<br><span class="m">закрыты 2023–2024</span></td>
+        <td>Масштаб без юнит-экономики: рост на инвестициях, закрытие при их окончании.</td>
+        <td><b>Предупреждение:</b> сначала прибыльная Самара, потом всё остальное. Не наоборот.</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════ 03 АРХИТЕКТУРА ══════════════ -->
+<section style="background:#080806;padding:128px 0;" class="on-dark">
+  <div class="wrap">
+    <div class="ey au">03 · Архитектура бренда</div>
+    <p class="sec-h au d1">Один бренд. Две линейки.</p>
+    <p class="sec-sub au d2">BODRO — не два бренда. Это мастер-бренд и две продуктовые линейки под ним. Слоган живёт только на уровне крыши. Всё «своё» — клейм, цвет, КБЖУ-блок — есть только у SMART.</p>
+
+    <div class="arch as">
+      <div class="arch-master">
+        <div class="name">BODRO</div>
+        <div class="role">Мастер-бренд · ценности · тон · слоган</div>
+        <div class="slogan">«Еда готова.»</div>
+        <div class="slogan-note">единственный слоган в системе</div>
+      </div>
+      <div class="arch-stem"></div>
+      <div class="arch-fork"></div>
+      <div class="arch-drops"><span></span><span></span></div>
+      <div class="arch-lines">
+        <div class="line-card">
+          <div class="tier">Линейка 01 · Базовая</div>
+          <div class="name">BODRO</div>
+          <div class="desc">Вкусная готовая еда на каждый день. Лицо бренда — наследует всё от мастер-бренда и не получает ничего своего.</div>
+          <span class="chip">дескриптор: Готовая еда</span>
+          <span class="chip claim">клейм: — (нет)</span>
+          <span class="chip">цена: 290–340 ₽</span>
+        </div>
+        <div class="line-card smart">
+          <div class="tier">Линейка 02 · Функциональная</div>
+          <div class="name">BODRO <em>SMART</em></div>
+          <div class="desc">Еда с высоким белком и посчитанным КБЖУ. Отличается цветом, клеймом и упаковочной иерархией — не слоганом.</div>
+          <span class="chip">дескриптор: Белок и КБЖУ под контролем</span>
+          <span class="chip claim lime">клейм: Всё посчитано</span>
+          <span class="chip">цена: 350–450 ₽</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="rule-note au"><b>Главное правило:</b> базовая линейка — это и есть бренд. У неё нет собственного слогана, клейма и цвета. Если появится третья линейка — она строится по модели SMART: дескриптор + клейм + цвет-код.</div>
+
+    <div class="img-frame as" data-cap="BODRO · Бренд-система · Упаковка и айдентика">
+      <img src="images/brand-board.jpg" alt="BODRO Brand Board">
+    </div>
+    <div class="img-caption">
+      <span class="ic-l">Бренд-система</span>
+      <span class="ic-t">Упаковка · Айдентика</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 04 РОЛИ СЛОВ ══════════════ -->
+<section style="background:var(--black);padding:128px 0;" class="on-dark">
+  <div class="wrap">
+    <div class="ey au">04 · Роли слов</div>
+    <p class="sec-h au d1">Слоган, дескриптор, клейм, месседж.</p>
+    <p class="sec-sub au d2">Четыре разных инструмента. Слоган отвечает «во что мы верим», клейм — «что в этой коробке». Путать их — заставлять линейки конкурировать друг с другом.</p>
+
+    <table class="st-table au">
+      <tr><th>Инструмент</th><th>Отвечает на вопрос</th><th>Где живёт</th><th>У нас это</th></tr>
+      <tr><td>Слоган</td><td>Во что мы верим</td><td>Мастер-бренд: вывеска, сайт, соцсети, пакет</td><td><b>«Еда готова.»</b></td></tr>
+      <tr><td>Дескриптор</td><td>Что это за продукт</td><td>Под логотипом линейки, мелко</td><td>«Готовая еда» / «Белок и КБЖУ под контролем»</td></tr>
+      <tr class="lime-row"><td>Клейм</td><td>Что я получу в этой коробке</td><td>Лицевая панель упаковки линейки</td><td>«Всё посчитано» — только у SMART</td></tr>
+      <tr><td>Месседжи</td><td>Реклама, ситуативка</td><td>Баннеры, посты, лендинг — не упаковка</td><td>банк фраз — раздел 11</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════ 05 СЛОГАН ══════════════ -->
+<section style="background:#080806;padding:128px 0;" class="on-dark">
+  <div class="wrap">
+    <div class="ey au">05 · Слоган</div>
+    <p class="sec-h au d1">Категория, ставшая слоганом.</p>
+    <p class="sec-sub au d2">Два уровня чтения: буквальный факт — это готовая еда; сервисный — задача решена, можно жить дальше. Сухо, серьёзно, по-взрослому. Работает над обеими линейками и над любым каналом.</p>
+
+    <div class="decision as">
+      <div class="lbl">Слоган мастер-бренда BODRO</div>
+      <div class="s">Еда готова.</div>
+      <p class="why">Формула западных лидеров «мы сделали работу — вы получили результат», сжатая до двух слов. Не обещает эмоций, констатирует решённую задачу. Это и есть уважение ко времени.</p>
+    </div>
+
+    <div class="alts-label au">Запасные варианты для теста — если «Еда готова.» не пройдёт проверку носителями</div>
+    <div class="alts au d1">
+      <div class="alt">
+        <div class="ph">«Готовим за вас.»</div>
+        <div class="rw">Сервисная формула Bigham's. Чуть теплее, есть «мы». Минус: смещает фокус с результата на процесс.</div>
+      </div>
+      <div class="alt">
+        <div class="ph">«Время — на своё.»</div>
+        <div class="rw">Про главную ценность — время. Минус: не называет категорию, требует контекста рядом с продуктом.</div>
+      </div>
+    </div>
+
+    <div class="rule-note au"><b>Протокол теста:</b> перед фиксацией в v2.0 слоган проверяется на трёх носителях — вывеска, шапка сайта, курьерский пакет. Если на любом из них требуется пояснение — слоган не работает.</div>
+  </div>
+</section>
+
+<!-- ══════════════ 06 TONE OF VOICE ══════════════ -->
+<section style="background:var(--black);padding:128px 0;" class="on-dark">
+  <div class="wrap">
+    <div class="ey au">06 · Tone of Voice</div>
+    <p class="sec-h au d1">Как говорит BODRO.</p>
+    <p class="sec-sub au d2">BODRO говорит как взрослый со взрослым. Покупатель — занятой человек, который принял рациональное решение не тратить время на готовку. Бренд уважает это решение и не отвлекает.</p>
+  </div>
+
+  <div class="tov-principles" style="margin-left:80px;margin-right:80px;">
+    <div class="tp au d1"><div class="n">ПРИНЦИП 1</div><h4>Уважение ко времени</h4><p>Коротко и по делу. Если мысль можно сказать в пять слов — говорим в пять. Каждое лишнее слово — украденные секунды покупателя.</p></div>
+    <div class="tp au d2"><div class="n">ПРИНЦИП 2</div><h4>Факты вместо эмоций</h4><p>Не «невероятно вкусно», а «говядина томилась 4 часа». Не «полезно», а «32 г белка». Прилагательное — слабость, факт — сила.</p></div>
+    <div class="tp au d3"><div class="n">ПРИНЦИП 3</div><h4>Взрослый со взрослым</h4><p>Не учим жить, не мотивируем, не поздравляем с «правильным выбором». Покупатель сам знает, что ему нужно. Мы — сервис, не наставник.</p></div>
+    <div class="tp au d4"><div class="n">ПРИНЦИП 4</div><h4>Серьёзность без сухости</h4><p>Без иронии, без шуток над собой или покупателем, без уменьшительных. Но и без канцелярита: живой русский язык, простые глаголы.</p></div>
+  </div>
+
+  <div class="wrap">
+    <table class="st-table tov-table au">
+      <tr><th>Говорим</th><th>Не говорим</th><th>Почему</th></tr>
+      <tr><td>Еда готова. Разогрейте 2 минуты.</td><td>Ваш идеальный ужин уже ждёт вас!</td><td>Факт вместо восторга. Без восклицаний.</td></tr>
+      <tr><td>Говядина, гречка, овощи. 380 г.</td><td>Нежнейшая говядинка с ароматной гречечкой</td><td>Без уменьшительных и вкусовых эпитетов. Состав говорит сам.</td></tr>
+      <tr><td>32 г белка в порции.</td><td>Заряд белка для твоих мышц!</td><td>Цифра вместо мотивации. На «вы» или безлично.</td></tr>
+      <tr><td>Сегодня в меню — 14 блюд.</td><td>Мы приготовили для вас кое-что особенное 😍</td><td>Без интриги, без эмодзи в продуктовой коммуникации.</td></tr>
+      <tr><td>Охлаждённая, не замороженная. Срок — 5 дней.</td><td>Всегда свежайшее, как из-под ножа!</td><td>Проверяемое утверждение вместо гиперболы.</td></tr>
+      <tr><td>Не понравилось блюдо — вернём деньги.</td><td>Нам очень-очень жаль, что так вышло 🙏</td><td>Ответственность действием, не извинением.</td></tr>
+      <tr><td>Обед для команды от 10 человек — счёт и закрывающие в тот же день.</td><td>Прокачай офис вкусняшками!</td><td>B2B-тон: деловой, конкретный, про документы.</td></tr>
+    </table>
+
+    <div class="rule-note au"><b>Запрещено всегда:</b> ирония и самоирония · уменьшительные суффиксы · восклицательные знаки в продуктовых текстах · обращение «ты» без запроса аудитории · эмодзи на упаковке и в меню · слова «вкусняшка», «полезняшка», «ням» · мотивационные конструкции («стань лучшей версией») · медицинские обещания.</div>
+  </div>
+</section>
+
+<!-- ══════════════ 07 ИМЯ ══════════════ -->
+<section style="background:#080806;padding:128px 0;" class="on-dark">
+  <div class="wrap">
+    <div class="ey au">07 · Имя</div>
+    <p class="sec-h au d1">BODRO: имя про результат, не про настроение.</p>
+    <p class="sec-sub au d2">Имя не требует шуток и не требует оправданий. Оно требует правильной рационализации — и она у бренда есть.</p>
+
+    <div class="name-canon as">
+      <div class="lbl">Каноническая формулировка · фиксируется в брендбуке</div>
+      <p>BODRO — про состояние <b>после</b> еды, а не про характер бренда. Человек поел нормально — у него есть силы на день. Это и есть бодрость: не эмоция с рекламного плаката, а физическое состояние, которое даёт правильная еда. Имя обещает результат. Бренд серьёзен, потому что серьёзно относится к этому результату.</p>
+    </div>
+
+    <table class="st-table au">
+      <tr><th>Вопрос</th><th>Ответ бренда</th></tr>
+      <tr><td>«Почему вы называетесь BODRO, если вы такие серьёзные?»</td><td>Бодрость — это не тон общения. Это то, что человек чувствует, когда нормально поел. Мы отвечаем за это состояние, поэтому относимся к нему серьёзно.</td></tr>
+      <tr><td>Где эта формулировка используется</td><td>Раздел «О бренде» на сайте, манифест, интервью, обучение персонала. Не используется на упаковке — там работают блюдо и факты.</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════ 08 ВИЗУАЛЬНАЯ СИСТЕМА ══════════════ -->
+<section style="background:var(--black);padding:128px 0;" class="on-dark">
+  <div class="wrap">
+    <div class="ey au">08 · Визуальная система</div>
+    <p class="sec-h au d1">Система, которая работает везде.</p>
+
+    <div class="system-grid">
+      <!-- COLOR -->
+      <div>
+        <p class="au" style="font-size:clamp(24px,3vw,38px);font-weight:900;letter-spacing:-.03em;">Три цвета.<br>Строгая система.</p>
+        <div class="pal-row">
+          <div class="pal au d1">
+            <div class="swatch" style="background:#0D0D0B;border:1px solid rgba(255,255,255,.07);"><div class="sw-badge">#0D0D0B</div></div>
+            <div class="pal-n">Чёрный</div><div class="pal-r">SMART · фон · текст</div>
+          </div>
+          <div class="pal au d2">
+            <div class="swatch" style="background:#F2EDE5;"><div class="sw-badge" style="background:rgba(0,0,0,.1);color:rgba(0,0,0,.5);">#F2EDE5</div></div>
+            <div class="pal-n">Сэнд</div><div class="pal-r">BODRO · упаковка · фон</div>
+          </div>
+          <div class="pal au d3">
+            <div class="swatch" style="background:#B5D64E;"><div class="sw-badge" style="background:rgba(0,0,0,.15);color:rgba(0,0,0,.7);">#B5D64E</div></div>
+            <div class="pal-n">Лайм</div><div class="pal-r">Только SMART · КБЖУ</div>
+          </div>
+        </div>
+        <div class="lime-note au">ПРАВИЛО: Лайм #B5D64E принадлежит SMART. В базовой линейке лайм не появляется нигде — ни в стикере, ни в ценнике, ни в посте.</div>
+      </div>
+      <!-- TYPE -->
+      <div>
+        <p class="au" style="font-size:clamp(24px,3vw,38px);font-weight:900;letter-spacing:-.03em;">Два шрифта.</p>
+        <div class="type-block">
+          <div class="type-card au d1" style="background:rgba(255,255,255,.025);">
+            <div class="type-lbl">Archivo · Основной шрифт</div>
+            <div style="font-size:42px;font-weight:900;letter-spacing:-.05em;line-height:.9;margin-bottom:8px;">BODRO</div>
+            <div style="font-size:16px;font-weight:700;margin-bottom:4px;">Борщ с говядиной</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.28);">Логотип · Названия · Заголовки · Этикетка</div>
+          </div>
+          <div class="type-card au d2" style="background:#0A0A09;">
+            <div class="type-lbl" style="color:rgba(181,214,78,.3);">JetBrains Mono · Только данные</div>
+            <div style="font-family:var(--mono);font-size:40px;font-weight:700;color:var(--lime);line-height:1;margin-bottom:6px;">246</div>
+            <div style="font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.22);">ККАЛ · Б: 12.9 · Ж: 15.2 · У: 14.7</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="img-frame as" data-cap="BODRO Identity System">
+      <img src="images/identity.jpg" alt="BODRO Identity System">
+    </div>
+    <div class="img-caption">
+      <span class="ic-l">Айдентика</span>
+      <span class="ic-t">Identity System</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 09 УПАКОВКА ══════════════ -->
+<section style="background:#080806;padding:128px 0;" class="on-dark">
+  <div class="wrap">
+    <div class="ey au">09 · Упаковка</div>
+    <p class="sec-h au d1">Типографика вместо фото. Окно вместо картинки.</p>
+    <p class="sec-sub au d2">Фото блюд на упаковке нет — это решение бренда. Еду показывает прозрачное окно контейнера: продукт честнее любой фотографии. Этикетка — чисто типографическая: цветовое поле, название блюда крупным шрифтом, факты.</p>
+
+    <div class="packs">
+      <!-- BASE -->
+      <div class="pack base as d1">
+        <div class="p-brand"><span class="b">BODRO</span><span class="d">Готовая еда</span></div>
+        <div class="p-window">ПРОЗРАЧНОЕ ОКНО КОНТЕЙНЕРА<br>— ЕДА ВИДНА САМА, БЕЗ ФОТО —</div>
+        <div class="p-dish">
+          <div class="dish">Паста<br>карбонара</div>
+          <div class="w">380 г · разогреть 2 мин</div>
+        </div>
+        <div class="p-cal">137 ккал / 100 г · 520 ккал в порции</div>
+        <div class="p-claim"><span>Охлаждённая, не замороженная · Самара</span><span>319 ₽</span></div>
+        <div class="zone-tags">
+          <span class="zt">название блюда — герой, крупная типографика</span><span class="zt">ккал — одна строка, мелко</span><span class="zt">без КБЖУ-блока</span><span class="zt">без клейма</span><span class="zt">полный состав и КБЖУ — на обороте по ТР ТС</span>
+        </div>
+      </div>
+
+      <!-- SMART -->
+      <div class="pack smart as d2">
+        <div class="p-brand"><span class="b">BODRO SMART</span><span class="d">Белок и КБЖУ под контролем</span></div>
+        <div class="p-window">ПРОЗРАЧНОЕ ОКНО КОНТЕЙНЕРА<br>— ЕДА ВИДНА САМА, БЕЗ ФОТО —</div>
+        <div class="p-dish">
+          <div class="dish">Курица су-вид,<br>киноа, овощи</div>
+          <div class="w">350 г · разогреть 2 мин</div>
+        </div>
+        <div class="p-kbzhu">
+          <div><div class="v">410</div><div class="l">ккал</div></div>
+          <div><div class="v">42</div><div class="l">белки</div></div>
+          <div><div class="v">31</div><div class="l">углеводы</div></div>
+          <div><div class="v">11</div><div class="l">жиры</div></div>
+        </div>
+        <div class="p-claim"><span><b>Всё посчитано.</b> Состав: 8 ингредиентов</span><span>389 ₽</span></div>
+        <div class="zone-tags">
+          <span class="zt">КБЖУ-блок — герой №1, крупно</span><span class="zt">лайм-кодирование</span><span class="zt">клейм на лице</span><span class="zt">число ингредиентов</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="rules4">
+      <div class="rule4 au d1"><div class="n">Правило 1 · Без фото</div><p>Фотографии блюд <b>не используются</b> ни на упаковке, ни на этикетке. Еду показывает прозрачное окно контейнера. Фото живут только в digital: меню на сайте, соцсети, доставка.</p></div>
+      <div class="rule4 au d2"><div class="n">Правило 2 · Цвет</div><p>Лайм <b>принадлежит SMART</b>. В базовой линейке лайм не появляется нигде. База различает категории блюд оттенками основной палитры.</p></div>
+      <div class="rule4 au d3"><div class="n">Правило 3 · Цифры</div><p>База: одна строка «ккал / 100 г · ккал в порции», мелко. Полный КБЖУ — на обороте, как требует техрегламент. SMART: КБЖУ-блок крупно на лице — это её продукт.</p></div>
+      <div class="rule4 au d4"><div class="n">Правило 4 · Слоган не на упаковке</div><p>«Еда готова.» живёт на вывеске, сайте, пакете. На контейнере работают название блюда, окно и факты.</p></div>
+    </div>
+
+    <div class="img-frame as" data-cap="Упаковка · Доставка · Digital-носители">
+      <img src="images/packaging.jpg" alt="BODRO Packaging">
+    </div>
+    <div class="img-caption">
+      <span class="ic-l">Упаковка · Доставка</span>
+      <span class="ic-t">Digital-носители — фото блюд живут здесь, не на контейнере</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 10 ЦЕНА ══════════════ -->
+<section style="background:var(--black);padding:128px 0;" class="on-dark">
+  <div class="wrap">
+    <div class="ey au">10 · Цена</div>
+    <p class="sec-h au d1">Ценовые коридоры без пересечения.</p>
+    <p class="sec-sub au d2">Зона 340–350 ₽ — буфер. В ней не живёт ни один SKU: покупатель никогда не видит два продукта разных линеек по одной цене. SMART всегда дороже — цифры и белок стоят денег, это часть позиционирования.</p>
+
+    <div class="au">
+      <div class="price-scale">
+        <div class="band base">BODRO · 290–340 ₽</div>
+        <div class="gap-note">буфер<br>340–350</div>
+        <div class="band smart">SMART · 350–450 ₽</div>
+      </div>
+      <div class="ticks"><span>290 ₽</span><span>330 ₽</span><span>370 ₽</span><span>410 ₽</span><span>450 ₽</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 11 RTB ══════════════ -->
+<section style="background:#080806;padding:128px 0;" class="on-dark">
+  <div class="wrap">
+    <div class="ey au">11 · Почему верить</div>
+    <p class="sec-h au d1">«Честно» — принцип. Доказательства — факты.</p>
+    <p class="sec-sub au d2">Три проверяемых факта — стандарт мирового рынка ready-to-eat, который в Самаре ещё никто не занял.</p>
+
+    <div class="rtb">
+      <div class="rtb-card au d1">
+        <div class="k">RTB · 01</div>
+        <h3>Охлаждённая, не замороженная</h3>
+        <p>Дата производства — на каждой упаковке. Срок годности короткий — и это доказательство: без консервантов еда долго не живёт. Кухня в Самаре, не фабрика за 1000 км.</p>
+      </div>
+      <div class="rtb-card au d2">
+        <div class="k">RTB · 02</div>
+        <h3>Состав, который можно прочитать</h3>
+        <p>Число ингредиентов — на лицевой панели SMART, полный состав — на обороте у обеих линеек. Не прячем мелким шрифтом на дне.</p>
+      </div>
+      <div class="rtb-card au d3">
+        <div class="k">RTB · 03</div>
+        <h3>Цифры, за которые отвечаем</h3>
+        <p>КБЖУ считается по ТТК каждого блюда, не «примерно». Любой может запросить техкарту. SMART строится на этом полностью.</p>
+      </div>
+    </div>
+    <p class="rtb-note au">// «охлаждённая, не замороженная» — категорийный стандарт Factor и CookUnity (США). Проверяемо, честно, отстраивает и от заморозки в ритейле, и от федеральных игроков с длинной логистикой.</p>
+  </div>
+</section>
+
+<!-- ══════════════ 12 КОММУНИКАЦИЯ ══════════════ -->
+<section style="background:var(--black);padding:128px 0;" class="on-dark">
+  <div class="wrap">
+    <div class="ey au">12 · Коммуникация</div>
+    <p class="sec-h au d1">Банк месседжей.</p>
+    <p class="sec-sub au d2">Рабочие фразы для рекламы и контента. Не печатаются на упаковке, не заменяют слоган. Все — в тоне раздела 06: факты, уважение ко времени, без иронии.</p>
+
+    <table class="st-table au">
+      <tr><th>Канал / ситуация</th><th>Линейка</th><th>Месседж</th></tr>
+      <tr><td>Таргет, вечер буднего дня</td><td>BODRO</td><td><b>Сегодня можно не готовить.</b></td></tr>
+      <tr><td>Наружка / вывеска у офисов</td><td>BODRO</td><td><b>Обед решён.</b></td></tr>
+      <tr><td>Баннер, обеденное время</td><td>BODRO</td><td><b>Горячее — через 2 минуты.</b></td></tr>
+      <tr><td>Ретаргет</td><td>BODRO</td><td><b>Ужин по-прежнему готов.</b></td></tr>
+      <tr class="lime-row"><td>Запуск линейки SMART</td><td>SMART</td><td><b>Больше белка. Меньше шума.</b></td></tr>
+      <tr class="lime-row"><td>Таргет на фитнес-аудиторию</td><td>SMART</td><td><b>42 г белка. Без порошка.</b></td></tr>
+      <tr class="lime-row"><td>Пост про состав</td><td>SMART</td><td><b>8 ингредиентов. Все можно прочитать.</b></td></tr>
+      <tr><td>B2B, офисные станции</td><td>Мастер-бренд</td><td><b>Обед для команды — без курьеров и ожидания.</b></td></tr>
+      <tr><td>Реферальная механика</td><td>Мастер-бренд</td><td><b>Порекомендуйте коллеге — следующий обед за нас.</b></td></tr>
+    </table>
+
+    <div class="rule-note au"><b>Правило банка:</b> месседж живёт максимум сезон, слоган — годами. Если месседж появился на упаковке или в шапке сайта — это ошибка. Каждый новый месседж проверяется по чек-листу тона: без иронии, без «ты», без восклицаний, без обещаний эмоций.</div>
+
+    <div class="apply-grid as">
+      <div class="apply-item" data-cap="Наружная реклама · Билборды">
+        <img src="images/banners.jpg" alt="BODRO OOH">
+        <div class="apply-over">
+          <div class="apply-lbl">Наружная реклама · Билборды</div>
+          <div class="apply-ttl">BODRO говорит коротко даже на улице.</div>
+        </div>
+      </div>
+      <div class="apply-item" data-cap="Офисный холодильник · BODRO Station">
+        <img src="images/fridge.jpg" alt="BODRO Station">
+        <div class="apply-over">
+          <div class="apply-lbl">BODRO Station · Офисный холодильник</div>
+          <div class="apply-ttl">Канал без агрегатора. Та же система.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 13 RETAIL ══════════════ -->
+<section style="background:#080806;padding:128px 0;" class="on-dark">
+  <div class="wrap">
+    <div class="ey au">13 · Точка продаж</div>
+    <p class="sec-h au d1">Точка продаж как носитель бренда.</p>
+    <p class="sec-sub au d2">Фасция. Витрина. Цифровое меню. Зона BODRO SMART. Всё говорит одним языком — коротко, честно, без лишнего.</p>
+
+    <div class="img-frame as" data-cap="BODRO · Торговая секция · ТЦ">
+      <img src="images/retail-kiosk.jpg" alt="BODRO — торговая секция в ТЦ">
+    </div>
+  </div>
+
+  <div class="tov-principles" style="grid-template-columns:repeat(3,1fr);margin:3px 80px 0;">
+    <div class="tp au d1"><div class="n">01 · Фасция</div><h4>Чёрный фон. Белый BODRO.</h4><p>Максимальный контраст. Логотип и слоган «Еда готова.» — всё, что нужно на вывеске. Ноль декора.</p></div>
+    <div class="tp au d2"><div class="n">02 · Цифровое меню</div><h4>Блюдо. Цена. КБЖУ.</h4><p>Экран показывает одно блюдо крупно. Цена без психологических трюков. КБЖУ — для тех, кому важно.</p></div>
+    <div class="tp au d3"><div class="n">03 · Зона SMART</div><h4>Тёмный стенд. Лаймовые данные.</h4><p>BODRO SMART выделен внутри точки: чёрный фон, лаймовые цифры. Отдельный сегмент для тех, кто считает макросы.</p></div>
+  </div>
+</section>
+
+<!-- ══════════════ 14 ЧЕК-ЛИСТ ══════════════ -->
+<section style="background:var(--black);padding:128px 0;" class="on-dark">
+  <div class="wrap">
+    <div class="ey au">14 · Чек-лист</div>
+    <p class="sec-h au d1">Матрица: что где появляется.</p>
+    <p class="sec-sub au d2">Быстрая проверка для дизайнера, таргетолога и SMM. Если элемент стоит не в своей ячейке — это ошибка системы.</p>
+
+    <table class="st-table check au">
+      <tr><th>Элемент</th><th>BODRO (база)</th><th>BODRO SMART</th><th>Носитель</th></tr>
+      <tr><td>Слоган «Еда готова.»</td><td class="no-mark">✕</td><td class="no-mark">✕</td><td>только мастер-бренд: вывеска, сайт, соцсети, пакет</td></tr>
+      <tr><td>Дескриптор линейки</td><td class="yes-mark">✓</td><td><span class="lime-yes">✓</span></td><td>под логотипом на упаковке, мелко</td></tr>
+      <tr><td>Клейм «Всё посчитано»</td><td class="no-mark">✕</td><td><span class="lime-yes">✓</span></td><td>лицевая панель SMART</td></tr>
+      <tr><td>Цвет лайм</td><td class="no-mark">✕</td><td><span class="lime-yes">✓</span></td><td>упаковка, ценник, посты линейки</td></tr>
+      <tr><td>Фото блюда</td><td class="no-mark">✕</td><td class="no-mark">✕</td><td>только digital: сайт, соцсети, приложения доставки</td></tr>
+      <tr><td>Прозрачное окно контейнера</td><td class="yes-mark">✓</td><td><span class="lime-yes">✓</span></td><td>обе линейки — еда видна сама</td></tr>
+      <tr><td>КБЖУ-блок крупно</td><td class="no-mark">✕</td><td><span class="lime-yes">✓</span></td><td>лицевая панель SMART — её продукт</td></tr>
+      <tr><td>Строка «ккал/100 г · в порции»</td><td class="yes-mark">✓</td><td class="no-mark">—</td><td>база: одна строка мелко; у SMART заменена КБЖУ-блоком</td></tr>
+      <tr><td>«Охлаждённая, не замороженная» + дата</td><td class="yes-mark">✓</td><td><span class="lime-yes">✓</span></td><td>обе упаковки — RTB №1</td></tr>
+      <tr><td>Число ингредиентов на лице</td><td class="no-mark">✕</td><td><span class="lime-yes">✓</span></td><td>лицевая панель SMART — RTB №2</td></tr>
+      <tr><td>Месседжи из банка</td><td class="yes-mark">✓</td><td><span class="lime-yes">✓</span></td><td>только реклама и контент, не упаковка</td></tr>
+      <tr><td>Рационализация имени (раздел 07)</td><td colspan="2" style="text-align:center;font-family:var(--mono);font-size:11px;">мастер-бренд</td><td>«О бренде», манифест, интервью, обучение персонала</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════ ПРИЛОЖЕНИЕ · BODRO STICK ══════════════ -->
+<section style="background:#080806;padding:128px 0 96px;" class="on-dark">
+  <div class="wrap">
+    <div class="ey au">Приложение · Эскиз расширения бренда</div>
+    <p class="sec-h au d1">BODRO STICK — набросок, не решение.</p>
+  </div>
+
+  <div class="ext-note au">
+    // Этот раздел — эскиз того, как бренд может расшириться за пределы еды. Не входит в текущий скоуп запуска,
+    не влияет на бюджет и роадмап. Показывает потенциал платформы BODRO: та же аудитория, та же механика «одно решение закрыто», тот же язык.
+  </div>
+
+  <div class="ext-hero">
+    <div class="ext-visual au d1" id="ext-visual" data-cap="BODRO STICK · Creatine + Electrolytes · Эскиз">
+      <img src="images/BodroStick.jpg" alt="BODRO STICK — Creatine + Electrolytes">
+    </div>
+    <div class="ext-text au d2">
+      <div class="ext-badge"><div class="ext-phase"></div>Концепт · Wellness-направление</div>
+      <div class="ext-h">BODRO STICK<br><span style="color:var(--lime);">Creatine + Electrolytes</span></div>
+      <div class="ext-desc">1 стик в день. Высыпать в воду. Не думать.<br>Ежедневная поддержка — без кофеина, без сахара, без культа добавок.</div>
+      <div class="ext-attrs">
+        <div class="ext-attr">
+          <div class="ext-icon">⚡</div>
+          <div>
+            <div class="ext-attr-t">5g Креатин моногидрат</div>
+            <div class="ext-attr-d">Наиболее изученная добавка. Энергия для мышц и мозга без стимуляторов.</div>
+          </div>
+        </div>
+        <div class="ext-attr">
+          <div class="ext-icon">💧</div>
+          <div>
+            <div class="ext-attr-t">800mg Электролиты</div>
+            <div class="ext-attr-d">Натрий, калий, магний. Оптимальная клеточная гидратация — как фундамент для работы креатина.</div>
+          </div>
+        </div>
+        <div class="ext-attr">
+          <div class="ext-icon">💪</div>
+          <div>
+            <div class="ext-attr-t">1000mg Таурин</div>
+            <div class="ext-attr-d">Устойчивая энергия без пика и падения. Поддержка восстановления.</div>
+          </div>
+        </div>
+        <div class="ext-attr">
+          <div class="ext-icon">✓</div>
+          <div>
+            <div class="ext-attr-t">Без сахара. Без красителей.</div>
+            <div class="ext-attr-d">Состав без лишнего — как и в еде BODRO. Чистая формула, читаемый состав.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ext-pillars">
+    <div class="ext-pillar au d1">
+      <div class="ext-p-num">01 · Тезис</div>
+      <div class="ext-p-t">Та же привычка — другой формат</div>
+      <div class="ext-p-d">BODRO закрывает обед. BODRO STICK закрывает утро. Один бренд — один ритм жизни. Клиент, который уже доверяет нам в еде, легко добавляет стик в свою рутину.</div>
+    </div>
+    <div class="ext-pillar au d2">
+      <div class="ext-p-num">02 · Тезис</div>
+      <div class="ext-p-t">Состав без лишнего — как в еде</div>
+      <div class="ext-p-d">Референс Create (США): «not too sweet, not too salty. Effective enough to count.» Для BODRO это звучит как «Состав виден. Цифры честные.» — тот же принцип, наш язык.</div>
+    </div>
+    <div class="ext-pillar au d3">
+      <div class="ext-p-num">03 · Тезис</div>
+      <div class="ext-p-t">Daily Wellness — не спорт, а жизнь</div>
+      <div class="ext-p-d">Create доказал: крупнейший сегмент покупателей — не атлеты, а «active daily people». BODRO STICK не про качалку — про человека с плотным ритмом. В России сегмент не занят.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ BACK COVER ══════════════ -->
+<section class="back">
+  <div class="back-orb"></div>
+  <div class="back-ghost af">BODRO</div>
+  <div class="back-slogan au">Еда готова.</div>
+  <div class="back-formula au d1">
+    <strong>BODRO</strong> — вкусная готовая еда на каждый день.<br>
+    <strong>BODRO SMART</strong> — белок и КБЖУ под контролем. Всё посчитано.
+  </div>
+  <div class="back-foot">BrandBook Strategy · v1.2 · Dark Kitchen · Самара · Конфиденциально</div>
+</section>
+
+<script>
+// LIGHTBOX
+const lb = document.getElementById('lb');
+const lbImg = document.getElementById('lb-img');
+const lbCap = document.getElementById('lb-cap');
+
+function lbOpen(src, caption) {
+  lbImg.src = src;
+  lbCap.textContent = caption || '';
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function lbClose() {
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+  setTimeout(() => { lbImg.src = ''; }, 400);
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') lbClose(); });
+
+// Wire up all zoomable frames
+document.querySelectorAll('.img-frame, .apply-item, .ext-visual').forEach(frame => {
+  const img = frame.querySelector('img');
+  if (!img) return;
+  frame.addEventListener('click', () => lbOpen(img.src, frame.dataset.cap || img.alt || ''));
+});
+
+// PROGRESS
+const prog = document.getElementById('prog');
+window.addEventListener('scroll', () => {
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  if (max > 0) prog.style.width = (window.scrollY / max * 100) + '%';
+}, { passive: true });
+
+// HERO
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('hh').classList.add('in');
+    document.getElementById('hb').classList.add('in');
+  }, 100);
+});
+
+// SCROLL OBSERVER
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.07, rootMargin: '0px 0px -32px 0px' });
+document.querySelectorAll('.au, .af, .as').forEach(el => io.observe(el));
+
+// HERO PARALLAX
+const orbs = document.querySelectorAll('.hero-orb');
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  if (y < window.innerHeight) {
+    orbs.forEach((o, i) => {
+      o.style.transform = `translateY(${y * (i === 0 ? 0.15 : 0.2)}px)`;
+    });
+  }
+}, { passive: true });
+</script>
+</body>
+</html>

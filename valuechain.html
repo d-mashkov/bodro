@@ -4,11 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Value Chain — BODRO</title>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-:root{--mono:'JetBrains Mono',monospace;}
-body{font-family:'Archivo',sans-serif;background:#F5F4F1;padding-top:54px;height:100vh;display:flex;flex-direction:column;}
+:root{--black:#0D0D0B;--sand:#F2EDE5;--lime:#B5D64E;--white:#FFFFFF;--bg:#F5F4F1;--line:#E5E3DF;--sub:#5C5A57;--muted:#9E9C96;--red:#DC2626;--green:#16A34A;--gb:rgba(255,255,255,.88);--gs:0 2px 20px rgba(0,0,0,.07);--mono:'JetBrains Mono',monospace;}
+body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--black);padding-top:54px;}
+
+/* NAV */
 .u-nav{position:fixed;top:0;left:0;right:0;z-index:900;height:54px;display:flex;align-items:center;padding:0 52px;background:rgba(13,13,11,.92);backdrop-filter:blur(32px) saturate(200%);-webkit-backdrop-filter:blur(32px) saturate(200%);border-bottom:1px solid rgba(255,255,255,.07);}
 .u-logo{display:flex;align-items:baseline;gap:9px;text-decoration:none;margin-right:32px;}
 .u-wordmark{font-size:15px;font-weight:900;letter-spacing:-.04em;color:#fff;}
@@ -17,15 +19,132 @@ body{font-family:'Archivo',sans-serif;background:#F5F4F1;padding-top:54px;height
 .u-link{font-size:14px;font-weight:600;color:rgba(255,255,255,.55);text-decoration:none;padding:5px 14px;border-radius:7px;transition:all .15s;letter-spacing:-.01em;white-space:nowrap;}
 .u-link:hover{color:#fff;background:rgba(255,255,255,.07);}
 .u-link.active{color:#fff;background:rgba(255,255,255,.1);}
-iframe{flex:1;border:none;width:100%;display:block;}
-@media(max-width:900px){.u-nav{padding:0 24px;}.u-sub{display:none;}}
+
+/* PAGE HEAD */
+.page-head{background:var(--black);color:#fff;padding:56px 80px 48px;}
+.page-eyebrow{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:14px;}
+.ey-dot{width:6px;height:6px;border-radius:50%;background:var(--lime);flex-shrink:0;}
+.page-title{font-size:clamp(32px,4vw,52px);font-weight:900;letter-spacing:-.04em;margin-bottom:8px;}
+.page-desc{font-size:14px;color:rgba(255,255,255,.42);line-height:1.65;max-width:640px;}
+
+.wrap{padding:40px 80px 100px;max-width:1400px;margin:0 auto;}
+
+/* CARDS */
+.card{background:var(--gb);backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(255,255,255,.95);border-radius:16px;box-shadow:var(--gs);}
+.card-p{padding:24px 28px;}
+.sec-label{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.sec-title{font-size:19px;font-weight:900;letter-spacing:-.02em;margin-bottom:16px;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;}
+.mb20{margin-bottom:20px;}
+.mono{font-family:var(--mono);}
+
+/* PARAM ROWS */
+.param-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid rgba(0,0,0,.05);}
+.param-row:last-child{border-bottom:none;}
+.param-row.hl{background:rgba(0,0,0,.03);border-radius:10px;padding:10px 12px;border-bottom:none;}
+.param-name{font-size:13px;font-weight:600;}
+.param-name.strong{font-weight:800;}
+.param-hint{font-size:11px;color:var(--muted);display:block;}
+.param-val{font-family:var(--mono);font-weight:700;font-size:14px;white-space:nowrap;}
+.sl-wrap{display:flex;align-items:center;gap:8px;}
+.sl-wrap input[type=range]{width:130px;accent-color:var(--black);}
+.sl-val{font-family:var(--mono);font-size:13px;font-weight:700;min-width:52px;text-align:right;}
+input[type=range]{-webkit-appearance:none;height:3px;background:var(--line);border-radius:2px;outline:none;cursor:pointer;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;background:#fff;border:2px solid var(--black);border-radius:50%;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.15);}
+.num-input{width:100px;padding:7px 10px;border:1.5px solid var(--line);border-radius:8px;font-family:var(--mono);font-size:13px;font-weight:700;text-align:right;background:#fff;color:var(--black);outline:none;transition:border-color .15s;}
+.num-input:focus{border-color:var(--black);}
+.fc-tax{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--sub);min-width:64px;text-align:right;}
+
+/* DISH TABLE */
+.dish-table{width:100%;border-collapse:collapse;}
+.dish-table th{font-family:var(--mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding:9px 8px;text-align:right;border-bottom:1.5px solid var(--line);white-space:nowrap;}
+.dish-table th:first-child{text-align:left;}
+.dish-table td{padding:8px;border-bottom:1px solid rgba(0,0,0,.05);font-size:13px;text-align:right;white-space:nowrap;}
+.dish-table td:first-child{text-align:left;font-weight:600;white-space:normal;}
+.dish-table .cat-chip{display:inline-block;font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:rgba(0,0,0,.05);padding:2px 8px;border-radius:999px;margin-left:8px;}
+.dish-table .m{font-family:var(--mono);font-weight:700;}
+.dish-table .rrp-inp{width:74px;padding:5px 8px;border:1.5px solid var(--line);border-radius:7px;font-family:var(--mono);font-size:13px;font-weight:700;text-align:right;background:#fff;outline:none;}
+.dish-table .rrp-inp:focus{border-color:var(--black);}
+.dish-table .rrp-inp.ovr{border-color:var(--black);background:#FFFDF2;}
+.dish-table .qty-inp{width:56px;padding:5px 8px;border:1.5px solid var(--line);border-radius:7px;font-family:var(--mono);font-size:13px;font-weight:700;text-align:right;background:#fff;outline:none;}
+.dish-table .qty-inp:focus{border-color:var(--black);}
+.dish-table tr.group-row td{background:var(--black);color:#fff;font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:8px 10px;text-align:left;border-radius:0;}
+.dish-table tr.total-row td{background:rgba(0,0,0,.05);font-weight:800;padding:11px 8px;}
+.fc-bad{color:var(--red);}
+.fc-ok{color:var(--green);}
+.fc-mid{color:#D97706;}
+
+/* KPI */
+.kpi-stat{text-align:center;padding:20px 16px;background:var(--gb);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.95);border-radius:14px;box-shadow:var(--gs);}
+.stat-label-sm{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:8px;font-family:var(--mono);}
+.kpi-num{font-size:26px;font-weight:900;letter-spacing:-.03em;line-height:1;}
+.kpi-ok{color:var(--green);}
+.kpi-bad{color:var(--red);}
+.stat-note{font-size:11px;color:var(--sub);margin-top:6px;line-height:1.4;}
+
+/* P&L */
+.pl-row{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;border-radius:8px;font-size:13px;}
+.pl-row:nth-child(odd){background:rgba(0,0,0,.025);}
+.pl-row.pl-total{background:rgba(0,0,0,.07);font-weight:800;font-size:14px;border-radius:10px;margin-top:4px;padding:13px 14px;}
+.pl-name{color:var(--sub);font-weight:500;}
+.pl-name.strong{color:var(--black);font-weight:700;}
+.pl-amount{font-family:var(--mono);font-weight:700;}
+
+/* COST STRUCTURE */
+.cs-row{display:grid;grid-template-columns:190px 1fr 90px 70px;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid rgba(0,0,0,.05);}
+.cs-row:last-child{border-bottom:none;}
+.cs-name{font-size:12.5px;font-weight:600;}
+.cs-bar-outer{height:16px;background:rgba(0,0,0,.05);border-radius:5px;overflow:hidden;}
+.cs-bar{height:100%;border-radius:5px;transition:width .4s;}
+.cs-amt{font-family:var(--mono);font-size:12px;font-weight:700;text-align:right;}
+.cs-pct{font-family:var(--mono);font-size:12px;font-weight:700;text-align:right;color:var(--sub);}
+
+/* SENSITIVITY */
+.sens-row{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-radius:10px;margin-bottom:6px;background:rgba(255,255,255,.6);border:1px solid var(--line);}
+.sens-name{font-size:13px;font-weight:600;}
+.sens-name small{display:block;font-size:11px;color:var(--muted);font-weight:400;}
+.sens-val{font-family:var(--mono);font-size:14px;font-weight:800;}
+
+/* SCENARIOS */
+.sc-table{width:100%;border-collapse:collapse;}
+.sc-table th{font-family:var(--mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding:9px 10px;text-align:right;border-bottom:1.5px solid var(--line);}
+.sc-table th:first-child{text-align:left;}
+.sc-table td{padding:10px;border-bottom:1px solid rgba(0,0,0,.05);font-size:13px;text-align:right;font-family:var(--mono);font-weight:600;}
+.sc-table td:first-child{text-align:left;font-family:'Archivo';font-weight:700;}
+.sc-table tr.now td{background:rgba(181,214,78,.12);}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;border-radius:999px;font-size:12.5px;font-weight:700;cursor:pointer;border:none;transition:all .15s;font-family:inherit;}
+.btn-black{background:var(--black);color:#fff;}
+.btn-black:hover{background:#333;}
+.btn-ghost{background:transparent;color:var(--black);border:1.5px solid var(--line);}
+.btn-ghost:hover{border-color:var(--black);}
+
+.footnote{font-size:11px;color:var(--muted);line-height:1.6;margin-top:12px;padding:10px 14px;background:rgba(0,0,0,.03);border-radius:8px;border-left:2px solid var(--line);}
+.footnote strong{color:var(--sub);}
+
+/* LOCK */
+.lock-screen{min-height:calc(100vh - 54px);display:flex;align-items:center;justify-content:center;padding:24px;}
+.lock-card{background:#fff;border-radius:18px;padding:40px;width:100%;max-width:380px;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,.15);}
+.lock-icon{width:48px;height:48px;background:var(--black);border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;}
+.lock-title{font-size:20px;font-weight:900;letter-spacing:-.03em;margin-bottom:8px;}
+.lock-sub{font-size:13px;color:var(--muted);margin-bottom:24px;}
+.lock-inp{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:12px 14px;font-size:16px;text-align:center;letter-spacing:.15em;outline:none;font-family:var(--mono);margin-bottom:8px;}
+.lock-inp:focus{border-color:var(--black);}
+.lock-err{font-size:12px;color:var(--red);min-height:18px;margin-bottom:12px;}
+
+@media(max-width:1100px){.g2,.g3{grid-template-columns:1fr;}.g4,.g5{grid-template-columns:1fr 1fr;}.wrap{padding:32px 24px 80px;}.page-head{padding:48px 24px 40px;}.u-nav{padding:0 24px;}.u-sub{display:none;}.u-link{padding:4px 8px;font-size:11px;}.cs-row{grid-template-columns:130px 1fr 80px 56px;}.table-scroll{overflow-x:auto;}}
+.table-scroll{overflow-x:auto;}
 </style>
 </head>
 <body>
 <nav class="u-nav">
   <a href="index.html" class="u-logo"><span class="u-wordmark">BODRO</span><span class="u-sub">Dark Kitchen · Самара</span></a>
   <div class="u-links">
-    <a href="BODRO_BrandBook_Landing.html" class="u-link">BrandBook</a>
+    <a href="BrandBookStrategy.html" class="u-link">BrandBookStrategy</a>
     <a href="labelsystem.html" class="u-link">Labels</a>
     <a href="roadmap.html" class="u-link">Roadmap</a>
     <a href="menu.html" class="u-link">Menu</a>
@@ -34,6 +153,565 @@ iframe{flex:1;border:none;width:100%;display:block;}
     <a href="questions.html" class="u-link">Questions</a>
   </div>
 </nav>
-<iframe src="DarkKitchen_Service_v4.html?embed=1&page=vc" title="Value Chain"></iframe>
+
+<!-- LOCK -->
+<div class="lock-screen" id="lock">
+  <div class="lock-card">
+    <div class="lock-icon">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="5" y="9" width="10" height="8" rx="2" fill="white"/><path d="M7 9V6.5a3 3 0 016 0V9" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+    </div>
+    <div class="lock-title">Value Chain</div>
+    <div class="lock-sub">Финансовая модель защищена паролем</div>
+    <input type="password" class="lock-inp" id="vc-pass" placeholder="Пароль" maxlength="20">
+    <div class="lock-err" id="vc-err"></div>
+    <button class="btn btn-black" style="width:100%;justify-content:center;" onclick="checkPass()">Войти</button>
+  </div>
+</div>
+
+<!-- CONTENT (injected after auth) -->
+<div id="vc-root" style="display:none;"></div>
+
+<script>
+'use strict';
+const _VC_HASH = '65dad6e7090344b1f7875b9ce52bc92220438350338fe40651fe82ad9f8f6a3e';
+
+async function _sha256(str){
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+function checkPass(){
+  const inp=document.getElementById('vc-pass');
+  _sha256(inp.value).then(h=>{
+    if(h===_VC_HASH){ sessionStorage.setItem('_vcu','ok'); unlock(); }
+    else{
+      document.getElementById('vc-err').textContent='Неверный пароль';
+      inp.style.borderColor='var(--red)'; inp.select();
+      setTimeout(()=>{ inp.style.borderColor=''; document.getElementById('vc-err').textContent=''; },1400);
+    }
+  });
+}
+document.getElementById('vc-pass').addEventListener('keydown',e=>{ if(e.key==='Enter') checkPass(); });
+
+/* ══════════════ DATA ══════════════ */
+// Себестоимость — из ТК технолога (Себес_оценочный_предварительный_v2)
+const DISHES=[
+  {id:'borsch',   name:'Борщ с говядиной',                     cat:'Суп',     fc:73,  qty:4},
+  {id:'mushsoup', name:'Суп-пюре грибной с курицей',            cat:'Суп',     fc:95,  qty:3},
+  {id:'tomsoup',  name:'Суп томатный с печёными перцами',       cat:'Суп',     fc:110, qty:2},
+  {id:'grillbul', name:'Куриное филе гриль, булгур, овощи',     cat:'Второе',  fc:65,  qty:5},
+  {id:'oladi',    name:'Оладьи куриные из грудки',              cat:'Второе',  fc:64,  qty:3},
+  {id:'brizol',   name:'Бризоль куриная с рисом',               cat:'Второе',  fc:45,  qty:3},
+  {id:'taglia',   name:'Тальятелле, грудка, сычуанский перец',  cat:'Второе',  fc:91,  qty:4},
+  {id:'narsharab',name:'Говядина наршараб, мятый картофель',    cat:'Второе',  fc:110, qty:3},
+  {id:'befstrog', name:'Бефстроганов с картофельным пюре',      cat:'Второе',  fc:78,  qty:4},
+  {id:'suvidrice',name:'Грудка су-вид в специях, бурый рис',    cat:'Второе',  fc:60,  qty:4},
+  {id:'bitochki', name:'Биточки куриные паровые, киноа',        cat:'Второе',  fc:54,  qty:3},
+  {id:'veggies',  name:'Овощи бланшированные',                  cat:'Гарнир',  fc:40,  qty:2},
+  {id:'mixsalad', name:'Салат-микс зелёный с бальзамиком',      cat:'Салат',   fc:55,  qty:2},
+  {id:'vitsalad', name:'Витаминный салат с заправкой кимчи',    cat:'Салат',   fc:32,  qty:2},
+  {id:'vinegret', name:'Винегрет с горчичной заправкой',        cat:'Салат',   fc:28,  qty:2},
+  {id:'greensuv', name:'Зелёный салат, грудка су-вид, кукуруза',cat:'Салат',   fc:56,  qty:3},
+  {id:'syrniki',  name:'Сырники со сметаной',                   cat:'Десерт',  fc:112, qty:4},
+  {id:'brownie',  name:'Протеиновый брауни с бананом',          cat:'Десерт',  fc:74,  qty:3},
+  {id:'morsvish', name:'Морс из вишни · 500 мл',                cat:'Напиток', fc:48,  qty:4},
+  {id:'morssmor', name:'Морс из чёрной смородины · 500 мл',     cat:'Напиток', fc:40,  qty:3},
+  {id:'greentea', name:'Зелёный чай холодный с лимоном · 500 мл',cat:'Напиток',fc:13,  qty:4},
+  {id:'sweet',    name:'Подсластитель (эритрит + сукралоза) · 100 г',cat:'Добавка',fc:73,qty:1},
+];
+const DISH_CATS=['Суп','Второе','Гарнир','Салат','Десерт'];
+const CAT_MARKUP_DEF={ 'Суп':230, 'Второе':260, 'Гарнир':200, 'Салат':200, 'Десерт':200, 'Напиток':150, 'Добавка':100 };
+const CAT_LIST=Object.keys(CAT_MARKUP_DEF);
+
+const LS_KEY='bodro_vc_v2';
+let S=null; // state
+
+function defaultState(){
+  return {
+    pkg:15, pkgDrink:10,
+    markup:{...CAT_MARKUP_DEF},
+    over:{},                              // per-dish RRP overrides
+    qty:Object.fromEntries(DISHES.map(d=>[d.id,d.qty])),
+    ya:28, yaShare:70, dtc:7, dtcShare:20,
+    wkend:60,
+    fot:{manager:100000,cook1:60000,cook2:60000,acc:10000},
+    fix:{rent:80000,util:25000,mkt:20000,other:15000},
+  };
+}
+function loadState(){
+  try{
+    const raw=localStorage.getItem(LS_KEY);
+    if(!raw) return defaultState();
+    const s={...defaultState(),...JSON.parse(raw)};
+    s.markup={...CAT_MARKUP_DEF,...(s.markup||{})};
+    s.fot={...defaultState().fot,...(s.fot||{})};
+    s.fix={...defaultState().fix,...(s.fix||{})};
+    s.qty={...defaultState().qty,...(s.qty||{})};
+    return s;
+  }catch(e){ return defaultState(); }
+}
+function saveState(){ try{ localStorage.setItem(LS_KEY,JSON.stringify(S)); }catch(e){} }
+
+/* ══════════════ MODEL ══════════════ */
+function isDrink(d){ return d.cat==='Напиток'||d.cat==='Добавка'; }
+function cogsOf(d){ return d.fc + (isDrink(d)?S.pkgDrink:S.pkg); }
+function autoPrice(d){
+  const c=cogsOf(d);
+  const raw=c*(1+(S.markup[d.cat]||200)/100);
+  const r=Math.max(c+1, Math.round(raw/10)*10-1); // округление к цене вида 279/309
+  return r;
+}
+function priceOf(d){ return S.over[d.id]!=null ? S.over[d.id] : autoPrice(d); }
+
+// Полная модель. opts: {qtyScale, yaComm, fotScale, rentScale, fcScale, extraQty}
+function computeModel(opts={}){
+  const qs=opts.qtyScale??1;
+  const yaComm=(opts.yaComm??S.ya)/100;
+  const dtcDisc=S.dtc/100, yaShare=S.yaShare/100, dtcShare=S.dtcShare/100;
+  const b2bShare=Math.max(0,1-yaShare-dtcShare);
+  const wtdComm=yaShare*yaComm+dtcShare*dtcDisc+b2bShare*0.10;
+  const wf=S.wkend/100;
+  const fcScale=opts.fcScale??1;
+  let dayPortions=0,dayRev=0,dayCogs=0;
+  DISHES.forEach(d=>{
+    let q=(S.qty[d.id]||0)*qs;
+    dayPortions+=q;
+    dayRev+=q*priceOf(d);
+    dayCogs+=q*(d.fc*fcScale+(isDrink(d)?S.pkgDrink:S.pkg));
+  });
+  if(opts.extraQty){ // равномерная добавка порций по среднему чеку
+    const avgP=dayPortions>0?dayRev/dayPortions:0, avgC=dayPortions>0?dayCogs/dayPortions:0;
+    dayPortions+=opts.extraQty; dayRev+=opts.extraQty*avgP; dayCogs+=opts.extraQty*avgC;
+  }
+  const monthFactor=22+8*wf;
+  const monthPortions=Math.round(dayPortions*monthFactor);
+  const revGross=dayRev*monthFactor;
+  const commLoss=revGross*wtdComm;
+  const revNet=revGross-commLoss;
+  const cogsTotal=dayCogs*monthFactor;
+  const gp=revNet-cogsTotal;
+  const fot=(S.fot.manager+S.fot.cook1+S.fot.cook2+S.fot.acc)*1.3*(opts.fotScale??1);
+  const rent=S.fix.rent*(opts.rentScale??1);
+  const fixedOther=rent+S.fix.util+S.fix.mkt+S.fix.other;
+  const allFixed=fot+fixedOther;
+  const ebitda=gp-allFixed;
+  const avgCheck=dayPortions>0?dayRev/dayPortions:0;
+  const avgCogs=dayPortions>0?dayCogs/dayPortions:0;
+  const netPerPortion=avgCheck*(1-wtdComm)-avgCogs;
+  const beMonthly=netPerPortion>0?allFixed/netPerPortion:0;
+  const beDaily=beMonthly>0?Math.ceil(beMonthly/monthFactor):0;
+  return {dayPortions,dayRev,avgCheck,avgCogs,monthPortions,revGross,commLoss,revNet,cogsTotal,gp,fot,rent,fixedOther,allFixed,ebitda,wtdComm,beDaily,netPerPortion,
+    gpPct:revGross>0?gp/revGross*100:0, ebitdaPct:revGross>0?ebitda/revGross*100:0, fcPct:revNet>0?cogsTotal/revNet*100:0};
+}
+
+/* ══════════════ RENDER ══════════════ */
+const fmt=n=>(n<0?'–':'')+Math.abs(Math.round(n)).toLocaleString('ru')+' ₽';
+const fmtK=n=>(n<0?'–':'')+Math.abs(Math.round(n/1000)).toLocaleString('ru')+'к ₽';
+
+function buildUI(){
+  document.getElementById('vc-root').innerHTML=`
+<div class="page-head">
+  <div class="page-eyebrow"><div class="ey-dot"></div>VALUE CHAIN · P&L МОДЕЛЬ · CFO VIEW</div>
+  <div class="page-title">Финансовая модель</div>
+  <div class="page-desc">Себестоимость каждого блюда → наценка → РРЦ → прогноз продаж → P&L. Все параметры интерактивны, меняй — модель пересчитывается в реальном времени и сохраняется в браузере.</div>
+</div>
+
+<div class="wrap">
+
+  <!-- KPI -->
+  <div class="g5 mb20">
+    <div class="kpi-stat"><div class="stat-label-sm">EBITDA / мес</div><div class="kpi-num" id="kpi_ebitda">—</div><div class="stat-note" id="kpi_ebitda_pct"></div></div>
+    <div class="kpi-stat"><div class="stat-label-sm">Точка безубыточности</div><div class="kpi-num" id="kpi_be">—</div><div class="stat-note">порций в день</div></div>
+    <div class="kpi-stat"><div class="stat-label-sm">Gross Margin</div><div class="kpi-num" id="kpi_gm">—</div><div class="stat-note">от выручки gross</div></div>
+    <div class="kpi-stat"><div class="stat-label-sm">Средний чек</div><div class="kpi-num" id="kpi_check">—</div><div class="stat-note" id="kpi_check_note">по прогнозу продаж</div></div>
+    <div class="kpi-stat"><div class="stat-label-sm">Food cost</div><div class="kpi-num" id="kpi_fc">—</div><div class="stat-note">COGS / выручка нетто · норма &lt;35%</div></div>
+  </div>
+
+  <!-- НАЦЕНКА ПО КАТЕГОРИЯМ + УПАКОВКА -->
+  <div class="g2 mb20">
+    <div class="card card-p">
+      <div class="sec-label">Ценообразование</div>
+      <div class="sec-title">Наценка на COGS по категориям</div>
+      <div id="markup_rows"></div>
+      <div class="footnote">РРЦ = (себес + упаковка) × (1 + наценка), округление до цены вида 279 / 309. Цену любого блюда можно переопределить вручную прямо в таблице — она подсветится. <strong>«Сбросить цены»</strong> вернёт расчёт по наценке.</div>
+    </div>
+    <div class="card card-p">
+      <div class="sec-label">Упаковка и объёмы</div>
+      <div class="sec-title">Общие параметры</div>
+      <div class="param-row">
+        <div><span class="param-name">Упаковка — блюдо</span><span class="param-hint">PP-контейнер + стикер</span></div>
+        <div class="sl-wrap"><input type="range" min="1" max="50" value="${S.pkg}" oninput="S.pkg=+this.value;calc()" id="sl_pkg"><span class="sl-val" id="lbl_pkg">${S.pkg} ₽</span></div>
+      </div>
+      <div class="param-row">
+        <div><span class="param-name">Упаковка — напиток</span><span class="param-hint">бутылка ПЭТ + этикетка</span></div>
+        <div class="sl-wrap"><input type="range" min="1" max="40" value="${S.pkgDrink}" oninput="S.pkgDrink=+this.value;calc()" id="sl_pkgd"><span class="sl-val" id="lbl_pkgd">${S.pkgDrink} ₽</span></div>
+      </div>
+      <div class="param-row">
+        <div><span class="param-name">Выходные — % от буднего объёма</span><span class="param-hint">суббота + воскресенье, 8 дней/мес</span></div>
+        <div class="sl-wrap"><input type="range" min="0" max="100" value="${S.wkend}" oninput="S.wkend=+this.value;calc()" id="sl_wkend"><span class="sl-val" id="lbl_wkend">${S.wkend}%</span></div>
+      </div>
+      <div class="param-row hl">
+        <div><span class="param-name strong">Порций в день (будни)</span><span class="param-hint">сумма прогноза из таблицы блюд</span></div>
+        <span class="param-val" id="res_day_portions">—</span>
+      </div>
+      <div class="param-row hl">
+        <div><span class="param-name strong">Порций в месяц</span><span class="param-hint" id="res_month_note">—</span></div>
+        <span class="param-val" id="res_month_portions">—</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ТАБЛИЦА БЛЮД -->
+  <div class="card card-p mb20">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;">
+      <div>
+        <div class="sec-label">Меню · РРЦ · Прогноз продаж</div>
+        <div class="sec-title">Каждая позиция: себес → COGS → РРЦ → маржа</div>
+      </div>
+      <button class="btn btn-ghost" onclick="resetPrices()">↺ Сбросить цены к наценке</button>
+    </div>
+    <div class="table-scroll">
+      <table class="dish-table" id="dish_table"></table>
+    </div>
+    <div class="footnote"><strong>Food cost %</strong> = COGS / РРЦ: зелёный &lt;30%, жёлтый 30–35%, красный &gt;35%. <strong>Маржа</strong> — до комиссий каналов (валовая на единицу). <strong>Продажи/день</strong> — прогноз на будний день; выходные считаются через ползунок «% от буднего объёма».</div>
+  </div>
+
+  <!-- КАНАЛЫ + РАСХОДЫ -->
+  <div class="g2 mb20">
+    <div class="card card-p">
+      <div class="sec-label">Каналы дистрибуции</div>
+      <div class="sec-title">Комиссии и доли</div>
+      <div class="param-row">
+        <div><span class="param-name">Яндекс.Еда — комиссия</span><span class="param-hint">типичная 25–35%</span></div>
+        <div class="sl-wrap"><input type="range" min="15" max="40" value="${S.ya}" oninput="S.ya=+this.value;calc()"><span class="sl-val" id="lbl_ya">${S.ya}%</span></div>
+      </div>
+      <div class="param-row">
+        <div><span class="param-name">Доля Яндекс.Еды в объёме</span></div>
+        <div class="sl-wrap"><input type="range" min="0" max="100" value="${S.yaShare}" oninput="S.yaShare=+this.value;calc()"><span class="sl-val" id="lbl_yash">${S.yaShare}%</span></div>
+      </div>
+      <div class="param-row">
+        <div><span class="param-name">DTC — скидка на прямой заказ</span><span class="param-hint">Telegram-бот, подписка</span></div>
+        <div class="sl-wrap"><input type="range" min="0" max="20" value="${S.dtc}" oninput="S.dtc=+this.value;calc()"><span class="sl-val" id="lbl_dtc">${S.dtc}%</span></div>
+      </div>
+      <div class="param-row">
+        <div><span class="param-name">Доля DTC в объёме</span></div>
+        <div class="sl-wrap"><input type="range" min="0" max="80" value="${S.dtcShare}" oninput="S.dtcShare=+this.value;calc()"><span class="sl-val" id="lbl_dtcsh">${S.dtcShare}%</span></div>
+      </div>
+      <div class="param-row hl">
+        <div><span class="param-name">B2B — остаток объёма</span><span class="param-hint">корп. обеды · комиссия 10%</span></div>
+        <span class="param-val" id="lbl_b2b">—</span>
+      </div>
+      <div class="param-row hl">
+        <div><span class="param-name strong">Средневзвешенная комиссия</span></div>
+        <span class="param-val" id="lbl_wtdcomm">—</span>
+      </div>
+    </div>
+
+    <div class="card card-p">
+      <div class="sec-label">Постоянные расходы</div>
+      <div class="sec-title">ФОТ (×1.3 с налогами) и операционка</div>
+      <div class="param-row">
+        <div><span class="param-name">Управляющий</span></div>
+        <div style="display:flex;gap:8px;align-items:center;"><input type="number" class="num-input" value="${S.fot.manager}" step="5000" oninput="S.fot.manager=+this.value||0;calc()"><span class="fc-tax" id="tax_manager">—</span></div>
+      </div>
+      <div class="param-row">
+        <div><span class="param-name">Повар 1</span></div>
+        <div style="display:flex;gap:8px;align-items:center;"><input type="number" class="num-input" value="${S.fot.cook1}" step="5000" oninput="S.fot.cook1=+this.value||0;calc()"><span class="fc-tax" id="tax_cook1">—</span></div>
+      </div>
+      <div class="param-row">
+        <div><span class="param-name">Повар 2</span></div>
+        <div style="display:flex;gap:8px;align-items:center;"><input type="number" class="num-input" value="${S.fot.cook2}" step="5000" oninput="S.fot.cook2=+this.value||0;calc()"><span class="fc-tax" id="tax_cook2">—</span></div>
+      </div>
+      <div class="param-row">
+        <div><span class="param-name">Бухгалтер (аутсорс)</span></div>
+        <div style="display:flex;gap:8px;align-items:center;"><input type="number" class="num-input" value="${S.fot.acc}" step="1000" oninput="S.fot.acc=+this.value||0;calc()"><span class="fc-tax" id="tax_acc">—</span></div>
+      </div>
+      <div class="param-row">
+        <div><span class="param-name">Аренда помещения</span><span class="param-hint">60–80 м²</span></div>
+        <input type="number" class="num-input" value="${S.fix.rent}" step="5000" oninput="S.fix.rent=+this.value||0;calc()">
+      </div>
+      <div class="param-row">
+        <div><span class="param-name">Коммуналка</span><span class="param-hint">свет, вода, газ</span></div>
+        <input type="number" class="num-input" value="${S.fix.util}" step="5000" oninput="S.fix.util=+this.value||0;calc()">
+      </div>
+      <div class="param-row">
+        <div><span class="param-name">Маркетинг</span></div>
+        <input type="number" class="num-input" value="${S.fix.mkt}" step="5000" oninput="S.fix.mkt=+this.value||0;calc()">
+      </div>
+      <div class="param-row">
+        <div><span class="param-name">Прочие расходы</span></div>
+        <input type="number" class="num-input" value="${S.fix.other}" step="5000" oninput="S.fix.other=+this.value||0;calc()">
+      </div>
+      <div class="param-row hl">
+        <div><span class="param-name strong">Постоянные расходы итого</span></div>
+        <span class="param-val" id="lbl_fixed">—</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- P&L + СТРУКТУРА ЗАТРАТ -->
+  <div class="g2 mb20">
+    <div class="card card-p">
+      <div class="sec-label">Доходы и расходы · месяц</div>
+      <div class="sec-title">P&L Waterfall</div>
+      <div id="pl_waterfall"></div>
+    </div>
+    <div class="card card-p">
+      <div class="sec-label">Куда уходит выручка</div>
+      <div class="sec-title">Структура затрат · % от выручки gross</div>
+      <div id="cost_structure"></div>
+      <div class="footnote" id="cs_insight"></div>
+    </div>
+  </div>
+
+  <!-- ЧУВСТВИТЕЛЬНОСТЬ -->
+  <div class="card card-p mb20">
+    <div class="sec-label">На что давить · что резать</div>
+    <div class="sec-title">Чувствительность EBITDA к рычагам</div>
+    <div class="g2" style="gap:10px;" id="sens_grid"></div>
+    <div class="footnote">Каждая строка — изменение <strong>одного</strong> параметра при прочих равных. Отсортировано по влиянию на EBITDA/мес: верхние рычаги — приоритет для менеджмента.</div>
+  </div>
+
+  <!-- СЦЕНАРИИ -->
+  <div class="card card-p mb20">
+    <div class="sec-label">Сценарный анализ</div>
+    <div class="sec-title">Что если изменить объём продаж?</div>
+    <div class="table-scroll"><table class="sc-table" id="sc_table"></table></div>
+    <div class="footnote">Микс блюд сохраняется как в прогнозе, масштабируется общий объём. Строка с подсветкой — текущий план.</div>
+  </div>
+
+  <!-- ВЫРУЧКА ПО КАТЕГОРИЯМ -->
+  <div class="card card-p">
+    <div class="sec-label">Разрез по категориям</div>
+    <div class="sec-title">Выручка и маржа по группам меню · будний день</div>
+    <div class="table-scroll"><table class="sc-table" id="cat_table"></table></div>
+  </div>
+
+</div>`;
+  renderMarkupRows();
+  renderDishTable();
+}
+
+function renderMarkupRows(){
+  document.getElementById('markup_rows').innerHTML=CAT_LIST.map(c=>`
+    <div class="param-row">
+      <div><span class="param-name">${c==='Добавка'?'Добавки':c==='Напиток'?'Напитки':c==='Второе'?'Вторые блюда':c==='Суп'?'Супы':c==='Салат'?'Салаты':c==='Гарнир'?'Гарниры':'Десерты'}</span></div>
+      <div class="sl-wrap">
+        <input type="range" min="50" max="500" step="10" value="${S.markup[c]}" oninput="S.markup['${c}']=+this.value;onMarkupChange();">
+        <span class="sl-val" id="mk_${c}">+${S.markup[c]}%</span>
+      </div>
+    </div>`).join('');
+}
+
+function dishRow(d){
+  const c=cogsOf(d), p=priceOf(d), ovr=S.over[d.id]!=null;
+  return `<tr>
+    <td>${d.name}<span class="cat-chip">${d.cat}</span></td>
+    <td class="m">${d.fc} ₽</td>
+    <td class="m" id="cogs_${d.id}">${c} ₽</td>
+    <td><input type="number" class="rrp-inp ${ovr?'ovr':''}" id="rrp_${d.id}" value="${p}" min="1" step="1"
+      oninput="S.over['${d.id}']=Math.max(1,+this.value||1);this.classList.add('ovr');calc()"></td>
+    <td class="m" id="mg_${d.id}">—</td>
+    <td class="m" id="fcp_${d.id}">—</td>
+    <td><input type="number" class="qty-inp" id="qty_${d.id}" value="${S.qty[d.id]||0}" min="0" step="1"
+      oninput="S.qty['${d.id}']=Math.max(0,+this.value||0);calc()"></td>
+    <td class="m" id="rev_${d.id}">—</td>
+  </tr>`;
+}
+
+function renderDishTable(){
+  const head=`<thead><tr>
+    <th>Позиция</th><th>Себес</th><th>COGS</th><th>РРЦ ₽</th><th>Маржа ₽</th><th>FC %</th><th>Продажи/день</th><th>Выручка/день</th>
+  </tr></thead>`;
+  const dishes=DISHES.filter(d=>DISH_CATS.includes(d.cat));
+  const drinks=DISHES.filter(d=>d.cat==='Напиток');
+  const extras=DISHES.filter(d=>d.cat==='Добавка');
+  document.getElementById('dish_table').innerHTML=head+`<tbody>
+    <tr class="group-row"><td colspan="8">Блюда · ${dishes.length} позиций</td></tr>
+    ${dishes.map(dishRow).join('')}
+    <tr class="group-row"><td colspan="8">Напитки · ${drinks.length} позиции</td></tr>
+    ${drinks.map(dishRow).join('')}
+    <tr class="group-row"><td colspan="8">Добавки · ${extras.length} позиция</td></tr>
+    ${extras.map(dishRow).join('')}
+    <tr class="total-row">
+      <td>Итого · будний день</td><td></td><td></td>
+      <td class="m" id="tot_avgcheck">—</td>
+      <td class="m" id="tot_margin">—</td>
+      <td class="m" id="tot_fcp">—</td>
+      <td class="m" id="tot_qty">—</td>
+      <td class="m" id="tot_rev">—</td>
+    </tr>
+  </tbody>`;
+}
+
+function onMarkupChange(){
+  CAT_LIST.forEach(c=>{ const el=document.getElementById('mk_'+c); if(el) el.textContent='+'+S.markup[c]+'%'; });
+  // обновить авто-цены для непереопределённых позиций
+  DISHES.forEach(d=>{
+    if(S.over[d.id]==null){
+      const inp=document.getElementById('rrp_'+d.id);
+      if(inp){ inp.value=autoPrice(d); inp.classList.remove('ovr'); }
+    }
+  });
+  calc();
+}
+
+function resetPrices(){
+  S.over={};
+  DISHES.forEach(d=>{
+    const inp=document.getElementById('rrp_'+d.id);
+    if(inp){ inp.value=autoPrice(d); inp.classList.remove('ovr'); }
+  });
+  calc();
+}
+
+/* ══════════════ CALC ══════════════ */
+function calc(){
+  const M=computeModel();
+
+  // labels
+  const set=(id,txt)=>{ const el=document.getElementById(id); if(el) el.textContent=txt; };
+  set('lbl_pkg',S.pkg+' ₽'); set('lbl_pkgd',S.pkgDrink+' ₽'); set('lbl_wkend',S.wkend+'%');
+  set('lbl_ya',S.ya+'%'); set('lbl_yash',S.yaShare+'%'); set('lbl_dtc',S.dtc+'%'); set('lbl_dtcsh',S.dtcShare+'%');
+  const b2b=Math.max(0,100-S.yaShare-S.dtcShare);
+  set('lbl_b2b',b2b+'%');
+  set('lbl_wtdcomm',(M.wtdComm*100).toFixed(1)+'%');
+  set('res_day_portions',Math.round(M.dayPortions));
+  set('res_month_portions',M.monthPortions.toLocaleString('ru'));
+  set('res_month_note',`${Math.round(M.dayPortions)}×22 будних + ${Math.round(M.dayPortions*S.wkend/100)}×8 выходных`);
+  ['manager','cook1','cook2','acc'].forEach(k=>set('tax_'+k,fmt(S.fot[k]*1.3)));
+  set('lbl_fixed',fmt(M.allFixed));
+
+  // per-dish computed cells
+  DISHES.forEach(d=>{
+    const c=cogsOf(d), p=priceOf(d), q=S.qty[d.id]||0;
+    const mg=p-c, fcp=p>0?c/p*100:0;
+    set('cogs_'+d.id,c+' ₽');
+    const mgEl=document.getElementById('mg_'+d.id);
+    if(mgEl){ mgEl.textContent='+'+Math.round(mg)+' ₽'; mgEl.style.color=mg>0?'var(--green)':'var(--red)'; }
+    const fcEl=document.getElementById('fcp_'+d.id);
+    if(fcEl){ fcEl.textContent=fcp.toFixed(0)+'%'; fcEl.className='m '+(fcp<30?'fc-ok':fcp<=35?'fc-mid':'fc-bad'); }
+    set('rev_'+d.id,fmt(p*q));
+  });
+  set('tot_qty',Math.round(M.dayPortions));
+  set('tot_rev',fmt(M.dayRev));
+  set('tot_avgcheck','ø '+Math.round(M.avgCheck)+' ₽');
+  set('tot_margin','ø +'+Math.round(M.avgCheck-M.avgCogs)+' ₽');
+  set('tot_fcp',M.avgCheck>0?Math.round(M.avgCogs/M.avgCheck*100)+'%':'—');
+
+  // KPI
+  const e=document.getElementById('kpi_ebitda');
+  if(e){ e.textContent=fmt(M.ebitda); e.className='kpi-num '+(M.ebitda>=0?'kpi-ok':'kpi-bad'); }
+  set('kpi_ebitda_pct',(M.ebitdaPct>0?'+':'')+M.ebitdaPct.toFixed(0)+'% от выручки gross');
+  const be=document.getElementById('kpi_be');
+  if(be){ be.textContent=M.beDaily>0?M.beDaily:'—'; be.className='kpi-num '+(M.beDaily>0&&M.dayPortions>=M.beDaily?'kpi-ok':'kpi-bad'); }
+  const gm=document.getElementById('kpi_gm');
+  if(gm){ gm.textContent=M.gpPct.toFixed(0)+'%'; gm.className='kpi-num '+(M.gpPct>=40?'kpi-ok':'kpi-bad'); }
+  set('kpi_check',Math.round(M.avgCheck)+' ₽');
+  const fc=document.getElementById('kpi_fc');
+  if(fc){ fc.textContent=M.fcPct.toFixed(0)+'%'; fc.className='kpi-num '+(M.fcPct<30?'kpi-ok':M.fcPct<=35?'':'kpi-bad'); }
+
+  // P&L waterfall
+  const rows=[
+    {name:'Выручка (gross)',val:M.revGross,bold:true},
+    {name:'— Комиссии каналов ('+(M.wtdComm*100).toFixed(1)+'%)',val:-M.commLoss},
+    {name:'Выручка нетто',val:M.revNet,bold:true},
+    {name:'— COGS (ингредиенты + упаковка)',val:-M.cogsTotal},
+    {name:'Валовая прибыль (GP '+M.gpPct.toFixed(0)+'%)',val:M.gp,bold:true},
+    {name:'— ФОТ с налогами',val:-M.fot},
+    {name:'— Аренда + коммуналка',val:-(S.fix.rent+S.fix.util)},
+    {name:'— Маркетинг + прочее',val:-(S.fix.mkt+S.fix.other)},
+    {name:'EBITDA ('+M.ebitdaPct.toFixed(0)+'%)',val:M.ebitda,bold:true,total:true},
+  ];
+  document.getElementById('pl_waterfall').innerHTML=rows.map(r=>{
+    const color=r.total?(r.val>=0?'var(--green)':'var(--red)'):r.val<0?'var(--red)':'var(--black)';
+    return `<div class="${r.total?'pl-row pl-total':'pl-row'}">
+      <span class="${r.bold?'pl-name strong':'pl-name'}">${r.name}</span>
+      <span class="pl-amount" style="color:${color};">${fmt(r.val)}</span>
+    </div>`;
+  }).join('');
+
+  // Cost structure
+  const items=[
+    {name:'COGS · продукты + упаковка',val:M.cogsTotal,color:'#0D0D0B'},
+    {name:'Комиссии каналов',val:M.commLoss,color:'#DC2626'},
+    {name:'ФОТ с налогами',val:M.fot,color:'#5C5A57'},
+    {name:'Аренда',val:S.fix.rent,color:'#9E9C96'},
+    {name:'Коммуналка',val:S.fix.util,color:'#C4C1BA'},
+    {name:'Маркетинг',val:S.fix.mkt,color:'#B5D64E'},
+    {name:'Прочее',val:S.fix.other,color:'#E5E3DF'},
+  ].sort((a,b)=>b.val-a.val);
+  const maxV=Math.max(...items.map(i=>i.val),1);
+  document.getElementById('cost_structure').innerHTML=items.map(i=>{
+    const pct=M.revGross>0?i.val/M.revGross*100:0;
+    return `<div class="cs-row">
+      <div class="cs-name">${i.name}</div>
+      <div class="cs-bar-outer"><div class="cs-bar" style="width:${Math.max(2,i.val/maxV*100)}%;background:${i.color};"></div></div>
+      <div class="cs-amt">${fmtK(i.val)}</div>
+      <div class="cs-pct">${pct.toFixed(1)}%</div>
+    </div>`;
+  }).join('');
+  const top3=items.slice(0,3).map(i=>i.name.split(' ·')[0]).join(', ');
+  document.getElementById('cs_insight').innerHTML=`Топ-3 статьи: <strong>${top3}</strong> — ${(items.slice(0,3).reduce((s,i)=>s+i.val,0)/Math.max(M.revGross,1)*100).toFixed(0)}% выручки. Остальное (${fmtK(M.ebitda)}) — EBITDA ${M.ebitdaPct.toFixed(0)}%.`;
+
+  // Sensitivity
+  const base=M.ebitda;
+  const sens=[
+    {name:'+10 порций/день',hint:'рост объёма при том же миксе',m:computeModel({extraQty:10})},
+    {name:'Доля DTC +10 п.п. вместо Яндекса',hint:'перевод трафика в свой канал',m:(()=>{const s1=S.dtcShare,s2=S.yaShare;S.dtcShare=Math.min(80,s1+10);S.yaShare=Math.max(0,s2-10);const r=computeModel();S.dtcShare=s1;S.yaShare=s2;return r;})()},
+    {name:'Комиссия Яндекса −5 п.п.',hint:'переговоры / смена тарифа',m:computeModel({yaComm:Math.max(0,S.ya-5)})},
+    {name:'Себестоимость −10%',hint:'закупки, сезонность, ТТК',m:computeModel({fcScale:0.9})},
+    {name:'ФОТ −10%',hint:'график смен, аутсорс',m:computeModel({fotScale:0.9})},
+    {name:'Аренда −20%',hint:'помещение дальше от центра',m:computeModel({rentScale:0.8})},
+    {name:'Цены +5% (все РРЦ)',hint:'проверка эластичности',m:(()=>{const ov={...S.over};DISHES.forEach(d=>{S.over[d.id]=Math.round(priceOf(d)*1.05);});const r=computeModel();S.over=ov;return r;})()},
+  ].map(s=>({...s,delta:s.m.ebitda-base})).sort((a,b)=>b.delta-a.delta);
+  document.getElementById('sens_grid').innerHTML=sens.map(s=>`
+    <div class="sens-row">
+      <div class="sens-name">${s.name}<small>${s.hint}</small></div>
+      <div class="sens-val" style="color:${s.delta>=0?'var(--green)':'var(--red)'};">${s.delta>=0?'+':''}${fmtK(s.delta)}/мес</div>
+    </div>`).join('');
+
+  // Scenarios
+  const scales=[0.5,0.75,1,1.25,1.5,2,3];
+  document.getElementById('sc_table').innerHTML=`
+    <thead><tr><th>Сценарий</th><th>Порций/день</th><th>Выручка gross</th><th>Выручка нетто</th><th>GP</th><th>EBITDA</th><th>EBITDA %</th></tr></thead>
+    <tbody>${scales.map(sc=>{
+      const m=computeModel({qtyScale:sc});
+      return `<tr class="${sc===1?'now':''}">
+        <td>${sc===1?'Текущий план':'×'+sc}</td>
+        <td>${Math.round(m.dayPortions)}</td>
+        <td>${fmtK(m.revGross)}</td>
+        <td>${fmtK(m.revNet)}</td>
+        <td>${fmtK(m.gp)}</td>
+        <td style="color:${m.ebitda>=0?'var(--green)':'var(--red)'};">${m.ebitda>=0?'+':''}${fmtK(m.ebitda)}</td>
+        <td style="color:${m.ebitda>=0?'var(--green)':'var(--red)'};">${m.ebitdaPct.toFixed(0)}%</td>
+      </tr>`;}).join('')}</tbody>`;
+
+  // Category breakdown
+  const catAgg={};
+  DISHES.forEach(d=>{
+    const q=S.qty[d.id]||0, p=priceOf(d), c=cogsOf(d);
+    if(!catAgg[d.cat]) catAgg[d.cat]={qty:0,rev:0,cogs:0};
+    catAgg[d.cat].qty+=q; catAgg[d.cat].rev+=q*p; catAgg[d.cat].cogs+=q*c;
+  });
+  document.getElementById('cat_table').innerHTML=`
+    <thead><tr><th>Категория</th><th>Порций/день</th><th>Выручка/день</th><th>COGS/день</th><th>Маржа/день</th><th>Маржа %</th></tr></thead>
+    <tbody>${CAT_LIST.filter(c=>catAgg[c]&&catAgg[c].qty>0).map(c=>{
+      const a=catAgg[c], mg=a.rev-a.cogs, mgp=a.rev>0?mg/a.rev*100:0;
+      const label=c==='Второе'?'Вторые блюда':c==='Суп'?'Супы':c==='Салат'?'Салаты':c==='Гарнир'?'Гарниры':c==='Десерт'?'Десерты':c==='Напиток'?'Напитки':'Добавки';
+      return `<tr><td>${label}</td><td>${a.qty}</td><td>${fmt(a.rev)}</td><td>${fmt(a.cogs)}</td><td style="color:var(--green);">+${fmt(mg)}</td><td>${mgp.toFixed(0)}%</td></tr>`;}).join('')}</tbody>`;
+
+  saveState();
+}
+
+/* ══════════════ BOOT ══════════════ */
+function unlock(){
+  document.getElementById('lock').style.display='none';
+  const root=document.getElementById('vc-root');
+  root.style.display='block';
+  if(!root.dataset.built){ root.dataset.built='1'; S=loadState(); buildUI(); calc(); }
+}
+if(sessionStorage.getItem('_vcu')==='ok'){ unlock(); }
+else{ setTimeout(()=>document.getElementById('vc-pass').focus(),200); }
+</script>
 </body>
 </html>
