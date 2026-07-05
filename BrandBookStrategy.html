@@ -175,6 +175,7 @@ section{position:relative;}
 .alt .ph{font-weight:900;font-size:17px;letter-spacing:-.01em;}
 .alt .rw{font-size:12px;color:rgba(255,255,255,.35);margin-top:6px;line-height:1.6;}
 .alts-label{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-top:48px;}
+h3.block{font-size:20px;font-weight:800;letter-spacing:-.015em;margin:56px 0 12px;color:var(--white);}
 
 /* ─ TOV ─ */
 .tov-principles{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:56px;}
@@ -300,6 +301,20 @@ section{position:relative;}
 }
 .apply-lbl{font-family:var(--mono);font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:4px;}
 .apply-ttl{font-size:15px;font-weight:800;letter-spacing:-.02em;}
+
+/* ─ PERSONA (character roles) ─ */
+.persona-hero{display:grid;grid-template-columns:auto 1fr;gap:64px;align-items:center;margin-top:56px;}
+.persona-hero .img-frame{width:min(300px,100%);margin-top:0;}
+.persona-traits{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
+.persona-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:16px;}
+.persona-tag{
+  position:absolute;top:16px;left:16px;z-index:2;
+  font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  padding:5px 12px;border-radius:999px;pointer-events:none;
+}
+.persona-tag.bodro{background:rgba(13,13,11,.75);color:var(--white);backdrop-filter:blur(6px);}
+.persona-tag.smart{background:var(--lime);color:var(--black);}
+@media(max-width:1024px){.persona-hero{grid-template-columns:1fr;}.persona-grid{grid-template-columns:1fr;}}
 
 /* ─ SYSTEM ─ */
 .system-grid{display:grid;grid-template-columns:1fr 1fr;gap:100px;margin-top:56px;}
@@ -774,10 +789,66 @@ section{position:relative;}
   </div>
 </section>
 
-<!-- ══════════════ 10 ЦЕНА ══════════════ -->
-<section style="background:var(--black);padding:128px 0;" class="on-dark">
+<!-- ══════════════ 10 ПЕРСОНАЖ ══════════════ -->
+<section id="persona" style="background:var(--black);padding:128px 0;" class="on-dark">
   <div class="wrap">
-    <div class="ey au">10 · Цена</div>
+    <div class="ey au">10 · Персонаж</div>
+    <p class="sec-h au d1">Тихий спутник. Не главный герой — твой.</p>
+    <p class="sec-sub au d2">Он не говорит и не отвлекает. Просто напоминает: еда готова, можно заняться тем, что важнее. Спокойный, простой, без лишних деталей — как и весь бренд.</p>
+
+    <div class="persona-hero as">
+      <div class="img-frame" data-cap="BODRO · персонаж бренда">
+        <img src="images/mascot-card.jpg" alt="BODRO — персонаж бренда">
+      </div>
+      <div>
+        <div class="alts-label" style="margin-top:0;">Характер персонажа</div>
+        <div class="persona-traits">
+          <span class="chip">Спокойный</span>
+          <span class="chip">Заботливый</span>
+          <span class="chip">Незаметный</span>
+          <span class="chip">Простой</span>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="block">Два амплуа — та же логика, что у упаковки</h3>
+    <p class="sec-sub" style="margin-bottom:32px;">Персонаж существует в двух версиях мастер-бренда и линейки — без своего слогана и клейма, только цвет решает, кто перед нами. Это то же правило, что и в разделе «Упаковка»: лайм не смешивается с базой.</p>
+
+    <div class="persona-grid as">
+      <div class="apply-item" data-cap="BODRO · дома, без лайма">
+        <span class="persona-tag bodro">BODRO</span>
+        <img src="images/persona-bodro-home.jpg" alt="BODRO — персонаж дома">
+        <div class="apply-over">
+          <div class="apply-lbl">Амплуа · Дома</div>
+          <div class="apply-ttl">Без лайма — значит база.</div>
+        </div>
+      </div>
+      <div class="apply-item" data-cap="BODRO SMART · спорт, с лаймом">
+        <span class="persona-tag smart">SMART</span>
+        <img src="images/persona-smart-sport.jpg" alt="BODRO SMART — персонаж на спорте">
+        <div class="apply-over">
+          <div class="apply-lbl">Амплуа · Спорт</div>
+          <div class="apply-ttl">Лайм на голове — значит SMART.</div>
+        </div>
+      </div>
+      <div class="apply-item" data-cap="BODRO SMART · деловая поездка, с лаймом">
+        <span class="persona-tag smart">SMART</span>
+        <img src="images/persona-smart-business.jpg" alt="BODRO SMART — персонаж в деловой поездке">
+        <div class="apply-over">
+          <div class="apply-lbl">Амплуа · В движении</div>
+          <div class="apply-ttl">Галстук лайм — тот же принцип.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rule-note au" style="margin-top:32px;"><b>Правило:</b> персонаж не получает новый дизайн под каждый сценарий — меняется только контекст (дом, спорт, дорога). Один элемент лайма маркирует линейку SMART; без него — это базовый BODRO. Слоган и клейм на персонаже не появляются — это работа мастер-бренда и упаковки.</div>
+  </div>
+</section>
+
+<!-- ══════════════ 11 ЦЕНА ══════════════ -->
+<section style="background:#080806;padding:128px 0;" class="on-dark">
+  <div class="wrap">
+    <div class="ey au">11 · Цена</div>
     <p class="sec-h au d1">Ценовые коридоры без пересечения.</p>
     <p class="sec-sub au d2">Зона 340–350 ₽ — буфер. В ней не живёт ни один SKU: покупатель никогда не видит два продукта разных линеек по одной цене. SMART всегда дороже — цифры и белок стоят денег, это часть позиционирования.</p>
 
@@ -792,10 +863,10 @@ section{position:relative;}
   </div>
 </section>
 
-<!-- ══════════════ 11 RTB ══════════════ -->
-<section style="background:#080806;padding:128px 0;" class="on-dark">
+<!-- ══════════════ 12 RTB ══════════════ -->
+<section style="background:var(--black);padding:128px 0;" class="on-dark">
   <div class="wrap">
-    <div class="ey au">11 · Почему верить</div>
+    <div class="ey au">12 · Почему верить</div>
     <p class="sec-h au d1">«Честно» — принцип. Доказательства — факты.</p>
     <p class="sec-sub au d2">Три проверяемых факта — стандарт мирового рынка ready-to-eat, который в Самаре ещё никто не занял.</p>
 
@@ -820,10 +891,10 @@ section{position:relative;}
   </div>
 </section>
 
-<!-- ══════════════ 12 КОММУНИКАЦИЯ ══════════════ -->
-<section style="background:var(--black);padding:128px 0;" class="on-dark">
+<!-- ══════════════ 13 КОММУНИКАЦИЯ ══════════════ -->
+<section style="background:#080806;padding:128px 0;" class="on-dark">
   <div class="wrap">
-    <div class="ey au">12 · Коммуникация</div>
+    <div class="ey au">13 · Коммуникация</div>
     <p class="sec-h au d1">Банк месседжей.</p>
     <p class="sec-sub au d2">Рабочие фразы для рекламы и контента. Не печатаются на упаковке, не заменяют слоган. Все — в тоне раздела 06: факты, уважение ко времени, без иронии.</p>
 
@@ -861,10 +932,10 @@ section{position:relative;}
   </div>
 </section>
 
-<!-- ══════════════ 13 RETAIL ══════════════ -->
-<section style="background:#080806;padding:128px 0;" class="on-dark">
+<!-- ══════════════ 14 RETAIL ══════════════ -->
+<section style="background:var(--black);padding:128px 0;" class="on-dark">
   <div class="wrap">
-    <div class="ey au">13 · Точка продаж</div>
+    <div class="ey au">14 · Точка продаж</div>
     <p class="sec-h au d1">Точка продаж как носитель бренда.</p>
     <p class="sec-sub au d2">Фасция. Витрина. Цифровое меню. Зона BODRO SMART. Всё говорит одним языком — коротко, честно, без лишнего.</p>
 
@@ -880,10 +951,10 @@ section{position:relative;}
   </div>
 </section>
 
-<!-- ══════════════ 14 ЧЕК-ЛИСТ ══════════════ -->
-<section style="background:var(--black);padding:128px 0;" class="on-dark">
+<!-- ══════════════ 15 ЧЕК-ЛИСТ ══════════════ -->
+<section style="background:#080806;padding:128px 0;" class="on-dark">
   <div class="wrap">
-    <div class="ey au">14 · Чек-лист</div>
+    <div class="ey au">15 · Чек-лист</div>
     <p class="sec-h au d1">Матрица: что где появляется.</p>
     <p class="sec-sub au d2">Быстрая проверка для дизайнера, таргетолога и SMM. Если элемент стоит не в своей ячейке — это ошибка системы.</p>
 
@@ -906,7 +977,7 @@ section{position:relative;}
 </section>
 
 <!-- ══════════════ ПРИЛОЖЕНИЕ · BODRO STICK ══════════════ -->
-<section style="background:#080806;padding:128px 0 96px;" class="on-dark">
+<section style="background:var(--black);padding:128px 0 96px;" class="on-dark">
   <div class="wrap">
     <div class="ey au">Приложение · Эскиз расширения бренда</div>
     <p class="sec-h au d1">BODRO STICK — набросок, не решение.</p>
