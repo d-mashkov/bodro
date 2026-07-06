@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Анализ конкурентов — BODRO Dark Kitchen</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --black:#0D0D0B;--sand:#F2EDE5;--lime:#B5D64E;--white:#FFFFFF;
+  --bg:#F5F4F1;--line:#E5E3DF;--sub:#5C5A57;--muted:#9E9C96;
+  --gb:rgba(255,255,255,.85);--gs:0 2px 20px rgba(0,0,0,.07),0 1px 2px rgba(0,0,0,.04);
+  --mono:'JetBrains Mono',monospace;
+  --red:#EF4444;--amber:#F59E0B;--green:#22C55E;--blue:#3B82F6;
+  --lime-rgb:181,214,78;
+}
+body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--black);padding-top:54px;}
+
+/* NAV */
+.u-nav{position:fixed;top:0;left:0;right:0;z-index:900;height:54px;display:flex;align-items:center;padding:0 52px;background:rgba(13,13,11,.92);backdrop-filter:blur(32px) saturate(200%);-webkit-backdrop-filter:blur(32px) saturate(200%);border-bottom:1px solid rgba(255,255,255,.07);}
+.u-logo{display:flex;align-items:baseline;gap:9px;text-decoration:none;margin-right:32px;}
+.u-wordmark{font-size:15px;font-weight:900;letter-spacing:-.04em;color:#fff;}
+.u-sub{font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.18);letter-spacing:.14em;text-transform:uppercase;}
+.u-links{display:flex;gap:2px;position:absolute;left:50%;transform:translateX(-50%);}
+.u-link{font-size:14px;font-weight:600;color:rgba(255,255,255,.55);text-decoration:none;padding:5px 14px;border-radius:7px;transition:all .15s;letter-spacing:-.01em;white-space:nowrap;}
+.u-link:hover{color:#fff;background:rgba(255,255,255,.07);}
+.u-link.active{color:#fff;background:rgba(255,255,255,.1);}
+
+/* PAGE HEADER */
+.page-head{background:var(--black);color:#fff;padding:56px 80px 48px;}
+.page-eyebrow{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:14px;}
+.ey-dot{width:6px;height:6px;border-radius:50%;background:var(--lime);flex-shrink:0;}
+.page-title{font-size:clamp(32px,4vw,52px);font-weight:900;letter-spacing:-.04em;margin-bottom:8px;}
+.page-desc{font-size:14px;color:rgba(255,255,255,.42);line-height:1.65;max-width:640px;}
+.head-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}
+.head-pill{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);background:rgba(255,255,255,.06);padding:5px 12px;border-radius:20px;}
+
+/* WRAP */
+.wrap{padding:48px 80px 80px;max-width:1400px;}
+.section{margin-bottom:56px;}
+.section-eyebrow{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.section-title{font-size:22px;font-weight:900;letter-spacing:-.03em;margin-bottom:4px;}
+.section-desc{font-size:13px;color:var(--sub);margin-bottom:28px;line-height:1.6;}
+
+/* STATS */
+.stats-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:44px;}
+.stat-card{background:var(--gb);border:1px solid rgba(255,255,255,.9);border-radius:14px;padding:20px 22px;box-shadow:var(--gs);}
+.stat-val{font-size:26px;font-weight:900;letter-spacing:-.03em;margin-bottom:3px;line-height:1;}
+.stat-lbl{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;line-height:1.4;}
+.stat-note{font-size:11px;color:var(--sub);margin-top:4px;}
+
+/* CARDS */
+.chart-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.chart-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;}
+.chart-card{background:var(--gb);border:1px solid rgba(255,255,255,.9);border-radius:16px;padding:24px 26px;box-shadow:var(--gs);}
+.chart-title{font-size:13px;font-weight:700;letter-spacing:-.01em;margin-bottom:3px;}
+.chart-sub{font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:8px;letter-spacing:.06em;}
+.chart-legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;}
+.cl-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--sub);}
+.cl-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0;}
+.cl-line{width:24px;height:3px;border-radius:2px;flex-shrink:0;}
+.cl-dash{width:24px;height:0;border-top:2px dashed;flex-shrink:0;}
+
+/* BRAND TABLE */
+.brand-table{width:100%;border-collapse:collapse;}
+.brand-table th{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:8px 12px;text-align:left;border-bottom:2px solid var(--line);}
+.brand-table td{padding:13px 12px;border-bottom:1px solid var(--line);font-size:13px;vertical-align:middle;}
+.brand-table tr:last-child td{border-bottom:none;}
+.brand-table tr:hover td{background:rgba(0,0,0,.02);}
+.brand-name{font-weight:700;font-size:14px;}
+.brand-tag{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:10px;margin-left:6px;}
+.tag-budget{background:rgba(34,197,94,.12);color:#15803D;}
+.tag-premium{background:rgba(59,130,246,.12);color:#1D4ED8;}
+.tag-mid{background:rgba(245,158,11,.12);color:#B45309;}
+.tag-fail{background:rgba(239,68,68,.12);color:#B91C1C;}
+
+/* SCORE BAR */
+.score-bar-wrap{display:flex;align-items:center;gap:10px;}
+.score-bar-bg{flex:1;height:6px;background:var(--line);border-radius:3px;overflow:hidden;}
+.score-bar-fill{height:100%;border-radius:3px;}
+.score-num{font-family:var(--mono);font-size:11px;font-weight:700;min-width:24px;}
+.score-pill{display:inline-flex;align-items:center;padding:2px 9px;border-radius:20px;font-family:var(--mono);font-size:10px;font-weight:700;}
+.sp-red{background:rgba(239,68,68,.1);color:var(--red);}
+.sp-amber{background:rgba(245,158,11,.1);color:#B45309;}
+.sp-green{background:rgba(34,197,94,.1);color:#15803D;}
+.sp-blue{background:rgba(59,130,246,.1);color:var(--blue);}
+.sp-lime{background:rgba(181,214,78,.15);color:#4D6B00;}
+
+/* CLEAN COMPOSITION */
+.clean-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.clean-card{background:var(--gb);border:1px solid rgba(255,255,255,.9);border-radius:14px;padding:20px 22px;box-shadow:var(--gs);}
+.clean-brand{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.clean-score{font-size:36px;font-weight:900;letter-spacing:-.04em;line-height:1;margin-bottom:4px;}
+.clean-label{font-size:11px;font-weight:700;margin-bottom:10px;}
+.clean-issues{font-size:12px;color:var(--sub);line-height:1.65;}
+.clean-issues b{font-weight:700;color:var(--black);}
+
+.bodro-zone-card{background:var(--black);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:24px;}
+.bodro-zone-title{font-size:18px;font-weight:900;letter-spacing:-.02em;margin-bottom:6px;}
+.bodro-zone-sub{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:24px;line-height:1.55;}
+.bz-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.bz-col{background:rgba(255,255,255,.05);border-radius:12px;padding:20px;}
+.bz-col-lime{background:rgba(181,214,78,.1);border:1px solid rgba(181,214,78,.25);}
+.bz-label{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:8px;}
+.bz-label-lime{color:var(--lime);}
+.bz-val{font-size:28px;font-weight:900;letter-spacing:-.03em;color:#fff;margin-bottom:2px;}
+.bz-val-lime{color:var(--lime);}
+.bz-desc{font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;margin-top:8px;}
+.bz-desc-lime{color:rgba(181,214,78,.7);}
+.bz-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+.bz-tag{font-family:var(--mono);font-size:9px;padding:3px 9px;border-radius:20px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);}
+.bz-tag-lime{background:rgba(181,214,78,.12);color:var(--lime);}
+
+/* PACKAGING */
+.pack-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.pack-card{border-radius:14px;padding:20px 22px;background:#fff;border:1px solid var(--line);}
+.pack-score-big{font-size:38px;font-weight:900;letter-spacing:-.04em;line-height:1;}
+.pack-brand{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;color:var(--muted);}
+.pack-attr{font-size:12px;margin-top:10px;line-height:1.7;color:var(--sub);}
+.pack-attr strong{color:var(--black);font-weight:600;}
+
+/* OPPORTUNITIES */
+.opp-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.opp-card{border-radius:16px;padding:24px 26px;}
+.opp-num{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.08em;opacity:.4;margin-bottom:8px;}
+.opp-title{font-size:16px;font-weight:900;letter-spacing:-.02em;margin-bottom:8px;}
+.opp-body{font-size:13px;line-height:1.65;opacity:.75;}
+.opp-tag{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-top:12px;background:rgba(0,0,0,.08);}
+
+/* VERDICT */
+.verdict-wrap{background:var(--black);color:#fff;border-radius:20px;padding:40px 44px;}
+.verdict-title{font-size:20px;font-weight:900;letter-spacing:-.03em;margin-bottom:20px;}
+.verdict-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;}
+.verdict-col h4{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:12px;}
+.verdict-col p{font-size:13px;line-height:1.7;color:rgba(255,255,255,.65);}
+.verdict-col strong{color:#fff;}
+.verdict-highlight{background:rgba(181,214,78,.1);border:1px solid rgba(181,214,78,.25);border-radius:12px;padding:16px 20px;margin-top:20px;}
+.verdict-highlight p{font-size:14px;font-weight:700;color:#fff;line-height:1.6;}
+.verdict-highlight span{color:var(--lime);}
+
+.divider{height:1px;background:var(--line);margin:48px 0;}
+
+@media(max-width:1100px){
+  .stats-grid{grid-template-columns:repeat(3,1fr);}
+  .chart-grid-2{grid-template-columns:1fr;}
+  .clean-grid{grid-template-columns:1fr 1fr;}
+  .pack-grid{grid-template-columns:1fr 1fr;}
+  .opp-grid{grid-template-columns:1fr;}
+  .verdict-grid{grid-template-columns:1fr;}
+  .bz-grid{grid-template-columns:1fr;}
+}
+@media(max-width:900px){
+  .wrap{padding:32px 24px 60px;}
+  .page-head{padding:44px 24px 36px;}
+  .u-nav{padding:0 24px;}
+  .u-sub{display:none;}
+  .stats-grid{grid-template-columns:1fr 1fr;}
+  .clean-grid{grid-template-columns:1fr;}
+  .pack-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<nav class="u-nav" style="position:relative;">
+  <a href="index.html" class="u-logo"><span class="u-wordmark">BODRO</span><span class="u-sub">Dark Kitchen · Самара</span></a>
+  <div class="u-links">
+    <a href="BrandBookStrategy.html" class="u-link">BrandBookStrategy</a>
+    <a href="labelsystem.html" class="u-link">Labels</a>
+    <a href="roadmap.html" class="u-link">Roadmap</a>
+    <a href="menu.html" class="u-link">Menu</a>
+    <a href="brand.html" class="u-link">Brand</a>
+    <a href="valuechain.html" class="u-link">Value Chain</a>
+    <a href="questions.html" class="u-link">Questions</a>
+    <a href="competitor-analysis.html" class="u-link active">Анализ</a>
+  </div>
+</nav>
+
+<div class="page-head">
+  <div class="page-eyebrow"><div class="ey-dot"></div>ИССЛЕДОВАНИЕ · САМАРА · ИЮЛЬ 2026</div>
+  <div class="page-title">Анализ конкурентов</div>
+  <div class="page-desc">Первичный анализ 6 игроков на рынке готовой еды Самары — фото блюд, вкусовые оценки, экономика порций. Данные собраны вживую, покупка и дегустация на месте.</div>
+  <div class="head-meta">
+    <div class="head-pill">6 конкурентов</div>
+    <div class="head-pill">17 блюд</div>
+    <div class="head-pill">Самокат · Палыч · ЙУМИ · ВкусВилл · FitBox · ПриЕм</div>
+    <div class="head-pill">Самара, июль 2026</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- SUMMARY STATS -->
+  <div class="section">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-val" style="color:var(--green);">177 ₽</div>
+        <div class="stat-lbl">Минимальная цена</div>
+        <div class="stat-note">Самокат СТМ Винегрет, 250г</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" style="color:var(--red);">438 ₽</div>
+        <div class="stat-lbl">Максимальная цена</div>
+        <div class="stat-note">ВкусВилл Курица+киноа, 210г</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">1.4 ₽/г</div>
+        <div class="stat-lbl">Средняя цена/грамм</div>
+        <div class="stat-note">Среднее по всем SKU с ценой</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" style="color:var(--amber);">4.2 / 10</div>
+        <div class="stat-lbl">Средний вкус рынка</div>
+        <div class="stat-note">По дегустационным заметкам</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">7.8 г</div>
+        <div class="stat-lbl">Среднее белка на порцию</div>
+        <div class="stat-note">Медиана по всем блюдам конкурентов</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BODRO POSITIONING ZONE -->
+  <div class="section">
+    <div class="section-eyebrow">Целевое позиционирование</div>
+    <div class="section-title">Куда заходит BODRO</div>
+    <div class="section-desc">Два бренда — два ценовых сегмента. Оба занимают незаполненные ниши на рынке Самары.</div>
+
+    <div class="bodro-zone-card">
+      <div class="bodro-zone-title">Целевые сегменты BODRO</div>
+      <div class="bodro-zone-sub">Рынок открыт. Никто не занял «вкусно + честно + разумная цена». BODRO идёт в эту щель — двумя брендами на разных покупателей.</div>
+      <div class="bz-grid">
+        <div class="bz-col">
+          <div class="bz-label">BODRO · Комфорт-еда</div>
+          <div class="bz-val">250–320 ₽</div>
+          <div style="font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.35);">≈ 1.25–1.50 ₽/г · 180–220г порция</div>
+          <div class="bz-desc">Белая упаковка, название блюда крупно. Белок ≥15г на порцию. Честный состав — только реальные ингредиенты, без сыра-заменителя и майонезного пюре.</div>
+          <div class="bz-tags">
+            <span class="bz-tag">Вкус ≥7/10</span>
+            <span class="bz-tag">Белок ≥15г</span>
+            <span class="bz-tag">Чистый состав</span>
+            <span class="bz-tag">Фотогеничность</span>
+          </div>
+        </div>
+        <div class="bz-col bz-col-lime">
+          <div class="bz-label bz-label-lime">BODRO SMART · Фитнес-рацион</div>
+          <div class="bz-val bz-val-lime">310–390 ₽</div>
+          <div style="font-family:var(--mono);font-size:11px;color:rgba(181,214,78,.45);">≈ 1.50–1.85 ₽/г · 200–230г порция</div>
+          <div class="bz-desc bz-desc-lime">Чёрная упаковка, КБЖУ крупно на крышке. Белок ≥25г на порцию. Ни у одного конкурента нет продукта с таким протеином при приемлемом вкусе.</div>
+          <div class="bz-tags">
+            <span class="bz-tag-lime bz-tag">Белок ≥25г</span>
+            <span class="bz-tag-lime bz-tag">КБЖУ на крышке</span>
+            <span class="bz-tag-lime bz-tag">Чёрная упаковка</span>
+            <span class="bz-tag-lime bz-tag">Вкус ≥7/10</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHARTS: PRICE + PROTEIN -->
+  <div class="section">
+    <div class="section-eyebrow">Ценовая аналитика</div>
+    <div class="section-title">Цена и протеин</div>
+    <div class="section-desc">Цена за грамм с зонами BODRO и BODRO SMART. Белок на порцию — главный KPI для позиционирования против конкурентов.</div>
+
+    <div class="chart-grid-2" style="margin-bottom:24px;">
+      <div class="chart-card">
+        <div class="chart-title">Цена за грамм, ₽/г</div>
+        <div class="chart-sub">С ЦЕЛЕВЫМИ ЗОНАМИ BODRO И BODRO SMART</div>
+        <div class="chart-legend">
+          <div class="cl-item"><div class="cl-dash" style="border-color:rgba(255,255,255,.7);background:rgba(100,200,100,.25);height:12px;width:16px;border:none;border-radius:2px;"></div>BODRO зона</div>
+          <div class="cl-item"><div style="width:16px;height:12px;background:rgba(181,214,78,.3);border-radius:2px;flex-shrink:0;"></div>BODRO SMART зона</div>
+        </div>
+        <div style="position:relative;height:360px;">
+          <canvas id="pricePerGramChart"></canvas>
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Белок на порцию, г</div>
+        <div class="chart-sub">АБСОЛЮТНОЕ КОЛ-ВО БЕЛКА НА БЛЮДО · С ЦЕЛЯМИ BODRO</div>
+        <div class="chart-legend">
+          <div class="cl-item"><div style="width:16px;height:3px;background:#22C55E;border-radius:2px;flex-shrink:0;"></div>≥15г цель BODRO</div>
+          <div class="cl-item"><div style="width:16px;height:3px;background:var(--lime);border-radius:2px;flex-shrink:0;"></div>≥25г цель SMART</div>
+        </div>
+        <div style="position:relative;height:360px;">
+          <canvas id="proteinAbsChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-title">Протеиновая эффективность, г белка на 100 ₽</div>
+      <div class="chart-sub">СКОЛЬКО ГРАММОВ БЕЛКА ПОКУПАЕШЬ ЗА 100 РУБЛЕЙ · ДЛЯ SKU С ЦЕНОЙ</div>
+      <div style="position:relative;height:260px;">
+        <canvas id="proteinEffChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- TASTE CHART -->
+  <div class="section">
+    <div class="section-eyebrow">Вкусовые оценки</div>
+    <div class="section-title">Дегустация по блюдам</div>
+    <div class="section-desc">Субъективная оценка 1–10 по полевым заметкам. Зелёный ≥7 = хорошо, жёлтый 5–6 = нейтрально, красный ≤4 = провал.</div>
+    <div class="chart-card" style="max-width:900px;">
+      <div style="position:relative;height:420px;">
+        <canvas id="tasteChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- POSITIONING MAP -->
+  <div class="section">
+    <div class="section-eyebrow">Позиционирование</div>
+    <div class="section-title">Карта конкурентов: цена vs вкус</div>
+    <div class="section-desc">Каждый бренд — среднее по всем протестированным блюдам. BODRO показан как целевая точка входа.</div>
+    <div class="chart-card">
+      <div style="position:relative;height:440px;">
+        <canvas id="scatterChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CLEAN COMPOSITION -->
+  <div class="section">
+    <div class="section-eyebrow">Чистота состава</div>
+    <div class="section-title">Что реально в тарелке</div>
+    <div class="section-desc">Оценка прозрачности состава, наличия заменителей и соответствия позиционированию. BODRO планирует «честный состав» как часть бренд-обещания.</div>
+
+    <div class="chart-grid-2" style="margin-bottom:24px;">
+      <div class="chart-card">
+        <div class="chart-title">Индекс чистоты состава</div>
+        <div class="chart-sub">ОЦЕНКА 1–10 · ВЫШЕ = ЧИЩЕ И ПРОЗРАЧНЕЕ</div>
+        <div style="position:relative;height:300px;">
+          <canvas id="cleanChart"></canvas>
+        </div>
+      </div>
+      <div class="chart-card" style="display:flex;flex-direction:column;gap:14px;">
+        <div class="chart-title">Критерии оценки</div>
+        <div class="chart-sub">ЧТО ВХОДИТ В ИНДЕКС ЧИСТОТЫ</div>
+        <div style="display:flex;flex-direction:column;gap:10px;flex:1;">
+          <div style="background:rgba(34,197,94,.06);border-left:3px solid #22C55E;padding:10px 14px;border-radius:0 8px 8px 0;">
+            <div style="font-size:12px;font-weight:700;margin-bottom:3px;">Натуральные ингредиенты</div>
+            <div style="font-size:11px;color:var(--sub);">Нет сыра-заменителя, крахмальных загустителей, синтетических вкусовых добавок</div>
+          </div>
+          <div style="background:rgba(34,197,94,.06);border-left:3px solid #22C55E;padding:10px 14px;border-radius:0 8px 8px 0;">
+            <div style="font-size:12px;font-weight:700;margin-bottom:3px;">Прозрачность КБЖУ</div>
+            <div style="font-size:11px;color:var(--sub);">Состав и нутриенты указаны на упаковке и соответствуют факту</div>
+          </div>
+          <div style="background:rgba(245,158,11,.06);border-left:3px solid #F59E0B;padding:10px 14px;border-radius:0 8px 8px 0;">
+            <div style="font-size:12px;font-weight:700;margin-bottom:3px;">Соответствие веса</div>
+            <div style="font-size:11px;color:var(--sub);">Заявленный вес ≈ фактический. Самокат: 50г курицы по ТК, 47г по факту</div>
+          </div>
+          <div style="background:rgba(239,68,68,.06);border-left:3px solid #EF4444;padding:10px 14px;border-radius:0 8px 8px 0;">
+            <div style="font-size:12px;font-weight:700;margin-bottom:3px;">Разрыв ожидание/реальность</div>
+            <div style="font-size:11px;color:var(--sub);">Упаковка и описание соответствуют содержимому. ЙУМИ: премиум-коробка, бюджетный контент</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="clean-grid">
+      <div class="clean-card">
+        <div class="clean-brand">ВкусВилл</div>
+        <div class="clean-score" style="color:#22C55E;">7<span style="font-size:18px;color:var(--muted);">/10</span></div>
+        <div class="clean-label" style="color:#22C55E;">Лучший на рынке</div>
+        <div class="clean-issues">
+          <b>✓ Реальные ингредиенты</b> — известен нейтральным отношением к E-числам<br>
+          <b>✓ КБЖУ заявлено</b> и в целом соответствует<br>
+          <b>△ Винегрет 1/10</b> — вкус не соответствует обещанию «натурально»<br>
+          <b>△ Вариабельность</b> — один SKU 8/10, другой 1/10
+        </div>
+      </div>
+      <div class="clean-card">
+        <div class="clean-brand">Самокат СТМ</div>
+        <div class="clean-score" style="color:#F59E0B;">5<span style="font-size:18px;color:var(--muted);">/10</span></div>
+        <div class="clean-label" style="color:#B45309;">Средне</div>
+        <div class="clean-issues">
+          <b>✓ Без громких претензий</b> — не позиционирует себя как «чистый»<br>
+          <b>△ Стандартные добавки</b> — состав типичный для масс-маркета<br>
+          <b>✗ Недовес курицы</b> — 47г факт vs 50г по ТК (−6%)<br>
+          <b>△ Нет ярко выраженного КБЖУ</b> на упаковке
+        </div>
+      </div>
+      <div class="clean-card">
+        <div class="clean-brand">ПриЕм</div>
+        <div class="clean-score" style="color:#F59E0B;">4<span style="font-size:18px;color:var(--muted);">/10</span></div>
+        <div class="clean-label" style="color:#B45309;">Ниже среднего</div>
+        <div class="clean-issues">
+          <b>✗ Пюре с майонезом</b> — в современном здоровом питании это провал<br>
+          <b>✗ Пресный котлетный фарш</b> — состав типичен для кулинарии советского типа<br>
+          <b>△ Никаких утверждений о чистоте</b> — честная позиция, но ниже ожидания<br>
+          <b>△ Состав непрозрачен</b>
+        </div>
+      </div>
+      <div class="clean-card">
+        <div class="clean-brand">ЙУМИ</div>
+        <div class="clean-score" style="color:#EF4444;">3<span style="font-size:18px;color:var(--muted);">/10</span></div>
+        <div class="clean-label" style="color:var(--red);">Несоответствие</div>
+        <div class="clean-issues">
+          <b>✗ Сыр-заменитель</b> — прямой обман при цене 399 ₽<br>
+          <b>✗ Подгоревшие грибы</b> — качество нестабильное<br>
+          <b>✗ Premiumупаковка скрывает дешёвый контент</b><br>
+          <b>✗ Жирность 12.1г на 280г</b> — высокая при ресторанном позиционировании
+        </div>
+      </div>
+      <div class="clean-card">
+        <div class="clean-brand">FitBox</div>
+        <div class="clean-score" style="color:#EF4444;">3<span style="font-size:18px;color:var(--muted);">/10</span></div>
+        <div class="clean-label" style="color:var(--red);">ЗОЖ-маркетинг vs реальность</div>
+        <div class="clean-issues">
+          <b>✗ «Fit»-позиционирование</b> с дешёвыми рисовыми макаронами<br>
+          <b>✗ Вок: бледная лапша без вкуса</b> — нет следов «clean eating»<br>
+          <b>✗ Кекс: тугое тесто</b> — рецептура не проработана<br>
+          <b>△ Слоган «еда, которая тебе идёт»</b> не подтверждён ингредиентами
+        </div>
+      </div>
+      <div class="clean-card">
+        <div class="clean-brand">Палыч</div>
+        <div class="clean-score" style="color:#EF4444;">2<span style="font-size:18px;color:var(--muted);">/10</span></div>
+        <div class="clean-label" style="color:var(--red);">Системный обман</div>
+        <div class="clean-issues">
+          <b>✗ Ресторанный нейминг</b> — «Палыч» ≈ авторская кухня, реальность — столовая<br>
+          <b>✗ «Абсолютный картон»</b> при 409 ₽ — нет оправдания составу<br>
+          <b>✗ Серое мясо индейки</b> — явная термическая обработка низкого уровня<br>
+          <b>✗ Нет прозрачности по составу</b>
+        </div>
+      </div>
+    </div>
+
+    <!-- BODRO clean promise -->
+    <div style="background:var(--black);border-radius:16px;padding:28px 32px;margin-top:20px;display:flex;gap:32px;align-items:flex-start;">
+      <div style="flex:1;">
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:10px;">BODRO · ОБЕЩАНИЕ СОСТАВА</div>
+        <div style="font-size:18px;font-weight:900;color:#fff;margin-bottom:12px;letter-spacing:-.02em;">«Только то, что ты можешь назвать»</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.55);line-height:1.7;">Каждый ингредиент в карточке блюда виден покупателю. Нет скрытых загустителей, нет сыра-заменителя, нет майонеза под соусом. Вес порции фактический = заявленному ±5г. Это не просто честность — это конкурентное преимущество, которого нет ни у одного игрока на рынке Самары.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;min-width:200px;">
+        <div style="background:rgba(181,214,78,.1);border:1px solid rgba(181,214,78,.25);border-radius:10px;padding:14px 16px;">
+          <div style="font-family:var(--mono);font-size:9px;color:var(--lime);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;">Цель BODRO</div>
+          <div style="font-size:22px;font-weight:900;color:var(--lime);">8+/10</div>
+          <div style="font-size:11px;color:rgba(181,214,78,.6);">Индекс чистоты состава</div>
+        </div>
+        <div style="background:rgba(255,255,255,.05);border-radius:10px;padding:14px 16px;">
+          <div style="font-family:var(--mono);font-size:9px;color:rgba(255,255,255,.3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;">Конкуренты сейчас</div>
+          <div style="font-size:22px;font-weight:900;color:#fff;">4.0/10</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.3);">Среднее по рынку</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- BRAND SCORES TABLE -->
+  <div class="section">
+    <div class="section-eyebrow">Сводный рейтинг</div>
+    <div class="section-title">Оценка по брендам</div>
+    <div class="section-desc">Интегральная оценка по четырём параметрам: вкус, упаковка, ценность, чистота состава</div>
+    <div class="chart-card">
+      <table class="brand-table">
+        <thead>
+          <tr>
+            <th>Бренд</th>
+            <th>Сегмент</th>
+            <th style="width:150px;">Вкус</th>
+            <th style="width:150px;">Упаковка</th>
+            <th style="width:150px;">Ценность</th>
+            <th style="width:150px;">Чистота</th>
+            <th>Интеграл</th>
+            <th>Главная проблема</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="brand-name">ВкусВилл</div></td>
+            <td><span class="brand-tag tag-premium">Премиум СТМ</span></td>
+            <td><div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:62%;background:#3B82F6;"></div></div><span class="score-num">6.2</span></div></td>
+            <td><div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:75%;background:#3B82F6;"></div></div><span class="score-num">7.5</span></div></td>
+            <td><div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:55%;background:#3B82F6;"></div></div><span class="score-num">5.5</span></div></td>
+            <td><div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:70%;background:#3B82F6;"></div></div><span class="score-num">7.0</span></div></td>
+            <td><span class="score-pill sp-blue">6.5</span></td>
+            <td style="font-size:12px;color:var(--sub);">Огромный разброс между SKU</td>
+          </tr>
+          <tr>
+            <td><div class="brand-name">ЙУМИ</div></td>
+            <td><span class="brand-tag tag-mid">Мид-маркет</span></td>
+            <td><div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:60%;background:#F59E0B;"></div></div><span class="score-num">6.0</span></div></td>
+            <td><div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:70%;background:#F59E0B;"></div></div><span class="score-num">7.0</span></div></td>
+            <td><div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:50%;background:#F59E0B;"></div></div><span class="score-num">5.0</span></div></td>
+            <td><div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:30%;background:#EF4444;"></div></div><span class="score-num">3.0</span></div></td>
+            <td><span class="score-pill sp-amber">5.3</span></td>
+            <td style="font-size:12px;color:var(--sub);">Сыр-заменитель при премиум-цене</td>
+          </tr>
+          <tr>
+            <td><div class="brand-name">Самокат СТМ</div></td>
+            <td><span class="brand-tag tag-budget">Бюджет</span></td>
+            <td><div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:60%;background:#22C55E;"></div></div><span class="score-num">6.0</span></div></td>
+            <td><div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:45%;background:#22C55E;"></div></div><span class="score-num">4.5</span></div></td>
+            <td><div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:80%;background:#22C55E;"></div></div><span class="score-num">8.0</span></div></td>
+            <td><div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:50%;background:#22C55E;"></div></div><span class="score-num">5.0</span></div></td>
+            <td><span class="score-pill sp-green">5.9</span></td>
+            <td style="font-size:12px;color:var(--sub);">Недовес, сухая курица, скучно</td>
+          </tr>
+          <tr>
+            <td><div class="brand-name">ПриЕм</div></td>
+            <td><span class="brand-tag tag-mid">Мид-маркет</span></td>
+            <td><div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:40%;background:#F59E0B;"></div></div><span class="score-num">4.0</span></div></td>
+            <td><div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:55%;background:#F59E0B;"></div></div><span class="score-num">5.5</span></div></td>
+            <td><div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:45%;background:#F59E0B;"></div></div><span class="score-num">4.5</span></div></td>
+            <td><div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:40%;background:#F59E0B;"></div></div><span class="score-num">4.0</span></div></td>
+            <td><span class="score-pill sp-amber">4.5</span></td>
+            <td style="font-size:12px;color:var(--sub);">Пюре с майонезом, пресность</td>
+          </tr>
+          <tr>
+            <td><div class="brand-name">FitBox</div></td>
+            <td><span class="brand-tag tag-mid">ЗОЖ-маркет</span></td>
+            <td><div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:35%;background:#EF4444;"></div></div><span class="score-num">3.5</span></div></td>
+            <td><div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:35%;background:#EF4444;"></div></div><span class="score-num">3.5</span></div></td>
+            <td><div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:40%;background:#EF4444;"></div></div><span class="score-num">4.0</span></div></td>
+            <td><div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:30%;background:#EF4444;"></div></div><span class="score-num">3.0</span></div></td>
+            <td><span class="score-pill sp-red">3.5</span></td>
+            <td style="font-size:12px;color:var(--sub);">ЗОЖ-слоган не подтверждён качеством</td>
+          </tr>
+          <tr>
+            <td><div class="brand-name">Палыч</div></td>
+            <td><span class="brand-tag tag-fail">Псевдопремиум</span></td>
+            <td><div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:20%;background:#EF4444;"></div></div><span class="score-num">2.0</span></div></td>
+            <td><div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:50%;background:#EF4444;"></div></div><span class="score-num">5.0</span></div></td>
+            <td><div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:15%;background:#EF4444;"></div></div><span class="score-num">1.5</span></div></td>
+            <td><div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:20%;background:#EF4444;"></div></div><span class="score-num">2.0</span></div></td>
+            <td><span class="score-pill sp-red">2.6</span></td>
+            <td style="font-size:12px;color:var(--sub);">409 ₽ за «картон» без состава</td>
+          </tr>
+          <!-- BODRO target row -->
+          <tr style="background:rgba(181,214,78,.05);">
+            <td><div class="brand-name" style="color:#4D6B00;">BODRO <span style="font-size:11px;color:var(--muted);font-weight:400;">(цель)</span></div></td>
+            <td><span class="brand-tag" style="background:rgba(181,214,78,.15);color:#4D6B00;">Цель запуска</span></td>
+            <td><div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:75%;background:var(--lime);"></div></div><span class="score-num" style="color:#4D6B00;">≥7.5</span></div></td>
+            <td><div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:80%;background:var(--lime);"></div></div><span class="score-num" style="color:#4D6B00;">≥8.0</span></div></td>
+            <td><div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:80%;background:var(--lime);"></div></div><span class="score-num" style="color:#4D6B00;">≥8.0</span></div></td>
+            <td><div class="score-bar-wrap"><div class="score-bar-bg"><div class="score-bar-fill" style="width:85%;background:var(--lime);"></div></div><span class="score-num" style="color:#4D6B00;">≥8.5</span></div></td>
+            <td><span class="score-pill sp-lime">≥8.0</span></td>
+            <td style="font-size:12px;color:#4D6B00;font-weight:600;">Честный состав + фотогеничность + вкус</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- OPPORTUNITIES -->
+  <div class="section">
+    <div class="section-eyebrow">Выводы для BODRO</div>
+    <div class="section-title">Рыночные возможности</div>
+    <div class="section-desc">Что рынок делает плохо — и как BODRO занимает это пространство.</div>
+    <div class="opp-grid">
+      <div class="opp-card" style="background:var(--black);color:#fff;">
+        <div class="opp-num">01 / ВКУС</div>
+        <div class="opp-title" style="color:#fff;">Вкус — главный пустой сегмент</div>
+        <div class="opp-body">Средний вкус рынка — <strong style="color:var(--lime);">4.2/10</strong>. Никто не делает еду, которую хочется снова. Палыч берёт 409 ₽ за 2/10. Даже лучшие (ВкусВилл свёкла — 8/10) — исключение. BODRO со стандартом ≥7 на каждое блюдо — в совершенно свободном сегменте.</div>
+        <div class="opp-tag" style="background:rgba(181,214,78,.15);color:var(--lime);">Ключевая ставка</div>
+      </div>
+      <div class="opp-card" style="background:#F8F7F4;border:1px solid var(--line);">
+        <div class="opp-num">02 / БЕЛОК</div>
+        <div class="opp-title">Рынок не решил протеиновую задачу</div>
+        <div class="opp-body">Медиана белка на порцию по конкурентам — <strong>7.8г</strong>. Это вдвое меньше дневной нормы на приём пищи для активного человека. Лучший — Палыч Курица (20.4г), но вкус 2/10. <strong>BODRO SMART</strong> с ≥25г белка и вкусом ≥7/10 — уникальное предложение.</div>
+        <div class="opp-tag">BODRO SMART</div>
+      </div>
+      <div class="opp-card" style="background:#F8F7F4;border:1px solid var(--line);">
+        <div class="opp-num">03 / СВЁКЛА С ФЕТОЙ</div>
+        <div class="opp-title">ВкусВилл показал: свёкла с фетой — хит</div>
+        <div class="opp-body">Оценка 8/10, единственный «отличный» в дегустации. Это прямой сигнал: запустить версию BODRO на этот SKU в первые два месяца. Яркий цвет, понятные ингредиенты, фотогеничность — идеальный контент для Telegram.</div>
+        <div class="opp-tag">Быстрый запуск</div>
+      </div>
+      <div class="opp-card" style="background:var(--black);color:#fff;">
+        <div class="opp-num">04 / ЧИСТОТА</div>
+        <div class="opp-title" style="color:#fff;">Никто не держит обещание «чистого состава»</div>
+        <div class="opp-body">ЙУМИ: сыр-заменитель. FitBox: ЗОЖ-слоган, дешёвые макароны. ПриЕм: пюре с майонезом. Среднее по рынку — <strong style="color:var(--lime);">4.0/10</strong> индекса чистоты. BODRO с обещанием «только то, что ты можешь назвать» и фактическим соответствием — сильное бренд-УТП.</div>
+        <div class="opp-tag" style="background:rgba(181,214,78,.15);color:var(--lime);">Бренд-позиция</div>
+      </div>
+      <div class="opp-card" style="background:#F8F7F4;border:1px solid var(--line);">
+        <div class="opp-num">05 / ЦЕНОВОЕ ОКНО</div>
+        <div class="opp-title">250–320 ₽ — незаполненное окно</div>
+        <div class="opp-body">Самокат (177–239 ₽): бюджет + посредственно. Палыч/ВкусВилл (319–438 ₽): дорого при среднем качестве. BODRO в диапазоне <strong>250–320 ₽</strong> с высоким вкусом занимает зону максимального value — место без сильного игрока.</div>
+        <div class="opp-tag">Ценовая стратегия</div>
+      </div>
+      <div class="opp-card" style="background:#F8F7F4;border:1px solid var(--line);">
+        <div class="opp-num">06 / УПАКОВКА</div>
+        <div class="opp-title">Никто не сделал упаковку, которую хочется сфотографировать</div>
+        <div class="opp-body">ЙУМИ пробует — тёмная коробка хороша. Но внутри алюминий и заменители. Нет игрока с <strong>последовательной</strong> упаковкой: красивая снаружи + красивая еда внутри. Белая минималистичная крышка BODRO — незанятое пространство.</div>
+        <div class="opp-tag">Дифференциация</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VERDICT -->
+  <div class="section">
+    <div class="verdict-wrap">
+      <div class="verdict-title">Итоговый вердикт</div>
+      <div class="verdict-grid">
+        <div class="verdict-col">
+          <h4>Кто делает хорошо</h4>
+          <p><strong>ВкусВилл</strong> — лучшая упаковочная система и отдельные блюда (свёкла с фетой). Лидер по чистоте состава. Но нестабильность между SKU разрушает доверие.<br><br><strong>ЙУМИ</strong> — единственный, кто вложился в shelf appeal упаковки. Но наполнение не дотягивает.</p>
+        </div>
+        <div class="verdict-col">
+          <h4>Кто провалился</h4>
+          <p><strong>Палыч</strong> — системный провал по всем метрикам. 409 ₽ за 2/10 вкус и 2/10 состав. Худшее value на рынке.<br><br><strong>FitBox</strong> — маркетинг ЗОЖ без подтверждения в тарелке. Дешёвые ингредиенты убивают доверие к категории.</p>
+        </div>
+        <div class="verdict-col">
+          <h4>Что означает для BODRO</h4>
+          <p>Рынок готовой еды Самары <strong>технически не занят</strong> в сегменте «вкусно + честно + разумная цена + достаточно белка».<br><br>Среднее по рынку: вкус 4.2, чистота 4.0. Планка входа <strong>низкая</strong>.</p>
+        </div>
+      </div>
+      <div class="verdict-highlight">
+        <p>Рынок задал планку <span>4.2/10</span> на вкус и <span>4.0/10</span> на чистоту состава. BODRO с целевыми стандартами <span>≥7.5 вкус</span> и <span>≥8.5 чистота</span> входит в практически незанятый сегмент — при ценовом окне <span>250–320 ₽</span>, которое не занял ни один игрок. Первый приоритет: <span>свёкла с фетой</span> + <span>курица гриль с гарниром</span> — два доказанных хита без конкурента.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const MONO = "'JetBrains Mono', monospace";
+Chart.defaults.font.family = "'Archivo', sans-serif";
+
+const C = {
+  samocat: '#22C55E', palych: '#EF4444', yumi: '#F59E0B',
+  vv: '#3B82F6', fitbox: '#A855F7', priem: '#6B7280',
+  bodro: '#B5D64E', bodroSmart: '#B5D64E',
+};
+
+// ─── Custom zone plugin ───
+const zonePlugin = {
+  id: 'zoneBands',
+  beforeDraw(chart, args, opts) {
+    if (!opts || !opts.bands) return;
+    const { ctx, chartArea, scales } = chart;
+    const xScale = scales.x || scales.r;
+    if (!xScale) return;
+    ctx.save();
+    opts.bands.forEach(b => {
+      const x1 = xScale.getPixelForValue(b.from);
+      const x2 = xScale.getPixelForValue(b.to);
+      ctx.fillStyle = b.color;
+      ctx.fillRect(x1, chartArea.top, x2 - x1, chartArea.bottom - chartArea.top);
+    });
+    ctx.restore();
+  }
+};
+Chart.register(zonePlugin);
+
+// ─── 1. PRICE PER GRAM ───
+const ppgRaw = [
+  { l:'Самокат Винегрет',  v:0.71, b:'samocat' },
+  { l:'ВкусВилл Винегрет', v:1.08, b:'vv'      },
+  { l:'Самокат Плов',      v:1.10, b:'samocat' },
+  { l:'ВкусВилл Плов',     v:1.10, b:'vv'      },
+  { l:'Самокат Шницель',   v:1.14, b:'samocat' },
+  { l:'Самокат Салат',     v:1.19, b:'samocat' },
+  { l:'ЙУМИ Жульен',       v:1.43, b:'yumi'    },
+  { l:'Палыч Курица',      v:1.52, b:'palych'  },
+  { l:'ВкусВилл Паста',    v:1.55, b:'vv'      },
+  { l:'ВкусВилл Свёкла',   v:1.61, b:'vv'      },
+  { l:'ВкусВилл Курица',   v:1.68, b:'vv'      },
+  { l:'Палыч Индейка',     v:2.05, b:'palych'  },
+  { l:'ВкусВилл+Киноа',    v:2.09, b:'vv'      },
+].sort((a,b) => a.v - b.v);
+
+new Chart(document.getElementById('pricePerGramChart'), {
+  type: 'bar',
+  data: {
+    labels: ppgRaw.map(d => d.l),
+    datasets: [{
+      data: ppgRaw.map(d => d.v),
+      backgroundColor: ppgRaw.map(d => C[d.b] + 'BB'),
+      borderColor:     ppgRaw.map(d => C[d.b]),
+      borderWidth: 1.5, borderRadius: 4,
+    }]
+  },
+  options: {
+    indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.x.toFixed(2)} ₽/г` } },
+      zoneBands: {
+        bands: [
+          { from: 1.25, to: 1.50, color: 'rgba(34,197,94,.10)' },   // BODRO
+          { from: 1.50, to: 1.85, color: 'rgba(181,214,78,.12)' },   // BODRO SMART
+        ]
+      }
+    },
+    scales: {
+      x: {
+        ticks: { font:{ family:MONO, size:10 }, callback: v => v.toFixed(2) },
+        grid: { color:'rgba(0,0,0,.05)' }
+      },
+      y: { ticks: { font:{ size:10 } }, grid: { display:false } }
+    }
+  }
+});
+
+// ─── 2. PROTEIN PER DISH (absolute g) ───
+const protAbs = [
+  { l:'Палыч Курица',        v:20.4, b:'palych'  },
+  { l:'ВкусВилл+Киноа',      v:12.6, b:'vv'      },
+  { l:'ВкусВилл Паста',      v:12.6, b:'vv'      },
+  { l:'ВкусВилл Курица',     v:10.3, b:'vv'      },
+  { l:'ВкусВилл Плов',       v: 9.9, b:'vv'      },
+  { l:'Палыч Индейка',       v: 8.0, b:'palych'  },
+  { l:'Самокат Шницель',     v: 7.9, b:'samocat' },
+  { l:'ПриЕм Котлета+гречка',v: 6.9, b:'priem'   },
+  { l:'FitBox Лапша вок',    v: 6.61,b:'fitbox'  },
+  { l:'FitBox Кекс',         v: 6.0, b:'fitbox'  },
+  { l:'ВкусВилл Свёкла',     v: 5.1, b:'vv'      },
+  { l:'ПриЕм Пожарская',     v: 5.5, b:'priem'   },
+  { l:'Самокат Плов',        v: 7.1, b:'samocat' },
+  { l:'ЙУМИ Жульен',         v: 6.8, b:'yumi'    },
+  { l:'ВкусВилл Винегрет',   v: 2.0, b:'vv'      },
+  { l:'Самокат Салат',       v: 0.93,b:'samocat' },
+  { l:'Самокат Винегрет',    v: 1.6, b:'samocat' },
+].sort((a,b) => b.v - a.v);
+
+// line plugin for target markers
+const refLinesPlugin = {
+  id: 'refLines',
+  afterDraw(chart, args, opts) {
+    if (!opts || !opts.lines) return;
+    const { ctx, chartArea, scales } = chart;
+    const xScale = scales.x;
+    if (!xScale) return;
+    ctx.save();
+    opts.lines.forEach(line => {
+      const px = xScale.getPixelForValue(line.v);
+      ctx.beginPath();
+      ctx.strokeStyle = line.color;
+      ctx.lineWidth = 2;
+      ctx.setLineDash([5, 4]);
+      ctx.moveTo(px, chartArea.top);
+      ctx.lineTo(px, chartArea.bottom);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = line.color;
+      ctx.font = `700 10px ${MONO}`;
+      ctx.textAlign = 'left';
+      ctx.fillText(line.label, px + 4, chartArea.top + 14);
+    });
+    ctx.restore();
+  }
+};
+Chart.register(refLinesPlugin);
+
+new Chart(document.getElementById('proteinAbsChart'), {
+  type: 'bar',
+  data: {
+    labels: protAbs.map(d => d.l),
+    datasets: [{
+      data: protAbs.map(d => d.v),
+      backgroundColor: protAbs.map(d => C[d.b] + 'BB'),
+      borderColor:     protAbs.map(d => C[d.b]),
+      borderWidth: 1.5, borderRadius: 4,
+    }]
+  },
+  options: {
+    indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.x} г белка на порцию` } },
+      refLines: {
+        lines: [
+          { v: 15, color: '#22C55E', label: 'BODRO ≥15г' },
+          { v: 25, color: '#B5D64E', label: 'SMART ≥25г' },
+        ]
+      }
+    },
+    scales: {
+      x: {
+        max: 32,
+        ticks: { font:{ family:MONO, size:10 } },
+        grid: { color:'rgba(0,0,0,.05)' }
+      },
+      y: { ticks: { font:{ size:10 } }, grid: { display:false } }
+    }
+  }
+});
+
+// ─── 3. PROTEIN EFFICIENCY ───
+const protEff = [
+  { l:'Палыч Курица',     v:6.4, b:'palych'  },
+  { l:'ВкусВилл Паста',   v:3.7, b:'vv'      },
+  { l:'ВкусВилл Плов',    v:3.6, b:'vv'      },
+  { l:'Самокат Шницель',  v:3.3, b:'samocat' },
+  { l:'Самокат Плов',     v:3.2, b:'samocat' },
+  { l:'ВкусВилл+Киноа',   v:2.9, b:'vv'      },
+  { l:'ВкусВилл Курица',  v:2.9, b:'vv'      },
+  { l:'Палыч Индейка',    v:2.0, b:'palych'  },
+  { l:'ЙУМИ Жульен',      v:1.7, b:'yumi'    },
+  { l:'ВкусВилл Винегрет',v:1.0, b:'vv'      },
+].sort((a,b) => b.v - a.v);
+
+new Chart(document.getElementById('proteinEffChart'), {
+  type: 'bar',
+  data: {
+    labels: protEff.map(d => d.l),
+    datasets: [{
+      data: protEff.map(d => d.v),
+      backgroundColor: protEff.map(d => C[d.b] + 'BB'),
+      borderColor:     protEff.map(d => C[d.b]),
+      borderWidth: 1.5, borderRadius: 4,
+    }]
+  },
+  options: {
+    indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.x.toFixed(1)} г белка на 100 ₽` } },
+    },
+    scales: {
+      x: { ticks: { font:{ family:MONO, size:10 } }, grid: { color:'rgba(0,0,0,.05)' } },
+      y: { ticks: { font:{ size:10 } }, grid: { display:false } }
+    }
+  }
+});
+
+// ─── 4. TASTE CHART ───
+const taste = [
+  { d:'ВкусВилл Свёкла+фета',   s:8, b:'vv'      },
+  { d:'Самокат Шницель',         s:7, b:'samocat' },
+  { d:'Самокат Винегрет',        s:7, b:'samocat' },
+  { d:'ВкусВилл+Киноа',          s:7, b:'vv'      },
+  { d:'ЙУМИ Жульен',             s:6, b:'yumi'    },
+  { d:'ВкусВилл Плов',           s:6, b:'vv'      },
+  { d:'ВкусВилл Курица',         s:6, b:'vv'      },
+  { d:'Самокат Плов',            s:5, b:'samocat' },
+  { d:'Самокат Салат',           s:5, b:'samocat' },
+  { d:'ВкусВилл Паста',          s:5, b:'vv'      },
+  { d:'ПриЕм Пожарская',         s:5, b:'priem'   },
+  { d:'FitBox Кекс',             s:4, b:'fitbox'  },
+  { d:'ПриЕм Котлета+гречка',    s:3, b:'priem'   },
+  { d:'FitBox Вок с курицей',    s:3, b:'fitbox'  },
+  { d:'Палыч Индейка',           s:2, b:'palych'  },
+  { d:'Палыч Куриное филе',      s:2, b:'palych'  },
+  { d:'ВкусВилл Винегрет',       s:1, b:'vv'      },
+].sort((a,b) => b.s - a.s);
+
+new Chart(document.getElementById('tasteChart'), {
+  type:'bar',
+  data:{
+    labels: taste.map(d => d.d),
+    datasets:[{
+      data: taste.map(d => d.s),
+      backgroundColor: taste.map(d => d.s>=7?'#22C55EBB':d.s>=5?'#F59E0BBB':'#EF4444BB'),
+      borderColor:     taste.map(d => d.s>=7?'#22C55E':d.s>=5?'#F59E0B':'#EF4444'),
+      borderWidth:1.5, borderRadius:4,
+    }]
+  },
+  options:{
+    indexAxis:'y', responsive:true, maintainAspectRatio:false,
+    plugins:{
+      legend:{display:false},
+      tooltip:{ callbacks:{ label: ctx => ` ${ctx.parsed.x}/10 — ${taste[ctx.dataIndex].d}` } },
+      refLines:{
+        lines:[{ v:7, color:'rgba(34,197,94,.5)', label:'Цель BODRO ≥7' }]
+      }
+    },
+    scales:{
+      x:{ min:0, max:10, ticks:{font:{family:MONO,size:10},stepSize:1}, grid:{color:'rgba(0,0,0,.05)'} },
+      y:{ ticks:{font:{size:11}}, grid:{display:false} }
+    }
+  }
+});
+
+// ─── 5. SCATTER POSITIONING ───
+const brands = [
+  { name:'ВкусВилл',    x:307, y:6.2, b:'vv'      },
+  { name:'ЙУМИ',        x:399, y:6.0, b:'yumi'    },
+  { name:'Самокат СТМ', x:204, y:6.0, b:'samocat' },
+  { name:'ПриЕм',       x:210, y:4.0, b:'priem'   },
+  { name:'FitBox',      x:220, y:3.5, b:'fitbox'  },
+  { name:'Палыч',       x:364, y:2.0, b:'palych'  },
+  { name:'BODRO',       x:285, y:7.5, b:'bodro'   },
+  { name:'BODRO SMART', x:350, y:8.0, b:'bodro'   },
+];
+
+// Custom label plugin for scatter
+const scatterLabelPlugin = {
+  id:'scatterLabels',
+  afterDatasetsDraw(chart){
+    const ctx = chart.ctx;
+    chart.data.datasets.forEach((ds,i)=>{
+      const meta = chart.getDatasetMeta(i);
+      meta.data.forEach(pt=>{
+        ctx.save();
+        ctx.font = ds.label.startsWith('BODRO') ? `700 11px Archivo,sans-serif` : `600 10px Archivo,sans-serif`;
+        ctx.fillStyle = ds.label.startsWith('BODRO') ? '#0D0D0B' : '#5C5A57';
+        ctx.textAlign='center';
+        ctx.fillText(ds.label, pt.x, pt.y - 16);
+        ctx.restore();
+      });
+    });
+  }
+};
+
+new Chart(document.getElementById('scatterChart'), {
+  type:'scatter',
+  data:{
+    datasets: brands.map(b=>({
+      label: b.name,
+      data:[{x:b.x, y:b.y}],
+      backgroundColor: b.b==='bodro' ? '#B5D64E' : C[b.b]+'CC',
+      borderColor:     b.b==='bodro' ? '#B5D64E' : C[b.b],
+      pointRadius: b.b==='bodro' ? 14 : 11,
+      pointHoverRadius: b.b==='bodro' ? 16 : 13,
+      borderWidth: b.b==='bodro' ? 3 : 1.5,
+    }))
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    plugins:{
+      legend:{ position:'bottom', labels:{font:{size:12},padding:16} },
+      tooltip:{ callbacks:{
+        label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.x}₽ ср. цена, вкус ${ctx.parsed.y}/10`
+      }},
+    },
+    scales:{
+      x:{ title:{display:true,text:'Средняя цена (₽)',font:{family:MONO,size:10}}, min:150, max:460, grid:{color:'rgba(0,0,0,.06)'}, ticks:{font:{family:MONO,size:10}} },
+      y:{ title:{display:true,text:'Вкус (1–10)',font:{family:MONO,size:10}}, min:0, max:10, grid:{color:'rgba(0,0,0,.06)'}, ticks:{font:{family:MONO,size:10}} }
+    }
+  },
+  plugins:[scatterLabelPlugin]
+});
+
+// ─── 6. CLEAN COMPOSITION CHART ───
+new Chart(document.getElementById('cleanChart'), {
+  type:'bar',
+  data:{
+    labels:['ВкусВилл','Самокат СТМ','ПриЕм','FitBox','ЙУМИ','Палыч'],
+    datasets:[{
+      data:[7,5,4,3,3,2],
+      backgroundColor:['#3B82F6BB','#22C55EBB','#F59E0BBB','#A855F7BB','#F59E0BBB','#EF4444BB'],
+      borderColor:    ['#3B82F6',  '#22C55E',  '#F59E0B',  '#A855F7',  '#F59E0B',  '#EF4444'  ],
+      borderWidth:1.5, borderRadius:6,
+    },{
+      data:[null,null,null,null,null,null,8.5],
+      label:'BODRO цель',
+      backgroundColor:'#B5D64EBB',
+      borderColor:'#B5D64E',
+      borderWidth:2, borderRadius:6,
+    }]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    plugins:{
+      legend:{display:false},
+      tooltip:{ callbacks:{ label: ctx => ` ${ctx.parsed.y}/10 чистота состава` } },
+      refLines:{ lines:[{ v:8.5, color:'#B5D64EBB', label:'BODRO цель' }] }
+    },
+    scales:{
+      x:{ grid:{display:false}, ticks:{font:{size:11}} },
+      y:{ min:0, max:10, grid:{color:'rgba(0,0,0,.05)'}, ticks:{font:{family:MONO,size:10}} }
+    }
+  }
+});
+</script>
+</body>
+</html>
