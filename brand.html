@@ -7,84 +7,119 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-:root{--black:#0D0D0B;--sand:#F2EDE5;--lime:#B5D64E;--white:#FFFFFF;--bg:#F5F4F1;--line:#E5E3DF;--sub:#5C5A57;--muted:#9E9C96;--gb:rgba(255,255,255,.88);--gs:0 2px 20px rgba(0,0,0,.07);--mono:'JetBrains Mono',monospace;}
-body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--black);padding-top:54px;}
+html{overflow-x:hidden;}
+:root{
+  --black:#0A0A08;--black-2:#111110;--sand:#F2EDE5;--lime:#B5D64E;--white:#FFFFFF;
+  --line:rgba(255,255,255,.08);--sub:rgba(255,255,255,.5);--muted:rgba(255,255,255,.3);
+  --glass:rgba(255,255,255,.035);--glass-2:rgba(255,255,255,.06);
+  --gs:0 24px 60px rgba(0,0,0,.4);--mono:'JetBrains Mono',monospace;
+}
+body{font-family:'Archivo',sans-serif;background:var(--black);color:var(--white);padding-top:58px;overflow-x:hidden;}
 
 /* NAV */
-.u-nav{position:fixed;top:0;left:0;right:0;z-index:900;height:54px;display:flex;align-items:center;padding:0 52px;background:rgba(13,13,11,.92);backdrop-filter:blur(32px) saturate(200%);-webkit-backdrop-filter:blur(32px) saturate(200%);border-bottom:1px solid rgba(255,255,255,.07);}
-.u-logo{display:flex;align-items:baseline;gap:9px;text-decoration:none;margin-right:32px;}
-.u-wordmark{font-size:15px;font-weight:900;letter-spacing:-.04em;color:#fff;}
-.u-sub{font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.18);letter-spacing:.14em;text-transform:uppercase;}
-.u-links{display:flex;gap:2px;position:absolute;left:50%;transform:translateX(-50%);}
-.u-link{font-size:14px;font-weight:600;color:rgba(255,255,255,.55);text-decoration:none;padding:5px 14px;border-radius:7px;transition:all .15s;letter-spacing:-.01em;white-space:nowrap;}
-.u-link:hover{color:#fff;background:rgba(255,255,255,.07);}
-.u-link.active{color:#fff;background:rgba(255,255,255,.1);}
+.u-nav{position:fixed;top:0;left:0;right:0;width:100%;max-width:100vw;overflow:hidden;z-index:900;height:58px;display:flex;align-items:center;gap:20px;padding:0 28px;background:rgba(10,10,8,.85);backdrop-filter:blur(28px) saturate(200%);-webkit-backdrop-filter:blur(28px) saturate(200%);border-bottom:1px solid var(--line);}
+.u-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
+.u-logo img{height:24px;width:auto;display:block;}
+.u-wordmark{font-size:15px;font-weight:900;letter-spacing:-.04em;color:var(--white);}
+.u-sub{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;}
+.u-links{flex:1;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;justify-content:flex-start;min-width:0;}
+.u-links::-webkit-scrollbar{display:none;}
+.u-link{font-size:13px;font-weight:600;color:var(--sub);text-decoration:none;padding:7px 13px;border-radius:7px;transition:all .15s;letter-spacing:-.01em;white-space:nowrap;flex-shrink:0;}
+.u-link:hover{color:var(--white);background:var(--glass-2);}
+.u-link.active{color:var(--black);background:var(--lime);}
+@media(min-width:901px){.u-links{justify-content:center;}}
 
 /* PAGE */
-.page-head{background:var(--black);color:#fff;padding:56px 80px 48px;}
-.page-eyebrow{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:14px;}
+.page-head{background:var(--black-2);color:#fff;padding:52px 60px 44px;border-bottom:1px solid var(--line);}
+.page-eyebrow{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
 .ey-dot{width:6px;height:6px;border-radius:50%;background:var(--lime);flex-shrink:0;}
-.page-title{font-size:clamp(32px,4vw,52px);font-weight:900;letter-spacing:-.04em;margin-bottom:8px;}
-.page-desc{font-size:14px;color:rgba(255,255,255,.42);line-height:1.65;max-width:600px;}
+.page-title{font-size:clamp(30px,3.6vw,46px);font-weight:900;letter-spacing:-.04em;margin-bottom:8px;}
+.page-desc{font-size:14px;color:var(--sub);line-height:1.65;max-width:600px;}
 
-.wrap{padding:40px 80px 80px;max-width:1400px;}
+.wrap{padding:40px 60px 80px;max-width:1400px;margin:0 auto;}
 
 /* BRAND CARDS */
-.brands-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:40px;}
-.brand-card{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--gb);box-shadow:var(--gs);}
-.brand-header{padding:32px 32px 24px;}
+.brands-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px;}
+.brand-card{border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--gs);}
+.brand-card.on-sand{background:var(--sand);}
+.brand-card.on-dark{background:var(--black-2);border-color:rgba(181,214,78,.25);}
+.brand-header{padding:30px 30px 22px;}
 .brand-header.dark{background:var(--black);}
-.brand-name{font-size:32px;font-weight:900;letter-spacing:-.04em;margin-bottom:6px;}
+.brand-name{font-size:30px;font-weight:900;letter-spacing:-.04em;margin-bottom:6px;color:var(--black);}
 .brand-name.lime{color:var(--lime);}
 .brand-pos{font-size:13px;line-height:1.6;margin-top:12px;}
-.brand-pos.light{color:rgba(255,255,255,.5);}
-.brand-pos.dark{color:var(--sub);}
+.brand-pos.light{color:rgba(255,255,255,.55);}
+.brand-pos.dark{color:rgba(0,0,0,.55);}
 .tag{display:inline-block;padding:5px 14px;border-radius:999px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;}
 .tag-b{background:var(--black);color:#fff;}
 .tag-l{background:rgba(181,214,78,.15);color:var(--lime);border:1px solid rgba(181,214,78,.3);}
-.tag-g{background:rgba(0,0,0,.06);color:var(--muted);}
-.brand-body{padding:24px 32px 32px;}
+.tag-g{background:rgba(0,0,0,.07);color:rgba(0,0,0,.45);}
+.brand-body{padding:22px 30px 30px;}
 .sec-label{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
-.sec-title{font-size:20px;font-weight:900;letter-spacing:-.02em;margin-bottom:16px;}
+.on-sand .sec-label{color:rgba(0,0,0,.32);}
+.sec-title{font-size:19px;font-weight:900;letter-spacing:-.02em;margin-bottom:16px;color:var(--white);}
 .promo-list{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
-.promo-item{display:flex;gap:12px;align-items:flex-start;font-size:13px;line-height:1.5;color:var(--sub);}
-.promo-item strong{color:var(--black);}
+.promo-item{display:flex;gap:12px;align-items:flex-start;font-size:13px;line-height:1.5;}
+.on-sand .promo-item{color:rgba(0,0,0,.55);}
+.on-dark .promo-item{color:rgba(255,255,255,.5);}
+.promo-item strong{}
+.on-sand .promo-item strong{color:var(--black);}
+.on-dark .promo-item strong{color:var(--white);}
 .promo-bullet{width:6px;height:6px;border-radius:50%;background:var(--black);margin-top:5px;flex-shrink:0;}
 .promo-bullet.lime{background:var(--lime);}
 
 /* NAMING GRID */
 .naming-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
-.naming-card{padding:16px;border:1.5px solid var(--line);border-radius:12px;background:#fff;}
-.naming-name{font-size:16px;font-weight:900;letter-spacing:-.02em;margin-bottom:4px;}
+.naming-card{padding:16px;border:1.5px solid rgba(0,0,0,.1);border-radius:12px;background:rgba(255,255,255,.7);}
+.on-dark .naming-card{background:rgba(255,255,255,.03);border-color:var(--line);}
+.naming-name{font-size:16px;font-weight:900;letter-spacing:-.02em;margin-bottom:4px;color:var(--black);}
+.on-dark .naming-name{color:var(--white);}
 .naming-name.lime{color:var(--lime);}
-.naming-desc{font-size:11px;color:var(--sub);line-height:1.4;}
+.naming-desc{font-size:11px;color:rgba(0,0,0,.5);line-height:1.4;}
+.on-dark .naming-desc{color:rgba(255,255,255,.4);}
 .naming-badge{margin-top:8px;display:inline-block;}
 
 /* STRATEGY */
 .strategy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px;}
-.stat-card{background:var(--gb);border:1px solid rgba(255,255,255,.9);border-radius:14px;padding:20px 22px;box-shadow:var(--gs);}
-.stat-val-sm{font-size:13px;font-weight:800;margin-bottom:6px;}
-.stat-note{font-size:12px;color:var(--sub);line-height:1.5;}
+.stat-card{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:22px 24px;box-shadow:var(--gs);position:relative;overflow:hidden;}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--phase-color,var(--lime));}
+.phase-num{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--phase-color,var(--lime));letter-spacing:.16em;margin-bottom:10px;}
+.stat-val-sm{font-size:14px;font-weight:800;margin-bottom:8px;color:var(--white);}
+.stat-note{font-size:12px;color:var(--sub);line-height:1.55;}
+
+/* CHANNEL TIMELINE */
+.channel-flow{display:flex;align-items:center;gap:6px;margin-top:14px;}
+.channel-dot{width:8px;height:8px;border-radius:50%;background:var(--line);flex-shrink:0;}
+.channel-dot.on{background:var(--phase-color,var(--lime));}
+.channel-line{flex:1;height:1px;background:var(--line);}
 
 /* LINK TO BRANDBOOK */
-.bb-link{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--black);color:#fff;border-radius:999px;font-size:13px;font-weight:700;text-decoration:none;transition:background .15s;margin-top:8px;}
-.bb-link:hover{background:#333;}
+.bb-link{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--lime);color:var(--black);border-radius:999px;font-size:13px;font-weight:700;text-decoration:none;transition:opacity .15s;margin-top:8px;}
+.bb-link:hover{opacity:.85;}
 
-@media(max-width:900px){.wrap{padding:32px 24px 60px;}.page-head{padding:48px 24px 40px;}.brands-grid{grid-template-columns:1fr;}.strategy-grid{grid-template-columns:1fr 1fr;}.naming-grid{grid-template-columns:1fr;}.u-nav{padding:0 24px;}.u-sub{display:none;}}
+/* AUDIENCE COMPARISON BAR */
+.audience-bar{display:flex;height:34px;border-radius:8px;overflow:hidden;margin-top:16px;border:1px solid var(--line);}
+.audience-seg{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;font-weight:700;color:var(--black);}
+
+@media(max-width:900px){.wrap{padding:32px 20px 60px;}.page-head{padding:44px 20px 36px;}.brands-grid,.strategy-grid,.naming-grid{grid-template-columns:1fr;}.u-nav{padding:0 20px;}.u-sub{display:none;}}
 </style>
 </head>
 <body>
 <nav class="u-nav">
-  <a href="index.html" class="u-logo"><span class="u-wordmark">BODRO</span><span class="u-sub">Dark Kitchen · Самара</span></a>
+  <a href="index.html" class="u-logo">
+    <img src="images/icon-mascot.png" alt="BODRO">
+    <span class="u-wordmark">BODRO</span>
+    <span class="u-sub">Dark Kitchen · Самара</span>
+  </a>
   <div class="u-links">
     <a href="BrandBookStrategy.html" class="u-link">BrandBookStrategy</a>
-    <a href="labelsystem.html" class="u-link">Labels</a>
     <a href="roadmap.html" class="u-link">Roadmap</a>
     <a href="menu.html" class="u-link">Menu</a>
     <a href="brand.html" class="u-link active">Brand</a>
     <a href="valuechain.html" class="u-link">Value Chain</a>
+    <a href="competitor-analysis.html" class="u-link">Competitors</a>
+    <a href="nutrition-table.html" class="u-link">Nutrition</a>
     <a href="questions.html" class="u-link">Questions</a>
-    <a href="competitor-analysis.html" class="u-link">Анализ</a>
   </div>
 </nav>
 
@@ -98,7 +133,7 @@ body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--black);pa
 
   <div class="brands-grid">
     <!-- BODRO -->
-    <div class="brand-card">
+    <div class="brand-card on-sand">
       <div class="brand-header">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
           <div class="brand-name">BODRO</div>
@@ -111,14 +146,14 @@ body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--black);pa
         <div class="brand-pos dark">Вкусная готовая еда на каждый день. Лицо мастер-бренда — наследует всё и не получает ничего своего. Без иронии, без мотивации.</div>
       </div>
       <div class="brand-body">
-        <div class="sec-label">Суть бренда</div>
-        <div class="promo-list">
-          <div class="promo-item"><div class="promo-bullet"></div><div><strong>Аудитория</strong> — взрослые занятые люди, которые не хотят тратить время на готовку.</div></div>
-          <div class="promo-item"><div class="promo-bullet"></div><div><strong>Слоган мастер-бренда</strong> — «Еда готова.» Единственный слоган в системе, на упаковку не выносится.</div></div>
-          <div class="promo-item"><div class="promo-bullet"></div><div><strong>Цена</strong> — 290–340 ₽/блюдо. Буфер 340–350 ₽ — ни одного SKU.</div></div>
+        <div class="sec-label" style="color:rgba(0,0,0,.32);">Суть бренда</div>
+        <div class="promo-list" style="color:rgba(0,0,0,.55);">
+          <div class="promo-item" style="color:rgba(0,0,0,.6);"><div class="promo-bullet"></div><div><strong style="color:var(--black);">Аудитория</strong> — взрослые занятые люди, которые не хотят тратить время на готовку.</div></div>
+          <div class="promo-item" style="color:rgba(0,0,0,.6);"><div class="promo-bullet"></div><div><strong style="color:var(--black);">Слоган мастер-бренда</strong> — «Еда готова.» Единственный слоган в системе, на упаковку не выносится.</div></div>
+          <div class="promo-item" style="color:rgba(0,0,0,.6);"><div class="promo-bullet"></div><div><strong style="color:var(--black);">Цена</strong> — 290–340 ₽/блюдо. Буфер 340–350 ₽ — ни одного SKU.</div></div>
         </div>
 
-        <div class="sec-label">Варианты нейминга</div>
+        <div class="sec-label" style="color:rgba(0,0,0,.32);">Варианты нейминга</div>
         <div class="naming-grid">
           <div class="naming-card" style="border-color:var(--black);border-width:2px;">
             <div class="naming-name">BODRO</div>
@@ -130,17 +165,17 @@ body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--black);pa
           <div class="naming-card"><div class="naming-name">ГОРЯЧО</div><div class="naming-desc">Температурный брендинг. Свежесть и домашность.</div></div>
         </div>
 
-        <div class="sec-label">Каналы продвижения</div>
+        <div class="sec-label" style="color:rgba(0,0,0,.32);">Каналы продвижения</div>
         <div class="promo-list">
-          <div class="promo-item"><div class="promo-bullet"></div><div><strong>Яндекс.Еда</strong> — основной старт. Реальные фото, без стоков.</div></div>
-          <div class="promo-item"><div class="promo-bullet"></div><div><strong>Telegram-канал</strong> — «сегодня на обед». Ежедневный пост с меню и остатком порций.</div></div>
-          <div class="promo-item"><div class="promo-bullet"></div><div><strong>Дегустации в БЦ</strong> — 100 г пробник, баннер с QR-кодом, промокод на первый заказ.</div></div>
+          <div class="promo-item" style="color:rgba(0,0,0,.6);"><div class="promo-bullet"></div><div><strong style="color:var(--black);">Яндекс.Еда</strong> — основной старт. Реальные фото, без стоков.</div></div>
+          <div class="promo-item" style="color:rgba(0,0,0,.6);"><div class="promo-bullet"></div><div><strong style="color:var(--black);">Telegram-канал</strong> — «сегодня на обед». Ежедневный пост с меню и остатком порций.</div></div>
+          <div class="promo-item" style="color:rgba(0,0,0,.6);"><div class="promo-bullet"></div><div><strong style="color:var(--black);">Дегустации в БЦ</strong> — 100 г пробник, баннер с QR-кодом, промокод на первый заказ.</div></div>
         </div>
       </div>
     </div>
 
     <!-- BODRO SMART -->
-    <div class="brand-card" style="border-color:rgba(181,214,78,.35);border-width:2px;">
+    <div class="brand-card on-dark">
       <div class="brand-header dark">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
           <div class="brand-name lime">BODRO SMART</div>
@@ -182,21 +217,41 @@ body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--black);pa
     </div>
   </div>
 
+  <!-- PRICE COMPARISON VISUAL -->
+  <div class="sec-label">Ценовое позиционирование</div>
+  <div class="sec-title">Кто дороже — и почему</div>
+  <div style="background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:24px 26px;margin-bottom:40px;">
+    <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:10px;"><span>0 ₽</span><span>450 ₽</span></div>
+    <div class="audience-bar">
+      <div class="audience-seg" style="width:64.4%;background:var(--sand);">BODRO · 290–340 ₽</div>
+      <div class="audience-seg" style="width:2.2%;background:var(--black-2);"></div>
+      <div class="audience-seg" style="width:22.2%;background:var(--lime);">SMART · 350–450 ₽</div>
+      <div class="audience-seg" style="width:11.2%;background:rgba(255,255,255,.04);"></div>
+    </div>
+    <div style="font-size:12px;color:var(--sub);margin-top:12px;line-height:1.6;">Буферная зона 340–350 ₽ не занята ни одним SKU — покупатель никогда не видит две линейки по одной цене. Полная сетка цен и обоснование — в разделе <a href="BrandBookStrategy.html" style="color:var(--lime);">BrandBookStrategy → 11 · Цена</a>.</div>
+  </div>
+
   <!-- STRATEGY -->
   <div class="sec-label">Общая стратегия</div>
   <div class="sec-title">Один бренд, две линейки — одна кухня</div>
   <div class="strategy-grid">
-    <div class="stat-card">
-      <div class="stat-val-sm">Фаза 1 — Агрегатор</div>
+    <div class="stat-card" style="--phase-color:#3B82F6;">
+      <div class="phase-num">ФАЗА 1 · СЕЙЧАС</div>
+      <div class="stat-val-sm">Агрегатор</div>
       <div class="stat-note">Оба бренда на Яндекс.Еду. BODRO — главная точка, BODRO SMART — отдельный профиль рядом. Цель: 100+ порц/день суммарно.</div>
+      <div class="channel-flow"><div class="channel-dot on" style="background:#3B82F6;"></div><div class="channel-line"></div><div class="channel-dot"></div><div class="channel-line"></div><div class="channel-dot"></div></div>
     </div>
-    <div class="stat-card">
-      <div class="stat-val-sm">Фаза 2 — DTC + подписка</div>
+    <div class="stat-card" style="--phase-color:#F59E0B;">
+      <div class="phase-num">ФАЗА 2 · ~МЕС. 4</div>
+      <div class="stat-val-sm">DTC + подписка</div>
       <div class="stat-note">Telegram-бот: BODRO SMART — «рацион недели» с КБЖУ. BODRO — «обед на неделю». Скидка 5–10% без комиссии агрегатора.</div>
+      <div class="channel-flow"><div class="channel-dot on" style="background:#F59E0B;"></div><div class="channel-line"></div><div class="channel-dot on" style="background:#F59E0B;"></div><div class="channel-line"></div><div class="channel-dot"></div></div>
     </div>
-    <div class="stat-card">
-      <div class="stat-val-sm">Фаза 3 — B2B + Станции</div>
+    <div class="stat-card" style="--phase-color:var(--lime);">
+      <div class="phase-num">ФАЗА 3 · ~МЕС. 6</div>
+      <div class="stat-val-sm">B2B + Станции</div>
       <div class="stat-note">Станции BODRO SMART в офисных центрах. BODRO — корпоративный обед под заказ. Гарантированный объём без агрегатора.</div>
+      <div class="channel-flow"><div class="channel-dot on"></div><div class="channel-line"></div><div class="channel-dot on"></div><div class="channel-line"></div><div class="channel-dot on"></div></div>
     </div>
   </div>
 

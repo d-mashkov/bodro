@@ -8,95 +8,107 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth;overflow-x:hidden;}
 :root{
-  --black:#0D0D0B;--sand:#F2EDE5;--lime:#B5D64E;--white:#FFFFFF;
+  --black:#0A0A08;--black-2:#111110;--sand:#F2EDE5;--lime:#B5D64E;--white:#FFFFFF;
+  --line:rgba(255,255,255,.08);--sub:rgba(255,255,255,.45);--muted:rgba(255,255,255,.28);
+  --glass:rgba(255,255,255,.035);--glass-2:rgba(255,255,255,.06);
+  --red:#EF4444;--amber:#F59E0B;--green:#22C55E;--blue:#3B82F6;
+  --gs:0 24px 60px rgba(0,0,0,.4);
   --mono:'JetBrains Mono',monospace;
 }
 body{font-family:'Archivo',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;}
 
 /* ─ UNIVERSAL NAV ─ */
-.u-nav{position:fixed;top:0;left:0;right:0;z-index:900;height:54px;display:flex;align-items:center;padding:0 52px;background:rgba(13,13,11,.88);backdrop-filter:blur(32px) saturate(200%);-webkit-backdrop-filter:blur(32px) saturate(200%);border-bottom:1px solid rgba(255,255,255,.07);}
-.u-logo{display:flex;align-items:baseline;gap:9px;text-decoration:none;}
+.u-nav{position:fixed;top:0;left:0;right:0;width:100%;max-width:100vw;overflow:hidden;z-index:900;height:58px;display:flex;align-items:center;gap:20px;padding:0 28px;background:rgba(10,10,8,.85);backdrop-filter:blur(28px) saturate(200%);-webkit-backdrop-filter:blur(28px) saturate(200%);border-bottom:1px solid var(--line);}
+.u-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
+.u-logo img{height:24px;width:auto;display:block;}
 .u-wordmark{font-size:15px;font-weight:900;letter-spacing:-.04em;color:var(--white);}
-.u-sub{font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.18);letter-spacing:.14em;text-transform:uppercase;}
-.u-links{display:flex;gap:2px;position:absolute;left:50%;transform:translateX(-50%);}
-.u-link{font-size:14px;font-weight:600;color:rgba(255,255,255,.55);text-decoration:none;padding:5px 14px;border-radius:7px;transition:all .15s;letter-spacing:-.01em;white-space:nowrap;}
-.u-link:hover{color:var(--white);background:rgba(255,255,255,.07);}
-.u-link.active{color:var(--white);background:rgba(255,255,255,.1);}
+.u-sub{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;}
+.u-links{flex:1;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;justify-content:flex-start;min-width:0;}
+.u-links::-webkit-scrollbar{display:none;}
+.u-link{font-size:13px;font-weight:600;color:var(--sub);text-decoration:none;padding:7px 13px;border-radius:7px;transition:all .15s;letter-spacing:-.01em;white-space:nowrap;flex-shrink:0;}
+.u-link:hover{color:var(--white);background:var(--glass-2);}
+.u-link.active{color:var(--black);background:var(--lime);}
+@media(min-width:901px){.u-links{justify-content:center;}}
 
 /* ─ HERO ─ */
 .hero{
-  min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+  min-height:92vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
   text-align:center;padding:80px 40px 60px;position:relative;overflow:hidden;
   background:var(--black);
 }
 .hero-orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(90px);}
-.orb1{width:700px;height:700px;background:rgba(181,214,78,.035);top:-120px;left:50%;transform:translateX(-50%);}
-.orb2{width:450px;height:450px;background:rgba(242,237,229,.02);bottom:-100px;left:10%;}
-.orb3{width:350px;height:350px;background:rgba(181,214,78,.025);bottom:0;right:5%;}
+.orb1{width:700px;height:700px;background:rgba(181,214,78,.05);top:-140px;left:50%;transform:translateX(-50%);}
+.orb2{width:450px;height:450px;background:rgba(242,237,229,.025);bottom:-100px;left:10%;}
+.orb3{width:350px;height:350px;background:rgba(181,214,78,.035);bottom:0;right:5%;}
 
-.hero-tag{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.12);margin-bottom:52px;}
-.hero-wordmark{font-size:clamp(120px,18vw,260px);font-weight:900;letter-spacing:-.07em;line-height:.82;position:relative;z-index:1;}
-.hero-slogan{font-size:clamp(16px,2vw,24px);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-top:32px;position:relative;z-index:1;}
-.hero-desc{font-size:15px;color:rgba(255,255,255,.32);line-height:1.75;max-width:480px;margin:20px auto 0;position:relative;z-index:1;}
+.hero-tag{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:44px;display:flex;align-items:center;gap:10px;}
+.hero-tag img{height:14px;width:auto;opacity:.5;}
+.hero-wordmark{font-size:clamp(100px,16vw,230px);font-weight:900;letter-spacing:-.07em;line-height:.82;position:relative;z-index:1;}
+.hero-slogan{font-size:clamp(16px,2vw,24px);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--sub);margin-top:28px;position:relative;z-index:1;}
+.hero-desc{font-size:15px;color:var(--sub);line-height:1.75;max-width:480px;margin:18px auto 0;position:relative;z-index:1;}
 
-.hero-stats{display:flex;gap:0;margin-top:64px;border:1px solid rgba(255,255,255,.07);border-radius:16px;overflow:hidden;position:relative;z-index:1;}
-.h-stat{flex:1;padding:24px 32px;border-right:1px solid rgba(255,255,255,.07);display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.hero-stats{display:flex;gap:0;margin-top:56px;border:1px solid var(--line);border-radius:16px;overflow:hidden;position:relative;z-index:1;background:var(--glass);backdrop-filter:blur(20px);}
+.h-stat{flex:1;padding:22px 30px;border-right:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;}
 .h-stat:last-child{border-right:none;}
-.h-stat-v{font-family:var(--mono);font-size:28px;font-weight:700;letter-spacing:-.02em;margin-bottom:4px;white-space:nowrap;line-height:1;}
-.h-stat-l{font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.2);letter-spacing:.15em;text-transform:uppercase;white-space:nowrap;}
+.h-stat-v{font-family:var(--mono);font-size:26px;font-weight:700;letter-spacing:-.02em;margin-bottom:4px;white-space:nowrap;line-height:1;color:var(--lime);}
+.h-stat-l{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;white-space:nowrap;}
 
-/* ─ PAGES GRID ─ */
-.pages-section{padding:100px 80px;background:#080806;}
-.pages-eyebrow{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.16);display:flex;align-items:center;gap:20px;margin-bottom:48px;}
-.pages-eyebrow::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.06);}
+/* ─ DASHBOARD GRID ─ */
+.pages-section{padding:96px 60px;background:var(--black-2);}
+.pages-eyebrow{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:20px;margin-bottom:40px;max-width:1400px;margin-left:auto;margin-right:auto;}
+.pages-eyebrow::after{content:'';flex:1;height:1px;background:var(--line);}
 
-.pages-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;}
+.pages-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:1400px;margin:0 auto;}
 .page-card{
-  padding:36px 32px;background:rgba(255,255,255,.025);
-  border:1px solid rgba(255,255,255,.04);
+  padding:26px 26px 24px;background:var(--glass);
+  border:1px solid var(--line);border-radius:16px;
   text-decoration:none;color:var(--white);
   transition:background .2s,border-color .2s,transform .2s;
   display:flex;flex-direction:column;gap:0;
-  position:relative;overflow:hidden;
+  position:relative;overflow:hidden;box-shadow:var(--gs);
 }
-.page-card:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1);transform:translateY(-2px);}
-.page-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent, rgba(255,255,255,.1));transform:scaleX(0);transition:transform .2s;transform-origin:left;}
+.page-card:hover{background:var(--glass-2);border-color:rgba(255,255,255,.16);transform:translateY(-3px);}
+.page-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent, rgba(255,255,255,.14));transform:scaleX(0);transition:transform .2s;transform-origin:left;}
 .page-card:hover::before{transform:scaleX(1);}
 
-.pc-num{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.2em;color:rgba(255,255,255,.14);margin-bottom:24px;}
-.pc-title{font-size:20px;font-weight:900;letter-spacing:-.03em;margin-bottom:10px;line-height:1.1;}
-.pc-desc{font-size:12px;color:rgba(255,255,255,.3);line-height:1.65;flex:1;}
-.pc-arrow{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.2);margin-top:24px;transition:color .2s;}
-.page-card:hover .pc-arrow{color:rgba(255,255,255,.5);}
+.pc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
+.pc-num{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.2em;color:var(--muted);}
+.pc-viz{height:34px;}
+.pc-title{font-size:18px;font-weight:900;letter-spacing:-.03em;margin-bottom:8px;line-height:1.1;}
+.pc-desc{font-size:11.5px;color:var(--sub);line-height:1.6;flex:1;margin-bottom:16px;}
+.pc-arrow{font-family:var(--mono);font-size:10px;color:var(--muted);transition:color .2s;display:flex;align-items:center;gap:6px;}
+.page-card:hover .pc-arrow{color:rgba(255,255,255,.7);}
 
-/* colour accents */
 .card-brand{--accent:rgba(242,237,229,.6);}
 .card-lime{--accent:var(--lime);}
 .card-white{--accent:rgba(255,255,255,.4);}
+.card-blue{--accent:var(--blue);}
+.card-amber{--accent:var(--amber);}
 
 /* ─ MANIFESTO ─ */
-.manifesto{padding:128px 80px;background:var(--black);}
-.manifesto-inner{max-width:880px;margin:0 auto;text-align:center;}
-.m-quote{font-size:clamp(28px,4vw,54px);font-weight:900;letter-spacing:-.04em;line-height:1.05;color:rgba(255,255,255,.85);}
-.m-quote span{color:rgba(255,255,255,.22);}
-.m-sub{font-size:14px;color:rgba(255,255,255,.25);margin-top:32px;line-height:1.8;max-width:560px;margin-left:auto;margin-right:auto;}
+.manifesto{padding:120px 60px;background:var(--black);position:relative;overflow:hidden;}
+.manifesto-inner{max-width:880px;margin:0 auto;text-align:center;position:relative;z-index:1;}
+.m-quote{font-size:clamp(26px,3.6vw,50px);font-weight:900;letter-spacing:-.04em;line-height:1.05;color:rgba(255,255,255,.9);}
+.m-quote span{color:var(--muted);}
+.m-sub{font-size:14px;color:var(--sub);margin-top:28px;line-height:1.8;max-width:560px;margin-left:auto;margin-right:auto;}
 
 /* ─ FOOTER ─ */
-footer{padding:40px 80px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;}
-.ft-left{display:flex;align-items:baseline;gap:12px;}
+footer{padding:36px 60px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;}
+.ft-left{display:flex;align-items:center;gap:12px;}
+.ft-left img{height:18px;width:auto;opacity:.6;}
 .ft-logo{font-size:15px;font-weight:900;letter-spacing:-.04em;}
-.ft-tag{font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.15);letter-spacing:.15em;text-transform:uppercase;}
-.ft-right{font-family:var(--mono);font-size:9px;color:rgba(255,255,255,.1);letter-spacing:.1em;}
+.ft-tag{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;}
+.ft-right{font-family:var(--mono);font-size:9px;color:rgba(255,255,255,.16);letter-spacing:.1em;}
 
 /* ─ ANIM ─ */
 .au{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);}
 .au.in{opacity:1;transform:none;}
 .d1{transition-delay:.1s!important;}.d2{transition-delay:.2s!important;}.d3{transition-delay:.3s!important;}.d4{transition-delay:.4s!important;}.d5{transition-delay:.5s!important;}.d6{transition-delay:.6s!important;}.d7{transition-delay:.7s!important;}
 
-@media(max-width:1100px){.pages-grid{grid-template-columns:1fr 1fr;}.pages-section,.manifesto{padding:80px 40px;}.hero{padding:80px 24px 48px;}.u-nav{padding:0 28px;}.u-sub{display:none;}.hero-stats{flex-direction:column;}.h-stat{border-right:none;border-bottom:1px solid rgba(255,255,255,.07);}.h-stat:last-child{border-bottom:none;}}
-@media(max-width:640px){.pages-grid{grid-template-columns:1fr;}.u-links{gap:0;}.u-link{padding:4px 8px;font-size:11px;}}
+@media(max-width:1100px){.pages-grid{grid-template-columns:1fr 1fr;}.pages-section,.manifesto{padding:72px 32px;}.hero{padding:80px 24px 48px;}.u-nav{padding:0 20px;}.u-sub{display:none;}.hero-stats{flex-wrap:wrap;}.h-stat{flex:1 1 40%;border-right:1px solid var(--line);border-bottom:1px solid var(--line);}}
+@media(max-width:640px){.pages-grid{grid-template-columns:1fr;}.h-stat{flex:1 1 100%;border-right:none;}}
 </style>
 </head>
 <body>
@@ -104,18 +116,19 @@ footer{padding:40px 80px;border-top:1px solid rgba(255,255,255,.06);display:flex
 <!-- NAV -->
 <nav class="u-nav">
   <a href="index.html" class="u-logo">
+    <img src="images/icon-mascot.png" alt="BODRO">
     <span class="u-wordmark">BODRO</span>
     <span class="u-sub">Dark Kitchen · Самара</span>
   </a>
   <div class="u-links">
     <a href="BrandBookStrategy.html" class="u-link">BrandBookStrategy</a>
-    <a href="labelsystem.html" class="u-link">Labels</a>
     <a href="roadmap.html" class="u-link">Roadmap</a>
     <a href="menu.html" class="u-link">Menu</a>
     <a href="brand.html" class="u-link">Brand</a>
     <a href="valuechain.html" class="u-link">Value Chain</a>
+    <a href="competitor-analysis.html" class="u-link">Competitors</a>
+    <a href="nutrition-table.html" class="u-link">Nutrition</a>
     <a href="questions.html" class="u-link">Questions</a>
-    <a href="competitor-analysis.html" class="u-link">Анализ</a>
   </div>
 </nav>
 
@@ -124,7 +137,7 @@ footer{padding:40px 80px;border-top:1px solid rgba(255,255,255,.06);display:flex
   <div class="hero-orb orb1"></div>
   <div class="hero-orb orb2"></div>
   <div class="hero-orb orb3"></div>
-  <div class="hero-tag au" id="t1">Dark Kitchen · Самара · 2025</div>
+  <div class="hero-tag au" id="t1"><img src="images/icon-mascot.png" alt="">Dark Kitchen · Самара · 2026</div>
   <div class="hero-wordmark au" id="t2">BODRO</div>
   <div class="hero-slogan au" id="t3">Еда готова.</div>
   <div class="hero-desc au" id="t4">Мастер-бренд и две линейки. BODRO — вкусная готовая еда на каждый день. BODRO SMART — белок и КБЖУ под контролем.</div>
@@ -136,6 +149,10 @@ footer{padding:40px 80px;border-top:1px solid rgba(255,255,255,.06);display:flex
     <div class="h-stat">
       <div class="h-stat-v">2</div>
       <div class="h-stat-l">Линейки</div>
+    </div>
+    <div class="h-stat">
+      <div class="h-stat-v">6</div>
+      <div class="h-stat-l">Конкурентов изучено</div>
     </div>
     <div class="h-stat">
       <div class="h-stat-v">1.5М</div>
@@ -150,63 +167,80 @@ footer{padding:40px 80px;border-top:1px solid rgba(255,255,255,.06);display:flex
 
 <!-- PAGES -->
 <section class="pages-section">
-  <div class="pages-eyebrow">Разделы сайта</div>
+  <div class="pages-eyebrow">Панель управления · Разделы сайта</div>
   <div class="pages-grid">
 
     <a href="BrandBookStrategy.html" class="page-card card-brand au d1">
-      <div class="pc-num">01</div>
+      <div class="pc-top"><div class="pc-num">01</div></div>
       <div class="pc-title">BrandBookStrategy</div>
-      <div class="pc-desc">Стратегия v1.2: позиционирование, архитектура, слоган «Еда готова.», Tone of Voice, упаковка без фото, цены, RTB.</div>
+      <div class="pc-desc">Стратегия v1.2: позиционирование, слоган «Еда готова.», Tone of Voice, персонаж, упаковка, RTB.</div>
       <div class="pc-arrow">→ Открыть</div>
     </a>
 
-    <a href="labelsystem.html" class="page-card card-white au d2">
-      <div class="pc-num">02</div>
-      <div class="pc-title">Label System</div>
-      <div class="pc-desc">Система этикеток для контейнеров 187×137 мм. Шаблоны BODRO и BODRO SMART с полями для КБЖУ и состава.</div>
-      <div class="pc-arrow">→ Открыть</div>
-    </a>
-
-    <a href="roadmap.html" class="page-card card-white au d3">
-      <div class="pc-num">03</div>
+    <a href="roadmap.html" class="page-card card-amber au d3">
+      <div class="pc-top"><div class="pc-num">02</div>
+        <svg class="pc-viz" viewBox="0 0 64 34" fill="none"><circle cx="17" cy="17" r="14" stroke="rgba(255,255,255,.08)" stroke-width="4"/><circle cx="17" cy="17" r="14" stroke="#F59E0B" stroke-width="4" stroke-dasharray="88" stroke-dashoffset="66" stroke-linecap="round" transform="rotate(-90 17 17)"/><text x="17" y="21" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#fff" font-weight="700">25%</text></svg>
+      </div>
       <div class="pc-title">Roadmap</div>
-      <div class="pc-desc">5 фаз запуска от подготовки до масштабирования. Статусы задач, сроки, ответственные.</div>
+      <div class="pc-desc">5 фаз запуска. Статусы задач, сроки, ответственные — от подготовки до масштаба.</div>
       <div class="pc-arrow">→ Открыть</div>
     </a>
 
     <a href="menu.html" class="page-card card-white au d4">
-      <div class="pc-num">04</div>
+      <div class="pc-top"><div class="pc-num">03</div>
+        <svg class="pc-viz" viewBox="0 0 64 34" fill="none"><rect x="0" y="18" width="6" height="16" rx="2" fill="rgba(255,255,255,.15)"/><rect x="9" y="10" width="6" height="24" rx="2" fill="rgba(255,255,255,.25)"/><rect x="18" y="4" width="6" height="30" rx="2" fill="#B5D64E"/><rect x="27" y="14" width="6" height="20" rx="2" fill="rgba(255,255,255,.2)"/><rect x="36" y="8" width="6" height="26" rx="2" fill="rgba(255,255,255,.3)"/><rect x="45" y="16" width="6" height="18" rx="2" fill="rgba(255,255,255,.15)"/></svg>
+      </div>
       <div class="pc-title">Menu</div>
-      <div class="pc-desc">18 блюд и 3 напитка с технологическими картами. Состав, КБЖУ на 100 г и порцию, себестоимость каждой позиции.</div>
+      <div class="pc-desc">18 блюд, 3 напитка, техкарты. Состав, КБЖУ на 100 г и порцию, себестоимость.</div>
       <div class="pc-arrow">→ Открыть</div>
     </a>
 
     <a href="brand.html" class="page-card card-brand au d5">
-      <div class="pc-num">05</div>
+      <div class="pc-top"><div class="pc-num">04</div></div>
       <div class="pc-title">Brand</div>
-      <div class="pc-desc">Мастер-бренд и две линейки: нейминг, позиционирование, каналы продвижения, стратегия роста.</div>
+      <div class="pc-desc">Мастер-бренд и две линейки: нейминг, позиционирование, каналы, стратегия роста.</div>
       <div class="pc-arrow">→ Открыть</div>
     </a>
 
     <a href="valuechain.html" class="page-card card-lime au d6">
-      <div class="pc-num">06</div>
+      <div class="pc-top"><div class="pc-num">05</div>
+        <svg class="pc-viz" viewBox="0 0 64 34" fill="none"><path d="M2 26 L14 22 L26 24 L38 12 L50 15 L62 4" stroke="#B5D64E" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="62" cy="4" r="3" fill="#B5D64E"/></svg>
+      </div>
       <div class="pc-title">Value Chain</div>
-      <div class="pc-desc">Финансовая модель CFO: себес → наценка → РРЦ каждого блюда, прогноз продаж, P&L, EBITDA, чувствительность, сценарии.</div>
+      <div class="pc-desc">Финмодель CFO: себес → наценка → РРЦ каждого блюда, P&L, EBITDA, сценарии.</div>
       <div class="pc-arrow">→ Открыть</div>
     </a>
 
-    <a href="questions.html" class="page-card card-white au d7">
-      <div class="pc-num">07</div>
+    <a href="competitor-analysis.html" class="page-card card-blue au d7">
+      <div class="pc-top"><div class="pc-num">06</div>
+        <svg class="pc-viz" viewBox="0 0 64 34" fill="none"><circle cx="10" cy="10" r="4" fill="#3B82F6" opacity=".8"/><circle cx="26" cy="20" r="4" fill="rgba(255,255,255,.3)"/><circle cx="42" cy="8" r="4" fill="rgba(255,255,255,.3)"/><circle cx="54" cy="26" r="6" fill="#B5D64E"/></svg>
+      </div>
+      <div class="pc-title">Competitors</div>
+      <div class="pc-desc">6 игроков рынка Самары: цена, вкус, протеин, чистота состава. Фото и дегустация.</div>
+      <div class="pc-arrow">→ Открыть</div>
+    </a>
+
+    <a href="nutrition-table.html" class="page-card card-white au d7">
+      <div class="pc-top"><div class="pc-num">07</div>
+        <svg class="pc-viz" viewBox="0 0 64 34" fill="none"><rect x="2" y="4" width="60" height="7" rx="3.5" fill="rgba(255,255,255,.1)"/><rect x="2" y="4" width="38" height="7" rx="3.5" fill="#B5D64E"/><rect x="2" y="14" width="60" height="7" rx="3.5" fill="rgba(255,255,255,.1)"/><rect x="2" y="14" width="20" height="7" rx="3.5" fill="rgba(255,255,255,.4)"/><rect x="2" y="24" width="60" height="7" rx="3.5" fill="rgba(255,255,255,.1)"/><rect x="2" y="24" width="46" height="7" rx="3.5" fill="#B5D64E"/></svg>
+      </div>
+      <div class="pc-title">Nutrition</div>
+      <div class="pc-desc">КБЖУ: BODRO vs конкуренты. 18 блюд BODRO против 17 блюд рынка Самары.</div>
+      <div class="pc-arrow">→ Открыть</div>
+    </a>
+
+    <a href="questions.html" class="page-card card-amber au d1">
+      <div class="pc-top"><div class="pc-num">08</div></div>
       <div class="pc-title">Questions</div>
-      <div class="pc-desc">Доска открытых вопросов и блокеров. Kanban: активный → отвечен → архив. Приоритеты, теги, решения.</div>
+      <div class="pc-desc">Доска открытых вопросов и блокеров. Kanban: активный → отвечен → архив.</div>
       <div class="pc-arrow">→ Открыть</div>
     </a>
 
-    <div class="page-card au d7" style="background:rgba(181,214,78,.03);border-color:rgba(181,214,78,.08);cursor:default;">
-      <div class="pc-num" style="color:rgba(181,214,78,.3);">08</div>
-      <div class="pc-title" style="color:rgba(181,214,78,.5);">BODRO SMART</div>
-      <div class="pc-desc" style="color:rgba(181,214,78,.2);">Функциональная линейка. Белок и КБЖУ под контролем, чёрная упаковка, лайм-кодирование. 350–450 ₽.</div>
-      <div class="pc-arrow" style="font-family:var(--mono);font-size:10px;color:rgba(181,214,78,.2);">Всё посчитано.</div>
+    <div class="page-card au d2" style="background:rgba(181,214,78,.03);border-color:rgba(181,214,78,.1);cursor:default;">
+      <div class="pc-top"><div class="pc-num" style="color:rgba(181,214,78,.4);">10</div></div>
+      <div class="pc-title" style="color:rgba(181,214,78,.6);">BODRO SMART</div>
+      <div class="pc-desc" style="color:rgba(181,214,78,.3);">Функциональная линейка. Белок и КБЖУ под контролем, чёрная упаковка, лайм-код. 350–450 ₽.</div>
+      <div class="pc-arrow" style="font-family:var(--mono);font-size:10px;color:rgba(181,214,78,.3);">Всё посчитано.</div>
     </div>
 
   </div>
@@ -214,6 +248,7 @@ footer{padding:40px 80px;border-top:1px solid rgba(255,255,255,.06);display:flex
 
 <!-- MANIFESTO -->
 <section class="manifesto">
+  <div class="hero-orb" style="width:600px;height:600px;background:rgba(181,214,78,.03);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
   <div class="manifesto-inner">
     <div class="m-quote au"><span>BODRO. </span>Еда готова.<br><span>SMART. </span>Всё посчитано.</div>
     <div class="m-sub au d1">Dark Kitchen в Самаре. Один мастер-бренд, две линейки, одна кухня. Прямые продажи, доставка, офисный формат.</div>
@@ -223,22 +258,19 @@ footer{padding:40px 80px;border-top:1px solid rgba(255,255,255,.06);display:flex
 <!-- FOOTER -->
 <footer>
   <div class="ft-left">
-    <div class="ft-logo">BODRO</div>
-    <div class="ft-tag">Dark Kitchen · Самара · 2025</div>
+    <img src="images/icon-mascot.png" alt="">
+    <div>
+      <div class="ft-logo">BODRO</div>
+      <div class="ft-tag">Dark Kitchen · Самара · 2026</div>
+    </div>
   </div>
   <div class="ft-right">Конфиденциально</div>
 </footer>
 
 <script>
-// Activate nav link (home = no active, since logo is the home)
-// Remove active from all
 document.querySelectorAll('.u-link').forEach(l=>l.classList.remove('active'));
-
-// Scroll animations
 const io = new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:.07,rootMargin:'0px 0px -20px 0px'});
 document.querySelectorAll('.au').forEach(el=>io.observe(el));
-
-// Hero: trigger immediately
 setTimeout(()=>{
   ['t1','t2','t3','t4','t5'].forEach((id,i)=>{
     const el=document.getElementById(id);

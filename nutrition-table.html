@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>КБЖУ — BODRO vs Конкуренты</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{overflow-x:hidden;}
+:root{
+  --black:#0A0A08;--black-2:#111110;--sand:#F2EDE5;--lime:#B5D64E;--white:#fff;
+  --bg:#0A0A08;--line:rgba(255,255,255,.08);--sub:rgba(255,255,255,.5);--muted:rgba(255,255,255,.32);
+  --gb:rgba(255,255,255,.035);--gs:0 24px 60px rgba(0,0,0,.4);
+  --mono:'JetBrains Mono',monospace;
+  --bodro:#fff;--smart:var(--lime);
+}
+body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--white);padding-top:58px;overflow-x:hidden;}
+
+/* NAV */
+.u-nav{position:fixed;top:0;left:0;right:0;width:100%;max-width:100vw;overflow:hidden;z-index:900;height:58px;display:flex;align-items:center;gap:20px;padding:0 28px;background:rgba(10,10,8,.85);backdrop-filter:blur(28px) saturate(200%);-webkit-backdrop-filter:blur(28px) saturate(200%);border-bottom:1px solid var(--line);}
+.u-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
+.u-logo img{height:24px;width:auto;display:block;}
+.u-wordmark{font-size:15px;font-weight:900;letter-spacing:-.04em;color:#fff;}
+.u-sub{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;}
+.u-links{flex:1;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;justify-content:flex-start;min-width:0;}
+.u-links::-webkit-scrollbar{display:none;}
+.u-link{font-size:13px;font-weight:600;color:var(--sub);text-decoration:none;padding:7px 13px;border-radius:7px;transition:all .15s;letter-spacing:-.01em;white-space:nowrap;flex-shrink:0;}
+.u-link:hover{color:#fff;background:rgba(255,255,255,.06);}
+.u-link.active{color:var(--black);background:var(--lime);}
+@media(min-width:901px){.u-links{justify-content:center;}}
+
+/* PAGE HEADER */
+.page-head{background:var(--black-2);color:#fff;padding:52px 60px 44px;border-bottom:1px solid var(--line);}
+.page-eyebrow{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+.ey-dot{width:6px;height:6px;border-radius:50%;background:var(--lime);flex-shrink:0;}
+.page-title{font-size:clamp(28px,3.5vw,48px);font-weight:900;letter-spacing:-.04em;margin-bottom:8px;}
+.page-desc{font-size:14px;color:var(--sub);line-height:1.65;max-width:640px;}
+
+/* CONTROLS */
+.controls{padding:18px 60px;background:rgba(255,255,255,.03);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:58px;z-index:800;}
+.filter-btn{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;border-radius:20px;border:1.5px solid var(--line);background:transparent;cursor:pointer;color:var(--muted);transition:all .15s;}
+.filter-btn:hover{border-color:rgba(255,255,255,.3);color:#fff;}
+.filter-btn.active{background:var(--lime);border-color:var(--lime);color:var(--black);}
+.filter-btn.active-lime{background:var(--lime);border-color:var(--lime);color:var(--black);}
+.ctrl-sep{width:1px;height:24px;background:var(--line);}
+.sort-select{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:20px;border:1.5px solid var(--line);background:var(--black-2);cursor:pointer;color:var(--sub);}
+.search-box{font-family:var(--mono);font-size:11px;padding:6px 14px;border-radius:20px;border:1.5px solid var(--line);background:var(--black-2);outline:none;width:200px;color:#fff;}
+.search-box:focus{border-color:var(--lime);}
+.count-badge{font-family:var(--mono);font-size:10px;color:var(--muted);margin-left:auto;}
+
+/* TABLE WRAPPER */
+.wrap{padding:32px 60px 80px;max-width:1500px;margin:0 auto;}
+.table-wrap{background:var(--gb);border-radius:16px;box-shadow:var(--gs);overflow:hidden;border:1px solid var(--line);overflow-x:auto;}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse;font-size:12px;}
+thead tr{background:var(--black-2);color:#fff;}
+thead th{
+  font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  padding:11px 10px;text-align:left;white-space:nowrap;font-weight:700;
+  border-right:1px solid rgba(255,255,255,.06);
+}
+thead th:last-child{border-right:none;}
+
+/* Column groups */
+.th-per100{background:rgba(59,130,246,.2);}
+.th-per-p{background:rgba(34,197,94,.16);}
+.th-name{background:rgba(255,255,255,.03);}
+
+tbody tr{border-bottom:1px solid var(--line);transition:background .1s;}
+tbody tr:last-child{border-bottom:none;}
+tbody tr:hover{background:rgba(255,255,255,.04);}
+
+/* BODRO rows */
+tbody tr.row-bodro{background:rgba(181,214,78,.05);}
+tbody tr.row-bodro:hover{background:rgba(181,214,78,.1);}
+tbody tr.row-bodro td:first-child{border-left:3px solid var(--lime);}
+tbody tr.row-bodro-smart{background:rgba(255,255,255,.03);}
+tbody tr.row-bodro-smart:hover{background:rgba(255,255,255,.06);}
+tbody tr.row-bodro-smart td:first-child{border-left:3px solid #fff;}
+
+td{padding:10px 10px;vertical-align:middle;color:#fff;}
+td.td-num{font-family:var(--mono);font-size:11px;text-align:right;}
+td.td-center{text-align:center;}
+
+/* Brand badge */
+.brand-badge{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:10px;white-space:nowrap;}
+.bb-bodro{background:rgba(181,214,78,.18);color:#D4EC8C;}
+.bb-smart{background:rgba(255,255,255,.1);color:#fff;}
+.bb-samocat{background:rgba(34,197,94,.15);color:#6EE7A8;}
+.bb-palych{background:rgba(239,68,68,.15);color:#FCA5A5;}
+.bb-yumi{background:rgba(245,158,11,.15);color:#FCD34D;}
+.bb-vv{background:rgba(59,130,246,.15);color:#93C5FD;}
+.bb-fitbox{background:rgba(168,85,247,.15);color:#D8B4FE;}
+.bb-priem{background:rgba(148,163,184,.15);color:#CBD5E1;}
+
+/* Dish name */
+.dish-name{font-size:12px;font-weight:600;letter-spacing:-.01em;line-height:1.3;color:#fff;}
+.dish-cat{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:2px;}
+
+/* Protein highlight */
+.prot-high{color:#4ADE80;font-weight:700;}
+.prot-med{color:#FBBF24;font-weight:600;}
+.prot-low{color:var(--muted);}
+
+/* Kcal color */
+.kcal-low{color:#4ADE80;}
+.kcal-med{color:#fff;}
+.kcal-high{color:#FBBF24;}
+
+/* Price */
+.price-tag{font-family:var(--mono);font-size:11px;font-weight:700;color:#fff;}
+.price-none{color:var(--muted);font-size:10px;}
+
+/* Weight */
+.weight-tag{font-family:var(--mono);font-size:11px;color:var(--sub);}
+
+/* Bar mini */
+.mini-bar{height:4px;border-radius:2px;background:rgba(255,255,255,.1);overflow:hidden;width:48px;display:inline-block;vertical-align:middle;margin-left:4px;}
+.mini-fill{height:100%;border-radius:2px;}
+
+/* Separator rows */
+tr.sep-row td{background:var(--black-2);font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding:8px 12px;border-bottom:1px solid var(--line);}
+
+/* Summary bar */
+.summary-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px;}
+.sum-card{background:var(--gb);border:1px solid var(--line);border-radius:12px;padding:16px 18px;box-shadow:var(--gs);min-width:0;}
+.sum-lbl{overflow-wrap:break-word;}
+.sum-val{font-size:22px;font-weight:900;letter-spacing:-.03em;margin-bottom:2px;color:#fff;}
+.sum-lbl{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;}
+
+/* Legend */
+.legend{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:20px;font-size:11px;color:var(--sub);}
+.leg-item{display:flex;align-items:center;gap:6px;}
+.leg-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0;}
+
+.hidden{display:none;}
+
+@media(max-width:900px){
+  .wrap{padding:20px 12px 60px;}
+  .controls{padding:14px 16px;}
+  .page-head{padding:40px 20px 32px;}
+  .u-nav{padding:0 16px;}
+  .u-sub{display:none;}
+  table{font-size:11px;}
+  .search-box{width:140px;}
+}
+</style>
+</head>
+<body>
+
+<nav class="u-nav">
+  <a href="index.html" class="u-logo">
+    <img src="images/icon-mascot.png" alt="BODRO">
+    <span class="u-wordmark">BODRO</span>
+    <span class="u-sub">Dark Kitchen · Самара</span>
+  </a>
+  <div class="u-links">
+    <a href="BrandBookStrategy.html" class="u-link">BrandBookStrategy</a>
+    <a href="roadmap.html" class="u-link">Roadmap</a>
+    <a href="menu.html" class="u-link">Menu</a>
+    <a href="brand.html" class="u-link">Brand</a>
+    <a href="valuechain.html" class="u-link">Value Chain</a>
+    <a href="competitor-analysis.html" class="u-link">Competitors</a>
+    <a href="nutrition-table.html" class="u-link active">Nutrition</a>
+    <a href="questions.html" class="u-link">Questions</a>
+  </div>
+</nav>
+
+<div class="page-head">
+  <div class="page-eyebrow"><div class="ey-dot"></div>НУТРИЦИОННЫЙ АНАЛИЗ · САМАРА · ИЮЛЬ 2026</div>
+  <div class="page-title">КБЖУ: BODRO vs Конкуренты</div>
+  <div class="page-desc">Полная таблица нутриентов на 100 г и на порцию — 18 блюд BODRO и 17 блюд конкурентов. Данные технологических карт и упаковок.</div>
+</div>
+
+<div class="controls" id="controls">
+  <button class="filter-btn active" onclick="setFilter('all',this)">Все блюда</button>
+  <button class="filter-btn active-lime" onclick="setFilter('bodro',this)" style="background:rgba(181,214,78,.15);border-color:var(--lime);color:var(--lime);">BODRO</button>
+  <button class="filter-btn" onclick="setFilter('comp',this)">Конкуренты</button>
+  <div class="ctrl-sep"></div>
+  <button class="filter-btn" onclick="setCat('Второе',this)">Горячее</button>
+  <button class="filter-btn" onclick="setCat('Суп',this)">Супы</button>
+  <button class="filter-btn" onclick="setCat('Салат',this)">Салаты</button>
+  <button class="filter-btn" onclick="setCat('Десерт',this)">Десерты</button>
+  <div class="ctrl-sep"></div>
+  <select class="sort-select" onchange="setSort(this.value)">
+    <option value="">Сортировка</option>
+    <option value="prot_p_desc">↓ Белок/порция</option>
+    <option value="prot_100_desc">↓ Белок/100г</option>
+    <option value="kcal_100_asc">↑ Ккал/100г</option>
+    <option value="kcal_p_asc">↑ Ккал/порция</option>
+    <option value="price_asc">↑ Цена</option>
+  </select>
+  <input type="text" class="search-box" placeholder="Поиск блюда..." oninput="doSearch(this.value)" />
+  <span class="count-badge" id="countBadge">35 позиций</span>
+</div>
+
+<div class="wrap">
+
+  <div class="summary-bar">
+    <div class="sum-card">
+      <div class="sum-val" style="color:#B5D64E;">20.2 г</div>
+      <div class="sum-lbl">Ср. белок BODRO / порция</div>
+    </div>
+    <div class="sum-card">
+      <div class="sum-val" style="color:#EF4444;">7.8 г</div>
+      <div class="sum-lbl">Ср. белок конкурентов / порция</div>
+    </div>
+    <div class="sum-card">
+      <div class="sum-val">11.3 г</div>
+      <div class="sum-lbl">Ср. белок BODRO / 100г</div>
+    </div>
+    <div class="sum-card">
+      <div class="sum-val" style="color:#EF4444;">4.1 г</div>
+      <div class="sum-lbl">Ср. белок конкурентов / 100г</div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="leg-item"><div class="leg-dot" style="background:rgba(181,214,78,.5);border:1.5px solid var(--lime);"></div>Блюдо BODRO</div>
+    <div class="leg-item"><div class="leg-dot" style="background:rgba(255,255,255,.15);border:1.5px solid #fff;"></div>BODRO SMART</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#22C55E;"></div>Белок ≥15г на порцию (хорошо)</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#F59E0B;"></div>Белок 7–15г на порцию (средне)</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#9E9C96;"></div>Белок &lt;7г на порцию (мало)</div>
+  </div>
+
+  <div class="table-wrap">
+    <table id="mainTable">
+      <thead>
+        <tr>
+          <th rowspan="2" class="th-name" style="min-width:52px;">Бренд</th>
+          <th rowspan="2" class="th-name" style="min-width:200px;">Блюдо</th>
+          <th rowspan="2" class="th-name" style="min-width:70px;">Вес, г</th>
+          <th rowspan="2" class="th-name" style="min-width:60px;">Цена, ₽</th>
+          <th colspan="4" class="th-per100" style="text-align:center;background:rgba(59,130,246,.15);">На 100 г</th>
+          <th colspan="4" class="th-per-p" style="text-align:center;background:rgba(34,197,94,.12);">На порцию</th>
+        </tr>
+        <tr>
+          <th class="th-per100" style="background:rgba(59,130,246,.1);">Ккал</th>
+          <th class="th-per100" style="background:rgba(59,130,246,.1);">Б, г</th>
+          <th class="th-per100" style="background:rgba(59,130,246,.1);">Ж, г</th>
+          <th class="th-per100" style="background:rgba(59,130,246,.1);">У, г</th>
+          <th class="th-per-p" style="background:rgba(34,197,94,.08);">Ккал</th>
+          <th class="th-per-p" style="background:rgba(34,197,94,.08);">Б, г</th>
+          <th class="th-per-p" style="background:rgba(34,197,94,.08);">Ж, г</th>
+          <th class="th-per-p" style="background:rgba(34,197,94,.08);">У, г</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+// ─── DATA ───────────────────────────────────────────────────────────────
+// type: 'bodro' | 'bodro-smart' | 'comp'
+// cat: 'Второе' | 'Суп' | 'Салат' | 'Десерт' | 'comp-горячее' | 'comp-салат' | 'comp-десерт'
+// All kcal/protein/fat/carbs are per PORTION; per-100g calculated automatically
+
+const DATA = [
+  // ── BODRO ──
+  { brand:'BODRO', type:'bodro', cat:'Второе', name:'Куриное филе гриль, булгур, овощи', w:277, price:null,
+    kcal_p:460.4, b_p:31.9, f_p:14.1, c_p:48.2 },
+  { brand:'BODRO', type:'bodro', cat:'Второе', name:'Тальятелле, грудка, сычуанский перец', w:240, price:null,
+    kcal_p:462, b_p:36.4, f_p:11.2, c_p:53.1 },
+  { brand:'BODRO', type:'bodro', cat:'Второе', name:'Говядина наршараб, мятый картофель', w:230, price:null,
+    kcal_p:305.5, b_p:27.7, f_p:8.4, c_p:30.0 },
+  { brand:'BODRO', type:'bodro', cat:'Второе', name:'Оладьи куриные из грудки', w:151, price:null,
+    kcal_p:363.4, b_p:29.3, f_p:20.2, c_p:13.9 },
+  { brand:'BODRO', type:'bodro', cat:'Второе', name:'Грудка су-вид в специях, бурый рис', w:225, price:null,
+    kcal_p:329.2, b_p:26.8, f_p:3.0, c_p:46.7 },
+  { brand:'BODRO', type:'bodro', cat:'Второе', name:'Биточки куриные паровые, киноа', w:225, price:null,
+    kcal_p:348.4, b_p:21.3, f_p:11.9, c_p:36.0 },
+  { brand:'BODRO', type:'bodro', cat:'Второе', name:'Бефстроганов с картофельным пюре', w:220, price:null,
+    kcal_p:341.7, b_p:18.6, f_p:17.4, c_p:27.2 },
+  { brand:'BODRO', type:'bodro', cat:'Второе', name:'Бризоль куриная с рисом', w:230, price:null,
+    kcal_p:353.4, b_p:21.5, f_p:9.4, c_p:43.8 },
+  { brand:'BODRO', type:'bodro', cat:'Суп', name:'Суп-пюре грибной с курицей', w:300, price:null,
+    kcal_p:385.2, b_p:26.9, f_p:20.7, c_p:22.6 },
+  { brand:'BODRO', type:'bodro', cat:'Суп', name:'Борщ с говядиной', w:350, price:null,
+    kcal_p:245.7, b_p:12.9, f_p:15.2, c_p:14.7 },
+  { brand:'BODRO', type:'bodro', cat:'Суп', name:'Суп томатный с печёными перцами', w:300, price:null,
+    kcal_p:103.9, b_p:3.1, f_p:3.4, c_p:14.4 },
+  { brand:'BODRO', type:'bodro', cat:'Салат', name:'Зелёный салат, грудка су-вид, кукуруза', w:95, price:null,
+    kcal_p:113, b_p:10.2, f_p:6.1, c_p:5.0 },
+  { brand:'BODRO', type:'bodro', cat:'Салат', name:'Витаминный салат с заправкой кимчи', w:150, price:null,
+    kcal_p:92.5, b_p:3.2, f_p:0.3, c_p:19.1 },
+  { brand:'BODRO', type:'bodro', cat:'Салат', name:'Винегрет с горчичной заправкой', w:175, price:null,
+    kcal_p:163.6, b_p:3.0, f_p:9.2, c_p:17.0 },
+  { brand:'BODRO', type:'bodro', cat:'Салат', name:'Салат-микс зелёный с бальзамиком', w:70, price:null,
+    kcal_p:69.2, b_p:1.0, f_p:6.1, c_p:2.5 },
+  { brand:'BODRO', type:'bodro', cat:'Десерт', name:'Протеиновый брауни с бананом', w:120, price:null,
+    kcal_p:197.7, b_p:21.5, f_p:6.9, c_p:10.7 },
+  { brand:'BODRO', type:'bodro', cat:'Десерт', name:'Сырники со сметаной', w:175, price:null,
+    kcal_p:639, b_p:37.0, f_p:22.2, c_p:73.2 },
+  { brand:'BODRO', type:'bodro', cat:'Гарнир', name:'Овощи бланшированные', w:150, price:null,
+    kcal_p:50, b_p:3.4, f_p:0.5, c_p:8.4 },
+
+  // ── КОНКУРЕНТЫ ──
+  // Самокат
+  { brand:'Самокат', type:'comp', cat:'Салат', name:'Салат витаминный', w:150, price:179,
+    kcal_p:100, b_p:0.93, f_p:6.12, c_p:10.3 },
+  { brand:'Самокат', type:'comp', cat:'Второе', name:'Плов с курицей', w:200, price:219,
+    kcal_p:160, b_p:7.1, f_p:4.9, c_p:22.1 },
+  { brand:'Самокат', type:'comp', cat:'Второе', name:'Куриный шницель с пюре', w:210, price:239,
+    kcal_p:160, b_p:7.9, f_p:9.4, c_p:11.1 },
+  { brand:'Самокат', type:'comp', cat:'Салат', name:'Винегрет', w:250, price:177,
+    kcal_p:88, b_p:1.6, f_p:5.6, c_p:7.8 },
+  // Палыч
+  { brand:'Палыч', type:'comp', cat:'Второе', name:'Филе индейки гриль', w:200, price:409,
+    kcal_p:155, b_p:8.0, f_p:7.4, c_p:14.0 },
+  { brand:'Палыч', type:'comp', cat:'Второе', name:'Куриное филе с овощным рагу', w:210, price:319,
+    kcal_p:233, b_p:20.4, f_p:14.4, c_p:3.0 },
+  // ЙУМИ
+  { brand:'ЙУМИ', type:'comp', cat:'Второе', name:'Жульен с курицей и грибами', w:280, price:399,
+    kcal_p:168, b_p:6.8, f_p:12.1, c_p:8.0 },
+  // ВкусВилл
+  { brand:'ВкусВилл', type:'comp', cat:'Второе', name:'Куриное филе с киноа', w:210, price:438,
+    kcal_p:137, b_p:12.6, f_p:3.2, c_p:14.6 },
+  { brand:'ВкусВилл', type:'comp', cat:'Второе', name:'Плов с курицей', w:250, price:275,
+    kcal_p:184, b_p:9.9, f_p:3.8, c_p:27.6 },
+  { brand:'ВкусВилл', type:'comp', cat:'Салат', name:'Свёкла с фетой запечённая', w:150, price:241,
+    kcal_p:167, b_p:5.1, f_p:9.4, c_p:15.5 },
+  { brand:'ВкусВилл', type:'comp', cat:'Второе', name:'Паста с лимонной курицей', w:220, price:341,
+    kcal_p:189, b_p:12.6, f_p:8.4, c_p:15.9 },
+  { brand:'ВкусВилл', type:'comp', cat:'Второе', name:'Куриное запечённое', w:210, price:352,
+    kcal_p:89, b_p:10.3, f_p:3.8, c_p:3.6 },
+  { brand:'ВкусВилл', type:'comp', cat:'Салат', name:'Винегрет', w:180, price:194,
+    kcal_p:93, b_p:2.0, f_p:5.8, c_p:8.2 },
+  // FitBox
+  { brand:'FitBox', type:'comp', cat:'Второе', name:'Лапша вок с курицей', w:300, price:null,
+    kcal_p:180, b_p:6.61, f_p:7.49, c_p:23.65 },
+  { brand:'FitBox', type:'comp', cat:'Десерт', name:'Кекс с яблоками и изюмом', w:160, price:null,
+    kcal_p:191, b_p:6.0, f_p:6.0, c_p:28.0 },
+  // ПриЕм
+  { brand:'ПриЕм', type:'comp', cat:'Второе', name:'Пожарская котлета с пюре', w:250, price:null,
+    kcal_p:150, b_p:5.5, f_p:8.0, c_p:15.0 },
+  { brand:'ПриЕм', type:'comp', cat:'Второе', name:'Куриная котлета с гречкой', w:234, price:null,
+    kcal_p:173, b_p:6.9, f_p:9.1, c_p:16.1 },
+];
+
+// Compute per-100g
+DATA.forEach(d => {
+  const k = 100 / d.w;
+  d.kcal_100 = +(d.kcal_p * k).toFixed(1);
+  d.b_100    = +(d.b_p    * k).toFixed(1);
+  d.f_100    = +(d.f_p    * k).toFixed(1);
+  d.c_100    = +(d.c_p    * k).toFixed(1);
+});
+
+// ─── STATE ───────────────────────────────────────────────────────────────
+let filterType = 'all'; // all | bodro | comp
+let filterCat  = null;
+let sortKey    = null;
+let searchQ    = '';
+
+// ─── BRAND CONFIG ────────────────────────────────────────────────────────
+const BRAND_CLASS = {
+  'BODRO':'bb-bodro','Самокат':'bb-samocat','Палыч':'bb-palych',
+  'ЙУМИ':'bb-yumi','ВкусВилл':'bb-vv','FitBox':'bb-fitbox','ПриЕм':'bb-priem'
+};
+
+function protClass(v, perPortion=false) {
+  const tHigh = perPortion ? 15 : 7;
+  const tMed  = perPortion ? 7  : 3;
+  if (v >= tHigh) return 'prot-high';
+  if (v >= tMed)  return 'prot-med';
+  return 'prot-low';
+}
+function kcalClass(v) {
+  if (v < 100) return 'kcal-low';
+  if (v < 200) return 'kcal-med';
+  return 'kcal-high';
+}
+
+function miniBar(v, max, color) {
+  const pct = Math.min(100, (v / max) * 100);
+  return `<span class="mini-bar"><span class="mini-fill" style="width:${pct}%;background:${color};"></span></span>`;
+}
+
+// ─── RENDER ──────────────────────────────────────────────────────────────
+function render() {
+  let rows = [...DATA];
+
+  // filter type
+  if (filterType === 'bodro') rows = rows.filter(d => d.type === 'bodro' || d.type === 'bodro-smart');
+  if (filterType === 'comp')  rows = rows.filter(d => d.type === 'comp');
+
+  // filter cat
+  if (filterCat) rows = rows.filter(d => d.cat === filterCat);
+
+  // search
+  if (searchQ) {
+    const q = searchQ.toLowerCase();
+    rows = rows.filter(d => d.name.toLowerCase().includes(q) || d.brand.toLowerCase().includes(q));
+  }
+
+  // sort
+  if (sortKey === 'prot_p_desc') rows.sort((a,b) => b.b_p - a.b_p);
+  if (sortKey === 'prot_100_desc') rows.sort((a,b) => b.b_100 - a.b_100);
+  if (sortKey === 'kcal_100_asc') rows.sort((a,b) => a.kcal_100 - b.kcal_100);
+  if (sortKey === 'kcal_p_asc') rows.sort((a,b) => a.kcal_p - b.kcal_p);
+  if (sortKey === 'price_asc') rows.sort((a,b) => (a.price||999) - (b.price||999));
+
+  document.getElementById('countBadge').textContent = rows.length + ' позиций';
+
+  // Group by BODRO vs конкуренты (only if showing all and no sort)
+  const useGroups = filterType === 'all' && !sortKey && !searchQ && !filterCat;
+
+  const tbody = document.getElementById('tableBody');
+  tbody.innerHTML = '';
+
+  if (useGroups) {
+    renderGroup(tbody, rows.filter(d => d.type==='bodro'||d.type==='bodro-smart'), 'BODRO · Наши блюда');
+    renderGroup(tbody, rows.filter(d => d.type==='comp'), 'Конкуренты · Рынок Самары');
+  } else {
+    rows.forEach(d => tbody.appendChild(makeRow(d)));
+  }
+}
+
+function renderGroup(tbody, rows, label) {
+  if (!rows.length) return;
+  const sep = document.createElement('tr');
+  sep.className = 'sep-row';
+  sep.innerHTML = `<td colspan="12">${label} · ${rows.length} позиций</td>`;
+  tbody.appendChild(sep);
+  rows.forEach(d => tbody.appendChild(makeRow(d)));
+}
+
+function makeRow(d) {
+  const tr = document.createElement('tr');
+  tr.className = d.type==='bodro' ? 'row-bodro' : d.type==='bodro-smart' ? 'row-bodro-smart' : '';
+  tr.setAttribute('data-type', d.type);
+  tr.setAttribute('data-cat', d.cat);
+
+  const badgeClass = BRAND_CLASS[d.brand] || 'bb-priem';
+  const priceHtml = d.price
+    ? `<span class="price-tag">${d.price}</span>`
+    : `<span class="price-none">—</span>`;
+
+  const bProtClass100 = protClass(d.b_100, false);
+  const bProtClassP   = protClass(d.b_p,   true);
+
+  // Protein bar max ~20g per 100g, ~40g per portion
+  const barP   = miniBar(d.b_p,   45, d.b_p>=15?'#22C55E':d.b_p>=7?'#F59E0B':'#9E9C96');
+  const barK100= miniBar(d.kcal_100, 350, '#3B82F6');
+
+  tr.innerHTML = `
+    <td><span class="brand-badge ${badgeClass}">${d.brand}</span></td>
+    <td>
+      <div class="dish-name">${d.name}</div>
+      <div class="dish-cat">${d.cat}</div>
+    </td>
+    <td class="td-num"><span class="weight-tag">${d.w}</span></td>
+    <td class="td-num td-center">${priceHtml}</td>
+    <td class="td-num ${kcalClass(d.kcal_100)}">${d.kcal_100}${barK100}</td>
+    <td class="td-num ${bProtClass100}">${d.b_100}</td>
+    <td class="td-num">${d.f_100}</td>
+    <td class="td-num">${d.c_100}</td>
+    <td class="td-num ${kcalClass(d.kcal_p)}">${d.kcal_p}</td>
+    <td class="td-num ${bProtClassP}">${d.b_p}${barP}</td>
+    <td class="td-num">${d.f_p}</td>
+    <td class="td-num">${d.c_p}</td>
+  `;
+  return tr;
+}
+
+// ─── CONTROLS ────────────────────────────────────────────────────────────
+let activeCatBtn = null;
+let activeTypeBtn = null;
+
+function setFilter(type, btn) {
+  filterType = type;
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    if (['all','bodro','comp'].some(v => b.getAttribute('onclick')?.includes(`'${v}'`))) {
+      b.className = 'filter-btn';
+    }
+  });
+  btn.className = type === 'bodro' ? 'filter-btn active-lime' : 'filter-btn active';
+  render();
+}
+
+function setCat(cat, btn) {
+  if (filterCat === cat) {
+    filterCat = null;
+    btn.className = 'filter-btn';
+  } else {
+    filterCat = cat;
+    document.querySelectorAll('.filter-btn').forEach(b => {
+      if (['Второе','Суп','Салат','Десерт'].some(v => b.getAttribute('onclick')?.includes(`'${v}'`))) {
+        b.className = 'filter-btn';
+      }
+    });
+    btn.className = 'filter-btn active';
+  }
+  render();
+}
+
+function setSort(v) { sortKey = v || null; render(); }
+function doSearch(v) { searchQ = v; render(); }
+
+// ─── INIT ────────────────────────────────────────────────────────────────
+render();
+</script>
+</body>
+</html>

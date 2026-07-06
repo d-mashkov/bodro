@@ -4,35 +4,43 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Questions — BODRO</title>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-:root{--mono:'JetBrains Mono',monospace;}
-body{font-family:'Archivo',sans-serif;background:#F5F4F1;padding-top:54px;height:100vh;display:flex;flex-direction:column;}
-.u-nav{position:fixed;top:0;left:0;right:0;z-index:900;height:54px;display:flex;align-items:center;padding:0 52px;background:rgba(13,13,11,.92);backdrop-filter:blur(32px) saturate(200%);-webkit-backdrop-filter:blur(32px) saturate(200%);border-bottom:1px solid rgba(255,255,255,.07);}
-.u-logo{display:flex;align-items:baseline;gap:9px;text-decoration:none;margin-right:32px;}
+html{overflow-x:hidden;}
+:root{--mono:'JetBrains Mono',monospace;--lime:#B5D64E;--line:rgba(255,255,255,.08);--muted:rgba(255,255,255,.3);--glass-2:rgba(255,255,255,.06);--sub:rgba(255,255,255,.5);}
+body{font-family:'Archivo',sans-serif;background:#0A0A08;padding-top:58px;height:100vh;display:flex;flex-direction:column;overflow-x:hidden;}
+.u-nav{position:fixed;top:0;left:0;right:0;width:100%;max-width:100vw;overflow:hidden;z-index:900;height:58px;display:flex;align-items:center;gap:20px;padding:0 28px;background:rgba(10,10,8,.85);backdrop-filter:blur(28px) saturate(200%);-webkit-backdrop-filter:blur(28px) saturate(200%);border-bottom:1px solid var(--line);}
+.u-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
+.u-logo img{height:24px;width:auto;display:block;}
 .u-wordmark{font-size:15px;font-weight:900;letter-spacing:-.04em;color:#fff;}
-.u-sub{font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.18);letter-spacing:.14em;text-transform:uppercase;}
-.u-links{display:flex;gap:2px;position:absolute;left:50%;transform:translateX(-50%);}
-.u-link{font-size:14px;font-weight:600;color:rgba(255,255,255,.55);text-decoration:none;padding:5px 14px;border-radius:7px;transition:all .15s;letter-spacing:-.01em;white-space:nowrap;}
-.u-link:hover{color:#fff;background:rgba(255,255,255,.07);}
-.u-link.active{color:#fff;background:rgba(255,255,255,.1);}
+.u-sub{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;}
+.u-links{flex:1;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;justify-content:flex-start;min-width:0;}
+.u-links::-webkit-scrollbar{display:none;}
+.u-link{font-size:13px;font-weight:600;color:var(--sub);text-decoration:none;padding:7px 13px;border-radius:7px;transition:all .15s;letter-spacing:-.01em;white-space:nowrap;flex-shrink:0;}
+.u-link:hover{color:#fff;background:var(--glass-2);}
+.u-link.active{color:#0A0A08;background:var(--lime);}
+@media(min-width:901px){.u-links{justify-content:center;}}
 iframe{flex:1;border:none;width:100%;display:block;}
-@media(max-width:900px){.u-nav{padding:0 24px;}.u-sub{display:none;}}
+@media(max-width:900px){.u-nav{padding:0 20px;}.u-sub{display:none;}}
 </style>
 </head>
 <body>
 <nav class="u-nav">
-  <a href="index.html" class="u-logo"><span class="u-wordmark">BODRO</span><span class="u-sub">Dark Kitchen · Самара</span></a>
+  <a href="index.html" class="u-logo">
+    <img src="images/icon-mascot.png" alt="BODRO">
+    <span class="u-wordmark">BODRO</span>
+    <span class="u-sub">Dark Kitchen · Самара</span>
+  </a>
   <div class="u-links">
     <a href="BrandBookStrategy.html" class="u-link">BrandBookStrategy</a>
-    <a href="labelsystem.html" class="u-link">Labels</a>
     <a href="roadmap.html" class="u-link">Roadmap</a>
     <a href="menu.html" class="u-link">Menu</a>
     <a href="brand.html" class="u-link">Brand</a>
     <a href="valuechain.html" class="u-link">Value Chain</a>
+    <a href="competitor-analysis.html" class="u-link">Competitors</a>
+    <a href="nutrition-table.html" class="u-link">Nutrition</a>
     <a href="questions.html" class="u-link active">Questions</a>
-    <a href="competitor-analysis.html" class="u-link">Анализ</a>
   </div>
 </nav>
 <iframe src="DarkKitchen_Service_v4.html?embed=1&page=questions" title="Questions Board"></iframe>

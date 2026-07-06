@@ -8,54 +8,58 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{overflow-x:hidden;}
 :root{
-  --black:#0D0D0B;--sand:#F2EDE5;--lime:#B5D64E;--white:#FFFFFF;
-  --bg:#F5F4F1;--line:#E5E3DF;--sub:#5C5A57;--muted:#9E9C96;
-  --gb:rgba(255,255,255,.85);--gs:0 2px 20px rgba(0,0,0,.07),0 1px 2px rgba(0,0,0,.04);
+  --black:#0A0A08;--black-2:#111110;--sand:#F2EDE5;--lime:#B5D64E;--white:#FFFFFF;
+  --bg:#0A0A08;--line:rgba(255,255,255,.08);--sub:rgba(255,255,255,.5);--muted:rgba(255,255,255,.32);
+  --gb:rgba(255,255,255,.035);--gs:0 24px 60px rgba(0,0,0,.4);
   --mono:'JetBrains Mono',monospace;
   --red:#EF4444;--amber:#F59E0B;--green:#22C55E;--blue:#3B82F6;
   --lime-rgb:181,214,78;
 }
-body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--black);padding-top:54px;}
+body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--white);padding-top:58px;overflow-x:hidden;}
 
 /* NAV */
-.u-nav{position:fixed;top:0;left:0;right:0;z-index:900;height:54px;display:flex;align-items:center;padding:0 52px;background:rgba(13,13,11,.92);backdrop-filter:blur(32px) saturate(200%);-webkit-backdrop-filter:blur(32px) saturate(200%);border-bottom:1px solid rgba(255,255,255,.07);}
-.u-logo{display:flex;align-items:baseline;gap:9px;text-decoration:none;margin-right:32px;}
-.u-wordmark{font-size:15px;font-weight:900;letter-spacing:-.04em;color:#fff;}
-.u-sub{font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.18);letter-spacing:.14em;text-transform:uppercase;}
-.u-links{display:flex;gap:2px;position:absolute;left:50%;transform:translateX(-50%);}
-.u-link{font-size:14px;font-weight:600;color:rgba(255,255,255,.55);text-decoration:none;padding:5px 14px;border-radius:7px;transition:all .15s;letter-spacing:-.01em;white-space:nowrap;}
-.u-link:hover{color:#fff;background:rgba(255,255,255,.07);}
-.u-link.active{color:#fff;background:rgba(255,255,255,.1);}
+.u-nav{position:fixed;top:0;left:0;right:0;width:100%;max-width:100vw;overflow:hidden;z-index:900;height:58px;display:flex;align-items:center;gap:20px;padding:0 28px;background:rgba(10,10,8,.85);backdrop-filter:blur(28px) saturate(200%);-webkit-backdrop-filter:blur(28px) saturate(200%);border-bottom:1px solid var(--line);}
+.u-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
+.u-logo img{height:24px;width:auto;display:block;}
+.u-wordmark{font-size:15px;font-weight:900;letter-spacing:-.04em;color:var(--white);}
+.u-sub{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;}
+.u-links{flex:1;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;justify-content:flex-start;min-width:0;}
+.u-links::-webkit-scrollbar{display:none;}
+.u-link{font-size:13px;font-weight:600;color:var(--sub);text-decoration:none;padding:7px 13px;border-radius:7px;transition:all .15s;letter-spacing:-.01em;white-space:nowrap;flex-shrink:0;}
+.u-link:hover{color:var(--white);background:rgba(255,255,255,.06);}
+.u-link.active{color:var(--black);background:var(--lime);}
+@media(min-width:901px){.u-links{justify-content:center;}}
 
 /* PAGE HEADER */
-.page-head{background:var(--black);color:#fff;padding:56px 80px 48px;}
-.page-eyebrow{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:14px;}
+.page-head{background:var(--black-2);color:#fff;padding:52px 60px 44px;border-bottom:1px solid var(--line);}
+.page-eyebrow{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
 .ey-dot{width:6px;height:6px;border-radius:50%;background:var(--lime);flex-shrink:0;}
-.page-title{font-size:clamp(32px,4vw,52px);font-weight:900;letter-spacing:-.04em;margin-bottom:8px;}
-.page-desc{font-size:14px;color:rgba(255,255,255,.42);line-height:1.65;max-width:640px;}
+.page-title{font-size:clamp(30px,3.6vw,46px);font-weight:900;letter-spacing:-.04em;margin-bottom:8px;}
+.page-desc{font-size:14px;color:var(--sub);line-height:1.65;max-width:640px;}
 .head-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}
-.head-pill{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);background:rgba(255,255,255,.06);padding:5px 12px;border-radius:20px;}
+.head-pill{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);background:rgba(255,255,255,.06);padding:5px 12px;border-radius:20px;}
 
 /* WRAP */
-.wrap{padding:48px 80px 80px;max-width:1400px;}
+.wrap{padding:44px 60px 80px;max-width:1400px;margin:0 auto;}
 .section{margin-bottom:56px;}
 .section-eyebrow{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
-.section-title{font-size:22px;font-weight:900;letter-spacing:-.03em;margin-bottom:4px;}
+.section-title{font-size:22px;font-weight:900;letter-spacing:-.03em;margin-bottom:4px;color:var(--white);}
 .section-desc{font-size:13px;color:var(--sub);margin-bottom:28px;line-height:1.6;}
 
 /* STATS */
 .stats-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:44px;}
-.stat-card{background:var(--gb);border:1px solid rgba(255,255,255,.9);border-radius:14px;padding:20px 22px;box-shadow:var(--gs);}
-.stat-val{font-size:26px;font-weight:900;letter-spacing:-.03em;margin-bottom:3px;line-height:1;}
+.stat-card{background:var(--gb);border:1px solid var(--line);border-radius:14px;padding:20px 22px;box-shadow:var(--gs);}
+.stat-val{font-size:26px;font-weight:900;letter-spacing:-.03em;margin-bottom:3px;line-height:1;color:var(--white);}
 .stat-lbl{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;line-height:1.4;}
 .stat-note{font-size:11px;color:var(--sub);margin-top:4px;}
 
 /* CARDS */
 .chart-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
 .chart-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;}
-.chart-card{background:var(--gb);border:1px solid rgba(255,255,255,.9);border-radius:16px;padding:24px 26px;box-shadow:var(--gs);}
-.chart-title{font-size:13px;font-weight:700;letter-spacing:-.01em;margin-bottom:3px;}
+.chart-card{background:var(--gb);border:1px solid var(--line);border-radius:16px;padding:24px 26px;box-shadow:var(--gs);}
+.chart-title{font-size:13px;font-weight:700;letter-spacing:-.01em;margin-bottom:3px;color:var(--white);}
 .chart-sub{font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:8px;letter-spacing:.06em;}
 .chart-legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;}
 .cl-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--sub);}
@@ -66,9 +70,9 @@ body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--black);pa
 /* BRAND TABLE */
 .brand-table{width:100%;border-collapse:collapse;}
 .brand-table th{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:8px 12px;text-align:left;border-bottom:2px solid var(--line);}
-.brand-table td{padding:13px 12px;border-bottom:1px solid var(--line);font-size:13px;vertical-align:middle;}
+.brand-table td{padding:13px 12px;border-bottom:1px solid var(--line);font-size:13px;vertical-align:middle;color:var(--white);}
 .brand-table tr:last-child td{border-bottom:none;}
-.brand-table tr:hover td{background:rgba(0,0,0,.02);}
+.brand-table tr:hover td{background:rgba(255,255,255,.02);}
 .brand-name{font-weight:700;font-size:14px;}
 .brand-tag{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:10px;margin-left:6px;}
 .tag-budget{background:rgba(34,197,94,.12);color:#15803D;}
@@ -90,14 +94,14 @@ body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--black);pa
 
 /* CLEAN COMPOSITION */
 .clean-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-.clean-card{background:var(--gb);border:1px solid rgba(255,255,255,.9);border-radius:14px;padding:20px 22px;box-shadow:var(--gs);}
+.clean-card{background:var(--gb);border:1px solid var(--line);border-radius:14px;padding:20px 22px;box-shadow:var(--gs);}
 .clean-brand{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
 .clean-score{font-size:36px;font-weight:900;letter-spacing:-.04em;line-height:1;margin-bottom:4px;}
 .clean-label{font-size:11px;font-weight:700;margin-bottom:10px;}
 .clean-issues{font-size:12px;color:var(--sub);line-height:1.65;}
-.clean-issues b{font-weight:700;color:var(--black);}
+.clean-issues b{font-weight:700;color:var(--white);}
 
-.bodro-zone-card{background:var(--black);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:24px;}
+.bodro-zone-card{background:var(--black-2);border:1px solid var(--line);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:24px;}
 .bodro-zone-title{font-size:18px;font-weight:900;letter-spacing:-.02em;margin-bottom:6px;}
 .bodro-zone-sub{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:24px;line-height:1.55;}
 .bz-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
@@ -115,11 +119,11 @@ body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--black);pa
 
 /* PACKAGING */
 .pack-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-.pack-card{border-radius:14px;padding:20px 22px;background:#fff;border:1px solid var(--line);}
+.pack-card{border-radius:14px;padding:20px 22px;background:var(--gb);border:1px solid var(--line);}
 .pack-score-big{font-size:38px;font-weight:900;letter-spacing:-.04em;line-height:1;}
 .pack-brand{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;color:var(--muted);}
 .pack-attr{font-size:12px;margin-top:10px;line-height:1.7;color:var(--sub);}
-.pack-attr strong{color:var(--black);font-weight:600;}
+.pack-attr strong{color:var(--white);font-weight:600;}
 
 /* OPPORTUNITIES */
 .opp-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
@@ -127,10 +131,10 @@ body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--black);pa
 .opp-num{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.08em;opacity:.4;margin-bottom:8px;}
 .opp-title{font-size:16px;font-weight:900;letter-spacing:-.02em;margin-bottom:8px;}
 .opp-body{font-size:13px;line-height:1.65;opacity:.75;}
-.opp-tag{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-top:12px;background:rgba(0,0,0,.08);}
+.opp-tag{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-top:12px;background:rgba(255,255,255,.1);}
 
 /* VERDICT */
-.verdict-wrap{background:var(--black);color:#fff;border-radius:20px;padding:40px 44px;}
+.verdict-wrap{background:var(--black-2);border:1px solid var(--line);color:#fff;border-radius:20px;padding:40px 44px;}
 .verdict-title{font-size:20px;font-weight:900;letter-spacing:-.03em;margin-bottom:20px;}
 .verdict-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;}
 .verdict-col h4{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:12px;}
@@ -164,17 +168,21 @@ body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--black);pa
 </head>
 <body>
 
-<nav class="u-nav" style="position:relative;">
-  <a href="index.html" class="u-logo"><span class="u-wordmark">BODRO</span><span class="u-sub">Dark Kitchen · Самара</span></a>
+<nav class="u-nav">
+  <a href="index.html" class="u-logo">
+    <img src="images/icon-mascot.png" alt="BODRO">
+    <span class="u-wordmark">BODRO</span>
+    <span class="u-sub">Dark Kitchen · Самара</span>
+  </a>
   <div class="u-links">
     <a href="BrandBookStrategy.html" class="u-link">BrandBookStrategy</a>
-    <a href="labelsystem.html" class="u-link">Labels</a>
     <a href="roadmap.html" class="u-link">Roadmap</a>
     <a href="menu.html" class="u-link">Menu</a>
     <a href="brand.html" class="u-link">Brand</a>
     <a href="valuechain.html" class="u-link">Value Chain</a>
+    <a href="competitor-analysis.html" class="u-link active">Competitors</a>
+    <a href="nutrition-table.html" class="u-link">Nutrition</a>
     <a href="questions.html" class="u-link">Questions</a>
-    <a href="competitor-analysis.html" class="u-link active">Анализ</a>
   </div>
 </nav>
 
@@ -235,8 +243,8 @@ body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--black);pa
       <div class="bz-grid">
         <div class="bz-col">
           <div class="bz-label">BODRO · Комфорт-еда</div>
-          <div class="bz-val">250–320 ₽</div>
-          <div style="font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.35);">≈ 1.25–1.50 ₽/г · 180–220г порция</div>
+          <div class="bz-val">290–340 ₽</div>
+          <div style="font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.35);">≈ 1.32–1.55 ₽/г · 180–220г порция</div>
           <div class="bz-desc">Белая упаковка, название блюда крупно. Белок ≥15г на порцию. Честный состав — только реальные ингредиенты, без сыра-заменителя и майонезного пюре.</div>
           <div class="bz-tags">
             <span class="bz-tag">Вкус ≥7/10</span>
@@ -247,8 +255,8 @@ body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--black);pa
         </div>
         <div class="bz-col bz-col-lime">
           <div class="bz-label bz-label-lime">BODRO SMART · Фитнес-рацион</div>
-          <div class="bz-val bz-val-lime">310–390 ₽</div>
-          <div style="font-family:var(--mono);font-size:11px;color:rgba(181,214,78,.45);">≈ 1.50–1.85 ₽/г · 200–230г порция</div>
+          <div class="bz-val bz-val-lime">350–450 ₽</div>
+          <div style="font-family:var(--mono);font-size:11px;color:rgba(181,214,78,.45);">≈ 1.67–2.14 ₽/г · 200–230г порция</div>
           <div class="bz-desc bz-desc-lime">Чёрная упаковка, КБЖУ крупно на крышке. Белок ≥25г на порцию. Ни у одного конкурента нет продукта с таким протеином при приемлемом вкусе.</div>
           <div class="bz-tags">
             <span class="bz-tag-lime bz-tag">Белок ≥25г</span>
@@ -435,7 +443,7 @@ body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--black);pa
     </div>
 
     <!-- BODRO clean promise -->
-    <div style="background:var(--black);border-radius:16px;padding:28px 32px;margin-top:20px;display:flex;gap:32px;align-items:flex-start;">
+    <div style="background:var(--black-2);border:1px solid var(--line);border-radius:16px;padding:28px 32px;margin-top:20px;display:flex;gap:32px;align-items:flex-start;">
       <div style="flex:1;">
         <div style="font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:10px;">BODRO · ОБЕЩАНИЕ СОСТАВА</div>
         <div style="font-size:18px;font-weight:900;color:#fff;margin-bottom:12px;letter-spacing:-.02em;">«Только то, что ты можешь назвать»</div>
@@ -562,37 +570,37 @@ body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--black);pa
     <div class="section-title">Рыночные возможности</div>
     <div class="section-desc">Что рынок делает плохо — и как BODRO занимает это пространство.</div>
     <div class="opp-grid">
-      <div class="opp-card" style="background:var(--black);color:#fff;">
+      <div class="opp-card" style="background:var(--black-2);color:#fff;border:1px solid rgba(181,214,78,.25);">
         <div class="opp-num">01 / ВКУС</div>
         <div class="opp-title" style="color:#fff;">Вкус — главный пустой сегмент</div>
         <div class="opp-body">Средний вкус рынка — <strong style="color:var(--lime);">4.2/10</strong>. Никто не делает еду, которую хочется снова. Палыч берёт 409 ₽ за 2/10. Даже лучшие (ВкусВилл свёкла — 8/10) — исключение. BODRO со стандартом ≥7 на каждое блюдо — в совершенно свободном сегменте.</div>
         <div class="opp-tag" style="background:rgba(181,214,78,.15);color:var(--lime);">Ключевая ставка</div>
       </div>
-      <div class="opp-card" style="background:#F8F7F4;border:1px solid var(--line);">
+      <div class="opp-card" style="background:var(--gb);border:1px solid var(--line);">
         <div class="opp-num">02 / БЕЛОК</div>
         <div class="opp-title">Рынок не решил протеиновую задачу</div>
         <div class="opp-body">Медиана белка на порцию по конкурентам — <strong>7.8г</strong>. Это вдвое меньше дневной нормы на приём пищи для активного человека. Лучший — Палыч Курица (20.4г), но вкус 2/10. <strong>BODRO SMART</strong> с ≥25г белка и вкусом ≥7/10 — уникальное предложение.</div>
         <div class="opp-tag">BODRO SMART</div>
       </div>
-      <div class="opp-card" style="background:#F8F7F4;border:1px solid var(--line);">
+      <div class="opp-card" style="background:var(--gb);border:1px solid var(--line);">
         <div class="opp-num">03 / СВЁКЛА С ФЕТОЙ</div>
         <div class="opp-title">ВкусВилл показал: свёкла с фетой — хит</div>
         <div class="opp-body">Оценка 8/10, единственный «отличный» в дегустации. Это прямой сигнал: запустить версию BODRO на этот SKU в первые два месяца. Яркий цвет, понятные ингредиенты, фотогеничность — идеальный контент для Telegram.</div>
         <div class="opp-tag">Быстрый запуск</div>
       </div>
-      <div class="opp-card" style="background:var(--black);color:#fff;">
+      <div class="opp-card" style="background:var(--black-2);color:#fff;border:1px solid rgba(181,214,78,.25);">
         <div class="opp-num">04 / ЧИСТОТА</div>
         <div class="opp-title" style="color:#fff;">Никто не держит обещание «чистого состава»</div>
         <div class="opp-body">ЙУМИ: сыр-заменитель. FitBox: ЗОЖ-слоган, дешёвые макароны. ПриЕм: пюре с майонезом. Среднее по рынку — <strong style="color:var(--lime);">4.0/10</strong> индекса чистоты. BODRO с обещанием «только то, что ты можешь назвать» и фактическим соответствием — сильное бренд-УТП.</div>
         <div class="opp-tag" style="background:rgba(181,214,78,.15);color:var(--lime);">Бренд-позиция</div>
       </div>
-      <div class="opp-card" style="background:#F8F7F4;border:1px solid var(--line);">
+      <div class="opp-card" style="background:var(--gb);border:1px solid var(--line);">
         <div class="opp-num">05 / ЦЕНОВОЕ ОКНО</div>
-        <div class="opp-title">250–320 ₽ — незаполненное окно</div>
-        <div class="opp-body">Самокат (177–239 ₽): бюджет + посредственно. Палыч/ВкусВилл (319–438 ₽): дорого при среднем качестве. BODRO в диапазоне <strong>250–320 ₽</strong> с высоким вкусом занимает зону максимального value — место без сильного игрока.</div>
+        <div class="opp-title">290–340 ₽ — незаполненное окно BODRO</div>
+        <div class="opp-body">Самокат (177–239 ₽): бёджет + посредственно. Палыч/ВкусВилл (319–438 ₽): дорого при среднем качестве. BODRO в диапазоне <strong>290–340 ₽</strong> с высоким вкусом занимает зону максимального value. BODRO SMART — <strong>350–450 ₽</strong> — выше рынка, но оправдано протеином ≥25г и КБЖУ на крышке.</div>
         <div class="opp-tag">Ценовая стратегия</div>
       </div>
-      <div class="opp-card" style="background:#F8F7F4;border:1px solid var(--line);">
+      <div class="opp-card" style="background:var(--gb);border:1px solid var(--line);">
         <div class="opp-num">06 / УПАКОВКА</div>
         <div class="opp-title">Никто не сделал упаковку, которую хочется сфотографировать</div>
         <div class="opp-body">ЙУМИ пробует — тёмная коробка хороша. Но внутри алюминий и заменители. Нет игрока с <strong>последовательной</strong> упаковкой: красивая снаружи + красивая еда внутри. Белая минималистичная крышка BODRO — незанятое пространство.</div>
@@ -620,7 +628,7 @@ body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--black);pa
         </div>
       </div>
       <div class="verdict-highlight">
-        <p>Рынок задал планку <span>4.2/10</span> на вкус и <span>4.0/10</span> на чистоту состава. BODRO с целевыми стандартами <span>≥7.5 вкус</span> и <span>≥8.5 чистота</span> входит в практически незанятый сегмент — при ценовом окне <span>250–320 ₽</span>, которое не занял ни один игрок. Первый приоритет: <span>свёкла с фетой</span> + <span>курица гриль с гарниром</span> — два доказанных хита без конкурента.</p>
+        <p>Рынок задал планку <span>4.2/10</span> на вкус и <span>4.0/10</span> на чистоту состава. BODRO с целевыми стандартами <span>≥7.5 вкус</span> и <span>≥8.5 чистота</span> входит в практически незанятый сегмент — при ценовом окне <span>290–340 ₽</span> (BODRO) и <span>350–450 ₽</span> (BODRO SMART), которые не занял ни один игрок. Первый приоритет: <span>свёкла с фетой</span> + <span>курица гриль с гарниром</span> — два доказанных хита без конкурента.</p>
       </div>
     </div>
   </div>
@@ -630,6 +638,7 @@ body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--black);pa
 <script>
 const MONO = "'JetBrains Mono', monospace";
 Chart.defaults.font.family = "'Archivo', sans-serif";
+Chart.defaults.color = 'rgba(255,255,255,.5)';
 
 const C = {
   samocat: '#22C55E', palych: '#EF4444', yumi: '#F59E0B',
@@ -692,15 +701,15 @@ new Chart(document.getElementById('pricePerGramChart'), {
       tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.x.toFixed(2)} ₽/г` } },
       zoneBands: {
         bands: [
-          { from: 1.25, to: 1.50, color: 'rgba(34,197,94,.10)' },   // BODRO
-          { from: 1.50, to: 1.85, color: 'rgba(181,214,78,.12)' },   // BODRO SMART
+          { from: 1.32, to: 1.55, color: 'rgba(34,197,94,.10)' },   // BODRO 290–340₽
+          { from: 1.67, to: 2.14, color: 'rgba(181,214,78,.12)' },   // BODRO SMART 350–450₽
         ]
       }
     },
     scales: {
       x: {
         ticks: { font:{ family:MONO, size:10 }, callback: v => v.toFixed(2) },
-        grid: { color:'rgba(0,0,0,.05)' }
+        grid: { color:'rgba(255,255,255,.05)' }
       },
       y: { ticks: { font:{ size:10 } }, grid: { display:false } }
     }
@@ -784,7 +793,7 @@ new Chart(document.getElementById('proteinAbsChart'), {
       x: {
         max: 32,
         ticks: { font:{ family:MONO, size:10 } },
-        grid: { color:'rgba(0,0,0,.05)' }
+        grid: { color:'rgba(255,255,255,.05)' }
       },
       y: { ticks: { font:{ size:10 } }, grid: { display:false } }
     }
@@ -823,7 +832,7 @@ new Chart(document.getElementById('proteinEffChart'), {
       tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.x.toFixed(1)} г белка на 100 ₽` } },
     },
     scales: {
-      x: { ticks: { font:{ family:MONO, size:10 } }, grid: { color:'rgba(0,0,0,.05)' } },
+      x: { ticks: { font:{ family:MONO, size:10 } }, grid: { color:'rgba(255,255,255,.05)' } },
       y: { ticks: { font:{ size:10 } }, grid: { display:false } }
     }
   }
@@ -871,7 +880,7 @@ new Chart(document.getElementById('tasteChart'), {
       }
     },
     scales:{
-      x:{ min:0, max:10, ticks:{font:{family:MONO,size:10},stepSize:1}, grid:{color:'rgba(0,0,0,.05)'} },
+      x:{ min:0, max:10, ticks:{font:{family:MONO,size:10},stepSize:1}, grid:{color:'rgba(255,255,255,.05)'} },
       y:{ ticks:{font:{size:11}}, grid:{display:false} }
     }
   }
@@ -885,8 +894,8 @@ const brands = [
   { name:'ПриЕм',       x:210, y:4.0, b:'priem'   },
   { name:'FitBox',      x:220, y:3.5, b:'fitbox'  },
   { name:'Палыч',       x:364, y:2.0, b:'palych'  },
-  { name:'BODRO',       x:285, y:7.5, b:'bodro'   },
-  { name:'BODRO SMART', x:350, y:8.0, b:'bodro'   },
+  { name:'BODRO',       x:315, y:7.5, b:'bodro'   },
+  { name:'BODRO SMART', x:400, y:8.0, b:'bodro'   },
 ];
 
 // Custom label plugin for scatter
@@ -930,8 +939,8 @@ new Chart(document.getElementById('scatterChart'), {
       }},
     },
     scales:{
-      x:{ title:{display:true,text:'Средняя цена (₽)',font:{family:MONO,size:10}}, min:150, max:460, grid:{color:'rgba(0,0,0,.06)'}, ticks:{font:{family:MONO,size:10}} },
-      y:{ title:{display:true,text:'Вкус (1–10)',font:{family:MONO,size:10}}, min:0, max:10, grid:{color:'rgba(0,0,0,.06)'}, ticks:{font:{family:MONO,size:10}} }
+      x:{ title:{display:true,text:'Средняя цена (₽)',font:{family:MONO,size:10}}, min:150, max:460, grid:{color:'rgba(255,255,255,.06)'}, ticks:{font:{family:MONO,size:10}} },
+      y:{ title:{display:true,text:'Вкус (1–10)',font:{family:MONO,size:10}}, min:0, max:10, grid:{color:'rgba(255,255,255,.06)'}, ticks:{font:{family:MONO,size:10}} }
     }
   },
   plugins:[scatterLabelPlugin]
@@ -964,7 +973,7 @@ new Chart(document.getElementById('cleanChart'), {
     },
     scales:{
       x:{ grid:{display:false}, ticks:{font:{size:11}} },
-      y:{ min:0, max:10, grid:{color:'rgba(0,0,0,.05)'}, ticks:{font:{family:MONO,size:10}} }
+      y:{ min:0, max:10, grid:{color:'rgba(255,255,255,.05)'}, ticks:{font:{family:MONO,size:10}} }
     }
   }
 });

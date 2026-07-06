@@ -7,66 +7,91 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-:root{--black:#0D0D0B;--sand:#F2EDE5;--lime:#B5D64E;--white:#FFFFFF;--bg:#F5F4F1;--line:#E5E3DF;--sub:#5C5A57;--muted:#9E9C96;--gb:rgba(255,255,255,.85);--gs:0 2px 20px rgba(0,0,0,.07),0 1px 2px rgba(0,0,0,.04);--mono:'JetBrains Mono',monospace;}
-body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--black);padding-top:54px;}
+html{overflow-x:hidden;}
+:root{
+  --black:#0A0A08;--black-2:#111110;--sand:#F2EDE5;--lime:#B5D64E;--white:#FFFFFF;
+  --line:rgba(255,255,255,.08);--sub:rgba(255,255,255,.5);--muted:rgba(255,255,255,.3);
+  --glass:rgba(255,255,255,.035);--glass-2:rgba(255,255,255,.06);
+  --gs:0 24px 60px rgba(0,0,0,.4);--mono:'JetBrains Mono',monospace;
+  --green:#22C55E;--amber:#F59E0B;
+}
+body{font-family:'Archivo',sans-serif;background:var(--black);color:var(--white);padding-top:58px;overflow-x:hidden;}
 
 /* NAV */
-.u-nav{position:fixed;top:0;left:0;right:0;z-index:900;height:54px;display:flex;align-items:center;padding:0 52px;background:rgba(13,13,11,.92);backdrop-filter:blur(32px) saturate(200%);-webkit-backdrop-filter:blur(32px) saturate(200%);border-bottom:1px solid rgba(255,255,255,.07);}
-.u-logo{display:flex;align-items:baseline;gap:9px;text-decoration:none;margin-right:32px;}
-.u-wordmark{font-size:15px;font-weight:900;letter-spacing:-.04em;color:#fff;}
-.u-sub{font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.18);letter-spacing:.14em;text-transform:uppercase;}
-.u-links{display:flex;gap:2px;position:absolute;left:50%;transform:translateX(-50%);}
-.u-link{font-size:14px;font-weight:600;color:rgba(255,255,255,.55);text-decoration:none;padding:5px 14px;border-radius:7px;transition:all .15s;letter-spacing:-.01em;white-space:nowrap;}
-.u-link:hover{color:#fff;background:rgba(255,255,255,.07);}
-.u-link.active{color:#fff;background:rgba(255,255,255,.1);}
+.u-nav{position:fixed;top:0;left:0;right:0;width:100%;max-width:100vw;overflow:hidden;z-index:900;height:58px;display:flex;align-items:center;gap:20px;padding:0 28px;background:rgba(10,10,8,.85);backdrop-filter:blur(28px) saturate(200%);-webkit-backdrop-filter:blur(28px) saturate(200%);border-bottom:1px solid var(--line);}
+.u-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
+.u-logo img{height:24px;width:auto;display:block;}
+.u-wordmark{font-size:15px;font-weight:900;letter-spacing:-.04em;color:var(--white);}
+.u-sub{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;}
+.u-links{flex:1;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;justify-content:flex-start;min-width:0;}
+.u-links::-webkit-scrollbar{display:none;}
+.u-link{font-size:13px;font-weight:600;color:var(--sub);text-decoration:none;padding:7px 13px;border-radius:7px;transition:all .15s;letter-spacing:-.01em;white-space:nowrap;flex-shrink:0;}
+.u-link:hover{color:var(--white);background:var(--glass-2);}
+.u-link.active{color:var(--black);background:var(--lime);}
+@media(min-width:901px){.u-links{justify-content:center;}}
 
 /* PAGE */
-.page-head{background:var(--black);color:#fff;padding:56px 80px 48px;}
-.page-eyebrow{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:14px;}
+.page-head{background:var(--black-2);color:#fff;padding:52px 60px 44px;border-bottom:1px solid var(--line);}
+.page-eyebrow{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
 .ey-dot{width:6px;height:6px;border-radius:50%;background:var(--lime);flex-shrink:0;}
-.page-title{font-size:clamp(32px,4vw,52px);font-weight:900;letter-spacing:-.04em;margin-bottom:8px;}
-.page-desc{font-size:14px;color:rgba(255,255,255,.42);line-height:1.65;max-width:600px;}
+.page-title{font-size:clamp(30px,3.6vw,46px);font-weight:900;letter-spacing:-.04em;margin-bottom:8px;}
+.page-desc{font-size:14px;color:var(--sub);line-height:1.65;max-width:600px;}
 
-.wrap{padding:48px 80px 80px;max-width:1400px;}
+.wrap{padding:40px 60px 80px;max-width:1400px;margin:0 auto;}
 
 /* STATS */
-.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:40px;}
-.stat{background:var(--gb);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.9);border-radius:14px;padding:20px 24px;box-shadow:var(--gs);}
-.stat-val{font-size:28px;font-weight:900;letter-spacing:-.03em;margin-bottom:3px;}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px;}
+.stat{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:20px 24px;box-shadow:var(--gs);}
+.stat-val{font-size:26px;font-weight:900;letter-spacing:-.03em;margin-bottom:3px;}
 .stat-lbl{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;}
+
+/* OVERALL PROGRESS */
+.progress-card{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:22px 26px;margin-bottom:40px;}
+.progress-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;}
+.progress-title{font-size:13px;font-weight:700;color:var(--white);}
+.progress-pct{font-family:var(--mono);font-size:20px;font-weight:700;color:var(--lime);}
+.progress-outer{height:10px;background:rgba(255,255,255,.06);border-radius:6px;overflow:hidden;display:flex;}
+.progress-seg{height:100%;}
+.progress-legend{display:flex;gap:18px;margin-top:12px;font-family:var(--mono);font-size:10px;color:var(--muted);}
+.progress-legend span{display:inline-flex;align-items:center;gap:5px;}
+.progress-legend i{width:8px;height:8px;border-radius:2px;display:inline-block;}
 
 /* PHASES */
 .phases{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
 .tl-phase{margin-bottom:20px;}
 .tl-phase-label{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:10px 0 10px 14px;border-left:2px solid var(--line);}
-.tl-phase-label.done{border-color:#22C55E;color:#16A34A;}
-.tl-phase-label.prog{border-color:#F59E0B;color:#D97706;}
+.tl-phase-label.done{border-color:var(--green);color:var(--green);}
+.tl-phase-label.prog{border-color:var(--amber);color:var(--amber);}
 .tl-items{margin-top:6px;display:flex;flex-direction:column;gap:6px;}
-.tl-item{display:flex;gap:12px;align-items:flex-start;background:var(--gb);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.9);border-radius:12px;padding:14px 18px;box-shadow:var(--gs);}
+.tl-item{display:flex;gap:12px;align-items:flex-start;background:var(--glass);border:1px solid var(--line);border-radius:12px;padding:14px 18px;box-shadow:var(--gs);}
 .s-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:4px;}
-.s-done{background:#22C55E;box-shadow:0 0 0 3px rgba(34,197,94,.15);}
-.s-prog{background:#F59E0B;box-shadow:0 0 0 3px rgba(245,158,11,.15);}
+.s-done{background:var(--green);box-shadow:0 0 0 3px rgba(34,197,94,.15);}
+.s-prog{background:var(--amber);box-shadow:0 0 0 3px rgba(245,158,11,.15);}
 .s-pend{background:var(--line);border:2px solid var(--muted);}
-.tl-name{font-size:13px;font-weight:700;letter-spacing:-.01em;margin-bottom:2px;}
+.tl-name{font-size:13px;font-weight:700;letter-spacing:-.01em;margin-bottom:2px;color:var(--white);}
 .tl-name.done-text{color:var(--muted);text-decoration:line-through;opacity:.7;}
 .tl-desc{font-size:11px;color:var(--sub);line-height:1.5;}
-.tl-dur{display:inline-block;background:rgba(0,0,0,.05);padding:2px 8px;border-radius:6px;font-family:var(--mono);font-size:9px;margin-top:4px;color:var(--muted);}
+.tl-dur{display:inline-block;background:rgba(255,255,255,.05);padding:2px 8px;border-radius:6px;font-family:var(--mono);font-size:9px;margin-top:4px;color:var(--muted);}
 
-@media(max-width:900px){.wrap{padding:40px 28px 60px;}.page-head{padding:48px 28px 40px;}.phases{grid-template-columns:1fr;}.stats-row{grid-template-columns:1fr 1fr;}.u-nav{padding:0 24px;}.u-sub{display:none;}}
+@media(max-width:900px){.wrap{padding:32px 20px 60px;}.page-head{padding:44px 20px 36px;}.phases{grid-template-columns:1fr;}.stats-row{grid-template-columns:1fr 1fr;}.u-nav{padding:0 20px;}.u-sub{display:none;}}
 </style>
 </head>
 <body>
 <nav class="u-nav">
-  <a href="index.html" class="u-logo"><span class="u-wordmark">BODRO</span><span class="u-sub">Dark Kitchen · Самара</span></a>
+  <a href="index.html" class="u-logo">
+    <img src="images/icon-mascot.png" alt="BODRO">
+    <span class="u-wordmark">BODRO</span>
+    <span class="u-sub">Dark Kitchen · Самара</span>
+  </a>
   <div class="u-links">
     <a href="BrandBookStrategy.html" class="u-link">BrandBookStrategy</a>
-    <a href="labelsystem.html" class="u-link">Labels</a>
     <a href="roadmap.html" class="u-link active">Roadmap</a>
     <a href="menu.html" class="u-link">Menu</a>
     <a href="brand.html" class="u-link">Brand</a>
     <a href="valuechain.html" class="u-link">Value Chain</a>
+    <a href="competitor-analysis.html" class="u-link">Competitors</a>
+    <a href="nutrition-table.html" class="u-link">Nutrition</a>
     <a href="questions.html" class="u-link">Questions</a>
-    <a href="competitor-analysis.html" class="u-link">Анализ</a>
   </div>
 </nav>
 
@@ -77,11 +102,18 @@ body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--black);pa
 </div>
 
 <div class="wrap">
-  <div class="stats-row">
-    <div class="stat"><div class="stat-val" style="color:#22C55E;">4</div><div class="stat-lbl">Задачи выполнены</div></div>
-    <div class="stat"><div class="stat-val" style="color:#F59E0B;">1</div><div class="stat-lbl">В работе сейчас</div></div>
-    <div class="stat"><div class="stat-val" style="color:var(--muted);">28</div><div class="stat-lbl">Предстоит сделать</div></div>
-    <div class="stat"><div class="stat-val">1.5 млн</div><div class="stat-lbl">Стартовый бюджет, ₽</div></div>
+  <div class="stats-row" id="statsRow"></div>
+  <div class="progress-card">
+    <div class="progress-top">
+      <div class="progress-title">Прогресс проекта</div>
+      <div class="progress-pct" id="progressPct">—</div>
+    </div>
+    <div class="progress-outer" id="progressBar"></div>
+    <div class="progress-legend">
+      <span><i style="background:var(--green);"></i>Выполнено</span>
+      <span><i style="background:var(--amber);"></i>В работе</span>
+      <span><i style="background:rgba(255,255,255,.1);"></i>Предстоит</span>
+    </div>
   </div>
   <div class="phases">
     <div>
@@ -104,6 +136,7 @@ const ROADMAP = {
     {done:true,name:"Концепция двух брендов",desc:"Позиционирование и айдентика для BODRO (комфорт-еда, белая упаковка) и BODRO SMART (КБЖУ-фокус, чёрная).",dur:""},
     {done:true,name:"Технологические карты (18 блюд + напитки)",desc:"Рецептуры, граммовки, себестоимость каждой позиции: 18 блюд, 3 напитка, добавка.",dur:""},
     {done:true,name:"Финансовая модель",desc:"P&L по 4 сценариям, Value Chain, расчёт точки безубыточности.",dur:""},
+    {done:true,name:"Полевой анализ 6 конкурентов",desc:"Живая закупка и дегустация 17 блюд рынка Самары: цена, вкус, протеин, чистота состава.",dur:""},
     {prog:true,name:"Упаковка: дизайн-концепция",desc:"BODRO SMART: КБЖУ крупно на чёрной крышке. BODRO: название блюда + белая минималистичная крышка.",dur:"В работе"},
   ],
   phase1:[
@@ -150,6 +183,26 @@ function renderPhase(key,id){
     </div>`).join('');
 }
 ['phase0','phase1','phase2','phase3','phase4','phase5'].forEach(k=>renderPhase(k,k));
+
+// Compute real stats from data (fixes stale hardcoded counts)
+const all = Object.values(ROADMAP).flat();
+const doneCount = all.filter(t=>t.done).length;
+const progCount = all.filter(t=>t.prog).length;
+const pendCount = all.length - doneCount - progCount;
+document.getElementById('statsRow').innerHTML = `
+  <div class="stat"><div class="stat-val" style="color:var(--green);">${doneCount}</div><div class="stat-lbl">Задачи выполнены</div></div>
+  <div class="stat"><div class="stat-val" style="color:var(--amber);">${progCount}</div><div class="stat-lbl">В работе сейчас</div></div>
+  <div class="stat"><div class="stat-val" style="color:var(--muted);">${pendCount}</div><div class="stat-lbl">Предстоит сделать</div></div>
+  <div class="stat"><div class="stat-val">1.5 млн</div><div class="stat-lbl">Стартовый бюджет, ₽</div></div>
+`;
+const donePct = Math.round(doneCount/all.length*100);
+const progPct = Math.round(progCount/all.length*100);
+document.getElementById('progressPct').textContent = donePct + '%';
+document.getElementById('progressBar').innerHTML = `
+  <div class="progress-seg" style="width:${donePct}%;background:var(--green);"></div>
+  <div class="progress-seg" style="width:${progPct}%;background:var(--amber);"></div>
+  <div class="progress-seg" style="width:${100-donePct-progPct}%;background:rgba(255,255,255,.06);"></div>
+`;
 </script>
 </body>
 </html>
