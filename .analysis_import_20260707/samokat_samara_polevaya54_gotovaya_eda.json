@@ -1,0 +1,996 @@
+{
+  "byBrand": {
+    "Creative Kitchen": {
+      "count": 5,
+      "medianPrice": 284,
+      "medianRub100g": 149
+    },
+    "I Like Eat": {
+      "count": 1,
+      "medianPrice": 209,
+      "medianRub100g": 190
+    },
+    "ITLE kitchen": {
+      "count": 2,
+      "medianPrice": 294,
+      "medianRub100g": 145
+    },
+    "President": {
+      "count": 2,
+      "medianPrice": 205,
+      "medianRub100g": 137
+    },
+    "Белоручка": {
+      "count": 1,
+      "medianPrice": 119,
+      "medianRub100g": 79
+    },
+    "ЙУМИ": {
+      "count": 2,
+      "medianPrice": 297,
+      "medianRub100g": 158
+    },
+    "Мираторг": {
+      "count": 1,
+      "medianPrice": 295,
+      "medianRub100g": 84
+    },
+    "Самокат СТМ": {
+      "count": 18,
+      "medianPrice": 264,
+      "medianRub100g": 132
+    },
+    "Сытно вкусно": {
+      "count": 3,
+      "medianPrice": 199,
+      "medianRub100g": 111
+    },
+    "У Палыча": {
+      "count": 11,
+      "medianPrice": 309,
+      "medianRub100g": 147
+    }
+  },
+  "collectedAt": "2026-07-07T19:58:37.181Z",
+  "location": "Полевая улица, 54",
+  "palych": [
+    {
+      "brand": "У Палыча",
+      "flags": [],
+      "href": "https://samokat.ru/product/pshyonnaya-molochnaya-kasha-druzhba-u-palycha-200-g",
+      "maxVisibleQty": 2,
+      "name": "Пшённая молочная каша Дружба У Палыча",
+      "oldPrice": null,
+      "price": 199,
+      "raw": [
+        "1",
+        "2",
+        "Больше нет",
+        "Пшённая молочная каша Дружба У Палыча",
+        "200 г",
+        "199 ₽"
+      ],
+      "rub100g": 100,
+      "weight_g": 200
+    },
+    {
+      "brand": "У Палыча",
+      "flags": [
+        "300 г·Острый вкус"
+      ],
+      "href": "https://samokat.ru/product/ramen-u-palycha-s-kuritsey-300-g",
+      "maxVisibleQty": 3,
+      "name": "Рамен У Палыча, с курицей",
+      "oldPrice": null,
+      "price": 279,
+      "raw": [
+        "Комбо",
+        "1",
+        "2",
+        "3",
+        "Больше нет",
+        "Рамен У Палыча, с курицей",
+        "300 г·Острый вкус",
+        "279 ₽"
+      ],
+      "rub100g": 93,
+      "weight_g": 300
+    },
+    {
+      "brand": "У Палыча",
+      "flags": [],
+      "href": "https://samokat.ru/product/tom-yam-u-palycha-s-kuritsey-360-g",
+      "maxVisibleQty": 1,
+      "name": "Том ям У Палыча, с курицей",
+      "oldPrice": null,
+      "price": 429,
+      "raw": [
+        "1",
+        "Больше нет",
+        "Том ям У Палыча, с курицей",
+        "360 г",
+        "429 ₽"
+      ],
+      "rub100g": 119,
+      "weight_g": 360
+    },
+    {
+      "brand": "У Палыча",
+      "flags": [],
+      "href": "https://samokat.ru/product/sendvich-u-palycha-s-tuntsom-180-g",
+      "maxVisibleQty": 2,
+      "name": "Сэндвич У Палыча, с тунцом",
+      "oldPrice": null,
+      "price": 299,
+      "raw": [
+        "1",
+        "2",
+        "Больше нет",
+        "Сэндвич У Палыча, с тунцом",
+        "180 г",
+        "299 ₽"
+      ],
+      "rub100g": 166,
+      "weight_g": 180
+    },
+    {
+      "brand": "У Палыча",
+      "flags": [],
+      "href": "https://samokat.ru/product/sendvich-u-palycha-s-kopchyonoy-kuritsey-180-g",
+      "maxVisibleQty": 1,
+      "name": "Сэндвич У Палыча, с копчёной курицей",
+      "oldPrice": null,
+      "price": 289,
+      "raw": [
+        "1",
+        "Больше нет",
+        "Сэндвич У Палыча, с копчёной курицей",
+        "180 г",
+        "289 ₽"
+      ],
+      "rub100g": 161,
+      "weight_g": 180
+    },
+    {
+      "brand": "У Палыча",
+      "flags": [],
+      "href": "https://samokat.ru/product/salat-u-palycha-kuritsa-s-ananasom-180-g",
+      "maxVisibleQty": 1,
+      "name": "Салат У Палыча, курица с ананасом",
+      "oldPrice": null,
+      "price": 309,
+      "raw": [
+        "1",
+        "Больше нет",
+        "Салат У Палыча, курица с ананасом",
+        "180 г",
+        "309 ₽"
+      ],
+      "rub100g": 172,
+      "weight_g": 180
+    },
+    {
+      "brand": "У Палыча",
+      "flags": [],
+      "href": "https://samokat.ru/product/udon-u-palycha-s-kuritsey-v-souse-teriyaki-220-g",
+      "maxVisibleQty": 2,
+      "name": "Удон У Палыча с курицей, в соусе терияки",
+      "oldPrice": null,
+      "price": 339,
+      "raw": [
+        "Комбо",
+        "1",
+        "2",
+        "Больше нет",
+        "Удон У Палыча с курицей, в соусе терияки",
+        "220 г",
+        "339 ₽"
+      ],
+      "rub100g": 154,
+      "weight_g": 220
+    },
+    {
+      "brand": "У Палыча",
+      "flags": [],
+      "href": "https://samokat.ru/product/kurinoe-file-u-palycha-pod-gribnym-sousom-s-kartofelem-karri-210-g",
+      "maxVisibleQty": 1,
+      "name": "Куриное филе У Палыча, под грибным соусом, с картофелем карри",
+      "oldPrice": null,
+      "price": 389,
+      "raw": [
+        "1",
+        "Больше нет",
+        "Куриное филе У Палыча, под грибным соусом, с картофелем карри",
+        "210 г",
+        "389 ₽"
+      ],
+      "rub100g": 185,
+      "weight_g": 210
+    },
+    {
+      "brand": "У Палыча",
+      "flags": [],
+      "href": "https://samokat.ru/product/zalivnoe-provansal-u-palycha-iz-kuritsy-240-g",
+      "maxVisibleQty": 1,
+      "name": "Заливное Провансаль У Палыча, из курицы",
+      "oldPrice": null,
+      "price": 309,
+      "raw": [
+        "1",
+        "Больше нет",
+        "Заливное Провансаль У Палыча, из курицы",
+        "240 г",
+        "309 ₽"
+      ],
+      "rub100g": 129,
+      "weight_g": 240
+    },
+    {
+      "brand": "У Палыча",
+      "flags": [],
+      "href": "https://samokat.ru/product/domashnyaya-solyanka-u-palycha-300-g",
+      "maxVisibleQty": 2,
+      "name": "Домашняя солянка У Палыча",
+      "oldPrice": null,
+      "price": 259,
+      "raw": [
+        "1",
+        "2",
+        "Больше нет",
+        "Домашняя солянка У Палыча",
+        "300 г",
+        "259 ₽"
+      ],
+      "rub100g": 86,
+      "weight_g": 300
+    },
+    {
+      "brand": "У Палыча",
+      "flags": [
+        "210 г·Много белка"
+      ],
+      "href": "https://samokat.ru/product/kurinyy-shnitsel-po-ministerski-u-palycha-s-risom-210-g",
+      "maxVisibleQty": 3,
+      "name": "Куриный шницель по-министерски У Палыча, с рисом",
+      "oldPrice": null,
+      "price": 309,
+      "raw": [
+        "1",
+        "2",
+        "3",
+        "Больше нет",
+        "Куриный шницель по-министерски У Палыча, с рисом",
+        "210 г·Много белка",
+        "309 ₽"
+      ],
+      "rub100g": 147,
+      "weight_g": 210
+    }
+  ],
+  "products": [
+    "[Circular]",
+    {
+      "brand": "ITLE kitchen",
+      "flags": [],
+      "href": "https://samokat.ru/product/sendvich-itle-kitchen-s-zapechyonnoy-indeykoy-khalyal-195-g",
+      "maxVisibleQty": 1,
+      "name": "Сэндвич ИTLE kitchen, с запечённой индейкой, халяль",
+      "oldPrice": null,
+      "price": 269,
+      "raw": [
+        "1",
+        "Больше нет",
+        "Сэндвич ИTLE kitchen, с запечённой индейкой, халяль",
+        "195 г",
+        "269 ₽"
+      ],
+      "rub100g": 138,
+      "weight_g": 195
+    },
+    {
+      "brand": "Самокат СТМ",
+      "flags": [],
+      "href": "https://samokat.ru/product/salat-samokat-s-kuritsey-i-granatom-180-g",
+      "maxVisibleQty": 3,
+      "name": "Салат Самокат, с курицей и гранатом",
+      "oldPrice": null,
+      "price": 269,
+      "raw": [
+        "1",
+        "2",
+        "3",
+        "Больше нет",
+        "Салат Самокат, с курицей и гранатом",
+        "180 г",
+        "269 ₽"
+      ],
+      "rub100g": 149,
+      "weight_g": 180
+    },
+    "[Circular]",
+    "[Circular]",
+    {
+      "brand": "Creative Kitchen",
+      "flags": [
+        "210 г·Много белка"
+      ],
+      "href": "https://samokat.ru/product/omlet-grecheskiy-creative-kitchen-s-nachinkoy-iz-shpinata-gribov-i-syra-210-g",
+      "maxVisibleQty": 1,
+      "name": "Омлет Греческий Creative Kitchen, с начинкой из шпината, грибов и сыра",
+      "oldPrice": null,
+      "price": 259,
+      "raw": [
+        "1",
+        "Больше нет",
+        "Омлет Греческий Creative Kitchen, с начинкой из шпината, грибов и сыра",
+        "210 г·Много белка",
+        "259 ₽"
+      ],
+      "rub100g": 123,
+      "weight_g": 210
+    },
+    {
+      "brand": "Самокат СТМ",
+      "flags": [
+        "200 г·Много белка"
+      ],
+      "href": "https://samokat.ru/product/kurinoe-file-samokat-v-khrustyashchey-korochke-s-kislo-sladkim-sousom-200-g",
+      "maxVisibleQty": 1,
+      "name": "Куриное филе Самокат, в хрустящей корочке, с кисло-сладким соусом",
+      "oldPrice": null,
+      "price": 329,
+      "raw": [
+        "1",
+        "Больше нет",
+        "Куриное филе Самокат, в хрустящей корочке, с кисло-сладким соусом",
+        "200 г·Много белка",
+        "329 ₽"
+      ],
+      "rub100g": 165,
+      "weight_g": 200
+    },
+    {
+      "brand": "Creative Kitchen",
+      "flags": [],
+      "href": "https://samokat.ru/product/syrniki-creative-kitchen-s-vishnyovoy-nachinkoy-140-g",
+      "maxVisibleQty": 2,
+      "name": "Сырники Creative Kitchen, с вишнёвой начинкой",
+      "oldPrice": null,
+      "price": 209,
+      "raw": [
+        "Комбо",
+        "1",
+        "2",
+        "Больше нет",
+        "Сырники Creative Kitchen, с вишнёвой начинкой",
+        "140 г",
+        "209 ₽"
+      ],
+      "rub100g": 149,
+      "weight_g": 140
+    },
+    {
+      "brand": "Белоручка",
+      "flags": [],
+      "href": "https://samokat.ru/product/funchoza-po-koreyski-beloruchka-s-ovoshchami-150-g",
+      "maxVisibleQty": 1,
+      "name": "Фунчоза по-корейски Белоручка, с овощами",
+      "oldPrice": null,
+      "price": 119,
+      "raw": [
+        "1",
+        "Больше нет",
+        "Фунчоза по-корейски Белоручка, с овощами",
+        "150 г",
+        "119 ₽"
+      ],
+      "rub100g": 79,
+      "weight_g": 150
+    },
+    {
+      "brand": "Самокат СТМ",
+      "flags": [
+        "300 мл·Понравится детям"
+      ],
+      "href": "https://samokat.ru/product/sup-samokat-so-zvyozdochkami-i-kurinymi-frikadelkami-300-ml",
+      "maxVisibleQty": 2,
+      "name": "Суп Самокат, со звёздочками и куриными фрикадельками",
+      "oldPrice": null,
+      "price": 199,
+      "raw": [
+        "1",
+        "2",
+        "Больше нет",
+        "Суп Самокат, со звёздочками и куриными фрикадельками",
+        "300 мл·Понравится детям",
+        "199 ₽"
+      ],
+      "rub100g": 66,
+      "weight_g": 300
+    },
+    {
+      "brand": "Самокат СТМ",
+      "flags": [
+        "200 г·Вкус Азии"
+      ],
+      "href": "https://samokat.ru/product/vok-samokat-grechnevaya-lapsha-s-krevetkami-v-soevo-chesnochnom-souse-200-g",
+      "maxVisibleQty": 2,
+      "name": "Вок Самокат, гречневая лапша, с креветками, в соево-чесночном соусе",
+      "oldPrice": null,
+      "price": 309,
+      "raw": [
+        "Комбо",
+        "1",
+        "2",
+        "Больше нет",
+        "Вок Самокат, гречневая лапша, с креветками, в соево-чесночном соусе",
+        "200 г·Вкус Азии",
+        "309 ₽"
+      ],
+      "rub100g": 155,
+      "weight_g": 200
+    },
+    {
+      "brand": "Самокат СТМ",
+      "flags": [],
+      "href": "https://samokat.ru/product/tom-yam-samokat-s-kuritsey-300-g",
+      "maxVisibleQty": 4,
+      "name": "Том ям Самокат, с курицей",
+      "oldPrice": null,
+      "price": 359,
+      "raw": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "Больше нет",
+        "Том ям Самокат, с курицей",
+        "300 г",
+        "359 ₽"
+      ],
+      "rub100g": 120,
+      "weight_g": 300
+    },
+    {
+      "brand": "Creative Kitchen",
+      "flags": [],
+      "href": "https://samokat.ru/product/salat-tokio-creative-kitchen-170-g",
+      "maxVisibleQty": 1,
+      "name": "Салат Токио Creative Kitchen",
+      "oldPrice": null,
+      "price": 309,
+      "raw": [
+        "Комбо",
+        "1",
+        "Больше нет",
+        "Салат Токио Creative Kitchen",
+        "170 г",
+        "309 ₽"
+      ],
+      "rub100g": 182,
+      "weight_g": 170
+    },
+    {
+      "brand": "ITLE kitchen",
+      "flags": [
+        "210 г·Много белка"
+      ],
+      "href": "https://samokat.ru/product/lyulya-kebab-itle-kitchen-s-zapechyonnymi-ovoshchami-khalyal-210-g",
+      "maxVisibleQty": 1,
+      "name": "Люля-кебаб ИTLE kitchen, с запечёнными овощами, халяль",
+      "oldPrice": null,
+      "price": 319,
+      "raw": [
+        "1",
+        "Больше нет",
+        "Люля-кебаб ИTLE kitchen, с запечёнными овощами, халяль",
+        "210 г·Много белка",
+        "319 ₽"
+      ],
+      "rub100g": 152,
+      "weight_g": 210
+    },
+    "[Circular]",
+    {
+      "brand": "Creative Kitchen",
+      "flags": [],
+      "href": "https://samokat.ru/product/sup-laksa-creative-kitchen-250-g",
+      "maxVisibleQty": 2,
+      "name": "Суп Лакса Creative Kitchen",
+      "oldPrice": 379,
+      "price": 284,
+      "raw": [
+        "Комбо",
+        "1",
+        "2",
+        "Больше нет",
+        "Суп Лакса Creative Kitchen",
+        "250 г",
+        "379284 ₽"
+      ],
+      "rub100g": 114,
+      "weight_g": 250
+    },
+    {
+      "brand": "Creative Kitchen",
+      "flags": [],
+      "href": "https://samokat.ru/product/konvertiki-creative-kitchen-s-krem-chizom-i-malinoy-140-g",
+      "maxVisibleQty": 1,
+      "name": "Конвертики Creative Kitchen, с крем-чизом и малиной",
+      "oldPrice": null,
+      "price": 289,
+      "raw": [
+        "1",
+        "Больше нет",
+        "Конвертики Creative Kitchen, с крем-чизом и малиной",
+        "140 г",
+        "289 ₽"
+      ],
+      "rub100g": 206,
+      "weight_g": 140
+    },
+    {
+      "brand": "Самокат СТМ",
+      "flags": [],
+      "href": "https://samokat.ru/product/blinchiki-samokat-so-slivochnym-syrom-i-klubnichnym-konfityurom-220-g",
+      "maxVisibleQty": 2,
+      "name": "Блинчики Самокат, со сливочным сыром и клубничным конфитюром",
+      "oldPrice": null,
+      "price": 289,
+      "raw": [
+        "1",
+        "2",
+        "Больше нет",
+        "Блинчики Самокат, со сливочным сыром и клубничным конфитюром",
+        "220 г",
+        "289 ₽"
+      ],
+      "rub100g": 131,
+      "weight_g": 220
+    },
+    "[Circular]",
+    {
+      "brand": "President",
+      "flags": [],
+      "href": "https://samokat.ru/product/zapekanka-president-tvorozhnaya-s-kusochkami-grushi-150-g",
+      "maxVisibleQty": 6,
+      "name": "Запеканка President творожная, с кусочками груши",
+      "oldPrice": null,
+      "price": 205,
+      "raw": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "Больше нет",
+        "Запеканка President творожная, с кусочками груши",
+        "150 г",
+        "205 ₽"
+      ],
+      "rub100g": 137,
+      "weight_g": 150
+    },
+    "[Circular]",
+    {
+      "brand": "President",
+      "flags": [],
+      "href": "https://samokat.ru/product/tvorozhnaya-zapekanka-president-s-ekstraktom-vanili-150-g",
+      "maxVisibleQty": 7,
+      "name": "Творожная запеканка President, с экстрактом ванили",
+      "oldPrice": null,
+      "price": 205,
+      "raw": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "Больше нет",
+        "Творожная запеканка President, с экстрактом ванили",
+        "150 г",
+        "205 ₽"
+      ],
+      "rub100g": 137,
+      "weight_g": 150
+    },
+    {
+      "brand": "Самокат СТМ",
+      "flags": [],
+      "href": "https://samokat.ru/product/tvorozhnaya-zapekanka-samokat-s-grushey-250-g",
+      "maxVisibleQty": 3,
+      "name": "Творожная запеканка Самокат, с грушей",
+      "oldPrice": null,
+      "price": 299,
+      "raw": [
+        "1",
+        "2",
+        "3",
+        "Больше нет",
+        "Творожная запеканка Самокат, с грушей",
+        "250 г",
+        "299 ₽"
+      ],
+      "rub100g": 120,
+      "weight_g": 250
+    },
+    {
+      "brand": "Самокат СТМ",
+      "flags": [],
+      "href": "https://samokat.ru/product/vitaminnyy-salat-samokat-150-g",
+      "maxVisibleQty": 1,
+      "name": "Витаминный салат Самокат",
+      "oldPrice": null,
+      "price": 179,
+      "raw": [
+        "1",
+        "Больше нет",
+        "Витаминный салат Самокат",
+        "150 г",
+        "179 ₽"
+      ],
+      "rub100g": 119,
+      "weight_g": 150
+    },
+    {
+      "brand": "Самокат СТМ",
+      "flags": [
+        "145 г·Взять к матчу"
+      ],
+      "href": "https://samokat.ru/product/burger-samokat-s-bekonom-syrom-chedder-i-krasnym-pertsem-145-g",
+      "maxVisibleQty": 1,
+      "name": "Бургер Самокат, с беконом, сыром чеддер и красным перцем",
+      "oldPrice": null,
+      "price": 259,
+      "raw": [
+        "1",
+        "Больше нет",
+        "Бургер Самокат, с беконом, сыром чеддер и красным перцем",
+        "145 г·Взять к матчу",
+        "259 ₽"
+      ],
+      "rub100g": 179,
+      "weight_g": 145
+    },
+    "[Circular]",
+    {
+      "brand": "Сытно вкусно",
+      "flags": [],
+      "href": "https://samokat.ru/product/olive-sytno-vkusno-s-kolbasoy-200-g",
+      "maxVisibleQty": 1,
+      "name": "Оливье Сытно вкусно, с колбасой",
+      "oldPrice": null,
+      "price": 199,
+      "raw": [
+        "1",
+        "Больше нет",
+        "Оливье Сытно вкусно, с колбасой",
+        "200 г",
+        "199 ₽"
+      ],
+      "rub100g": 100,
+      "weight_g": 200
+    },
+    "[Circular]",
+    {
+      "brand": "Самокат СТМ",
+      "flags": [],
+      "href": "https://samokat.ru/product/bliny-samokat-s-myasom-160-g",
+      "maxVisibleQty": 3,
+      "name": "Блины Самокат, с мясом",
+      "oldPrice": 249,
+      "price": 212,
+      "raw": [
+        "−14%",
+        "1",
+        "2",
+        "3",
+        "Больше нет",
+        "Блины Самокат, с мясом",
+        "160 г",
+        "249212 ₽"
+      ],
+      "rub100g": 133,
+      "weight_g": 160
+    },
+    "[Circular]",
+    {
+      "brand": "ЙУМИ",
+      "flags": [
+        "130 г·Взять к матчу"
+      ],
+      "href": "https://samokat.ru/product/chikenbeygl-yumi-130-g",
+      "maxVisibleQty": 2,
+      "name": "Чикенбейгл Йуми",
+      "oldPrice": 299,
+      "price": 254,
+      "raw": [
+        "Комбо",
+        "1",
+        "2",
+        "Больше нет",
+        "Чикенбейгл Йуми",
+        "130 г·Взять к матчу",
+        "299254 ₽"
+      ],
+      "rub100g": 195,
+      "weight_g": 130
+    },
+    {
+      "brand": "Самокат СТМ",
+      "flags": [],
+      "href": "https://samokat.ru/product/kholodets-samokat-300-g-1",
+      "maxVisibleQty": 9,
+      "name": "Холодец Самокат",
+      "oldPrice": null,
+      "price": 295,
+      "raw": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "Больше нет",
+        "Холодец Самокат",
+        "300 г",
+        "295 ₽"
+      ],
+      "rub100g": 98,
+      "weight_g": 300
+    },
+    {
+      "brand": "ЙУМИ",
+      "flags": [
+        "280 г·Только запечь"
+      ],
+      "href": "https://samokat.ru/product/zhyulen-yumi-s-kuritsey-i-gribami-280-g",
+      "maxVisibleQty": 3,
+      "name": "Жюльен Йуми, с курицей и грибами",
+      "oldPrice": 399,
+      "price": 339,
+      "raw": [
+        "−15%",
+        "1",
+        "2",
+        "3",
+        "Больше нет",
+        "Жюльен Йуми, с курицей и грибами",
+        "280 г·Только запечь",
+        "399339 ₽"
+      ],
+      "rub100g": 121,
+      "weight_g": 280
+    },
+    {
+      "brand": "Самокат СТМ",
+      "flags": [],
+      "href": "https://samokat.ru/product/ruletiki-samokat-iz-kurinoy-vetchiny-s-syrom-150-g",
+      "maxVisibleQty": 2,
+      "name": "Рулетики Самокат, из куриной ветчины, с сыром",
+      "oldPrice": null,
+      "price": 249,
+      "raw": [
+        "1",
+        "2",
+        "Больше нет",
+        "Рулетики Самокат, из куриной ветчины, с сыром",
+        "150 г",
+        "249 ₽"
+      ],
+      "rub100g": 166,
+      "weight_g": 150
+    },
+    {
+      "brand": "Самокат СТМ",
+      "flags": [],
+      "href": "https://samokat.ru/product/salat-tsezar-samokat-s-kuritsey-i-salatom-romano-180-g",
+      "maxVisibleQty": 1,
+      "name": "Салат Цезарь Самокат, с курицей и салатом романо",
+      "oldPrice": null,
+      "price": 339,
+      "raw": [
+        "1",
+        "Больше нет",
+        "Салат Цезарь Самокат, с курицей и салатом романо",
+        "180 г",
+        "339 ₽"
+      ],
+      "rub100g": 188,
+      "weight_g": 180
+    },
+    {
+      "brand": "Самокат СТМ",
+      "flags": [],
+      "href": "https://samokat.ru/product/ovsyanaya-kasha-samokat-s-klubnikoy-i-keshyu-250-g",
+      "maxVisibleQty": 2,
+      "name": "Овсяная каша Самокат, с клубникой и кешью",
+      "oldPrice": null,
+      "price": 209,
+      "raw": [
+        "1",
+        "2",
+        "Больше нет",
+        "Овсяная каша Самокат, с клубникой и кешью",
+        "250 г",
+        "209 ₽"
+      ],
+      "rub100g": 84,
+      "weight_g": 250
+    },
+    {
+      "brand": "I Like Eat",
+      "flags": [],
+      "href": "https://samokat.ru/product/onigiri-i-like-eat-s-tuntsom-i-kunzhutom-110-g",
+      "maxVisibleQty": 4,
+      "name": "Онигири I Like Eat, с тунцом и кунжутом",
+      "oldPrice": null,
+      "price": 209,
+      "raw": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "Больше нет",
+        "Онигири I Like Eat, с тунцом и кунжутом",
+        "110 г",
+        "209 ₽"
+      ],
+      "rub100g": 190,
+      "weight_g": 110
+    },
+    {
+      "brand": "Самокат СТМ",
+      "flags": [
+        "180 г·Вкус Азии"
+      ],
+      "href": "https://samokat.ru/product/roll-tempura-samokat-s-krabovym-myasom-180-g",
+      "maxVisibleQty": 1,
+      "name": "Ролл темпура Самокат, с крабовым мясом",
+      "oldPrice": null,
+      "price": 309,
+      "raw": [
+        "1",
+        "Больше нет",
+        "Ролл темпура Самокат, с крабовым мясом",
+        "180 г·Вкус Азии",
+        "309 ₽"
+      ],
+      "rub100g": 172,
+      "weight_g": 180
+    },
+    {
+      "brand": "Сытно вкусно",
+      "flags": [],
+      "href": "https://samokat.ru/product/sendvich-sytno-vkusno-s-vetchinoy-180-g",
+      "maxVisibleQty": 1,
+      "name": "Сэндвич Сытно вкусно, с ветчиной",
+      "oldPrice": null,
+      "price": 199,
+      "raw": [
+        "1",
+        "Больше нет",
+        "Сэндвич Сытно вкусно, с ветчиной",
+        "180 г",
+        "199 ₽"
+      ],
+      "rub100g": 111,
+      "weight_g": 180
+    },
+    "[Circular]",
+    {
+      "brand": "Мираторг",
+      "flags": [],
+      "href": "https://samokat.ru/product/lazanya-boloneze-miratorg-s-syrom-v-souse-beshamel-350-g",
+      "maxVisibleQty": 3,
+      "name": "Лазанья болоньезе Мираторг, с сыром, в соусе бешамель",
+      "oldPrice": null,
+      "price": 295,
+      "raw": [
+        "1",
+        "2",
+        "3",
+        "Больше нет",
+        "Лазанья болоньезе Мираторг, с сыром, в соусе бешамель",
+        "350 г",
+        "295 ₽"
+      ],
+      "rub100g": 84,
+      "weight_g": 350
+    },
+    "[Circular]",
+    {
+      "brand": "Самокат СТМ",
+      "flags": [],
+      "href": "https://samokat.ru/product/sendvich-samokat-s-kuritsey-omletom-i-syrom-145-g",
+      "maxVisibleQty": 1,
+      "name": "Сэндвич Самокат, с курицей, омлетом и сыром",
+      "oldPrice": null,
+      "price": 249,
+      "raw": [
+        "1",
+        "Больше нет",
+        "Сэндвич Самокат, с курицей, омлетом и сыром",
+        "145 г",
+        "249 ₽"
+      ],
+      "rub100g": 172,
+      "weight_g": 145
+    },
+    {
+      "brand": "Самокат СТМ",
+      "flags": [],
+      "href": "https://samokat.ru/product/kurinaya-kotleta-samokat-s-makaronami-i-tomatnym-sousom-270-g",
+      "maxVisibleQty": 4,
+      "name": "Куриная котлета Самокат, с макаронами и томатным соусом",
+      "oldPrice": null,
+      "price": 259,
+      "raw": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "Больше нет",
+        "Куриная котлета Самокат, с макаронами и томатным соусом",
+        "270 г",
+        "259 ₽"
+      ],
+      "rub100g": 96,
+      "weight_g": 270
+    },
+    {
+      "brand": "Сытно вкусно",
+      "flags": [],
+      "href": "https://samokat.ru/product/salat-sytno-vkusno-s-kuritsey-i-ananasami-180-g",
+      "maxVisibleQty": 1,
+      "name": "Салат Сытно вкусно, с курицей и ананасами",
+      "oldPrice": null,
+      "price": 259,
+      "raw": [
+        "1",
+        "Больше нет",
+        "Салат Сытно вкусно, с курицей и ананасами",
+        "180 г",
+        "259 ₽"
+      ],
+      "rub100g": 144,
+      "weight_g": 180
+    },
+    {
+      "brand": "Самокат СТМ",
+      "flags": [],
+      "href": "https://samokat.ru/product/risovaya-kasha-samokat-s-arakhisovoy-pastoy-250-g",
+      "maxVisibleQty": 1,
+      "name": "Рисовая каша Самокат, с арахисовой пастой",
+      "oldPrice": null,
+      "price": 229,
+      "raw": [
+        "1",
+        "Больше нет",
+        "Рисовая каша Самокат, с арахисовой пастой",
+        "250 г",
+        "229 ₽"
+      ],
+      "rub100g": 92,
+      "weight_g": 250
+    }
+  ],
+  "source": "samokat.ru search Готовая еда",
+  "summary": {
+    "maxPrice": 429,
+    "medianPrice": 274,
+    "medianRub100g": 137,
+    "medianWeight": 200,
+    "minPrice": 119,
+    "products": 46,
+    "withPrice": 46,
+    "withWeight": 46
+  },
+  "url": "https://samokat.ru/search?value=%D0%93%D0%BE%D1%82%D0%BE%D0%B2%D0%B0%D1%8F+%D0%B5%D0%B4%D0%B0"
+}
