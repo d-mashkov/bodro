@@ -3,10 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="site-nav.css">
+<script src="site-nav.js" defer></script>
 <script>(function(){if(localStorage.getItem('bodro-theme')==='light')document.documentElement.setAttribute('data-theme','light');})();</script>
 <title>Анализ конкурентов — BODRO Dark Kitchen</title>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="vendor/chart.umd.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{overflow-x:hidden;}
@@ -467,6 +469,148 @@ body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--white);pa
     </div>
   </div>
 
+  <!-- SUBSCRIPTION / PP RATIONS -->
+  <div class="section">
+    <div class="section-eyebrow">ПП-подписки и рационы</div>
+    <div class="section-title">Конкуренты не только SKU, но и привычка питания</div>
+    <div class="section-desc">Для BODRO важно сравнивать не только готовые блюда на полке, но и сервисы “готовое питание на день/неделю”. Они продают регулярность, КБЖУ и снятие задачи готовки. Ниже — разделение проверенных открытых данных и кандидатов, где нужен ручной сбор меню.</div>
+
+    <div class="audit-grid">
+      <div class="audit-card">
+        <div class="audit-top">
+          <div>
+            <div class="audit-brand">Level Kitchen · федеральный benchmark</div>
+            <div class="audit-source">levelkitchen.com · открытая посадочная · не подтверждено как локальный игрок Самары</div>
+          </div>
+          <div class="audit-status ok">Прайс открыт</div>
+        </div>
+        <div class="audit-kpis">
+          <div class="audit-kpi"><div class="audit-kpi-val">1500</div><div class="audit-kpi-lbl">ккал/день</div></div>
+          <div class="audit-kpi"><div class="audit-kpi-val">5</div><div class="audit-kpi-lbl">приёмов/день</div></div>
+          <div class="audit-kpi"><div class="audit-kpi-val">1232 ₽</div><div class="audit-kpi-lbl">6 дней · ₽/день</div></div>
+          <div class="audit-kpi"><div class="audit-kpi-val">246 ₽</div><div class="audit-kpi-lbl">условно за приём</div></div>
+        </div>
+        <div class="audit-note">
+          Открытая модель: программа <strong>fit</strong>, 1500 ккал, 5 приёмов. Прайс на странице: 1450 ₽/день на 2 дня, 1398 ₽/день на 5 дней, 1232 ₽/день на 6 дней, 1166 ₽/день на 12 дней, 1100 ₽/день на 30 дней. Это важный benchmark: клиент покупает не блюдо, а “питание без расчётов”.
+        </div>
+        <div class="audit-cats">
+          <div class="audit-cat">82 ₽ / 100 ккал</div>
+          <div class="audit-cat">подписка</div>
+          <div class="audit-cat">калораж открыт</div>
+          <div class="audit-cat">граммовки не на первом экране</div>
+        </div>
+      </div>
+
+      <div class="audit-card">
+        <div class="audit-top">
+          <div>
+            <div class="audit-brand">Perfect Balance / локальные ПП Самары</div>
+            <div class="audit-source">поиск: “готовое питание”, “правильное питание”, “ПП доставка”, “рационы”</div>
+          </div>
+          <div class="audit-status wait">Добрать</div>
+        </div>
+        <div class="audit-kpis">
+          <div class="audit-kpi"><div class="audit-kpi-val">?</div><div class="audit-kpi-lbl">₽/день</div></div>
+          <div class="audit-kpi"><div class="audit-kpi-val">?</div><div class="audit-kpi-lbl">ккал/день</div></div>
+          <div class="audit-kpi"><div class="audit-kpi-val">?</div><div class="audit-kpi-lbl">приёмов</div></div>
+          <div class="audit-kpi"><div class="audit-kpi-val">?</div><div class="audit-kpi-lbl">белок/день</div></div>
+        </div>
+        <div class="audit-note">
+          Для локальных ПП-сервисов Самары нужен ручной сбор из сайта, VK, Telegram, 2ГИС/Яндекс Карт или агрегатора. Если нет открытых граммовок и КБЖУ — это фиксируем как слабость конкурента, а не заменяем догадкой. Для BODRO это потенциальное преимущество: прозрачная цена, граммовка и КБЖУ на каждом SKU.
+        </div>
+        <div class="audit-cats">
+          <div class="audit-cat">Perfect Balance</div>
+          <div class="audit-cat">ПП доставка Самара</div>
+          <div class="audit-cat">еда на неделю</div>
+          <div class="audit-cat">офисные рационы</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-title">Как считать ПП-подписки против BODRO</div>
+      <div class="chart-sub">НЕ СМЕШИВАЕМ НЕПРОВЕРЕННЫЕ ДАННЫЕ С ФАКТАМИ</div>
+      <table class="audit-table">
+        <thead>
+          <tr>
+            <th>Игрок / тип</th>
+            <th>Что снять</th>
+            <th>Метрика для сравнения</th>
+            <th>Что это говорит BODRO</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>ПП-подписка</strong><br>Perfect Balance, локальные рационы</td>
+            <td>₽/день, ккал, приёмов, белок, меню на 3–7 дней</td>
+            <td class="num">₽/день · ₽/100ккал · ₽/10г белка</td>
+            <td>Показывает потолок цены за “решение питания”, а не за одно блюдо.</td>
+          </tr>
+          <tr>
+            <td><strong>Федеральный benchmark</strong><br>Level Kitchen, JustFood, Grow Food</td>
+            <td>калораж, длительность, скидка за подписку, цена дня</td>
+            <td class="num">1100–1450 ₽/день*</td>
+            <td>BODRO может быть дешевле дневного рациона и гибче: не заставлять брать 5 приёмов.</td>
+          </tr>
+          <tr>
+            <td><strong>Готовая еда в ритейле</strong><br>ВкусВилл, Самокат, Палыч</td>
+            <td>SKU, цена, вес, КБЖУ, наличие</td>
+            <td class="num">132–151 ₽/100г</td>
+            <td>Это полочный конкурент BODRO по отдельному блюду и “сегодня поесть”.</td>
+          </tr>
+          <tr>
+            <td><strong>BODRO target</strong><br>одиночные блюда + наборы</td>
+            <td>текущая РРЦ, вес, COGS, белок, наборы на 2–3 дня</td>
+            <td class="num">145 ₽/100г цель медианы</td>
+            <td>Оптимальная зона: дороже Самоката, дешевле/понятнее Палыча и ВкусВилла, гибче подписок.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="audit-note" style="margin-top:14px;">
+        *Для федеральных подписок цена дня используется как benchmark категории. Локальное наличие по Самаре нужно подтверждать отдельно перед выводом в финальную карту конкурентов.
+      </div>
+    </div>
+  </div>
+
+  <!-- PRICE MAP -->
+  <div class="section">
+    <div class="section-eyebrow">Единая ценовая карта</div>
+    <div class="section-title">Конкуренты vs BODRO по текущей РРЦ</div>
+    <div class="section-desc">Ось X — граммовка блюда, ось Y — цена. Конкуренты показаны медианами по найденным SKU, BODRO — всеми текущими блюдами из Value Chain с РРЦ из таблицы. Диагональные линии показывают цену за 100 г.</div>
+
+    <div class="chart-card">
+      <div class="chart-title">Цена с учетом веса порции</div>
+      <div class="chart-sub">МЕДИАНЫ КОНКУРЕНТОВ + 18 SKU BODRO ПО ТЕКУЩЕЙ РРЦ</div>
+      <div class="chart-legend">
+        <div class="cl-item"><div class="cl-dot" style="background:#3B82F6;"></div>ВкусВилл</div>
+        <div class="cl-item"><div class="cl-dot" style="background:#22C55E;"></div>Самокат СТМ</div>
+        <div class="cl-item"><div class="cl-dot" style="background:#EF4444;"></div>У Палыча</div>
+        <div class="cl-item"><div class="cl-dot" style="background:#B5D64E;"></div>BODRO</div>
+      </div>
+      <div style="position:relative;height:520px;">
+        <canvas id="priceWeightMapChart"></canvas>
+      </div>
+    </div>
+
+    <div class="audit-grid" style="margin-top:18px;">
+      <div class="audit-card">
+        <div class="audit-top">
+          <div>
+            <div class="audit-brand">BODRO · текущая РРЦ</div>
+            <div class="audit-source">18 SKU · все блюда из Value Chain без деления на SMART</div>
+          </div>
+          <div class="audit-status ok">Value Chain</div>
+        </div>
+        <div class="audit-kpis">
+          <div class="audit-kpi"><div class="audit-kpi-val">250 ₽</div><div class="audit-kpi-lbl">медианная РРЦ</div></div>
+          <div class="audit-kpi"><div class="audit-kpi-val">223 г</div><div class="audit-kpi-lbl">медианный вес</div></div>
+          <div class="audit-kpi"><div class="audit-kpi-val">127 ₽</div><div class="audit-kpi-lbl">медиана за 100 г</div></div>
+          <div class="audit-kpi"><div class="audit-kpi-val">18</div><div class="audit-kpi-lbl">SKU на графике</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- BODRO POSITIONING ZONE -->
   <div class="section">
     <div class="section-eyebrow">Целевое позиционирование</div>
@@ -901,6 +1045,127 @@ const zonePlugin = {
   }
 };
 Chart.register(zonePlugin);
+
+// ─── 0. PRICE × WEIGHT MAP: competitors vs current BODRO RRP ───
+const competitorMedianMap = [
+  { label:'ВкусВилл · 24 SKU', brand:'ВкусВилл', sku:24, x:205, y:303, rub100:151, color:C.vv },
+  { label:'Самокат СТМ · 18 SKU', brand:'Самокат СТМ', sku:18, x:200, y:264, rub100:132, color:C.samocat },
+  { label:'У Палыча · 11 SKU', brand:'У Палыча', sku:11, x:220, y:309, rub100:147, color:C.palych },
+];
+
+const bodroRrpMap = [
+  { label:'Борщ с говядиной', brand:'BODRO', x:350, y:280, rub100:80 },
+  { label:'Суп-пюре грибной с курицей', brand:'BODRO', x:300, y:350, rub100:117 },
+  { label:'Суп томатный с печёными перцами', brand:'BODRO', x:300, y:400, rub100:133 },
+  { label:'Куриное филе гриль, булгур, овощи', brand:'BODRO', x:277, y:250, rub100:90 },
+  { label:'Оладьи куриные из грудки', brand:'BODRO', x:151, y:250, rub100:166 },
+  { label:'Бризоль куриная с рисом', brand:'BODRO', x:230, y:190, rub100:83 },
+  { label:'Тальятелле, грудка, сычуанский перец', brand:'BODRO', x:240, y:340, rub100:142 },
+  { label:'Говядина наршараб, мятый картофель', brand:'BODRO', x:230, y:400, rub100:174 },
+  { label:'Бефстроганов с картофельным пюре', brand:'BODRO', x:220, y:300, rub100:136 },
+  { label:'Грудка су-вид в специях, бурый рис', brand:'BODRO', x:225, y:240, rub100:107 },
+  { label:'Биточки куриные паровые, киноа', brand:'BODRO', x:225, y:220, rub100:98 },
+  { label:'Овощи бланшированные', brand:'BODRO', x:150, y:180, rub100:120 },
+  { label:'Салат-микс зелёный с бальзамиком', brand:'BODRO', x:70, y:220, rub100:314 },
+  { label:'Витаминный салат с заправкой кимчи', brand:'BODRO', x:150, y:150, rub100:100 },
+  { label:'Винегрет с горчичной заправкой', brand:'BODRO', x:175, y:140, rub100:80 },
+  { label:'Зелёный салат, грудка су-вид, кукуруза', brand:'BODRO', x:95, y:230, rub100:242 },
+  { label:'Сырники со сметаной', brand:'BODRO', x:175, y:400, rub100:229 },
+  { label:'Протеиновый брауни с бананом', brand:'BODRO', x:120, y:280, rub100:233 },
+];
+
+const bodroMedianMap = [
+  { label:'BODRO медиана · 18 SKU', brand:'BODRO медиана', sku:18, x:223, y:250, rub100:127, color:C.bodro },
+];
+
+const priceDensityLines = [100,150,200,250,300].map(v => ({
+  label:`${v} ₽/100г`,
+  data:[{x:50,y:50*v/100},{x:380,y:380*v/100}],
+  showLine:true,
+  fill:false,
+  pointRadius:0,
+  borderWidth:v===150?1.5:1,
+  borderDash:[5,5],
+  borderColor:v===150?'rgba(181,214,78,.45)':'rgba(160,160,160,.22)',
+  order:20,
+}));
+
+new Chart(document.getElementById('priceWeightMapChart'), {
+  type: 'scatter',
+  data: {
+    datasets: [
+      ...priceDensityLines,
+      {
+        label:'BODRO SKU · текущая РРЦ',
+        data: bodroRrpMap,
+        parsing:{ xAxisKey:'x', yAxisKey:'y' },
+        pointRadius:5,
+        pointHoverRadius:8,
+        pointStyle:'circle',
+        backgroundColor:'rgba(181,214,78,.75)',
+        borderColor:'#B5D64E',
+        borderWidth:1.5,
+        order:3,
+      },
+      {
+        label:'BODRO · медиана',
+        data: bodroMedianMap,
+        parsing:{ xAxisKey:'x', yAxisKey:'y' },
+        pointRadius:ctx => 9 + (ctx.raw.sku || 0) * .25,
+        pointHoverRadius:14,
+        pointStyle:'triangle',
+        backgroundColor:ctx => ctx.raw.color + 'DD',
+        borderColor:ctx => ctx.raw.color,
+        borderWidth:2,
+        order:2,
+      },
+      {
+        label:'Конкуренты · медианы',
+        data: competitorMedianMap,
+        parsing:{ xAxisKey:'x', yAxisKey:'y' },
+        pointRadius:ctx => 9 + Math.sqrt(ctx.raw.sku || 1) * 1.2,
+        pointHoverRadius:16,
+        pointStyle:'rectRounded',
+        backgroundColor:ctx => ctx.raw.color + 'DD',
+        borderColor:ctx => ctx.raw.color,
+        borderWidth:2,
+        order:1,
+      },
+    ]
+  },
+  options: {
+    responsive:true,
+    maintainAspectRatio:false,
+    plugins:{
+      legend:{ labels:{ color:getComputedStyle(document.documentElement).getPropertyValue('--sub'), font:{ family:MONO, size:10 }, usePointStyle:true } },
+      tooltip:{
+        callbacks:{
+          title:items => items[0].raw.label || items[0].dataset.label,
+          label:ctx => {
+            const r=ctx.raw;
+            if(r.x==null || r.y==null) return ctx.dataset.label;
+            const sku=r.sku ? ` · ${r.sku} SKU` : '';
+            return ` ${r.brand || ctx.dataset.label}${sku}: ${r.y} ₽ · ${r.x} г · ${r.rub100} ₽/100г`;
+          }
+        }
+      }
+    },
+    scales:{
+      x:{
+        title:{ display:true, text:'Вес порции, г', color:'rgba(160,160,160,.75)', font:{ family:MONO, size:11 } },
+        min:50, max:380,
+        ticks:{ font:{ family:MONO, size:10 }, callback:v=>`${v}г` },
+        grid:{ color:'rgba(120,120,120,.16)' }
+      },
+      y:{
+        title:{ display:true, text:'Цена / РРЦ, ₽', color:'rgba(160,160,160,.75)', font:{ family:MONO, size:11 } },
+        min:100, max:520,
+        ticks:{ font:{ family:MONO, size:10 }, callback:v=>`${v}₽` },
+        grid:{ color:'rgba(120,120,120,.16)' }
+      }
+    }
+  }
+});
 
 // ─── 1. PRICE PER GRAM ───
 const ppgRaw = [

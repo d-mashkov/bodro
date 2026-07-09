@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="site-nav.css">
+<script src="site-nav.js" defer></script>
 <script>(function(){if(localStorage.getItem('bodro-theme')==='light')document.documentElement.setAttribute('data-theme','light');})();</script>
 <title>Value Chain — BODRO</title>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -411,7 +413,8 @@ function computeModel(opts={}){
   const beDaily=beMonthly>0?Math.ceil(beMonthly/monthFactor):0;
   const targetDaily=netPerPortion>0?Math.ceil((allFixed+(S.targetProfit||0))/netPerPortion/monthFactor):0;
   return {dayPortions,dayRev,avgCheck,avgCogs,monthPortions,revGross,commLoss,revNet,cogsTotal,gp,fot,rent,fixedOther,allFixed,ebitda,wtdComm,beDaily,targetDaily,netPerPortion,
-    gpPct:revNet>0?gp/revNet*100:0, ebitdaPct:revNet>0?ebitda/revNet*100:0, fcPct:revNet>0?cogsTotal/revNet*100:0};
+    gpPct:revNet>0?gp/revNet*100:0, ebitdaPct:revNet>0?ebitda/revNet*100:0,
+    foodCostPct:revGross>0?cogsTotal/revGross*100:0, cogsToNetPct:revNet>0?cogsTotal/revNet*100:0};
 }
 function marketModel(){
   const m=S.market||MARKET_DEFAULT;
@@ -483,7 +486,7 @@ function buildUI(){
     <div class="kpi-stat"><div class="stat-label-sm">Точка безубыточности</div><div class="kpi-num" id="kpi_be">—</div><div class="stat-note">порций в день</div></div>
     <div class="kpi-stat"><div class="stat-label-sm">До цели EBITDA</div><div class="kpi-num" id="kpi_target">—</div><div class="stat-note" id="kpi_target_note">порций в день</div></div>
     <div class="kpi-stat"><div class="stat-label-sm">Средний чек</div><div class="kpi-num" id="kpi_check">—</div><div class="stat-note" id="kpi_check_note">по прогнозу продаж</div></div>
-    <div class="kpi-stat"><div class="stat-label-sm">Food cost</div><div class="kpi-num" id="kpi_fc">—</div><div class="stat-note">COGS / выручка нетто · норма &lt;35%</div></div>
+    <div class="kpi-stat"><div class="stat-label-sm">Food cost</div><div class="kpi-num" id="kpi_fc">—</div><div class="stat-note">COGS / РРЦ gross · норма &lt;35%</div></div>
   </div>
 
   <div class="insight-list mb20">
@@ -805,7 +808,7 @@ function calc(){
   set('kpi_target_note',fmt(S.targetProfit)+' EBITDA/мес');
   set('kpi_check',Math.round(M.avgCheck)+' ₽');
   const fc=document.getElementById('kpi_fc');
-  if(fc){ fc.textContent=M.fcPct.toFixed(0)+'%'; fc.className='kpi-num '+(M.fcPct<=S.targetFc?'kpi-ok':M.fcPct<=35?'':'kpi-bad'); }
+  if(fc){ fc.textContent=M.foodCostPct.toFixed(0)+'%'; fc.className='kpi-num '+(M.foodCostPct<=S.targetFc?'kpi-ok':M.foodCostPct<=35?'':'kpi-bad'); }
 
   // Capacity and market
   const capPct=M.dayPortions/Math.max(S.capacity,1)*100;
