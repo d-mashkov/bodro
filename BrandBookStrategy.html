@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="site-nav.css">
 <script src="site-nav.js" defer></script>
-<title>BODRO — BrandBook Strategy</title>
+<title>BODRO — BrandBook Strategy v2.0</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -340,31 +340,6 @@ h3.block{font-size:20px;font-weight:800;letter-spacing:-.015em;margin:56px 0 12p
 .name-canon p{font-size:17px;line-height:1.8;color:rgba(0,0,0,.75);}
 .name-canon p b{font-weight:900;color:var(--black);}
 
-/* ─ EXTENSION (BODRO STICK) ─ */
-.ext-note{
-  margin:56px 80px 0;padding:20px 28px;border:1px dashed rgba(181,214,78,.3);border-radius:14px;
-  font-family:var(--mono);font-size:11px;color:rgba(181,214,78,.6);line-height:1.8;letter-spacing:.02em;
-}
-.ext-hero{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;padding:0 80px;margin-top:48px;}
-.ext-visual{border-radius:20px;overflow:hidden;box-shadow:0 48px 120px rgba(0,0,0,.7);border:1px solid rgba(255,255,255,.06);cursor:zoom-in;position:relative;}
-.ext-visual img{display:block;width:100%;height:auto;transition:transform .8s cubic-bezier(.16,1,.3,1);}
-.ext-visual:hover img{transform:scale(1.01);}
-.ext-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:999px;background:rgba(181,214,78,.07);border:1px solid rgba(181,214,78,.18);font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--lime);margin-bottom:24px;}
-.ext-phase{width:6px;height:6px;border-radius:50%;background:var(--lime);}
-.ext-h{font-size:clamp(28px,3.2vw,48px);font-weight:900;letter-spacing:-.04em;line-height:1.05;margin-bottom:20px;}
-.ext-desc{font-size:15px;color:rgba(255,255,255,.38);line-height:1.8;margin-bottom:36px;}
-.ext-attrs{display:flex;flex-direction:column;}
-.ext-attr{display:grid;grid-template-columns:24px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06);align-items:start;}
-.ext-attr:last-child{border-bottom:none;}
-.ext-icon{font-size:13px;margin-top:1px;opacity:.7;}
-.ext-attr-t{font-size:13px;font-weight:700;letter-spacing:-.01em;margin-bottom:2px;}
-.ext-attr-d{font-size:11px;color:rgba(255,255,255,.32);line-height:1.55;}
-.ext-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin:48px 80px 0;}
-.ext-pillar{padding:36px 40px;background:rgba(255,255,255,.02);border-top:2px solid rgba(255,255,255,.04);}
-.ext-p-num{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.2em;color:rgba(181,214,78,.25);margin-bottom:16px;}
-.ext-p-t{font-size:17px;font-weight:900;letter-spacing:-.02em;margin-bottom:8px;}
-.ext-p-d{font-size:12px;color:rgba(255,255,255,.32);line-height:1.7;}
-
 /* ─ BACK ─ */
 .back{
   min-height:72vh;display:flex;flex-direction:column;align-items:center;
@@ -405,10 +380,8 @@ h3.block{font-size:20px;font-weight:800;letter-spacing:-.015em;margin:56px 0 12p
 @media(max-width:1024px){
   .wrap{padding:0 40px;}
   .hero{padding:0 40px 72px;}
-  .arch-lines,.packs,.alts,.apply-grid,.system-grid,.ext-hero{grid-template-columns:1fr;gap:40px;}
-  .tov-principles,.rtb,.ext-pillars,.rules4{grid-template-columns:1fr;}
-  .ext-hero,.ext-pillars,.ext-note{margin-left:40px;margin-right:40px;padding-left:0;padding-right:0;}
-  .ext-note{padding:20px 24px;}
+  .arch-lines,.packs,.alts,.apply-grid,.system-grid,.split{grid-template-columns:1fr!important;gap:40px;}
+  .tov-principles,.rtb,.rules4{grid-template-columns:1fr;}
   .u-nav{padding:0 24px;}
   .u-sub{display:none;}
   .u-link{padding:4px 8px;font-size:11px;}
@@ -426,10 +399,49 @@ h3.block{font-size:20px;font-weight:800;letter-spacing:-.015em;margin:56px 0 12p
   .hero-sub small{font-size:8px;letter-spacing:.16em;line-height:1.55;}
   .hero-info{font-size:8px;text-align:left;line-height:1.8;}
   .scroll-cue{bottom:20px;}
-  .ext-hero,.ext-pillars,.ext-note{margin-left:20px;margin-right:20px;}
   .st-table{display:block;width:100%;max-width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;}
   .st-table th,.st-table td{min-width:120px;padding:12px 10px;font-size:12px;}
   .st-table th:first-child,.st-table td:first-child{min-width:145px;}
+}
+
+/* ─ POSITIONING PILLARS ─ */
+.pos-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:56px;}
+.pos-p{padding:32px 30px 36px;background:rgba(255,255,255,.025);border-top:1px solid rgba(255,255,255,.07);transition:background .3s;}
+.pos-p:hover{background:rgba(255,255,255,.04);}
+.pos-n{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.2em;color:rgba(181,214,78,.4);margin-bottom:20px;}
+.pos-t{font-size:18px;font-weight:900;letter-spacing:-.02em;margin-bottom:9px;}
+.pos-d{font-size:12.5px;color:rgba(255,255,255,.38);line-height:1.65;}
+
+/* ─ AUDIENCE ─ */
+.aud-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:56px;}
+.aud-stat{padding:36px 32px 40px;background:rgba(255,255,255,.025);border-top:1px solid rgba(255,255,255,.07);}
+.aud-stat .v{font-family:var(--mono);font-size:clamp(30px,3.6vw,44px);font-weight:700;letter-spacing:-.03em;line-height:1;color:var(--lime);}
+.aud-stat .l{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:14px;}
+.barriers{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:16px;}
+.bar{padding:28px 26px 30px;background:rgba(255,255,255,.025);border-top:1px solid rgba(255,255,255,.07);}
+.bq{font-size:15px;font-weight:800;letter-spacing:-.02em;line-height:1.3;margin-bottom:16px;}
+.ba{font-family:var(--mono);font-size:10.5px;line-height:1.7;color:rgba(255,255,255,.35);border-left:2px solid rgba(255,255,255,.12);padding-left:12px;}
+.ba.smart{color:rgba(181,214,78,.75);border-left-color:var(--lime);}
+
+/* ─ CASES 9 ─ */
+.cases9{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:56px;}
+.c9{padding:28px 28px 32px;background:rgba(255,255,255,.025);border-top:1px solid rgba(255,255,255,.07);transition:background .3s;}
+.c9:hover{background:rgba(255,255,255,.045);}
+.c9n{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.2em;color:rgba(181,214,78,.4);margin-bottom:16px;}
+.c9t{font-size:17px;font-weight:900;letter-spacing:-.025em;margin-bottom:8px;line-height:1.2;}
+.c9d{font-size:12.5px;color:rgba(255,255,255,.37);line-height:1.65;}
+
+/* ─ CHANNELS ─ */
+.chans{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:16px;}
+.chan{padding:28px 28px 32px;background:rgba(255,255,255,.025);border-top:1px solid rgba(255,255,255,.07);}
+.chn{font-size:18px;font-weight:900;letter-spacing:-.025em;margin-bottom:9px;}
+.chd{font-size:12.5px;color:rgba(255,255,255,.37);line-height:1.65;}
+
+@media(max-width:1024px){
+  .pos-pillars,.aud-stats,.barriers,.cases9,.chans{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:640px){
+  .pos-pillars,.aud-stats,.barriers,.cases9,.chans{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -468,11 +480,11 @@ h3.block{font-size:20px;font-weight:800;letter-spacing:-.015em;margin:56px 0 12p
 <section class="hero">
   <div class="hero-orb orb-1"></div>
   <div class="hero-orb orb-2"></div>
-  <div class="hero-tag">BrandBook Strategy · v1.2 · Самара · Инвестиционная презентация</div>
+  <div class="hero-tag">BrandBook Strategy · v2.0 · Самара · Документ решений</div>
   <h1 class="hero-h" id="hh">BODRO</h1>
   <div class="hero-bot" id="hb">
     <div class="hero-sub">Еда готова.<small>Единственный слоган в системе · живёт только на уровне мастер-бренда</small></div>
-    <div class="hero-info">Dark Kitchen · Самара<br>Документ решений · Конфиденциально</div>
+    <div class="hero-info">Dark Kitchen · Самара<br>9 разделов · Конфиденциально</div>
   </div>
   <div class="scroll-cue">
     <span class="scroll-cue-txt">Скролл</span>
@@ -484,77 +496,84 @@ h3.block{font-size:20px;font-weight:800;letter-spacing:-.015em;margin:56px 0 12p
 <section style="background:#080806;padding:128px 0;" class="on-dark">
   <div class="wrap">
     <div class="ey au">01 · Позиционирование</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;" class="split">
       <p class="au" style="font-size:clamp(36px,4.5vw,62px);font-weight:900;letter-spacing:-.04em;line-height:1.0;">
-        Один бренд. Серьёзный. Для тех, кто живёт каждый день.
+        Еда будней.<br>Не еда выходного дня.
       </p>
       <div>
         <p class="au d1" style="font-size:17px;line-height:1.8;color:rgba(255,255,255,.42);">
-          BODRO — бренд для взрослых занятых людей, которые не хотят тратить время на готовку. Без иронии, без мотивации, без фото на упаковке. Уважение ко времени — главная валюта бренда.
+          BODRO — бренд для взрослых занятых людей, которые не хотят тратить время на готовку. В выходной человек идёт в ресторан и даёт себе расслабиться — это не наша территория. Мы закрываем будни, прежде всего обед.
         </p>
         <div class="au d2" style="margin-top:32px;padding:22px 28px;border-left:2px solid rgba(181,214,78,.4);border-radius:0 12px 12px 0;background:rgba(255,255,255,.02);">
           <div style="font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.18);letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px;">Формула бренда</div>
-          <div style="font-size:14px;color:rgba(255,255,255,.45);line-height:1.75;">Мы сделали работу — вы получили результат. Не обещаем эмоций, констатируем решённую задачу. Это и есть уважение ко времени.</div>
+          <div style="font-size:14px;color:rgba(255,255,255,.45);line-height:1.75;">Мы сделали работу — вы получили результат. Не обещаем эмоций, констатируем решённую задачу.</div>
         </div>
       </div>
     </div>
+
+    <div class="pos-pillars">
+      <div class="pos-p au d1">
+        <div class="pos-n">01</div>
+        <div class="pos-t">Полезно быть с BODRO</div>
+        <div class="pos-d">Не «модно есть BODRO»: мода проходит, привычка остаётся. Метрика бренда — повторная покупка, не охват.</div>
+      </div>
+      <div class="pos-p au d2">
+        <div class="pos-n">02</div>
+        <div class="pos-t">Низ масс-премиум</div>
+        <div class="pos-d">Сдержанный бренд без премиальной позы. Аудитория стрит-фуда нас не интересует — мы решаем другую задачу.</div>
+      </div>
+      <div class="pos-p au d3">
+        <div class="pos-n">03</div>
+        <div class="pos-t">Прозрачность как продукт</div>
+        <div class="pos-d">КБЖУ на этикетке и видимый акцент блюда: клетчатка, белок или углевод. Клиент понимает, что ест.</div>
+      </div>
+    </div>
+
+    <div class="alts-label">Рынок · что берём у сформировавшихся игроков</div>
+    <table class="st-table au">
+      <tr><th>Бренд</th><th>Что делает</th><th>Что берём</th></tr>
+      <tr><td>Factor <span class="m">США</span></td><td>Chef-prepared, охлаждённое (never frozen), разогрев 2 минуты.</td><td>RTB-модель: «охлаждённая, не замороженная» как стандарт категории.</td></tr>
+      <tr><td>Trifecta <span class="m">США</span></td><td>Всё взвешено и порционировано под дневную цель по белку.</td><td>Прямой аналог SMART: цифры как продукт, макросы вперёд блюда.</td></tr>
+      <tr><td>Charlie Bigham's <span class="m">UK</span></td><td>«Настоящая еда, приготовленная как дома». Рост ~25 % в год.</td><td>Тон: серьёзность и сервисная формула «мы готовим, чтобы вам не пришлось».</td></tr>
+      <tr class="lime-row"><td>Freshly · Reef · allplants <span class="m">закрыты 2023–24</span></td><td>Масштаб без юнит-экономики: рост на инвестициях.</td><td>Урок: сначала экономика одного заказа, потом масштаб.</td></tr>
+    </table>
+    <p class="rtb-note au">// Общий паттерн сильных брендов категории: никто из лидеров не шутит и не мотивирует.</p>
   </div>
 </section>
 
-<!-- ══════════════ 02 РЫНОК ══════════════ -->
+<!-- ══════════════ 02 АУДИТОРИЯ ══════════════ -->
 <section style="background:var(--black);padding:128px 0;" class="on-dark">
   <div class="wrap">
-    <div class="ey au">02 · Рынок и референсы</div>
-    <p class="sec-h au d1">Как говорит сформировавшийся рынок.</p>
-    <p class="sec-sub au d2">США и Европа прошли путь, который Самара только начинает. Общий паттерн всех сильных брендов: сервисная интонация «мы сделали работу — вы получили результат». Никто из лидеров не шутит и не мотивирует.</p>
+    <div class="ey au">02 · Аудитория</div>
+    <p class="sec-h au d1">Кто покупает и что ему мешает.</p>
+    <p class="sec-sub au d2">Человек, который хочет питаться правильно и уже понимает: питание — 50–60 % результата. Ведёт активный образ жизни, старается его вести или собирается начать. Экспериментатор: готов меняться не только в еде.</p>
 
-    <table class="st-table au">
-      <tr><th>Бренд</th><th>Позиционирование</th><th>Что берём</th></tr>
-      <tr>
-        <td>Charlie Bigham's<br><a href="https://bighams.com">bighams.com</a> <span class="m">· UK</span></td>
-        <td>«Настоящая еда, приготовленная как дома» — премиум для занятых людей, которые хотят качества без готовки. Рост ~25% в год.</td>
-        <td><b>Тон для BODRO:</b> серьёзность, уважение к еде и ко времени, сервисная формула «мы готовим, чтобы вам не пришлось».</td>
-      </tr>
-      <tr>
-        <td>Factor<br><a href="https://factor75.com">factor75.com</a> <span class="m">· США</span></td>
-        <td>Chef-prepared, охлаждённое (never frozen), разогрев 2 минуты. Эффективность для профессионалов.</td>
-        <td><b>RTB-модель:</b> «охлаждённая, не замороженная» как стандарт категории + скорость как факт, не как обещание.</td>
-      </tr>
-      <tr>
-        <td>CookUnity<br><a href="https://cookunity.com">cookunity.com</a> <span class="m">· США</span></td>
-        <td>«Not meal kits. Not frozen.» Свежие блюда от именитых шефов, срок 3–7 дней без консервантов.</td>
-        <td><b>Приём отстройки через отрицание</b> — работает в рекламе. Шеф-звёздность НЕ берём: наш путь — честность, не имена.</td>
-      </tr>
-      <tr class="lime-row">
-        <td>Trifecta<br><a href="https://trifectanutrition.com">trifectanutrition.com</a> <span class="m">· США</span></td>
-        <td>Macro-perfect: всё взвешено и порционировано под дневную цель по белку. Для тех, кто трекает.</td>
-        <td><b>Прямой аналог SMART:</b> цифры как продукт. Упаковочная иерархия «сначала макросы, потом блюдо».</td>
-      </tr>
-      <tr class="lime-row">
-        <td>Löwenanteil<br><a href="https://loewenanteil.com">loewenanteil.com</a> <span class="m">· Германия</span></td>
-        <td>Высокобелковые органик-блюда: «мы разобрались в нутрициологии за вас — вы живёте, мы закрываем еду».</td>
-        <td><b>Тон для SMART:</b> серьёзная экспертность без фитнес-истерики. Белок как забота, не как культ.</td>
-      </tr>
-      <tr>
-        <td>COOK<br><a href="https://cookfood.net">cookfood.net</a> <span class="m">· UK</span></td>
-        <td>Ремесленная еда «как приготовили бы вы сами». Честность процесса как главный актив.</td>
-        <td><b>Прозрачность:</b> показывать процесс и состав, а не рассказывать о них.</td>
-      </tr>
-      <tr>
-        <td>Freshly · Reef · allplants<br><span class="m">закрыты 2023–2024</span></td>
-        <td>Масштаб без юнит-экономики: рост на инвестициях, закрытие при их окончании.</td>
-        <td><b>Предупреждение:</b> сначала прибыльная Самара, потом всё остальное. Не наоборот.</td>
-      </tr>
-    </table>
+    <div class="aud-stats">
+      <div class="aud-stat au d1"><div class="v">27–35</div><div class="l">Ядро, лет · шире 23–40</div></div>
+      <div class="aud-stat au d2"><div class="v">70 / 30</div><div class="l">Женщины / мужчины</div></div>
+      <div class="aud-stat au d3"><div class="v">70 000 ₽+</div><div class="l">Доход в месяц</div></div>
+    </div>
+
+    <div class="rule-note au"><b>Правило контента:</b> упор на женскую аудиторию — она активнее следит за питанием. Но бренд не проваливается в «только для девушек»: мужская треть должна узнавать себя в каждом третьем материале.</div>
+
+    <h3 class="block">Четыре барьера — и кто их закрывает</h3>
+    <div class="barriers">
+      <div class="bar au d1"><div class="bq">Долго готовить, нет времени</div><div class="ba">BODRO · охлаждённая, разогреть 2 минуты</div></div>
+      <div class="bar au d2"><div class="bq">Мыть посуду</div><div class="ba">BODRO · контейнер, а не кастрюля</div></div>
+      <div class="bar au d3"><div class="bq">Не знает и не умеет готовить</div><div class="ba">BODRO · блюдо приготовлено по ТТК</div></div>
+      <div class="bar au d4"><div class="bq">Лень считать калории</div><div class="ba smart">SMART · «Всё посчитано»</div></div>
+    </div>
+
+    <div class="rule-note au" style="margin-top:32px;"><b>Отсюда следует продуктовая логика:</b> базовая линейка снимает первые три барьера и потому остаётся лицом бренда. SMART существует ради четвёртого — и только поэтому имеет право на свой цвет, клейм и КБЖУ-блок.</div>
   </div>
 </section>
 
-<!-- ══════════════ 03 АРХИТЕКТУРА ══════════════ -->
+<!-- ══════════════ 03 АРХИТЕКТУРА И ЦЕНА ══════════════ -->
 <section style="background:#080806;padding:128px 0;" class="on-dark">
   <div class="wrap">
-    <div class="ey au">03 · Архитектура бренда</div>
-    <p class="sec-h au d1">Один бренд. Две линейки.</p>
-    <p class="sec-sub au d2">BODRO — не два бренда. Это мастер-бренд и две продуктовые линейки под ним. Слоган живёт только на уровне крыши. Всё «своё» — клейм, цвет, КБЖУ-блок — есть только у SMART.</p>
+    <div class="ey au">03 · Архитектура и цена</div>
+    <p class="sec-h au d1">Один бренд. Две линейки. Без пересечения по цене.</p>
+    <p class="sec-sub au d2">BODRO — не два бренда, а мастер-бренд и две линейки под ним. Слоган живёт только на уровне крыши. Всё «своё» — клейм, цвет, КБЖУ-блок — есть только у SMART.</p>
 
     <div class="arch as">
       <div class="arch-master">
@@ -578,7 +597,7 @@ h3.block{font-size:20px;font-weight:800;letter-spacing:-.015em;margin:56px 0 12p
         <div class="line-card smart">
           <div class="tier">Линейка 02 · Функциональная</div>
           <div class="name">BODRO <em>SMART</em></div>
-          <div class="desc">Еда с высоким белком и посчитанным КБЖУ. Отличается цветом, клеймом и упаковочной иерархией — не слоганом.</div>
+          <div class="desc">Высокий белок и посчитанный КБЖУ. Отличается цветом, клеймом и упаковочной иерархией — не слоганом.</div>
           <span class="chip">дескриптор: Белок и КБЖУ под контролем</span>
           <span class="chip claim lime">клейм: Всё посчитано</span>
           <span class="chip">цена: 350–450 ₽</span>
@@ -586,7 +605,17 @@ h3.block{font-size:20px;font-weight:800;letter-spacing:-.015em;margin:56px 0 12p
       </div>
     </div>
 
-    <div class="rule-note au"><b>Главное правило:</b> базовая линейка — это и есть бренд. У неё нет собственного слогана, клейма и цвета. Если появится третья линейка — она строится по модели SMART: дескриптор + клейм + цвет-код.</div>
+    <div class="rule-note au"><b>Главное правило:</b> базовая линейка — это и есть бренд. Третья линейка, если появится, строится по модели SMART: дескриптор + клейм + цвет-код.</div>
+
+    <div class="au">
+      <div class="price-scale">
+        <div class="band base">BODRO · 290–340 ₽</div>
+        <div class="gap-note">буфер<br>340–350</div>
+        <div class="band smart">SMART · 350–450 ₽</div>
+      </div>
+      <div class="ticks"><span>290 ₽</span><span>330 ₽</span><span>370 ₽</span><span>410 ₽</span><span>450 ₽</span></div>
+    </div>
+    <p class="rtb-note au">// Зона 340–350 ₽ — буфер, в ней не живёт ни один SKU. Покупатель никогда не видит два продукта разных линеек по одной цене.</p>
 
     <div class="img-frame as" data-cap="BODRO · Бренд-система · Упаковка и айдентика">
       <img src="images/brand-board.jpg" alt="BODRO Brand Board">
@@ -598,10 +627,10 @@ h3.block{font-size:20px;font-weight:800;letter-spacing:-.015em;margin:56px 0 12p
   </div>
 </section>
 
-<!-- ══════════════ 04 РОЛИ СЛОВ ══════════════ -->
+<!-- ══════════════ 04 СЛОВА ══════════════ -->
 <section style="background:var(--black);padding:128px 0;" class="on-dark">
   <div class="wrap">
-    <div class="ey au">04 · Роли слов</div>
+    <div class="ey au">04 · Слова</div>
     <p class="sec-h au d1">Слоган, дескриптор, клейм, месседж.</p>
     <p class="sec-sub au d2">Четыре разных инструмента. Слоган отвечает «во что мы верим», клейм — «что в этой коробке». Путать их — заставлять линейки конкурировать друг с другом.</p>
 
@@ -609,102 +638,72 @@ h3.block{font-size:20px;font-weight:800;letter-spacing:-.015em;margin:56px 0 12p
       <tr><th>Инструмент</th><th>Отвечает на вопрос</th><th>Где живёт</th><th>У нас это</th></tr>
       <tr><td>Слоган</td><td>Во что мы верим</td><td>Мастер-бренд: вывеска, сайт, соцсети, пакет</td><td><b>«Еда готова.»</b></td></tr>
       <tr><td>Дескриптор</td><td>Что это за продукт</td><td>Под логотипом линейки, мелко</td><td>«Готовая еда» / «Белок и КБЖУ под контролем»</td></tr>
-      <tr class="lime-row"><td>Клейм</td><td>Что я получу в этой коробке</td><td>Лицевая панель упаковки линейки</td><td>«Всё посчитано» — только у SMART</td></tr>
-      <tr><td>Месседжи</td><td>Реклама, ситуативка</td><td>Баннеры, посты, лендинг — не упаковка</td><td>банк фраз — раздел 11</td></tr>
+      <tr class="lime-row"><td>Клейм</td><td>Что я получу в этой коробке</td><td>Лицевая панель упаковки линейки</td><td><b>«Всё посчитано»</b> — только у SMART</td></tr>
+      <tr><td>Месседжи</td><td>Что сказать здесь и сейчас</td><td>Реклама, баннеры, посты — не упаковка</td><td>банк фраз ниже</td></tr>
     </table>
-  </div>
-</section>
-
-<!-- ══════════════ 05 СЛОГАН ══════════════ -->
-<section style="background:#080806;padding:128px 0;" class="on-dark">
-  <div class="wrap">
-    <div class="ey au">05 · Слоган</div>
-    <p class="sec-h au d1">Категория, ставшая слоганом.</p>
-    <p class="sec-sub au d2">Два уровня чтения: буквальный факт — это готовая еда; сервисный — задача решена, можно жить дальше. Сухо, серьёзно, по-взрослому. Работает над обеими линейками и над любым каналом.</p>
 
     <div class="decision as">
       <div class="lbl">Слоган мастер-бренда BODRO</div>
       <div class="s">Еда готова.</div>
-      <p class="why">Формула западных лидеров «мы сделали работу — вы получили результат», сжатая до двух слов. Не обещает эмоций, констатирует решённую задачу. Это и есть уважение ко времени.</p>
+      <div class="why">Два уровня чтения: буквальный факт — это готовая еда; сервисный — задача решена, можно жить дальше. Формула западных лидеров, сжатая до двух слов.</div>
     </div>
+    <p class="rtb-note au">// Протокол теста: перед фиксацией слоган проверяется на трёх носителях — вывеска, шапка сайта, курьерский пакет. Если хоть на одном требуется пояснение — слоган не работает. Запасные варианты для теста: «Готовим за вас.» и «Время — всё твоё.»</p>
 
-    <div class="alts-label au">Запасные варианты для теста — если «Еда готова.» не пройдёт проверку носителями</div>
-    <div class="alts au d1">
-      <div class="alt">
-        <div class="ph">«Готовим за вас.»</div>
-        <div class="rw">Сервисная формула Bigham's. Чуть теплее, есть «мы». Минус: смещает фокус с результата на процесс.</div>
-      </div>
-      <div class="alt">
-        <div class="ph">«Время — всё твоё.»</div>
-        <div class="rw">Про главную ценность — время. Минус: не называет категорию, требует контекста рядом с продуктом.</div>
-      </div>
-    </div>
-
-    <div class="rule-note au"><b>Протокол теста:</b> перед фиксацией в v2.0 слоган проверяется на трёх носителях — вывеска, шапка сайта, курьерский пакет. Если на любом из них требуется пояснение — слоган не работает.</div>
+    <h3 class="block">Банк месседжей</h3>
+    <p class="sec-sub" style="margin-bottom:0;">Рабочие фразы для рекламы и контента. Не печатаются на упаковке, не заменяют слоган.</p>
+    <table class="st-table au">
+      <tr><th>Канал / ситуация</th><th>Линейка</th><th>Месседж</th></tr>
+      <tr><td>Таргет, вечер буднего дня</td><td class="m">BODRO</td><td>Сегодня можно не готовить.</td></tr>
+      <tr><td>Наружка у офисов</td><td class="m">BODRO</td><td>Обед решён.</td></tr>
+      <tr><td>Баннер, обеденное время</td><td class="m">BODRO</td><td>Горячее — через 2 минуты.</td></tr>
+      <tr class="lime-row"><td>Запуск линейки SMART</td><td class="m">SMART</td><td>Больше белка. Меньше шума.</td></tr>
+      <tr class="lime-row"><td>Пост про состав</td><td class="m">SMART</td><td>8 ингредиентов. Все можно прочитать.</td></tr>
+      <tr><td>Реферальная механика</td><td class="m">Мастер-бренд</td><td>Порекомендуйте коллеге — следующий обед за нас.</td></tr>
+    </table>
+    <div class="rule-note au"><b>Правило банка:</b> месседж живёт максимум сезон, слоган — годами. Если месседж появился на упаковке или в шапке сайта — это ошибка.</div>
   </div>
 </section>
 
-<!-- ══════════════ 06 TONE OF VOICE ══════════════ -->
-<section style="background:var(--black);padding:128px 0;" class="on-dark">
+<!-- ══════════════ 05 TONE OF VOICE ══════════════ -->
+<section style="background:#080806;padding:128px 0;" class="on-dark">
   <div class="wrap">
-    <div class="ey au">06 · Tone of Voice</div>
-    <p class="sec-h au d1">Как говорит BODRO.</p>
-    <p class="sec-sub au d2">BODRO говорит как взрослый со взрослым. Покупатель — занятой человек, который принял рациональное решение не тратить время на готовку. Бренд уважает это решение и не отвлекает.</p>
-  </div>
+    <div class="ey au">05 · Tone of Voice</div>
+    <p class="sec-h au d1">Взрослый со взрослым. На «вы».</p>
+    <p class="sec-sub au d2">Мы не «друг со двора». Мы коллега, который ведёт здоровый образ жизни — зал, бег, падел, сноуборд. Тот, с кем не против провести время в активной фазе. Коллега не мотивирует: он делает своё и этим заражает.</p>
 
-  <div class="tov-principles" style="margin-left:80px;margin-right:80px;">
-    <div class="tp au d1"><div class="n">ПРИНЦИП 1</div><h4>Уважение ко времени</h4><p>Коротко и по делу. Если мысль можно сказать в пять слов — говорим в пять. Каждое лишнее слово — украденные секунды покупателя.</p></div>
-    <div class="tp au d2"><div class="n">ПРИНЦИП 2</div><h4>Факты вместо эмоций</h4><p>Не «невероятно вкусно», а «говядина томилась 4 часа». Не «полезно», а «32 г белка». Прилагательное — слабость, факт — сила.</p></div>
-    <div class="tp au d3"><div class="n">ПРИНЦИП 3</div><h4>Взрослый со взрослым</h4><p>Не учим жить, не мотивируем, не поздравляем с «правильным выбором». Покупатель сам знает, что ему нужно. Мы — сервис, не наставник.</p></div>
-    <div class="tp au d4"><div class="n">ПРИНЦИП 4</div><h4>Серьёзность без сухости</h4><p>Без иронии, без шуток над собой или покупателем, без уменьшительных. Но и без канцелярита: живой русский язык, простые глаголы.</p></div>
-  </div>
+    <div class="tov-principles">
+      <div class="tp au d1"><div class="n">ПРИНЦИП 1</div><h4>Уважение ко времени</h4><p>Если мысль можно сказать в пять слов — говорим в пять. Каждое лишнее слово — украденные секунды покупателя.</p></div>
+      <div class="tp au d2"><div class="n">ПРИНЦИП 2</div><h4>Факты вместо эмоций</h4><p>Не «невероятно вкусно», а «говядина томилась 4 часа». Не «полезно», а «32 г белка».</p></div>
+      <div class="tp au d3"><div class="n">ПРИНЦИП 3</div><h4>Пример вместо наставления</h4><p>Не учим жить и не мотивируем. Показываем свой обед и свои цифры — выводы человек делает сам.</p></div>
+      <div class="tp au d4"><div class="n">ПРИНЦИП 4</div><h4>Серьёзность без сухости</h4><p>Без иронии, без уменьшительных — но и без канцелярита: живой русский язык, простые глаголы.</p></div>
+    </div>
 
-  <div class="wrap">
     <table class="st-table tov-table au">
       <tr><th>Говорим</th><th>Не говорим</th><th>Почему</th></tr>
       <tr><td>Еда готова. Разогрейте 2 минуты.</td><td>Ваш идеальный ужин уже ждёт вас!</td><td>Факт вместо восторга. Без восклицаний.</td></tr>
-      <tr><td>Говядина, гречка, овощи. 380 г.</td><td>Нежнейшая говядинка с ароматной гречечкой</td><td>Без уменьшительных и вкусовых эпитетов. Состав говорит сам.</td></tr>
+      <tr><td>Говядина, гречка, овощи. 380 г.</td><td>Нежнейшая говядинка с гречечкой</td><td>Без уменьшительных и вкусовых эпитетов.</td></tr>
       <tr><td>32 г белка в порции.</td><td>Заряд белка для твоих мышц!</td><td>Цифра вместо мотивации. На «вы» или безлично.</td></tr>
-      <tr><td>Сегодня в меню — 14 блюд.</td><td>Мы приготовили для вас кое-что особенное 😍</td><td>Без интриги, без эмодзи в продуктовой коммуникации.</td></tr>
-      <tr><td>Охлаждённая, не замороженная. Срок — 5 дней.</td><td>Всегда свежайшее, как из-под ножа!</td><td>Проверяемое утверждение вместо гиперболы.</td></tr>
       <tr><td>Не понравилось блюдо — вернём деньги.</td><td>Нам очень-очень жаль, что так вышло 🙏</td><td>Ответственность действием, не извинением.</td></tr>
-      <tr><td>Обед для команды от 10 человек — счёт и закрывающие в тот же день.</td><td>Прокачай офис вкусняшками!</td><td>B2B-тон: деловой, конкретный, про документы.</td></tr>
+      <tr><td>Обед для команды от 10 человек — счёт в тот же день.</td><td>Прокачай офис вкусняшками!</td><td>B2B-тон: деловой, конкретный, про документы.</td></tr>
     </table>
-
-    <div class="rule-note au"><b>Запрещено всегда:</b> ирония и самоирония · уменьшительные суффиксы · восклицательные знаки в продуктовых текстах · обращение «ты» без запроса аудитории · эмодзи на упаковке и в меню · слова «вкусняшка», «полезняшка», «ням» · мотивационные конструкции («стань лучшей версией») · медицинские обещания.</div>
-  </div>
-</section>
-
-<!-- ══════════════ 07 ИМЯ ══════════════ -->
-<section style="background:#080806;padding:128px 0;" class="on-dark">
-  <div class="wrap">
-    <div class="ey au">07 · Имя</div>
-    <p class="sec-h au d1">BODRO: имя про результат, не про настроение.</p>
-    <p class="sec-sub au d2">Имя не требует шуток и не требует оправданий. Оно требует правильной рационализации — и она у бренда есть.</p>
+    <p class="rtb-note au">// Запрещено всегда: ирония и самоирония · уменьшительные · восклицательные знаки в продуктовых текстах · «ты» без запроса аудитории · эмодзи на упаковке и в меню · обещания эмоций и медицинские обещания.</p>
 
     <div class="name-canon as">
-      <div class="lbl">Каноническая формулировка · фиксируется в брендбуке</div>
-      <p>BODRO — про состояние <b>после</b> еды, а не про характер бренда. Человек поел нормально — у него есть силы на день. Это и есть бодрость: не эмоция с рекламного плаката, а физическое состояние, которое даёт правильная еда. Имя обещает результат. Бренд серьёзен, потому что серьёзно относится к этому результату.</p>
+      <div class="lbl">Почему BODRO, если бренд серьёзный</div>
+      <p>BODRO — про <b>состояние после еды</b>, а не про характер бренда. Человек поел нормально — у него есть силы на день. Это не эмоция с плаката, а физическое состояние, которое даёт правильная еда. Имя обещает результат; бренд серьёзен, потому что серьёзно относится к этому результату.</p>
     </div>
-
-    <table class="st-table au">
-      <tr><th>Вопрос</th><th>Ответ бренда</th></tr>
-      <tr><td>«Почему вы называетесь BODRO, если вы такие серьёзные?»</td><td>Бодрость — это не тон общения. Это то, что человек чувствует, когда нормально поел. Мы отвечаем за это состояние, поэтому относимся к нему серьёзно.</td></tr>
-      <tr><td>Где эта формулировка используется</td><td>Раздел «О бренде» на сайте, манифест, интервью, обучение персонала. Не используется на упаковке — там работают блюдо и факты.</td></tr>
-    </table>
+    <p class="rtb-note au">// Формулировка живёт в разделе «О бренде», манифесте, интервью и обучении персонала. На упаковке не используется — там работают блюдо и факты.</p>
   </div>
 </section>
 
-<!-- ══════════════ 08 ВИЗУАЛЬНАЯ СИСТЕМА ══════════════ -->
+<!-- ══════════════ 06 ВИЗУАЛ И УПАКОВКА ══════════════ -->
 <section style="background:var(--black);padding:128px 0;" class="on-dark">
   <div class="wrap">
-    <div class="ey au">08 · Визуальная система</div>
-    <p class="sec-h au d1">Система, которая работает везде.</p>
+    <div class="ey au">06 · Визуальная система и упаковка</div>
+    <p class="sec-h au d1">Три цвета, два шрифта, ноль фотографий на коробке.</p>
 
     <div class="system-grid">
-      <!-- COLOR -->
       <div>
-        <p class="au" style="font-size:clamp(24px,3vw,38px);font-weight:900;letter-spacing:-.03em;">Три цвета.<br>Строгая система.</p>
         <div class="pal-row">
           <div class="pal au d1">
             <div class="swatch" style="background:#0D0D0B;border:1px solid rgba(255,255,255,.07);"><div class="sw-badge">#0D0D0B</div></div>
@@ -719,12 +718,10 @@ h3.block{font-size:20px;font-weight:800;letter-spacing:-.015em;margin:56px 0 12p
             <div class="pal-n">Лайм</div><div class="pal-r">Только SMART · КБЖУ</div>
           </div>
         </div>
-        <div class="lime-note au">ПРАВИЛО: Лайм #B5D64E принадлежит SMART. В базовой линейке лайм не появляется нигде — ни в стикере, ни в ценнике, ни в посте.</div>
+        <div class="lime-note au">ПРАВИЛО: лайм #B5D64E принадлежит SMART. В базовой линейке он не появляется нигде — ни в стикере, ни в ценнике, ни в посте.</div>
       </div>
-      <!-- TYPE -->
       <div>
-        <p class="au" style="font-size:clamp(24px,3vw,38px);font-weight:900;letter-spacing:-.03em;">Два шрифта.</p>
-        <div class="type-block">
+        <div class="type-block" style="margin-top:0;">
           <div class="type-card au d1" style="background:rgba(255,255,255,.025);">
             <div class="type-lbl">Archivo · Основной шрифт</div>
             <div style="font-size:42px;font-weight:900;letter-spacing:-.05em;line-height:.9;margin-bottom:8px;">BODRO</div>
@@ -740,25 +737,10 @@ h3.block{font-size:20px;font-weight:800;letter-spacing:-.015em;margin:56px 0 12p
       </div>
     </div>
 
-    <div class="img-frame as" data-cap="BODRO Identity System">
-      <img src="images/identity.jpg" alt="BODRO Identity System">
-    </div>
-    <div class="img-caption">
-      <span class="ic-l">Айдентика</span>
-      <span class="ic-t">Identity System</span>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ 09 УПАКОВКА ══════════════ -->
-<section style="background:#080806;padding:128px 0;" class="on-dark">
-  <div class="wrap">
-    <div class="ey au">09 · Упаковка</div>
-    <p class="sec-h au d1">Типографика вместо фото. Окно вместо картинки.</p>
-    <p class="sec-sub au d2">Фото блюд на упаковке нет — это решение бренда. Еду показывает прозрачное окно контейнера: продукт честнее любой фотографии. Этикетка — чисто типографическая: цветовое поле, название блюда крупным шрифтом, факты.</p>
+    <h3 class="block">Упаковка: типографика вместо фото</h3>
+    <p class="sec-sub" style="margin-bottom:0;">Еду показывает прозрачное окно контейнера — продукт честнее любой фотографии.</p>
 
     <div class="packs">
-      <!-- BASE -->
       <div class="pack base as d1">
         <div class="p-brand"><span class="b">BODRO</span><span class="d">Готовая еда</span></div>
         <div class="p-window">ПРОЗРАЧНОЕ ОКНО КОНТЕЙНЕРА<br>— ЕДА ВИДНА САМА, БЕЗ ФОТО —</div>
@@ -769,11 +751,10 @@ h3.block{font-size:20px;font-weight:800;letter-spacing:-.015em;margin:56px 0 12p
         <div class="p-cal">137 ккал / 100 г · 520 ккал в порции</div>
         <div class="p-claim"><span>Охлаждённая, не замороженная · Самара</span><span>319 ₽</span></div>
         <div class="zone-tags">
-          <span class="zt">название блюда — герой, крупная типографика</span><span class="zt">ккал — одна строка, мелко</span><span class="zt">без КБЖУ-блока</span><span class="zt">без клейма</span><span class="zt">полный состав и КБЖУ — на обороте по ТР ТС</span>
+          <span class="zt">название блюда — герой</span><span class="zt">ккал — одна строка, мелко</span><span class="zt">без КБЖУ-блока</span><span class="zt">без клейма</span>
         </div>
       </div>
 
-      <!-- SMART -->
       <div class="pack smart as d2">
         <div class="p-brand"><span class="b">BODRO SMART</span><span class="d">Белок и КБЖУ под контролем</span></div>
         <div class="p-window">ПРОЗРАЧНОЕ ОКНО КОНТЕЙНЕРА<br>— ЕДА ВИДНА САМА, БЕЗ ФОТО —</div>
@@ -789,15 +770,15 @@ h3.block{font-size:20px;font-weight:800;letter-spacing:-.015em;margin:56px 0 12p
         </div>
         <div class="p-claim"><span><b>Всё посчитано.</b> Состав: 8 ингредиентов</span><span>389 ₽</span></div>
         <div class="zone-tags">
-          <span class="zt">КБЖУ-блок — герой №1, крупно</span><span class="zt">лайм-кодирование</span><span class="zt">клейм на лице</span><span class="zt">число ингредиентов</span>
+          <span class="zt">КБЖУ-блок — герой №1</span><span class="zt">лайм-кодирование</span><span class="zt">клейм на лице</span><span class="zt">число ингредиентов</span>
         </div>
       </div>
     </div>
 
     <div class="rules4">
-      <div class="rule4 au d1"><div class="n">Правило 1 · Без фото</div><p>Фотографии блюд <b>не используются</b> ни на упаковке, ни на этикетке. Еду показывает прозрачное окно контейнера. Фото живут только в digital: меню на сайте, соцсети, доставка.</p></div>
-      <div class="rule4 au d2"><div class="n">Правило 2 · Цвет</div><p>Лайм <b>принадлежит SMART</b>. В базовой линейке лайм не появляется нигде. База различает категории блюд оттенками основной палитры.</p></div>
-      <div class="rule4 au d3"><div class="n">Правило 3 · Цифры</div><p>База: одна строка «ккал / 100 г · ккал в порции», мелко. Полный КБЖУ — на обороте, как требует техрегламент. SMART: КБЖУ-блок крупно на лице — это её продукт.</p></div>
+      <div class="rule4 au d1"><div class="n">Правило 1 · Без фото</div><p>Фотографии блюд <b>не используются</b> ни на упаковке, ни на этикетке. Фото живут только в digital: сайт, соцсети, доставка.</p></div>
+      <div class="rule4 au d2"><div class="n">Правило 2 · Цвет</div><p>Лайм <b>принадлежит SMART</b>. База различает категории блюд оттенками основной палитры.</p></div>
+      <div class="rule4 au d3"><div class="n">Правило 3 · Цифры</div><p>База: одна строка «ккал / 100 г · ккал в порции», мелко. SMART: КБЖУ-блок крупно на лице — это её продукт.</p></div>
       <div class="rule4 au d4"><div class="n">Правило 4 · Слоган не на упаковке</div><p>«Еда готова.» живёт на вывеске, сайте, пакете. На контейнере работают название блюда, окно и факты.</p></div>
     </div>
 
@@ -808,15 +789,30 @@ h3.block{font-size:20px;font-weight:800;letter-spacing:-.015em;margin:56px 0 12p
       <span class="ic-l">Упаковка · Доставка</span>
       <span class="ic-t">Digital-носители — фото блюд живут здесь, не на контейнере</span>
     </div>
+
+    <h3 class="block">Матрица: что где появляется</h3>
+    <p class="sec-sub" style="margin-bottom:0;">Быстрая проверка для дизайнера, таргетолога и SMM. Элемент не в своей ячейке — ошибка системы.</p>
+    <table class="st-table check au">
+      <tr><th>Элемент</th><th>BODRO</th><th>SMART</th><th>Носитель</th></tr>
+      <tr><td>Слоган «Еда готова.»</td><td class="no-mark">✕</td><td class="no-mark">✕</td><td>только мастер-бренд: вывеска, сайт, соцсети, пакет</td></tr>
+      <tr><td>Дескриптор линейки</td><td class="yes-mark">✓</td><td><span class="lime-yes">✓</span></td><td>под логотипом на упаковке, мелко</td></tr>
+      <tr><td>Клейм «Всё посчитано»</td><td class="no-mark">✕</td><td><span class="lime-yes">✓</span></td><td>лицевая панель SMART</td></tr>
+      <tr><td>Цвет лайм</td><td class="no-mark">✕</td><td><span class="lime-yes">✓</span></td><td>упаковка, ценник, посты линейки</td></tr>
+      <tr><td>Фото блюда</td><td class="no-mark">✕</td><td class="no-mark">✕</td><td>только digital: сайт, соцсети, доставка</td></tr>
+      <tr><td>КБЖУ-блок крупно</td><td class="no-mark">✕</td><td><span class="lime-yes">✓</span></td><td>лицевая панель SMART — её продукт</td></tr>
+      <tr><td>Строка «ккал/100 г · в порции»</td><td class="yes-mark">✓</td><td class="no-mark">—</td><td>у SMART заменена КБЖУ-блоком</td></tr>
+      <tr><td>«Охлаждённая, не замороженная» + дата</td><td class="yes-mark">✓</td><td><span class="lime-yes">✓</span></td><td>обе упаковки — RTB №1</td></tr>
+      <tr><td>Месседжи из банка</td><td class="yes-mark">✓</td><td><span class="lime-yes">✓</span></td><td>только реклама и контент, не упаковка</td></tr>
+    </table>
   </div>
 </section>
 
-<!-- ══════════════ 10 ПЕРСОНАЖ ══════════════ -->
+<!-- ══════════════ 07 ПЕРСОНАЖ ══════════════ -->
 <section id="persona" style="background:var(--black);padding:128px 0;" class="on-dark">
   <div class="wrap">
-    <div class="ey au">10 · Персонаж</div>
+    <div class="ey au">07 · Персонаж</div>
     <p class="sec-h au d1">Тихий спутник. Не главный герой — твой.</p>
-    <p class="sec-sub au d2">Он не говорит и не отвлекает. Просто напоминает: еда готова, можно заняться тем, что важнее. Спокойный, простой, без лишних деталей — как и весь бренд.</p>
+    <p class="sec-sub au d2">Он не говорит и не отвлекает. Напоминает: еда готова, можно заняться тем, что важнее.</p>
 
     <div class="persona-hero as">
       <div class="img-frame" data-cap="BODRO · персонаж бренда">
@@ -834,7 +830,7 @@ h3.block{font-size:20px;font-weight:800;letter-spacing:-.015em;margin:56px 0 12p
     </div>
 
     <h3 class="block">Два амплуа — та же логика, что у упаковки</h3>
-    <p class="sec-sub" style="margin-bottom:32px;">Персонаж существует в двух версиях мастер-бренда и линейки — без своего слогана и клейма, только цвет решает, кто перед нами. Это то же правило, что и в разделе «Упаковка»: лайм не смешивается с базой.</p>
+    <p class="sec-sub" style="margin-bottom:32px;">Одна и та же фигура в двух версиях: цвет решает, кто перед нами. То же правило, что и в упаковке — лайм не смешивается с базой.</p>
 
     <div class="persona-grid as">
       <div class="apply-item" data-cap="BODRO · дома, без лайма">
@@ -863,10 +859,10 @@ h3.block{font-size:20px;font-weight:800;letter-spacing:-.015em;margin:56px 0 12p
       </div>
     </div>
 
-    <div class="rule-note au" style="margin-top:32px;"><b>Правило:</b> персонаж не получает новый дизайн под каждый сценарий — меняется только контекст (дом, спорт, дорога). Один элемент лайма маркирует линейку SMART; без него — это базовый BODRO. Слоган и клейм на персонаже не появляются — это работа мастер-бренда и упаковки.</div>
+    <div class="rule-note au" style="margin-top:32px;"><b>Правило:</b> под каждый сценарий меняется контекст, а не дизайн. Один элемент лайма маркирует SMART; без него — база. Слоган и клейм на персонаже не появляются.</div>
 
     <h3 class="block">Иконка и стикеры</h3>
-    <p class="sec-sub" style="margin-bottom:0;">Упрощённая версия персонажа для форматов, где нет места полноценной сцене — только силуэт и лицо.</p>
+    <p class="sec-sub" style="margin-bottom:0;">Версия для форматов, где нет места сцене: только силуэт и лицо.</p>
 
     <div class="persona-hero as">
       <div style="width:min(260px,100%);padding:32px;">
@@ -874,7 +870,7 @@ h3.block{font-size:20px;font-weight:800;letter-spacing:-.015em;margin:56px 0 12p
       </div>
       <div>
         <div class="alts-label" style="margin-top:0;">Иконка · монолиния</div>
-        <p style="font-size:14px;color:rgba(255,255,255,.4);line-height:1.8;max-width:420px;margin-top:12px;">Плоский знак без цвета и объёма — только контур и лицо. Линия белая: работает на любой тёмной поверхности — сайт, чёрная упаковка SMART, вывеска. На светлом фоне линия просто инвертируется в чёрную — это одна и та же иконка, не два рисунка.</p>
+        <p style="font-size:14px;color:rgba(255,255,255,.4);line-height:1.8;max-width:420px;margin-top:12px;">Плоский знак без цвета и объёма. Линия белая — работает на тёмном: сайт, упаковка SMART, вывеска. На светлом инвертируется в чёрную: это одна иконка, не два рисунка.</p>
         <div class="persona-traits">
           <span class="chip">Сайт · UI</span>
           <span class="chip">Упаковка</span>
@@ -890,32 +886,14 @@ h3.block{font-size:20px;font-weight:800;letter-spacing:-.015em;margin:56px 0 12p
       <span class="ic-l">Стикеры</span>
       <span class="ic-t">Голография · серебро · чёрный · золото — один силуэт, разный материал</span>
     </div>
-    <div class="rule-note au" style="margin-top:24px;"><b>Материалы стикеров:</b> серебро и чёрный — базовые, для постоянной упаковки и мерча. Голография и золото — лимитированные тиражи для акций, коллабораций и подарков к заказу. Рисунок персонажа не меняется ни в одном варианте — меняется только материал наклейки, не форма.</div>
+    <div class="rule-note au" style="margin-top:24px;"><b>Материалы:</b> серебро и чёрный — базовые, для упаковки и мерча. Голография и золото — лимитированные тиражи для акций и подарков к заказу. Рисунок не меняется, меняется только материал.</div>
   </div>
 </section>
 
-<!-- ══════════════ 11 ЦЕНА ══════════════ -->
-<section style="background:#080806;padding:128px 0;" class="on-dark">
-  <div class="wrap">
-    <div class="ey au">11 · Цена</div>
-    <p class="sec-h au d1">Ценовые коридоры без пересечения.</p>
-    <p class="sec-sub au d2">Зона 340–350 ₽ — буфер. В ней не живёт ни один SKU: покупатель никогда не видит два продукта разных линеек по одной цене. SMART всегда дороже — цифры и белок стоят денег, это часть позиционирования.</p>
-
-    <div class="au">
-      <div class="price-scale">
-        <div class="band base">BODRO · 290–340 ₽</div>
-        <div class="gap-note">буфер<br>340–350</div>
-        <div class="band smart">SMART · 350–450 ₽</div>
-      </div>
-      <div class="ticks"><span>290 ₽</span><span>330 ₽</span><span>370 ₽</span><span>410 ₽</span><span>450 ₽</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ 12 RTB ══════════════ -->
+<!-- ══════════════ 08 RTB ══════════════ -->
 <section style="background:var(--black);padding:128px 0;" class="on-dark">
   <div class="wrap">
-    <div class="ey au">12 · Почему верить</div>
+    <div class="ey au">08 · Почему верить</div>
     <p class="sec-h au d1">«Честно» — принцип. Доказательства — факты.</p>
     <p class="sec-sub au d2">Три проверяемых факта — стандарт мирового рынка ready-to-eat, который в Самаре ещё никто не занял.</p>
 
@@ -923,7 +901,7 @@ h3.block{font-size:20px;font-weight:800;letter-spacing:-.015em;margin:56px 0 12p
       <div class="rtb-card au d1">
         <div class="k">RTB · 01</div>
         <h3>Охлаждённая, не замороженная</h3>
-        <p>Дата производства — на каждой упаковке. Срок годности короткий — и это доказательство: без консервантов еда долго не живёт. Кухня в Самаре, не фабрика за 1000 км.</p>
+        <p>Дата производства — на каждой упаковке. Короткий срок годности и есть доказательство: без консервантов еда долго не живёт. Кухня в Самаре, не фабрика за 1000 км.</p>
       </div>
       <div class="rtb-card au d2">
         <div class="k">RTB · 02</div>
@@ -936,168 +914,41 @@ h3.block{font-size:20px;font-weight:800;letter-spacing:-.015em;margin:56px 0 12p
         <p>КБЖУ считается по ТТК каждого блюда, не «примерно». Любой может запросить техкарту. SMART строится на этом полностью.</p>
       </div>
     </div>
-    <p class="rtb-note au">// «охлаждённая, не замороженная» — категорийный стандарт Factor и CookUnity (США). Проверяемо, честно, отстраивает и от заморозки в ритейле, и от федеральных игроков с длинной логистикой.</p>
+    <p class="rtb-note au">// «Готовая еда» — дескриптор и позиционирование. «Охлаждённая, не замороженная» — доказательство, а не заголовок. Путать уровни нельзя.</p>
   </div>
 </section>
 
-<!-- ══════════════ 13 КОММУНИКАЦИЯ ══════════════ -->
+<!-- ══════════════ 09 МАРКЕТИНГ И SMM ══════════════ -->
 <section style="background:#080806;padding:128px 0;" class="on-dark">
   <div class="wrap">
-    <div class="ey au">13 · Коммуникация</div>
-    <p class="sec-h au d1">Банк месседжей.</p>
-    <p class="sec-sub au d2">Рабочие фразы для рекламы и контента. Не печатаются на упаковке, не заменяют слоган. Все — в тоне раздела 06: факты, уважение ко времени, без иронии.</p>
+    <div class="ey au">09 · Маркетинг и SMM</div>
+    <p class="sec-h au d1">Девять кейсов, три канала, одна метрика.</p>
+    <p class="sec-sub au d2">Кейс — это проверяемая гипотеза с названным заранее критерием успеха. Метрика бренда одна: вернулся ли человек за вторым заказом. Охват без возврата — не результат.</p>
 
-    <table class="st-table au">
-      <tr><th>Канал / ситуация</th><th>Линейка</th><th>Месседж</th></tr>
-      <tr><td>Таргет, вечер буднего дня</td><td>BODRO</td><td><b>Сегодня можно не готовить.</b></td></tr>
-      <tr><td>Наружка / вывеска у офисов</td><td>BODRO</td><td><b>Обед решён.</b></td></tr>
-      <tr><td>Баннер, обеденное время</td><td>BODRO</td><td><b>Горячее — через 2 минуты.</b></td></tr>
-      <tr><td>Ретаргет</td><td>BODRO</td><td><b>Ужин по-прежнему готов.</b></td></tr>
-      <tr class="lime-row"><td>Запуск линейки SMART</td><td>SMART</td><td><b>Больше белка. Меньше шума.</b></td></tr>
-      <tr class="lime-row"><td>Таргет на фитнес-аудиторию</td><td>SMART</td><td><b>42 г белка. Без порошка.</b></td></tr>
-      <tr class="lime-row"><td>Пост про состав</td><td>SMART</td><td><b>8 ингредиентов. Все можно прочитать.</b></td></tr>
-      <tr><td>B2B, офисные станции</td><td>Мастер-бренд</td><td><b>Обед для команды — без курьеров и ожидания.</b></td></tr>
-      <tr><td>Реферальная механика</td><td>Мастер-бренд</td><td><b>Порекомендуйте коллеге — следующий обед за нас.</b></td></tr>
-    </table>
-
-    <div class="rule-note au"><b>Правило банка:</b> месседж живёт максимум сезон, слоган — годами. Если месседж появился на упаковке или в шапке сайта — это ошибка. Каждый новый месседж проверяется по чек-листу тона: без иронии, без «ты», без восклицаний, без обещаний эмоций.</div>
-
-    <div class="apply-grid as">
-      <div class="apply-item" data-cap="Наружная реклама · Билборды">
-        <img src="images/banners.jpg" alt="BODRO OOH">
-        <div class="apply-over">
-          <div class="apply-lbl">Наружная реклама · Билборды</div>
-          <div class="apply-ttl">BODRO говорит коротко даже на улице.</div>
-        </div>
-      </div>
-      <div class="apply-item" data-cap="Офисный холодильник · BODRO Station">
-        <img src="images/fridge.jpg" alt="BODRO Station">
-        <div class="apply-over">
-          <div class="apply-lbl">BODRO Station · Офисный холодильник</div>
-          <div class="apply-ttl">Канал без агрегатора. Та же система.</div>
-        </div>
-      </div>
+    <div class="cases9">
+      <div class="c9 au d1"><div class="c9n">01</div><div class="c9t">Розыгрыш по активности</div><div class="c9d">Победитель определяется реальной активностью за период, не рандомайзером. Комьюнити «Bodro Food» в Whoop, вход по инвайту.</div></div>
+      <div class="c9 au d1"><div class="c9n">02</div><div class="c9t">Комьюнити</div><div class="c9d">Бренд как проводник в осознанное питание. Не тренер, а коллега: показываем своё, выводы человек делает сам.</div></div>
+      <div class="c9 au d2"><div class="c9n">03</div><div class="c9t">Вирусная упаковка</div><div class="c9d">Взаимодействие с коробкой из доставки. Для шейков — баночка с прозрачным стикером.</div></div>
+      <div class="c9 au d2"><div class="c9n">04</div><div class="c9t">Мотивация к запуску SMART</div><div class="c9d">Программа на старте линейки — к Новому году.</div></div>
+      <div class="c9 au d3"><div class="c9n">05</div><div class="c9t">Мерч</div><div class="c9d">Бутылки для зала, сумки, стикеры маскота.</div></div>
+      <div class="c9 au d3"><div class="c9n">06</div><div class="c9t">Реферальная программа</div><div class="c9d">DTC-подписка: рекомендация коллеге — следующий обед за нас.</div></div>
+      <div class="c9 au d4"><div class="c9n">07</div><div class="c9t">SEO сайта</div><div class="c9d">Ключи и статьи про питание. Отдача 3–6 месяцев — работает на SMART, не на старт.</div></div>
+      <div class="c9 au d4"><div class="c9n">08</div><div class="c9t">Блюдо недели</div><div class="c9d">Ротация меню каждые выходные. Упирается в техкарты и операционку кухни.</div></div>
+      <div class="c9 au d4"><div class="c9n">09</div><div class="c9t">UGC</div><div class="c9d">Вознаграждение за распаковки и шейки, набравшие просмотры. Работает только после кейса 03.</div></div>
     </div>
+
+    <h3 class="block">Каналы и темы</h3>
+    <div class="chans">
+      <div class="chan au d1"><div class="chn">Instagram</div><div class="chd">Витрина и UGC. Упор на женскую аудиторию, каждый третий материал — мужской.</div></div>
+      <div class="chan au d2"><div class="chn">Telegram</div><div class="chd">Комьюнити и оперативка: меню дня, активности, ответы.</div></div>
+      <div class="chan au d3"><div class="chn">Сайт</div><div class="chd">Понимание бренда и SEO. Задача — объяснить, а не продать в лоб.</div></div>
+    </div>
+    <div class="rule-note au"><b>Темы на реализацию:</b> распаковка · слепые дегустации с анкетированием, по итогам которых выбираются блюда · сторителлинг длиной в месяц о том, как всё создаётся.</div>
+    <p class="rtb-note au">// Кейсы со статусами и метриками — <a href="marketing.html" style="color:rgba(181,214,78,.7);">marketing.html</a>. Рубрикатор и календарь публикаций — <a href="smm.html" style="color:rgba(181,214,78,.7);">smm.html</a>.</p>
   </div>
 </section>
 
-<!-- ══════════════ 14 RETAIL ══════════════ -->
-<section style="background:var(--black);padding:128px 0;" class="on-dark">
-  <div class="wrap">
-    <div class="ey au">14 · Точка продаж</div>
-    <p class="sec-h au d1">Точка продаж как носитель бренда.</p>
-    <p class="sec-sub au d2">Фасция. Витрина. Цифровое меню. Зона BODRO SMART. Всё говорит одним языком — коротко, честно, без лишнего.</p>
-
-    <div class="img-frame as" data-cap="BODRO · Торговая секция · ТЦ">
-      <img src="images/retail-kiosk.jpg" alt="BODRO — торговая секция в ТЦ">
-    </div>
-  </div>
-
-  <div class="tov-principles" style="grid-template-columns:repeat(3,1fr);margin:3px 80px 0;">
-    <div class="tp au d1"><div class="n">01 · Фасция</div><h4>Чёрный фон. Белый BODRO.</h4><p>Максимальный контраст. Логотип и слоган «Еда готова.» — всё, что нужно на вывеске. Ноль декора.</p></div>
-    <div class="tp au d2"><div class="n">02 · Цифровое меню</div><h4>Блюдо. Цена. КБЖУ.</h4><p>Экран показывает одно блюдо крупно. Цена без психологических трюков. КБЖУ — для тех, кому важно.</p></div>
-    <div class="tp au d3"><div class="n">03 · Зона SMART</div><h4>Тёмный стенд. Лаймовые данные.</h4><p>BODRO SMART выделен внутри точки: чёрный фон, лаймовые цифры. Отдельный сегмент для тех, кто считает макросы.</p></div>
-  </div>
-</section>
-
-<!-- ══════════════ 15 ЧЕК-ЛИСТ ══════════════ -->
-<section style="background:#080806;padding:128px 0;" class="on-dark">
-  <div class="wrap">
-    <div class="ey au">15 · Чек-лист</div>
-    <p class="sec-h au d1">Матрица: что где появляется.</p>
-    <p class="sec-sub au d2">Быстрая проверка для дизайнера, таргетолога и SMM. Если элемент стоит не в своей ячейке — это ошибка системы.</p>
-
-    <table class="st-table check au">
-      <tr><th>Элемент</th><th>BODRO (база)</th><th>BODRO SMART</th><th>Носитель</th></tr>
-      <tr><td>Слоган «Еда готова.»</td><td class="no-mark">✕</td><td class="no-mark">✕</td><td>только мастер-бренд: вывеска, сайт, соцсети, пакет</td></tr>
-      <tr><td>Дескриптор линейки</td><td class="yes-mark">✓</td><td><span class="lime-yes">✓</span></td><td>под логотипом на упаковке, мелко</td></tr>
-      <tr><td>Клейм «Всё посчитано»</td><td class="no-mark">✕</td><td><span class="lime-yes">✓</span></td><td>лицевая панель SMART</td></tr>
-      <tr><td>Цвет лайм</td><td class="no-mark">✕</td><td><span class="lime-yes">✓</span></td><td>упаковка, ценник, посты линейки</td></tr>
-      <tr><td>Фото блюда</td><td class="no-mark">✕</td><td class="no-mark">✕</td><td>только digital: сайт, соцсети, приложения доставки</td></tr>
-      <tr><td>Прозрачное окно контейнера</td><td class="yes-mark">✓</td><td><span class="lime-yes">✓</span></td><td>обе линейки — еда видна сама</td></tr>
-      <tr><td>КБЖУ-блок крупно</td><td class="no-mark">✕</td><td><span class="lime-yes">✓</span></td><td>лицевая панель SMART — её продукт</td></tr>
-      <tr><td>Строка «ккал/100 г · в порции»</td><td class="yes-mark">✓</td><td class="no-mark">—</td><td>база: одна строка мелко; у SMART заменена КБЖУ-блоком</td></tr>
-      <tr><td>«Охлаждённая, не замороженная» + дата</td><td class="yes-mark">✓</td><td><span class="lime-yes">✓</span></td><td>обе упаковки — RTB №1</td></tr>
-      <tr><td>Число ингредиентов на лице</td><td class="no-mark">✕</td><td><span class="lime-yes">✓</span></td><td>лицевая панель SMART — RTB №2</td></tr>
-      <tr><td>Месседжи из банка</td><td class="yes-mark">✓</td><td><span class="lime-yes">✓</span></td><td>только реклама и контент, не упаковка</td></tr>
-      <tr><td>Рационализация имени (раздел 07)</td><td colspan="2" style="text-align:center;font-family:var(--mono);font-size:11px;">мастер-бренд</td><td>«О бренде», манифест, интервью, обучение персонала</td></tr>
-    </table>
-  </div>
-</section>
-
-<!-- ══════════════ ПРИЛОЖЕНИЕ · BODRO STICK ══════════════ -->
-<section style="background:var(--black);padding:128px 0 96px;" class="on-dark">
-  <div class="wrap">
-    <div class="ey au">Приложение · Эскиз расширения бренда</div>
-    <p class="sec-h au d1">BODRO STICK — набросок, не решение.</p>
-  </div>
-
-  <div class="ext-note au">
-    // Этот раздел — эскиз того, как бренд может расшириться за пределы еды. Не входит в текущий скоуп запуска,
-    не влияет на бюджет и роадмап. Показывает потенциал платформы BODRO: та же аудитория, та же механика «одно решение закрыто», тот же язык.
-  </div>
-
-  <div class="ext-hero">
-    <div class="ext-visual au d1" id="ext-visual" data-cap="BODRO STICK · Creatine + Electrolytes · Эскиз">
-      <img src="images/BodroStick.jpg" alt="BODRO STICK — Creatine + Electrolytes">
-    </div>
-    <div class="ext-text au d2">
-      <div class="ext-badge"><div class="ext-phase"></div>Концепт · Wellness-направление</div>
-      <div class="ext-h">BODRO STICK<br><span style="color:var(--lime);">Creatine + Electrolytes</span></div>
-      <div class="ext-desc">1 стик в день. Высыпать в воду. Не думать.<br>Ежедневная поддержка — без кофеина, без сахара, без культа добавок.</div>
-      <div class="ext-attrs">
-        <div class="ext-attr">
-          <div class="ext-icon">⚡</div>
-          <div>
-            <div class="ext-attr-t">5g Креатин моногидрат</div>
-            <div class="ext-attr-d">Наиболее изученная добавка. Энергия для мышц и мозга без стимуляторов.</div>
-          </div>
-        </div>
-        <div class="ext-attr">
-          <div class="ext-icon">💧</div>
-          <div>
-            <div class="ext-attr-t">800mg Электролиты</div>
-            <div class="ext-attr-d">Натрий, калий, магний. Оптимальная клеточная гидратация — как фундамент для работы креатина.</div>
-          </div>
-        </div>
-        <div class="ext-attr">
-          <div class="ext-icon">💪</div>
-          <div>
-            <div class="ext-attr-t">1000mg Таурин</div>
-            <div class="ext-attr-d">Устойчивая энергия без пика и падения. Поддержка восстановления.</div>
-          </div>
-        </div>
-        <div class="ext-attr">
-          <div class="ext-icon">✓</div>
-          <div>
-            <div class="ext-attr-t">Без сахара. Без красителей.</div>
-            <div class="ext-attr-d">Состав без лишнего — как и в еде BODRO. Чистая формула, читаемый состав.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="ext-pillars">
-    <div class="ext-pillar au d1">
-      <div class="ext-p-num">01 · Тезис</div>
-      <div class="ext-p-t">Та же привычка — другой формат</div>
-      <div class="ext-p-d">BODRO закрывает обед. BODRO STICK закрывает утро. Один бренд — один ритм жизни. Клиент, который уже доверяет нам в еде, легко добавляет стик в свою рутину.</div>
-    </div>
-    <div class="ext-pillar au d2">
-      <div class="ext-p-num">02 · Тезис</div>
-      <div class="ext-p-t">Состав без лишнего — как в еде</div>
-      <div class="ext-p-d">Референс Create (США): «not too sweet, not too salty. Effective enough to count.» Для BODRO это звучит как «Состав виден. Цифры честные.» — тот же принцип, наш язык.</div>
-    </div>
-    <div class="ext-pillar au d3">
-      <div class="ext-p-num">03 · Тезис</div>
-      <div class="ext-p-t">Daily Wellness — не спорт, а жизнь</div>
-      <div class="ext-p-d">Create доказал: крупнейший сегмент покупателей — не атлеты, а «active daily people». BODRO STICK не про качалку — про человека с плотным ритмом. В России сегмент не занят.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ BACK COVER ══════════════ -->
+<!-- ══════════════ BACK ══════════════ -->
 <section class="back">
   <div class="back-orb"></div>
   <div class="back-ghost af">BODRO</div>
@@ -1106,8 +957,9 @@ h3.block{font-size:20px;font-weight:800;letter-spacing:-.015em;margin:56px 0 12p
     <strong>BODRO</strong> — вкусная готовая еда на каждый день.<br>
     <strong>BODRO SMART</strong> — белок и КБЖУ под контролем. Всё посчитано.
   </div>
-  <div class="back-foot">BrandBook Strategy · v1.2 · Dark Kitchen · Самара · Конфиденциально</div>
+  <div class="back-foot">BrandBook Strategy · v2.0 · Dark Kitchen · Самара · Конфиденциально</div>
 </section>
+
 
 <script>
 // LIGHTBOX
