@@ -579,7 +579,7 @@ textarea.form-input { resize:vertical; min-height:90px; }
           <div style="background:rgba(181,214,78,0.12); border-radius:8px; padding:8px 14px; font-size:11px; font-weight:700; font-family:'JetBrains Mono',monospace; color:#B5D64E; letter-spacing:0.05em;">Archivo 900 + JetBrains Mono</div>
           <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(181,214,78,0.2); border-radius:8px; padding:8px 14px; font-size:11px; font-weight:700; font-family:'JetBrains Mono',monospace; color:rgba(255,255,255,0.5);">Чёрный · Белый · #B5D64E</div>
         </div>
-        <div class="brand-pos" style="color:rgba(255,255,255,0.55);">Всё посчитано за тебя. Чёрная упаковка, КБЖУ крупно на лицевой стороне.</div>
+        <div class="brand-pos" style="color:rgba(255,255,255,0.55);">Рационы на неделю и месяц. Конструктор на сайте под калораж, собственная доставка. Чёрная упаковка, КБЖУ крупно.</div>
       </div>
       <div class="brand-body" style="flex:1; display:flex; flex-direction:column;">
         <div class="brand-section">
@@ -587,7 +587,7 @@ textarea.form-input { resize:vertical; min-height:90px; }
           <div class="promo-list">
             <div class="promo-item"><div class="promo-bullet" style="background:var(--black);"></div><div class="promo-text"><strong>КБЖУ — герой упаковки</strong> — Белки / Жиры / Углев / Ккал крупно на лицевой стороне.</div></div>
             <div class="promo-item"><div class="promo-bullet" style="background:var(--black);"></div><div class="promo-text"><strong>Аудитория</strong> — считающие белок, фитнес, 23–35 лет. Тренеры, самозанятые, офис.</div></div>
-            <div class="promo-item"><div class="promo-bullet" style="background:var(--black);"></div><div class="promo-text"><strong>Слоган</strong> — «Всё посчитано за тебя.»</div></div>
+            <div class="promo-item"><div class="promo-bullet" style="background:var(--black);"></div><div class="promo-text"><strong>Клейм</strong> — «Собрано на неделю.» Слоган только у мастер-бренда: «Еда готова.»</div></div>
           </div>
         </div>
         <div class="brand-section">
@@ -634,11 +634,11 @@ textarea.form-input { resize:vertical; min-height:90px; }
     <div class="g3" style="gap:14px;">
       <div class="stat">
         <div class="stat-val fs13 fw700">Фаза 1 — Агрегатор</div>
-        <div class="stat-note">Оба бренда на Яндекс.Еду. BODRO — главная точка, BODRO SMART — отдельный профиль рядом. Цель: 100+ порц/день суммарно.</div>
+        <div class="stat-note">В Яндекс Еде только BODRO — разовые блюда. SMART в агрегатор не выходит: рационы живут на своём сайте. Цель: 100+ порц/день.</div>
       </div>
       <div class="stat">
         <div class="stat-val fs13 fw700">Фаза 2 — DTC + подписка</div>
-        <div class="stat-note">Telegram-бот: BODRO SMART — «рацион недели» с КБЖУ. BODRO — «обед на неделю». Скидка 5–10% без комиссии агрегатора.</div>
+        <div class="stat-note">Сайт-конструктор и подписка на рацион SMART. Экономия 25–28 % комиссии агрегатора — источник скидки клиенту и маржи.</div>
       </div>
       <div class="stat">
         <div class="stat-val fs13 fw700">Фаза 3 — B2B + Станции</div>
@@ -855,7 +855,7 @@ const ROADMAP = {
     {done:true,name:"Концепция двух брендов",desc:"Позиционирование и айдентика для BODRO (комфорт-еда, белая упаковка) и BODRO SMART (КБЖУ-фокус, чёрная).",dur:""},
     {done:true,name:"Технологические карты (18 блюд)",desc:"Рецептуры, граммовки, себестоимость каждого блюда.",dur:""},
     {done:true,name:"Финансовая модель (Excel)",desc:"P&L по 4 сценариям, Value Chain, расчёт точки безубыточности.",dur:""},
-    {prog:true,name:"Упаковка: дизайн-концепция",desc:"BODRO SMART: КБЖУ крупно на чёрной крышке. BODRO: название блюда + белая минималистичная крышка.",dur:"В работе"},
+    {prog:true,name:"Упаковка: дизайн-концепция",desc:"BODRO: название блюда + стикер КБЖУ и состав. BODRO SMART: рацион, КБЖУ крупно на чёрной крышке.",dur:"В работе"},
   ],
   phase1:[
     {name:"Регистрация ИП",desc:"ОКВЭД 56.10 (ресторанная деятельность), 56.21 (поставка готовых блюд). Госпошлина 800 ₽, срок 3 рабочих дня.",dur:"3 дня"},
@@ -875,7 +875,7 @@ const ROADMAP = {
     {name:"Закупка упаковки",desc:"PP-контейнеры 500/750/1000 мл. Стикеры BODRO SMART (КБЖУ) и BODRO. Бюджет 50 тыс. ₽ на 3 мес.",dur:"1 нед"},
   ],
   phase3:[
-    {name:"Запуск на Яндекс.Еда",desc:"Регистрация партнёра. Фотосъёмка блюд (обязательно хорошего качества). Комиссия 25–28%.",dur:"1–2 нед"},
+    {name:"Запуск на Яндекс.Еда",desc:"Только линейка BODRO — разовые блюда. Регистрация партнёра, фотосъёмка блюд. Комиссия 25–28%.",dur:"1–2 нед"},
     {name:"Запуск Telegram-канала",desc:"Ежедневный пост «меню дня» + Telegram-бот для заказов напрямую. Без агрегаторной комиссии.",dur:"3 дня"},
     {name:"Первые продажи",desc:"Цель: 20–40 порций в день. Собираем обратную связь. Repeat rate с первого заказа.",dur:"2–4 нед"},
     {name:"B2B холодные звонки",desc:"Звонки в офисы 30–100 человек. Предложение корпоративного обеда.",dur:"Постоянно"},
@@ -890,7 +890,7 @@ const ROADMAP = {
   phase5:[
     {name:"150–225 порций в день",desc:"Доход собственника 500 тыс. ₽/мес. Смешанный канал: Яндекс + DTC + B2B.",dur:"Мес. 6–8"},
     {name:"Найм дополнительного повара",desc:"При объёме 150+ порций. Третий повар или ночная смена.",dur:"Мес. 6"},
-    {name:"DTC-сайт и приложение",desc:"Сайт для подписок. Интеграция с доставкой (собственный курьер или CDEK Last Mile).",dur:"Мес. 7–9"},
+    {name:"DTC-сайт и конструктор рациона — критический путь SMART",desc:"Конструктор под калораж, подписка, оплата, собственная доставка. Без него BODRO SMART не запускается.",dur:"Мес. 7–9"},
     {name:"350 порций/день — 1 млн ₽/мес",desc:"Развитие собственных каналов снижает долю Яндекса. Маржа растёт до 30%+ по бизнесу.",dur:"Мес. 10–12"},
     {name:"Рассмотрение второго города",desc:"Тольятти (рядом) или Казань. Тиражирование модели с управляющим-партнёром.",dur:"Мес. 12–18"},
   ],
