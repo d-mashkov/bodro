@@ -47,65 +47,94 @@ body{font-family:'Archivo',sans-serif;background:var(--black);color:var(--white)
 .tt-knob svg{width:13px;height:13px;stroke:var(--ink);}
 [data-theme="light"] .tt-knob{transform:translateX(25px);}
 
-/* ─ HEAD ─ */
-.page-head{padding:64px 60px 40px;max-width:1400px;margin:0 auto;}
+/* ─ LAYOUT ─ */
+.page-head{padding:64px 60px 24px;max-width:1400px;margin:0 auto;}
 .eyebrow{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:20px;margin-bottom:26px;}
 .eyebrow::after{content:'';flex:1;height:1px;background:var(--line);}
 .page-title{font-size:clamp(38px,6vw,68px);font-weight:900;letter-spacing:-.055em;line-height:.95;}
-.page-lead{font-size:15px;color:var(--sub);line-height:1.75;max-width:620px;margin-top:20px;}
+.page-lead{font-size:15px;color:var(--sub);line-height:1.75;max-width:640px;margin-top:20px;}
 .back{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-decoration:none;display:inline-block;margin-bottom:22px;}
 .back:hover{color:var(--white);}
-
-.sec{max-width:1400px;margin:0 auto;padding:34px 60px;}
-.sec.alt{max-width:none;background:var(--black-2);padding:70px 60px;}
+.sec{max-width:1400px;margin:0 auto;padding:44px 60px;}
+.sec.alt{max-width:none;background:var(--black-2);padding:72px 60px;}
 .sec-in{max-width:1400px;margin:0 auto;}
+.note{font-size:13px;color:var(--sub);line-height:1.7;max-width:640px;}
+.note code{font-family:var(--mono);font-size:11.5px;background:var(--glass-2);border:1px solid var(--line);border-radius:5px;padding:2px 6px;}
 
-/* ─ ПЛОЩАДКИ ─ */
-.plat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
-.plat{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:20px 22px;position:relative;overflow:hidden;}
-.plat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent,rgba(255,255,255,.14));}
-.plat.void{border-style:dashed;background:transparent;}
-.plat-n{font-size:16px;font-weight:900;letter-spacing:-.03em;}
-.plat-r{font-size:11.5px;color:var(--sub);line-height:1.6;margin-top:8px;}
-.plat-f{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:14px;}
+/* ─ ПРИНЦИП ─ */
+.principle{background:var(--glass);border:1px solid var(--line);border-radius:18px;padding:44px 46px;box-shadow:var(--gs);position:relative;overflow:hidden;}
+.principle::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--lime);}
+.pr-t{font-size:clamp(26px,3.4vw,42px);font-weight:900;letter-spacing:-.04em;line-height:1.05;}
+.pr-d{font-size:14.5px;color:var(--sub);line-height:1.8;max-width:720px;margin-top:18px;}
+.pr-check{margin-top:26px;display:inline-block;font-family:var(--mono);font-size:11px;line-height:1.7;color:rgba(181,214,78,.8);border-left:2px solid var(--lime);padding:8px 0 8px 14px;}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:26px;}
+.vs-c{padding:22px 24px;background:var(--glass-2);border-top:2px solid var(--accent);}
+.vs-l{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+.vs-c p{font-size:13.5px;line-height:1.7;color:var(--sub);margin-bottom:7px;}
+.vs-c p:last-child{margin-bottom:0;}
+
+/* ─ РЕГИСТРЫ / КАНАЛЫ ─ */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:26px;}
+.card{padding:28px 28px 32px;background:var(--glass);border-top:1px solid var(--line);transition:background .25s;}
+.card:hover{background:var(--glass-2);}
+.card-k{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(181,214,78,.5);margin-bottom:16px;}
+.card-t{font-size:18px;font-weight:900;letter-spacing:-.025em;margin-bottom:9px;}
+.card-d{font-size:12.5px;color:var(--sub);line-height:1.68;}
+.card-ex{font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.7;margin-top:14px;border-left:2px solid var(--line);padding-left:12px;}
 
 /* ─ РУБРИКАТОР ─ */
-.rub-list{display:flex;flex-direction:column;gap:10px;margin-top:24px;}
-.rub{background:var(--glass);border:1px solid var(--line);border-radius:12px;padding:16px 20px;display:grid;grid-template-columns:200px 1fr 64px;align-items:center;gap:20px;}
-.rub.void{border-style:dashed;background:transparent;}
-.rub-n{font-size:14px;font-weight:700;letter-spacing:-.02em;}
-.rub-n small{display:block;font-weight:400;font-size:11.5px;color:var(--sub);letter-spacing:0;margin-top:4px;}
+.phase-switch{display:flex;gap:6px;flex-wrap:wrap;margin:26px 0 20px;}
+.ph{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--sub);background:var(--glass);border:1px solid var(--line);border-radius:8px;padding:10px 15px;cursor:pointer;transition:all .15s;}
+.ph:hover{color:var(--white);background:var(--glass-2);}
+.ph.on{color:var(--ink);background:var(--lime);border-color:var(--lime);}
+.rub{background:var(--glass);border:1px solid var(--line);border-radius:12px;padding:18px 22px;display:grid;grid-template-columns:280px 1fr 56px;align-items:center;gap:22px;margin-bottom:8px;}
+.rub-n{font-size:15px;font-weight:800;letter-spacing:-.02em;}
+.rub-n small{display:block;font-weight:400;font-size:11.5px;color:var(--sub);letter-spacing:0;margin-top:5px;line-height:1.55;}
 .rub-bar{height:8px;border-radius:4px;background:var(--glass-2);overflow:hidden;}
-.rub-fill{height:100%;border-radius:4px;background:var(--accent,var(--lime));transition:width .4s;}
+.rub-fill{height:100%;border-radius:4px;background:var(--accent);transition:width .45s cubic-bezier(.16,1,.3,1);}
 .rub-p{font-family:var(--mono);font-size:14px;font-weight:700;text-align:right;}
-.rub-p.dim{color:var(--muted);}
+.rub-p.zero{color:var(--muted);}
+
+/* ─ ПРОИЗВОДСТВО ─ */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:26px;}
+.fl{padding:24px 24px 28px;background:var(--glass);border-top:1px solid var(--line);}
+.fl-n{font-family:var(--mono);font-size:22px;font-weight:700;color:rgba(181,214,78,.5);line-height:1;margin-bottom:14px;}
+.fl-t{font-size:15px;font-weight:800;letter-spacing:-.02em;margin-bottom:7px;}
+.fl-d{font-size:12px;color:var(--sub);line-height:1.65;}
+.shotlist{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:16px;}
+.sl{padding:22px 24px;background:var(--glass);border-top:2px solid var(--accent);}
+.sl-l{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+.sl ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.sl li{font-size:12.5px;color:var(--sub);line-height:1.6;padding-left:16px;position:relative;}
+.sl li::before{content:'';position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:1px;background:var(--accent);opacity:.75;}
 
 /* ─ КАЛЕНДАРЬ ─ */
 .cal-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:18px;}
-.cal-note{font-size:12.5px;color:var(--sub);line-height:1.6;max-width:560px;}
-.legend{display:flex;gap:8px;flex-wrap:wrap;}
-.lg{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--sub);display:flex;align-items:center;gap:6px;}
+.legend{display:flex;gap:10px;flex-wrap:wrap;}
+.lg{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--sub);display:flex;align-items:center;gap:6px;}
 .lg i{width:8px;height:8px;border-radius:2px;background:var(--accent);display:block;}
-
 .week{margin-bottom:14px;}
-.week-lab{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.week-lab{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;display:flex;align-items:center;gap:14px;}
+.week-lab span{color:rgba(181,214,78,.6);}
+.week-lab::after{content:'';flex:1;height:1px;background:var(--line);}
 .week-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;}
-.day{background:var(--glass);border:1px solid var(--line);border-radius:11px;padding:12px 12px 14px;min-height:118px;display:flex;flex-direction:column;gap:8px;}
+.day{background:var(--glass);border:1px solid var(--line);border-radius:11px;padding:12px 12px 14px;min-height:132px;display:flex;flex-direction:column;gap:8px;}
 .day.today{border-color:var(--lime);}
-.day.weekend{background:transparent;border-style:dashed;}
+.day.shoot{background:rgba(181,214,78,.05);border-color:rgba(181,214,78,.22);}
+.day.empty{background:transparent;border-style:dashed;}
 .d-top{display:flex;align-items:baseline;justify-content:space-between;}
 .d-dow{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);}
 .d-date{font-family:var(--mono);font-size:13px;font-weight:700;}
-.d-slot{font-family:var(--mono);font-size:10px;color:var(--muted);opacity:.5;margin-top:auto;}
-.post{border:1px solid var(--accent,var(--line));border-left-width:3px;border-radius:7px;padding:7px 8px;background:var(--glass-2);}
-.post-r{font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent,var(--sub));margin-bottom:4px;}
-.post-t{font-size:11.5px;line-height:1.4;font-weight:600;letter-spacing:-.01em;}
-.post-p{font-family:var(--mono);font-size:8.5px;color:var(--muted);margin-top:5px;}
+.d-shoot{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(181,214,78,.8);}
+.d-slot{font-family:var(--mono);font-size:10px;color:var(--muted);opacity:.45;margin-top:auto;}
+.post{border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:7px;padding:8px 9px;background:var(--glass-2);}
+.post-r{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:5px;}
+.post-t{font-size:11.5px;line-height:1.42;font-weight:600;letter-spacing:-.01em;}
+.post-p{font-family:var(--mono);font-size:8.5px;color:var(--muted);margin-top:6px;letter-spacing:.06em;}
 
-/* ─ ТОН ─ */
-.tone{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px;}
-.tone-c{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative;overflow:hidden;}
-.tone-c::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent);}
+/* ─ ТОН: ЗАПРЕТЫ ─ */
+.tone{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:26px;}
+.tone-c{background:var(--glass);border-top:2px solid var(--accent);padding:26px 28px 30px;}
 .tone-t{font-size:15px;font-weight:900;letter-spacing:-.03em;margin-bottom:14px;}
 .tone-l{list-style:none;display:flex;flex-direction:column;gap:9px;}
 .tone-l li{font-size:12.5px;color:var(--sub);line-height:1.6;padding-left:18px;position:relative;}
@@ -121,18 +150,19 @@ footer{padding:36px 60px;border-top:1px solid var(--line);display:flex;align-ite
 [data-theme="light"] .ft-right{color:rgba(10,10,8,.2);}
 
 @media(max-width:1100px){
-  .plat-grid{grid-template-columns:1fr 1fr;}
-  .tone{grid-template-columns:1fr;}
-  .rub{grid-template-columns:150px 1fr 52px;gap:14px;}
+  .grid3,.flow{grid-template-columns:1fr 1fr;}
+  .vs,.tone,.shotlist{grid-template-columns:1fr;}
+  .rub{grid-template-columns:180px 1fr 50px;gap:16px;}
   .page-head,.sec,.sec.alt,footer{padding-left:28px;padding-right:28px;}
   .u-nav{padding:0 20px;}.u-sub{display:none;}
   .week-grid{grid-template-columns:repeat(4,1fr);}
 }
 @media(max-width:680px){
-  .plat-grid{grid-template-columns:1fr;}
+  .grid3,.flow{grid-template-columns:1fr;}
   .week-grid{grid-template-columns:1fr 1fr;}
   .rub{grid-template-columns:1fr;gap:10px;}
   .rub-p{text-align:left;}
+  .principle{padding:30px 24px;}
 }
 </style>
 </head>
@@ -170,61 +200,150 @@ footer{padding:36px 60px;border-top:1px solid var(--line);display:flex;align-ite
   <a href="marketing.html" class="back">← Маркетинг</a>
   <div class="eyebrow">SMM · Контент-план</div>
   <h1 class="page-title">SMM</h1>
-  <p class="page-lead">Площадки, рубрики и сетка публикаций. Рубрикатор задаёт, о чём говорим и в какой пропорции; календарь — когда именно. Контент идёт своим ритмом и не привязан к срокам кейсов, поэтому живёт отдельной страницей.</p>
+  <p class="page-lead">Мы транслируем не еду, а день человека, в котором она стоит. Еда попадает в кадр как часть момента — обед между задачами, ужин после тренировки, вечер воскресенья с расписанной неделей. Отсюда и рубрики, и тон, и то, что мы показываем упаковку раньше, чем блюда.</p>
 </section>
 
-<!-- ПЛОЩАДКИ -->
+<!-- ПРИНЦИП -->
 <section class="sec">
-  <div class="eyebrow">Площадки · Роль каждой</div>
-  <div class="plat-grid" id="platGrid"></div>
-</section>
-
-<!-- РУБРИКАТОР -->
-<section class="sec alt">
-  <div class="sec-in">
-    <div class="eyebrow">Рубрикатор · Доли в сетке</div>
-    <div class="cal-note">Сумма долей — 100 %. Пропорция важнее количества: она удерживает баланс между продуктом, кухней и брендом, когда план собирается в спешке.</div>
-    <div class="rub-list" id="rubList"></div>
+  <div class="principle">
+    <div class="pr-t">Зеркало, а не плакат.</div>
+    <div class="pr-d">Контент отражает жизнь аудитории, а не показывает витрину, до которой ей надо дотянуться. Мы описываем день, а не предписываем его. Человек в кадре ничего не достигает — он просто живёт, и еда стоит рядом. Это единственное, что отделяет образ жизни от мотивации, которую бренд не использует.</div>
+    <div class="pr-check">Проверка: если из поста можно вынуть глагол в повелительном наклонении —<br>это плакат. Переписываем.</div>
+    <div class="vs">
+      <div class="vs-c" style="--accent:var(--lime)">
+        <div class="vs-l">Зеркало</div>
+        <p>«Во вторник после зала есть пятнадцать минут и не осталось сил готовить.»</p>
+        <p>«Что ест человек, у которого завтра падел в семь утра.»</p>
+        <p>«Понедельник, неделя уже расписана.»</p>
+      </div>
+      <div class="vs-c" style="--accent:var(--red)">
+        <div class="vs-l">Плакат</div>
+        <p>«Начни утро правильно.»</p>
+        <p>«Стань лучшей версией себя.»</p>
+        <p>«Дисциплина решает — питайся осознанно!»</p>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- КАЛЕНДАРЬ -->
-<section class="sec">
-  <div class="eyebrow">Календарь · 4 недели</div>
-  <div class="cal-head">
-    <div class="cal-note">Сетка строится от текущей недели. Публикации подтягиваются из массива <code style="font-family:var(--mono);font-size:11.5px">POSTS</code> по дате.</div>
-    <div class="legend" id="legend"></div>
-  </div>
-  <div id="calendar"></div>
-</section>
-
-<!-- ТОН -->
+<!-- TONE OF VOICE -->
 <section class="sec alt">
   <div class="sec-in">
-    <div class="eyebrow">Тон постов · Правила брендбука</div>
+    <div class="eyebrow">Tone of Voice · Три регистра</div>
+    <p class="note">Один тон на всё не работает: карточка блюда и пост в Telegram не могут звучать одинаково. Регистры разные, запреты общие. Говорит не безличный бренд, а «мы» — те, кто это готовит. Коллега, который ведёт здоровый образ жизни, а не тренер и не диетолог: он не рассказывает, как надо, он показывает, как у него.</p>
+    <div class="grid3">
+      <div class="card">
+        <div class="card-k">Регистр 01</div>
+        <div class="card-t">Продуктовый</div>
+        <div class="card-d">Карточки в Яндекс Еде, этикетка, меню. Только факты, ноль эпитетов, короткие предложения. Здесь тон жёстче всего.</div>
+        <div class="card-ex">Говядина, гречка, овощи.<br>380 г · 32 г белка.</div>
+      </div>
+      <div class="card">
+        <div class="card-k">Регистр 02</div>
+        <div class="card-t">Разговорный</div>
+        <div class="card-d">Посты в Telegram и Instagram. Можно длиннее и живее, можно объяснять и рассуждать. По-прежнему на «вы», по-прежнему без мотивации. Здесь живёт образ жизни.</div>
+        <div class="card-ex">Говядина томилась четыре часа.<br>Рассказываем, зачем так долго.</div>
+      </div>
+      <div class="card">
+        <div class="card-k">Регистр 03</div>
+        <div class="card-t">Сервисный</div>
+        <div class="card-d">Ответы, комментарии, проблемы. Максимально короткий: действие вместо извинения, срок вместо сожаления.</div>
+        <div class="card-ex">Не понравилось — вернём деньги.<br>Ответим сегодня.</div>
+      </div>
+    </div>
+
+    <div class="principle" style="margin-top:26px;">
+      <div class="pr-t" style="font-size:clamp(20px,2.4vw,28px);">Цифры — не рубрика, а фактура речи.</div>
+      <div class="pr-d">КБЖУ, вес, время, граммы появляются почти в каждом посте и набираются моноширинным — так же, как в визуальной системе. Это и есть упор на КБЖУ: не отдельная тема раз в неделю, а постоянная опора любого текста. Рубрика про цифры выдыхается за месяц; цифра внутри поста работает всегда.</div>
+    </div>
+
     <div class="tone">
       <div class="tone-c" style="--accent:var(--lime)">
         <div class="tone-t">Так пишем</div>
         <ul class="tone-l">
-          <li>Взрослый со взрослым: коротко, серьёзно, факты вместо эмоций.</li>
-          <li>«Говядина томилась 4 часа», «32 г белка», «Разогреть 2 минуты».</li>
-          <li>На «вы» или безлично.</li>
-          <li>Цифры и КБЖУ — JetBrains Mono, названия и заголовки — Archivo.</li>
-          <li>Фото блюд живут только в digital: сайт, соцсети, доставка.</li>
+          <li>Момент вместо блюда: обед между двумя задачами, ужин в 21:30.</li>
+          <li>Факт вместо эпитета: «томилась 4 часа», «32 г белка», «разогреть 2 минуты».</li>
+          <li>На «вы» или безлично. «Мы» — про команду, не про бренд-абстракцию.</li>
+          <li>Цифры моноширинным, названия и заголовки — Archivo.</li>
+          <li>Фото еды живут только здесь, в digital. На упаковке их нет.</li>
         </ul>
       </div>
       <div class="tone-c" style="--accent:var(--red)">
         <div class="tone-t">Так не пишем</div>
         <ul class="tone-l">
-          <li>Ирония и самоирония, уменьшительные вроде «вкусняшка».</li>
-          <li>Восклицательные знаки в продуктовых текстах.</li>
-          <li>Обращение «ты» без запроса аудитории.</li>
-          <li>Эмодзи на упаковке и в меню.</li>
-          <li>Мотивация («стань лучшей версией»), медицинские обещания, вкусовые эпитеты.</li>
-          <li>Лайм в базовой линейке: этот цвет принадлежит только SMART.</li>
+          <li>Мотивация и повелительное наклонение: «начни», «стань», «возьми себя».</li>
+          <li>Ирония, самоирония, уменьшительные вроде «вкусняшка».</li>
+          <li>Восклицательные знаки в продуктовых текстах, эмодзи в меню и на упаковке.</li>
+          <li>«Ты» без запроса аудитории.</li>
+          <li>Медицинские обещания и вкусовые эпитеты: «нежнейший», «полезно для фигуры».</li>
+          <li>Лайм в материалах базовой линейки — этот цвет принадлежит только SMART.</li>
         </ul>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- КАНАЛЫ -->
+<section class="sec">
+  <div class="eyebrow">Каналы · Разная работа, один материал</div>
+  <p class="note">Два канала — не два плана. Материал производится один раз и режется по-разному: в Telegram уходит текстом и фактом, в Instagram — кадром и подписью в две строки. Кросспостинг одного и того же убивает оба канала.</p>
+  <div class="grid3" id="platGrid"></div>
+</section>
+
+<!-- РУБРИКАТОР -->
+<section class="sec alt">
+  <div class="sec-in">
+    <div class="eyebrow">Рубрикатор · Доли меняются по фазам</div>
+    <p class="note">Рубрики выросли из барьеров аудитории, а не из жанров. Отсюда рабочий фильтр: пост, который не попадает ни в одну рубрику, не публикуется. Пропорция сдвигается по мере того, как появляются продукт и клиенты — пока нет еды, показываем, как она делается; когда появилась — как она экономит время; когда появились клиенты — отдаём слово им.</p>
+    <div class="phase-switch" id="phaseSwitch"></div>
+    <div id="rubList"></div>
+  </div>
+</section>
+
+<!-- ПРОИЗВОДСТВО -->
+<section class="sec">
+  <div class="eyebrow">Производство · Один съёмочный день</div>
+  <p class="note">Единица планирования — не пост, а съёмочный день. Всё, что не снимается в этот день, в план не попадает: так план перестаёт зависеть от вдохновения. Съёмочный день — <b style="color:var(--white)">вторник</b>; если удобнее другой, сдвигается вся сетка.</p>
+  <div class="flow">
+    <div class="fl"><div class="fl-n">01</div><div class="fl-t">Пятница</div><div class="fl-d">Выбрали тему следующей недели и что под неё снимаем. Пятнадцать минут.</div></div>
+    <div class="fl"><div class="fl-n">02</div><div class="fl-t">Вторник</div><div class="fl-d">Съёмочный день на кухне: один блок кадров под тему, плюс запас.</div></div>
+    <div class="fl"><div class="fl-n">03</div><div class="fl-t">Вторник, вечер</div><div class="fl-d">Из блока собираются 5–6 единиц: 1 пост в TG, 1 в IG, 3–4 сторис.</div></div>
+    <div class="fl"><div class="fl-n">04</div><div class="fl-t">Пн · Ср · Пт / Вт · Чт</div><div class="fl-d">Публикации по сетке. Telegram — три раза в неделю, Instagram — два поста и сторис в дни съёмки.</div></div>
+  </div>
+
+  <div class="shotlist">
+    <div class="sl" style="--accent:var(--lime)">
+      <div class="sl-l">Что снимаем в каждый выезд</div>
+      <ul>
+        <li>Процесс: руки, оборудование, реальная работа — без постановки.</li>
+        <li>Упаковка: контейнер, стикер крупно, КБЖУ-блок, как читается акцент блюда.</li>
+        <li>Ситуация: стол, сумка, машина, окно — контекст дня, а не витрина.</li>
+        <li>Деталь и цифра: вес на весах, таймер, температура, число ингредиентов.</li>
+        <li>Запас: 5–10 нейтральных кадров кухни на недели, когда съёмка сорвалась.</li>
+      </ul>
+    </div>
+    <div class="sl" style="--accent:var(--red)">
+      <div class="sl-l">Чего в кадре не бывает</div>
+      <ul>
+        <li>Постановочных «счастливых людей с вилкой».</li>
+        <li>Спортзальной эстетики: пресс, гантели, штанга, до/после.</li>
+        <li>Лайма в кадрах базовой линейки — он только у SMART.</li>
+        <li>Фото еды, наклеенного на упаковку: еду показывает окно контейнера.</li>
+        <li>Чужой посуды, логотипов и мусора в фоне.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- КАЛЕНДАРЬ -->
+<section class="sec alt">
+  <div class="sec-in">
+    <div class="eyebrow">Календарь · 6 недель предзапуска</div>
+    <div class="cal-head">
+      <p class="note">Полтора месяца до старта — не пауза, а актив: продукта ещё нет, зато есть процесс, и он интереснее готового блюда. К дню запуска аудитория, которая видела кухню с ремонта, и делает первые заказы. Даты правятся в <code>PLAN_START</code>, публикации — в массиве <code>POSTS</code>.</p>
+      <div class="legend" id="legend"></div>
+    </div>
+    <div id="calendar"></div>
   </div>
 </section>
 
@@ -242,23 +361,89 @@ footer{padding:36px 60px;border-top:1px solid var(--line);display:flex;align-ite
 
 <script>
 /* ══════════════════════════════════════════════════════════════════════
-   ДАННЫЕ КОНТЕНТ-ПЛАНА — заполняем здесь, страница пересобирается сама.
+   ДАННЫЕ КОНТЕНТ-ПЛАНА
 
-   PLATFORMS — площадки:
-     { name:'Telegram', role:'Зачем она нам.', formats:'посты · сторис' }
-
-   RUBRICS — рубрики и доли (сумма 100):
-     { name:'Продукт', desc:'О чём рубрика.', share:30, color:'#B5D64E' }
-
-   POSTS — публикации, дата в формате ГГГГ-ММ-ДД:
-     { date:'2026-09-08', rubric:'Продукт', title:'Тема поста',
-       platform:'Telegram', status:'draft' }
-     статусы: 'idea' | 'draft' | 'ready' | 'live'
+   PLAN_START — понедельник первой недели предзапуска (ГГГГ-ММ-ДД).
+   SHOOT_DOW  — съёмочный день недели: 0 = понедельник … 6 = воскресенье.
+   POSTS      — публикации: { date, rubric, title, platform, status }
+                статусы: 'idea' | 'draft' | 'ready' | 'live'
    ══════════════════════════════════════════════════════════════════════ */
 
-const PLATFORMS = [];
-const RUBRICS   = [];
-const POSTS     = [];
+const PLAN_START = '2026-09-07';
+const SHOOT_DOW  = 1;            // вторник
+const WEEKS      = 6;
+
+const PLATFORMS = [
+  {name:'Telegram', role:'Для тех, кто уже купил: меню дня, разборы, поводы вернуться. Здесь живёт повторная покупка — главная метрика бренда.', formats:'3 поста в неделю · пн · ср · пт', color:'#B5D64E'},
+  {name:'Instagram', role:'Для тех, кто ещё не знает: витрина, момент из дня, упаковка. Здесь собирается UGC и работает охват.', formats:'2 поста + сторис · вт · чт', color:'rgba(255,255,255,.5)'},
+  {name:'Сайт', role:'Понимание бренда и поисковый трафик. Задача — объяснить, кто мы, а не продать в лоб.', formats:'статьи · SEO · без ритма', color:'#3B82F6'}
+];
+
+const PHASES = [
+  {key:'pre',   label:'Предзапуск'},
+  {key:'first', label:'Первый месяц продаж'},
+  {key:'later', label:'Дальше'}
+];
+
+const RUBRICS = [
+  {name:'01 · День устроен',  desc:'Момент из дня аудитории, еда в нём. Стол в переговорке, сумка после зала, вечер воскресенья. Ядро образа жизни.', color:'#B5D64E', share:{pre:10, first:25, later:25}},
+  {name:'02 · Что в коробке', desc:'Упаковка как главный визуальный герой: стикер крупно, КБЖУ, состав, акцент блюда — клетчатка, белок или углевод.', color:'rgba(255,255,255,.55)', share:{pre:20, first:25, later:20}},
+  {name:'03 · Как это сделано', desc:'Кухня, техкарты, су-вид, откуда четыре часа томления. Длинные тексты, приоритет Telegram.', color:'#F59E0B', share:{pre:50, first:25, later:20}},
+  {name:'04 · Свои',          desc:'Люди. Сначала команда — повар, управляющий; потом клиенты, отзывы, UGC. Без пафоса и историй успеха.', color:'#3B82F6', share:{pre:20, first:10, later:15}},
+  {name:'05 · Меню и сервис', desc:'Что появилось, что закончилось, блюдо недели, как заказать. Короткие служебные посты, держат частоту.', color:'rgba(255,255,255,.35)', share:{pre:0, first:15, later:20}}
+];
+
+const POSTS = [
+  // ── Неделя 1 · мы существуем ───────────────────────────────────────
+  {date:'2026-09-07', rubric:'03', title:'Зачем мы это делаем и что будет дальше', platform:'Telegram', status:'idea'},
+  {date:'2026-09-08', rubric:'03', title:'Помещение до ремонта: зонирование под СанПиН', platform:'Instagram', status:'idea'},
+  {date:'2026-09-09', rubric:'03', title:'Dark kitchen: почему кухня без зала', platform:'Telegram', status:'idea'},
+  {date:'2026-09-10', rubric:'04', title:'Кто будет готовить', platform:'Instagram', status:'idea'},
+  {date:'2026-09-11', rubric:'03', title:'18 блюд: как отбирали', platform:'Telegram', status:'idea'},
+
+  // ── Неделя 2 · мы разбираемся в еде ────────────────────────────────
+  {date:'2026-09-14', rubric:'03', title:'Техкарта целиком: борщ с говядиной', platform:'Telegram', status:'idea'},
+  {date:'2026-09-15', rubric:'03', title:'Конвектомат и су-вид вместо жарки', platform:'Instagram', status:'idea'},
+  {date:'2026-09-16', rubric:'03', title:'Откуда берутся 4 часа томления', platform:'Telegram', status:'idea'},
+  {date:'2026-09-17', rubric:'01', title:'Вечер воскресенья, когда неделя уже расписана', platform:'Instagram', status:'idea'},
+  {date:'2026-09-18', rubric:'02', title:'Охлаждённая, не замороженная: что это меняет', platform:'Telegram', status:'idea'},
+
+  // ── Неделя 3 · вот как это будет выглядеть ─────────────────────────
+  {date:'2026-09-21', rubric:'02', title:'Почему на нашей коробке не будет фото еды', platform:'Telegram', status:'idea'},
+  {date:'2026-09-22', rubric:'02', title:'Стикер крупным планом', platform:'Instagram', status:'idea'},
+  {date:'2026-09-23', rubric:'02', title:'Как читать акцент блюда: клетчатка, белок, углевод', platform:'Telegram', status:'idea'},
+  {date:'2026-09-24', rubric:'01', title:'Обед между двумя задачами', platform:'Instagram', status:'idea'},
+  {date:'2026-09-25', rubric:'02', title:'Сколько весит порция и почему именно столько', platform:'Telegram', status:'idea'},
+
+  // ── Неделя 4 · слепая дегустация ───────────────────────────────────
+  {date:'2026-09-28', rubric:'04', title:'Слепая дегустация: зовём попробовать', platform:'Telegram', status:'idea'},
+  {date:'2026-09-29', rubric:'04', title:'Кухня в день дегустации', platform:'Instagram', status:'idea'},
+  {date:'2026-10-01', rubric:'01', title:'Ужин в 21:30 после тренировки', platform:'Instagram', status:'idea'},
+  {date:'2026-10-02', rubric:'05', title:'Итоги дегустации: что вошло в стартовое меню', platform:'Telegram', status:'idea'},
+
+  // ── Неделя 5 · люди и цены ─────────────────────────────────────────
+  {date:'2026-10-05', rubric:'04', title:'Команда: кто стоит за блюдами', platform:'Telegram', status:'idea'},
+  {date:'2026-10-06', rubric:'04', title:'Повар за работой', platform:'Instagram', status:'idea'},
+  {date:'2026-10-07', rubric:'05', title:'Сколько это стоит и из чего складывается цена', platform:'Telegram', status:'idea'},
+  {date:'2026-10-08', rubric:'01', title:'Утро понедельника', platform:'Instagram', status:'idea'},
+  {date:'2026-10-09', rubric:'05', title:'Неделя до старта', platform:'Telegram', status:'idea'},
+
+  // ── Неделя 6 · старт ───────────────────────────────────────────────
+  {date:'2026-10-12', rubric:'05', title:'Как заказать: пошагово', platform:'Telegram', status:'idea'},
+  {date:'2026-10-13', rubric:'02', title:'Коробка в руках', platform:'Instagram', status:'idea'},
+  {date:'2026-10-14', rubric:'05', title:'Мы открылись', platform:'Telegram', status:'idea'},
+  {date:'2026-10-15', rubric:'01', title:'Первый заказ уехал', platform:'Instagram', status:'idea'},
+  {date:'2026-10-16', rubric:'04', title:'Что сказали первые', platform:'Telegram', status:'idea'}
+];
+
+const WEEK_TITLES = [
+  'Мы существуем',
+  'Мы разбираемся в еде',
+  'Вот как это будет выглядеть',
+  'Слепая дегустация',
+  'Люди и цены',
+  'Старт'
+];
 
 const P_STATUS = [
   {key:'idea',  label:'Идея',       color:'rgba(255,255,255,.35)'},
@@ -267,109 +452,99 @@ const P_STATUS = [
   {key:'live',  label:'Опубликован',color:'#B5D64E'}
 ];
 
-/* ── Площадки ── */
-function renderPlatforms(){
-  const el = document.getElementById('platGrid');
-  if(PLATFORMS.length){
-    el.innerHTML = PLATFORMS.map(p => `<div class="plat" style="--accent:${p.color || 'var(--lime)'}">
-      <div class="plat-n">${p.name}</div>
-      <div class="plat-r">${p.role || ''}</div>
-      <div class="plat-f">${p.formats || ''}</div>
-    </div>`).join('');
-    return;
-  }
-  el.innerHTML = [1,2,3,4].map(() => `<div class="plat void">
-      <div class="plat-n" style="color:var(--muted)">Площадка</div>
-      <div class="plat-r" style="color:var(--muted)">Роль: зачем она нам и что здесь публикуем.</div>
-      <div class="plat-f">форматы</div>
-    </div>`).join('');
-}
+/* ── Каналы ── */
+document.getElementById('platGrid').innerHTML = PLATFORMS.map(p => `
+  <div class="card">
+    <div class="card-k" style="color:${p.color}">Канал</div>
+    <div class="card-t">${p.name}</div>
+    <div class="card-d">${p.role}</div>
+    <div class="card-ex">${p.formats}</div>
+  </div>`).join('');
 
-/* ── Рубрикатор ── */
+/* ── Рубрикатор с фазами ── */
+let phase = 'pre';
+function renderPhases(){
+  document.getElementById('phaseSwitch').innerHTML = PHASES.map(p =>
+    `<button class="ph${phase === p.key ? ' on' : ''}" data-p="${p.key}">${p.label}</button>`).join('');
+  document.querySelectorAll('.ph').forEach(b => b.addEventListener('click', () => {
+    phase = b.dataset.p; renderPhases(); renderRubrics();
+  }));
+}
 function renderRubrics(){
   const el = document.getElementById('rubList');
-  if(RUBRICS.length){
-    el.innerHTML = RUBRICS.map(r => `<div class="rub" style="--accent:${r.color || 'var(--lime)'}">
-      <div class="rub-n">${r.name}<small>${r.desc || ''}</small></div>
-      <div class="rub-bar"><div class="rub-fill" style="width:${r.share}%"></div></div>
-      <div class="rub-p">${r.share}%</div>
-    </div>`).join('');
-    const sum = RUBRICS.reduce((a,r) => a + (r.share || 0), 0);
-    if(sum !== 100){
-      el.insertAdjacentHTML('beforeend',
-        `<div class="cal-note" style="color:var(--amber);margin-top:6px">Сумма долей — ${sum}%. Приведи к 100%.</div>`);
-    }
-    return;
+  el.innerHTML = RUBRICS.map(r => {
+    const v = r.share[phase];
+    return `<div class="rub" style="--accent:${r.color}">
+      <div class="rub-n">${r.name}<small>${r.desc}</small></div>
+      <div class="rub-bar"><div class="rub-fill" style="width:${v}%"></div></div>
+      <div class="rub-p${v ? '' : ' zero'}">${v ? v + '%' : '—'}</div>
+    </div>`;
+  }).join('');
+  const sum = RUBRICS.reduce((a, r) => a + r.share[phase], 0);
+  if(sum !== 100){
+    el.insertAdjacentHTML('beforeend',
+      `<div class="note" style="color:var(--amber);margin-top:10px">Сумма долей — ${sum}%. Приведи к 100%.</div>`);
   }
-  el.innerHTML = [1,2,3,4].map(() => `<div class="rub void">
-      <div class="rub-n" style="color:var(--muted)">Рубрика<small>О чём говорим в этой рубрике.</small></div>
-      <div class="rub-bar"></div>
-      <div class="rub-p dim">—</div>
-    </div>`).join('');
 }
 
 /* ── Легенда ── */
-function renderLegend(){
-  document.getElementById('legend').innerHTML = P_STATUS.map(s =>
-    `<span class="lg" style="--accent:${s.color}"><i></i>${s.label}</span>`).join('');
-}
+document.getElementById('legend').innerHTML = P_STATUS.map(s =>
+  `<span class="lg" style="--accent:${s.color}"><i></i>${s.label}</span>`).join('');
 
 /* ── Календарь ── */
 const DOW = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
 const iso = d => d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
-
-function mondayOf(date){
-  const d = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-  const shift = (d.getDay() + 6) % 7;
-  d.setDate(d.getDate() - shift);
-  return d;
-}
+const fmt = d => String(d.getDate()).padStart(2,'0') + '.' + String(d.getMonth()+1).padStart(2,'0');
+const rubricOf = code => RUBRICS.find(r => r.name.startsWith(code)) || {color:'rgba(255,255,255,.25)', name:''};
 
 function renderCalendar(){
-  const today = new Date();
-  const todayIso = iso(today);
-  const start = mondayOf(today);
-  const rubricColor = name => (RUBRICS.find(r => r.name === name) || {}).color || 'rgba(255,255,255,.25)';
-  const statusColor = key => (P_STATUS.find(s => s.key === key) || P_STATUS[0]).color;
-
+  const [y,m,d] = PLAN_START.split('-').map(Number);
+  const start = new Date(y, m-1, d);
+  const todayIso = iso(new Date());
   let html = '';
-  for(let w = 0; w < 4; w++){
-    const wStart = new Date(start); wStart.setDate(start.getDate() + w * 7);
-    const wEnd   = new Date(wStart); wEnd.setDate(wStart.getDate() + 6);
-    const fmt = d => String(d.getDate()).padStart(2,'0') + '.' + String(d.getMonth()+1).padStart(2,'0');
 
+  for(let w = 0; w < WEEKS; w++){
+    const wStart = new Date(start); wStart.setDate(start.getDate() + w * 7);
+    const wEnd = new Date(wStart); wEnd.setDate(wStart.getDate() + 6);
     let days = '';
+
     for(let i = 0; i < 7; i++){
-      const d = new Date(wStart); d.setDate(wStart.getDate() + i);
-      const key = iso(d);
+      const dt = new Date(wStart); dt.setDate(wStart.getDate() + i);
+      const key = iso(dt);
       const dayPosts = POSTS.filter(p => p.date === key);
       const cls = ['day'];
       if(key === todayIso) cls.push('today');
-      if(i > 4 && !dayPosts.length) cls.push('weekend');
+      if(i === SHOOT_DOW) cls.push('shoot');
+      if(!dayPosts.length && i !== SHOOT_DOW) cls.push('empty');
 
       const body = dayPosts.length
-        ? dayPosts.map(p => `<div class="post" style="--accent:${rubricColor(p.rubric)}">
-              <div class="post-r">${p.rubric || ''}</div>
-              <div class="post-t">${p.title || ''}</div>
-              <div class="post-p" style="color:${statusColor(p.status)}">${p.platform || ''}</div>
-            </div>`).join('')
+        ? dayPosts.map(p => {
+            const r = rubricOf(p.rubric);
+            const st = P_STATUS.find(s => s.key === p.status) || P_STATUS[0];
+            return `<div class="post" style="--accent:${r.color}">
+                <div class="post-r">${r.name.replace(/^\d+ · /,'')}</div>
+                <div class="post-t">${p.title}</div>
+                <div class="post-p" style="color:${st.color}">${p.platform}</div>
+              </div>`;
+          }).join('')
         : '<div class="d-slot">—</div>';
 
       days += `<div class="${cls.join(' ')}">
-        <div class="d-top"><span class="d-dow">${DOW[i]}</span><span class="d-date">${fmt(d)}</span></div>
+        <div class="d-top"><span class="d-dow">${DOW[i]}</span><span class="d-date">${fmt(dt)}</span></div>
+        ${i === SHOOT_DOW ? '<div class="d-shoot">Съёмка</div>' : ''}
         ${body}
       </div>`;
     }
 
     html += `<div class="week">
-      <div class="week-lab">Неделя ${w+1} · ${fmt(wStart)} — ${fmt(wEnd)}</div>
+      <div class="week-lab">Неделя ${w+1} · ${fmt(wStart)} — ${fmt(wEnd)} <span>${WEEK_TITLES[w] || ''}</span></div>
       <div class="week-grid">${days}</div>
     </div>`;
   }
   document.getElementById('calendar').innerHTML = html;
 }
 
-renderPlatforms(); renderRubrics(); renderLegend(); renderCalendar();
+renderPhases(); renderRubrics(); renderCalendar();
 
 /* ── Тема ── */
 function updateThemeIcon(){
